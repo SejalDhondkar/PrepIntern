@@ -8,6 +8,10 @@ import VueRouter from 'vue-router'
 import Index from './Index'
 import auth from './auth'
 import router from './router'
+import Vuetify from 'vuetify'
+import { store } from './store/index'
+
+Vue.use(Vuetify)
 
 // Set Vue globally
 window.Vue = Vue
@@ -25,6 +29,8 @@ Vue.use(VueAuth, auth)
 Vue.component('index', Index)
 
 const app = new Vue({
-  el: '#app',
-  router
+    el: '#app',
+    router,
+    store,
+    vuetify: new Vuetify()
 });

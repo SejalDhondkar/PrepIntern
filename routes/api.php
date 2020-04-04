@@ -25,6 +25,7 @@ Route::prefix('auth')->group(function () {
     Route::group(['middleware' => 'auth:api'], function(){
         Route::get('user', 'AuthController@user');
         Route::post('logout', 'AuthController@logout');
+        
     });
 });
 
@@ -32,4 +33,10 @@ Route::group(['middleware' => 'auth:api'], function(){
     // Users
     Route::get('users', 'UserController@index')->middleware('isAdmin');
     Route::get('users/{id}', 'UserController@show')->middleware('isAdminOrSelf');
+    Route::get('roles','RolesController@index');
+    Route::post('roles/store','RolesController@store')->middleware('isAdmin');
+    Route::get('roles/edit/{id}','RolesController@edit')->middleware('isAdmin');
+    Route::put('roles/update/{id}','RolesController@update')->middleware('isAdmin');
+    Route::get('roles/delete/{id}','RolesController@delete')->middleware('isAdmin');
 });
+
