@@ -8,6 +8,9 @@ import Login from './pages/Login'
 import Dashboard from './pages/user/Dashboard'
 import AdminDashboard from './pages/admin/Dashboard'
 import MyComponent from './components/MyComponent'
+import RolesIndex from './pages/roles/index'
+import RolesCreate from './pages/roles/create'
+import RolesEdit from './pages/roles/edit'
 
 // Routes
 const routes = [{
@@ -58,7 +61,25 @@ const routes = [{
     {
         path: '/roles',
         name: 'roles.index',
-        // component: Dashboard,
+        component: RolesIndex,
+        meta: {
+            auth: true
+        }
+    },
+
+    {
+        path: '/roles/store',
+        name: 'roles.create',
+        component: RolesCreate,
+        meta: {
+            auth: true
+        }
+    },
+
+    {
+        path: '/roles/edit/:id',
+        name: 'roles.edit',
+        component: RolesEdit,
         meta: {
             auth: true
         }
