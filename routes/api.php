@@ -31,12 +31,19 @@ Route::prefix('auth')->group(function () {
 
 Route::group(['middleware' => 'auth:api'], function(){
     // Users
-    Route::get('users', 'UserController@index')->middleware('isAdmin');
-    Route::get('users/{id}', 'UserController@show')->middleware('isAdminOrSelf');
-    Route::get('roles','RolesController@index');
-    Route::post('roles/store','RolesController@store');
-    Route::get('roles/edit/{id}','RolesController@edit');
-    Route::put('roles/update/{id}','RolesController@update');
-    Route::get('roles/delete/{id}','RolesController@delete');
+    Route::get('users', 'UserController@index')->middleware('Admin');
+    Route::get('users/{id}', 'UserController@show');
+    Route::get('roles','RolesController@index')->middleware('Admin');
+    Route::post('roles/store','RolesController@store')->middleware('Admin');
+    Route::get('roles/edit/{id}','RolesController@edit')->middleware('Admin');
+    Route::put('roles/update/{id}','RolesController@update')->middleware('Admin');
+    Route::get('roles/delete/{id}','RolesController@delete')->middleware('Admin');
+    Route::get('profile', 'ProfileController@index');
+    Route::get('/profile/edit', 'ProfileController@edit');
+    Route::put('/profile/update','ProfileController@update');
+
+    Route::get('/company/{id}', 'CompanyController@show');
+    Route::get('/company/edit/{id}', 'CompanyController@edit');
+    Route::put('/company/update/{id}','CompanyController@update');
 });
 

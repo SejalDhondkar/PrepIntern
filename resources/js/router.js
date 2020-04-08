@@ -11,6 +11,11 @@ import MyComponent from './components/MyComponent'
 import RolesIndex from './pages/roles/index'
 import RolesCreate from './pages/roles/create'
 import RolesEdit from './pages/roles/edit'
+import ProfileIndex from './pages/profile/index'
+import ProfileEdit from './pages/profile/edit'
+import CompanyProfile from './pages/company/profile'
+import CompanyEdit from './pages/company/edit'
+
 
 // Routes
 const routes = [{
@@ -54,7 +59,7 @@ const routes = [{
         name: 'admin.dashboard',
         component: AdminDashboard,
         meta: {
-            auth: { roles: 2, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
+            auth: { roles: 1, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
 
@@ -63,7 +68,7 @@ const routes = [{
         name: 'roles.index',
         component: RolesIndex,
         meta: {
-            auth: true
+            auth: { roles: 1, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
 
@@ -72,7 +77,7 @@ const routes = [{
         name: 'roles.create',
         component: RolesCreate,
         meta: {
-            auth: true
+            auth: { roles: 1, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
 
@@ -81,9 +86,48 @@ const routes = [{
         name: 'roles.edit',
         component: RolesEdit,
         meta: {
+            auth: { roles: 1, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
+        }
+    },
+
+    {
+        path: '/profile',
+        name: 'profile.index',
+        component: ProfileIndex,
+        meta: {
             auth: true
         }
     },
+
+    {
+        path: '/profile/edit',
+        name: 'profile.edit',
+        component: ProfileEdit,
+        meta: {
+            auth: true
+        }
+    },
+
+    {
+        path: '/company/:id',
+        name: 'company.profile',
+        component: CompanyProfile,
+        meta: {
+            auth: true
+        }
+    },
+
+    {
+        path: '/company/edit/:id',
+        name: 'company.edit',
+        component: CompanyEdit,
+        meta: {
+            auth: true
+        }
+    },
+
+
+
 ]
 
 const router = new VueRouter({
