@@ -30,55 +30,13 @@
                   cols="12"
                   md="10"
                   >
-                  <p class="display-1 p-4 text--lighten-1">{{company.name}}</p>        
+                  <p class="display-1 p-4 text--lighten-1">Registration Details</p>        
                 </v-col>
               </v-row> 
           </v-card>
         
             <v-container class="py-0">
-              <v-row class="text--muted m-0 p-0">
-                
-                <v-col
-                  cols="12"
-                  md="12"
-                >
-                <p class="subtitle-1 pt-3">Name: {{company.name}} </p>
-                </v-col>
-
-                <v-col
-                  cols="12"
-                  md="6"
-                >
-                  <p class="subtitle-1 pt-3">Email: {{company.email}} </p>
-                </v-col>
-
-                <v-col
-                  cols="12"
-                  md="6"
-                >
-                  <p class="subtitle-1 pt-3">Contact No: {{company.contact_no}}</p>
-                </v-col>                
-
-                <v-col
-                  cols="12"
-                  md="4"
-                >
-                  <p class="subtitle-1 pt-3">Country: {{company.country}}</p>
-                </v-col>
-
-                <v-col
-                  cols="12"
-                  md="4"
-                >
-                  <p class="subtitle-1 pt-3">State: {{company.state}} </p>
-                </v-col>
-
-                <v-col
-                  cols="12"
-                  md="4"
-                >
-                  <p class="subtitle-1 pt-3">City: {{company.city}}</p>
-                </v-col>
+              <v-row class="text--muted m-0 p-0">                
 
 
                 <v-col
@@ -90,60 +48,17 @@
 
                 <v-col
                   cols="12"
-                  md="6"
+                  md="12"
                 >
                   <p class="subtitle-1 pt-3">Registration Number: {{company.registration_no}} </p>
                 </v-col>
                 
                 <v-col
                   cols="12"
-                  md="6"
+                  md="12"
                 >
                   <p class="subtitle-1 pt-3">Certificate of Incorporation: {{company.certificate_of_incorporation}} </p>
-                </v-col>
-                
-                <v-col
-                  cols="12"
-                  md="6"
-                >
-                  <p class="subtitle-1 pt-3">Website: {{company.website}} </p>
-                </v-col>
-
-                <v-col
-                  cols="12"
-                  md="6"
-                >
-                  <p class="subtitle-1 pt-3"> PinCode: {{company.pincode}} </p>
-                </v-col>
-
-                <v-col
-                  cols="12"
-                  md="6"
-                >
-                  <p class="subtitle-1 pt-3">Year of Establishment: {{company.year_of_establishment}} </p>
-                </v-col>
-
-                <v-col
-                  cols="12"
-                  md="6"
-                >
-                  <p class="subtitle-1 pt-3">Type of Company: {{company.type_of_company}} </p>
-                </v-col>
-
-                <v-col
-                  cols="12"
-                  md="6"
-                >
-                  <p class="subtitle-1 pt-3">Description: {{company.description}} </p>
-                </v-col>
-
-                <v-col
-                  cols="12"
-                  md="6"
-                >
-                  <p class="subtitle-1 pt-3">Range of Employees: {{company.range_of_employees}} </p>
-                </v-col>
-                 
+                </v-col>            
                 
                 <v-col
                   cols="12"

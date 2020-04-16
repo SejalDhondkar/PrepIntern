@@ -3,24 +3,34 @@
     raised
     class="mx-auto"
     width="95%"
-  >
-    
-    <v-toolbar
-      color="blue dark-3"
-      dark
-    >
-    <v-card-text>
-      <v-toolbar-title>Profile</v-toolbar-title>
-      
-    </v-card-text>
-    </v-toolbar>
-      
+  >  
 
-      <v-card-text>
-      
+  <v-card
+      class="mx-auto grey lighten-3 p-0"
+      width="98%"
+      >
+        <v-row justify="center">
+          <v-col
+            align="center"
+            cols="12"
+            md="2"
+            >
+              <v-avatar color="white" size="80" left>
+                <v-icon x-large>mdi-account-circle</v-icon>
+              </v-avatar>
+          </v-col>
+
+          <v-col
+            cols="12"
+            md="10"
+            >
+            <p class="display-1 p-4 text--lighten-1">{{profile.name}}</p>        
+          </v-col>
+        </v-row> 
+    </v-card>    
         
             <v-container class="py-0">
-              <v-row>
+              <v-row class="text--muted m-0 p-0">
                 
                 <v-col
                   cols="12"
@@ -92,13 +102,7 @@
                   </v-btn>
                 </v-col>
               </v-row>
-            </v-container>
-        
-      
-
-      
-    </v-card-text>
-    
+            </v-container>    
   </v-card>
 </template>
 

@@ -16,6 +16,10 @@ import ProfileEdit from './pages/profile/edit'
 import CompanyProfile from './pages/company/profile'
 import CompanyEdit from './pages/company/edit'
 
+import CompanyPrimaryDetails from './pages/company/primarydetails'
+import CompanyRegistrationDetails from './pages/company/registrationdetails'
+import CompanyOtherDetails from './pages/company/otherdetails'
+import CompanySocialMediaLinks from './pages/company/socialmedialinks'
 
 // Routes
 const routes = [{
@@ -125,6 +129,52 @@ const routes = [{
             auth: true
         }
     },
+
+    {
+        path: '/company/:id/primarydetails',
+        name: 'company.primarydetails',
+        component: CompanyPrimaryDetails,
+        meta: {
+            auth: true
+        }
+    },
+
+    {
+        path: '/company/:id/registrationdetails',
+        name: 'company.registrationdetails',
+        component: CompanyRegistrationDetails,
+        meta: {
+            auth: true
+        }
+    },
+
+    {
+        path: '/company/:id/otherdetails',
+        name: 'company.otherdetails',
+        component: CompanyOtherDetails,
+        meta: {
+            auth: true
+        }
+    },
+
+    {
+        path: '/company/:id/socialmedialinks',
+        name: 'company.socialmedialinks',
+        component: CompanySocialMediaLinks,
+        meta: {
+            auth: true
+        }
+    },
+
+    {
+        path: '/company/edit/:id/socialmedialinks',
+        name: 'company.socialmedialinks',
+        component: CompanySocialMediaLinks,
+        meta: {
+            auth: true
+        }
+    },
+
 
 
 
