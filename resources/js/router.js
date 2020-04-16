@@ -122,7 +122,7 @@ const routes = [{
     },
 
     {
-        path: '/company/edit/:id',
+        path: '/company/edit/',
         name: 'company.edit',
         component: CompanyEdit,
         meta: {

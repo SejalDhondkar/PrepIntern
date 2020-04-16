@@ -1,0 +1,39 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateStatesTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('states', function (Blueprint $table) {
+          $table->bigIncrements('id');
+          $table->text('name');
+          $table->bigInteger('country_id')->unsigned();
+          $table->foreign('country_id')->references('id')->on('countries');
+          $table->text('country_code')->nullable();
+          $table->text('fips_code')->nullable();
+          $table->text('iso2')->nullable();
+          $table->timestamps();
+          $table->integer('flag')->nullable();
+          $table->text('wikiDataId')->nullable();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('states');
+    }
+}

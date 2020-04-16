@@ -9,40 +9,36 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
-       
+      Role::create([
+        'title' => 'Admin',
+        'description' => 'Will have access to everything'
+      ]);
 
-        Role::create([
-            'title' => 'Admin',
-            'description' => 'Will have access to everything'
-        ]);
+      Role::create([
+          'title' => 'Cluster Head',
+          'description' => 'Will be assigned a group of colleges'
+      ]);
 
-        Role::create([
-            'title' => 'Cluster Head',
-            'description' => 'Will be assigned a group of colleges'
-        ]);
-        
-        Role::create([
-            'title' => 'College Head',
-            'description' => 'Will be assigned one college'
-        ]);
+      Role::create([
+          'title' => 'College Head',
+          'description' => 'Will be assigned one college'
+      ]);
 
-        Role::create([
-            'title' => 'Employer',
-            'description' => 'Will post internships'
-        ]);
+      Role::create([
+          'title' => 'Employer',
+          'description' => 'Will post internships'
+      ]);
 
-        Role::create([
-            'title' => 'Student',
-            'description' => 'Will apply for courses and internships'
-        ]);
+      Role::create([
+          'title' => 'Student',
+          'description' => 'Will apply for courses and internships'
+      ]);
 
-        Role::create([
-            'title' => 'College Coordinator',
-            'description' => 'Will have access to performance report of their college students'
-        ]);
-
-
-        User::create([
+      Role::create([
+          'title' => 'College Coordinator',
+          'description' => 'Will have access to performance report of their college students'
+      ]);
+      User::create([
             'name' => 'Admin',
             'email' => 'admin@test.com',
             'password' => Hash::make('admin'),

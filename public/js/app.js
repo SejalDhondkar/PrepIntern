@@ -105888,7 +105888,7 @@ var routes = [{
     auth: true
   }
 }, {
-  path: '/company/edit/:id',
+  path: '/company/edit/',
   name: 'company.edit',
   component: _pages_company_edit__WEBPACK_IMPORTED_MODULE_14__["default"],
   meta: {
@@ -105993,8 +105993,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\laravel-vue-spa\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\laravel-vue-spa\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\wamp64\www\web-app\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\wamp64\www\web-app\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

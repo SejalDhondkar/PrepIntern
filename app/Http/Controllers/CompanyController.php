@@ -10,16 +10,17 @@ class CompanyController extends Controller
 
     public function show(Request $request, $id)
     {
+
         $company = Company::findOrFail($id);
         return $company;
     }
 
-    public function edit(Request $request, $id)
+    public function edit(Request $request)
     {
-        $company = Company::findOrFail($id);
+        $company = Company::where('admin_id',Auth::id())->get();
         return $company;
     }
-    
+
     public function update(Request $request, $id)
     {
         $company = Company::findOrFail($id);
@@ -42,7 +43,7 @@ class CompanyController extends Controller
 
         $success = 'success';
         return $success;
-        
+
     }
-    
+
 }
