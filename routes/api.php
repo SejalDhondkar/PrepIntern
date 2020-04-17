@@ -41,7 +41,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('profile', 'ProfileController@index');
     Route::get('/profile/edit', 'ProfileController@edit');
     Route::put('/profile/update','ProfileController@update');
-
+    Route::get('/mobileOtpVerified',['uses'=>'UserController@mobileOtpVerified','as'=>'mobile-otp-verified']);
     Route::get('/company/{id}', 'CompanyController@show');
     Route::get('/company/edit', 'CompanyController@edit');
     Route::put('/company/update','CompanyController@update');

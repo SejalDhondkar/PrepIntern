@@ -28,6 +28,7 @@ Vue.use(VueAuth, auth)
 // Load Index
 Vue.component('index', Index)
 
+
 const app = new Vue({
     el: '#app',
     router,

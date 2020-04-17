@@ -11,15 +11,16 @@
 </template>
 
 <script>
-
-  export default {
-    data() {
-      return {
-        //
-      }
-    },
-    components: {
-      //
+export default {
+  data() {
+    return {
     }
-  }
+  },
+  created() {
+    if(this.$auth.user().mobile_verified !== 1)
+    {
+      this.$router.push('/verifyMobile');
+    }
+  },
+}
 </script>

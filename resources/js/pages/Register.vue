@@ -16,6 +16,11 @@
             <input type="email" id="email" class="form-control" placeholder="user@example.com" v-model="email">
             <span class="help-block" v-if="has_error && errors.email">{{ errors.email }}</span>
           </div>
+          <div class="form-group">
+            <label for="phone_number">Phone Number</label>
+            <input type="text" id="phone_number" class="form-control" placeholder="+918765432101" v-model="phone_number">
+            <span class="help-block" v-if="has_error && errors.email">{{ errors.email }}</span>
+          </div>
 
           <div class="form-group" v-bind:class="{ 'has-error': has_error && errors.password }">
             <label for="password">Mot de passe</label>
@@ -43,6 +48,7 @@
         password: '',
         password_confirmation: '',
         has_error: false,
+        phone_number:'',
         error: '',
         errors: {},
         success: false
@@ -55,12 +61,28 @@
         this.$auth.register({
           data: {
             email: app.email,
+            phone_number: app.phone_number,
             password: app.password,
             password_confirmation: app.password_confirmation
           },
           success: function () {
+            let authkey= '308476ARq4VkPBV55df64864';
+            let template_id= '5e98ab48d6fc055d4e6baac2';
+            let extra_param= '{"Company_Name":"Learn Intern"}';
+            const options = { headers: {'content-type': 'application/json'}};
+
+            axios.get(`https://api.msg91.com/api/v5/otp?authkey=${authkey}&template_id=${template_id}&extra_param=${extra_param}&mobile=${app.phone_number}&invisible=0&otp=&userip=&email=&otp_length=&otp_expiry=`,{
+              crossDomain:true
+            },options)
+            .then(response => {
+              console.log(response)
+            })
+            .catch(error => {
+              console.log(error)
+              this.errored = true
+            })
             app.success = true
-            this.$router.push({name: 'login', params: {successRegistrationRedirect: true}})
+            this.$router.push({name: 'verifyMobile', params: {successRegistrationRedirect: true}})
           },
           error: function (res) {
             console.log(res.response.data.errors)

@@ -20,6 +20,7 @@ import CompanyPrimaryDetails from './pages/company/primarydetails'
 import CompanyRegistrationDetails from './pages/company/registrationdetails'
 import CompanyOtherDetails from './pages/company/otherdetails'
 import CompanySocialMediaLinks from './pages/company/socialmedialinks'
+import VerifyMobile from './pages/register/VerifyMobile'
 
 // Routes
 const routes = [{
@@ -98,6 +99,14 @@ const routes = [{
         path: '/profile',
         name: 'profile.index',
         component: ProfileIndex,
+        meta: {
+            auth: true
+        }
+    },
+    {
+        path: '/verifyMobile',
+        name: 'verify.mobile',
+        component: VerifyMobile,
         meta: {
             auth: true
         }

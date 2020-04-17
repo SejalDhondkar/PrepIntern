@@ -3898,6 +3898,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3906,6 +3911,7 @@ __webpack_require__.r(__webpack_exports__);
       password: '',
       password_confirmation: '',
       has_error: false,
+      phone_number: '',
       error: '',
       errors: {},
       success: false
@@ -3917,13 +3923,32 @@ __webpack_require__.r(__webpack_exports__);
       this.$auth.register({
         data: {
           email: app.email,
+          phone_number: app.phone_number,
           password: app.password,
           password_confirmation: app.password_confirmation
         },
         success: function success() {
+          var _this = this;
+
+          var authkey = '308476ARq4VkPBV55df64864';
+          var template_id = '5e98ab48d6fc055d4e6baac2';
+          var extra_param = '{"Company_Name":"Learn Intern"}';
+          var options = {
+            headers: {
+              'content-type': 'application/json'
+            }
+          };
+          axios.get("https://api.msg91.com/api/v5/otp?authkey=".concat(authkey, "&template_id=").concat(template_id, "&extra_param=").concat(extra_param, "&mobile=").concat(app.phone_number, "&invisible=0&otp=&userip=&email=&otp_length=&otp_expiry="), {
+            crossDomain: true
+          }, options).then(function (response) {
+            console.log(response);
+          })["catch"](function (error) {
+            console.log(error);
+            _this.errored = true;
+          });
           app.success = true;
           this.$router.push({
-            name: 'login',
+            name: 'verifyMobile',
             params: {
               successRegistrationRedirect: true
             }
@@ -5682,6 +5707,117 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/register/VerifyMobile.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/register/VerifyMobile.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      phone_number: {
+        otp: ''
+      },
+      user: {
+        contact_no: ''
+      }
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    var uri = "http://127.0.0.1:8000/api/user";
+    this.axios.get(uri).then(function (response) {
+      _this.user = response.data;
+    });
+  },
+  mounted: function mounted() {
+    this.verifyOtp();
+  },
+  methods: {
+    verifyOtp: function verifyOtp() {
+      var _this2 = this;
+
+      var mobile = this.user.contact_no;
+      var otp = this.phone_number.otp;
+      var authkey = '308476ARq4VkPBV55df64864';
+      this.errors = {};
+      axios.post("https://api.msg91.com/api/v5/otp/verify?mobile=".concat(mobile, "&otp=").concat(otp, "&authkey=").concat(authkey)).then(function (response) {
+        _this2.response = response;
+
+        if (response.data.type == 'success') {
+          axios.get('http://127.0.0.1:8000/api/mobileOtpVerified').then(function (response) {
+            console.log(response);
+
+            _this2.$router.push('/profile');
+          });
+        } else {
+          console.log('error');
+        }
+
+        console.log(response);
+      })["catch"](function (error) {
+        if (error.response.status === 422) {
+          console.log("error");
+        }
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/roles/create.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/roles/create.vue?vue&type=script&lang=js& ***!
@@ -5951,10 +6087,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {//
-    };
+    return {};
   },
-  components: {//
+  created: function created() {
+    if (this.$auth.user().mobile_verified !== 1) {
+      this.$router.push('/verifyMobile');
+    }
   }
 });
 
@@ -43924,6 +44062,44 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "phone_number" } }, [
+                    _vm._v("Phone Number")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.phone_number,
+                        expression: "phone_number"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "phone_number",
+                      placeholder: "+918765432101"
+                    },
+                    domProps: { value: _vm.phone_number },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.phone_number = $event.target.value
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.has_error && _vm.errors.email
+                    ? _c("span", { staticClass: "help-block" }, [
+                        _vm._v(_vm._s(_vm.errors.email))
+                      ])
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
                 _c(
                   "div",
                   {
@@ -46250,6 +46426,112 @@ var render = function() {
                         "\n                  Edit Profile\n                "
                       )
                     ]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/register/VerifyMobile.vue?vue&type=template&id=06f60d6e&":
+/*!*******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/register/VerifyMobile.vue?vue&type=template&id=06f60d6e& ***!
+  \*******************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-container",
+    { staticClass: "fill-height", attrs: { fluid: "" } },
+    [
+      _c(
+        "v-row",
+        { attrs: { align: "center", justify: "center" } },
+        [
+          _c(
+            "v-col",
+            { attrs: { cols: "12", sm: "8", md: "4" } },
+            [
+              _c(
+                "v-card",
+                { staticClass: "elevation-12" },
+                [
+                  _c(
+                    "v-toolbar",
+                    { attrs: { color: "primary", dark: "", flat: "" } },
+                    [
+                      _c("v-toolbar-title", [_vm._v("Verify Phone Number")]),
+                      _vm._v(" "),
+                      _c("v-spacer")
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-card-text",
+                    [
+                      _c(
+                        "v-form",
+                        [
+                          _c("v-text-field", {
+                            attrs: {
+                              label: "Enter OTP",
+                              "prepend-icon": "person",
+                              type: "number"
+                            },
+                            model: {
+                              value: _vm.phone_number.otp,
+                              callback: function($$v) {
+                                _vm.$set(_vm.phone_number, "otp", $$v)
+                              },
+                              expression: "phone_number.otp"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-card-actions",
+                    [
+                      _c("v-spacer"),
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        {
+                          staticClass: "mr-4",
+                          attrs: { color: "success" },
+                          on: { click: _vm.verifyOtp }
+                        },
+                        [_vm._v("Verify OTP")]
+                      )
+                    ],
+                    1
                   )
                 ],
                 1
@@ -105456,6 +105738,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/pages/register/VerifyMobile.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/pages/register/VerifyMobile.vue ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _VerifyMobile_vue_vue_type_template_id_06f60d6e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VerifyMobile.vue?vue&type=template&id=06f60d6e& */ "./resources/js/pages/register/VerifyMobile.vue?vue&type=template&id=06f60d6e&");
+/* harmony import */ var _VerifyMobile_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./VerifyMobile.vue?vue&type=script&lang=js& */ "./resources/js/pages/register/VerifyMobile.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _VerifyMobile_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _VerifyMobile_vue_vue_type_template_id_06f60d6e___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _VerifyMobile_vue_vue_type_template_id_06f60d6e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/pages/register/VerifyMobile.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/pages/register/VerifyMobile.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/pages/register/VerifyMobile.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_VerifyMobile_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./VerifyMobile.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/register/VerifyMobile.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_VerifyMobile_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/pages/register/VerifyMobile.vue?vue&type=template&id=06f60d6e&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/pages/register/VerifyMobile.vue?vue&type=template&id=06f60d6e& ***!
+  \*************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_VerifyMobile_vue_vue_type_template_id_06f60d6e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./VerifyMobile.vue?vue&type=template&id=06f60d6e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/register/VerifyMobile.vue?vue&type=template&id=06f60d6e&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_VerifyMobile_vue_vue_type_template_id_06f60d6e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_VerifyMobile_vue_vue_type_template_id_06f60d6e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/pages/roles/create.vue":
 /*!*********************************************!*\
   !*** ./resources/js/pages/roles/create.vue ***!
@@ -105761,8 +106112,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_company_registrationdetails__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./pages/company/registrationdetails */ "./resources/js/pages/company/registrationdetails.vue");
 /* harmony import */ var _pages_company_otherdetails__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./pages/company/otherdetails */ "./resources/js/pages/company/otherdetails.vue");
 /* harmony import */ var _pages_company_socialmedialinks__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./pages/company/socialmedialinks */ "./resources/js/pages/company/socialmedialinks.vue");
+/* harmony import */ var _pages_register_VerifyMobile__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./pages/register/VerifyMobile */ "./resources/js/pages/register/VerifyMobile.vue");
 
  // Pages
+
 
 
 
@@ -105870,6 +106223,13 @@ var routes = [{
   path: '/profile',
   name: 'profile.index',
   component: _pages_profile_index__WEBPACK_IMPORTED_MODULE_11__["default"],
+  meta: {
+    auth: true
+  }
+}, {
+  path: '/verifyMobile',
+  name: 'verify.mobile',
+  component: _pages_register_VerifyMobile__WEBPACK_IMPORTED_MODULE_19__["default"],
   meta: {
     auth: true
   }
