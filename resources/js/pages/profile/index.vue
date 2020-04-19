@@ -102,6 +102,20 @@
                   </v-btn>
                 </v-col>
               </v-row>
+
+              <v-snackbar
+                  v-model="snackbar"
+                  :timeout="timeout"
+                >
+                  {{ text }}
+                    <v-btn
+                      color="primary"
+                      text
+                      @click="snackbar = false"
+                    >
+                      Close
+                    </v-btn>
+            </v-snackbar>
             </v-container>    
   </v-card>
 </template>
@@ -111,6 +125,9 @@ export default {
   data() {
     return {
       profile: [],
+      snackbar: false,
+      text: 'Mobile Number Verified Successfully',
+      timeout: 2000,
     }
   },
 

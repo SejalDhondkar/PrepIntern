@@ -5,23 +5,32 @@
       >
         <v-row
           align="center"
-          justify="center"
+          justify="center"          
         >
           <v-col
             cols="12"
             sm="8"
             md="4"
           >
-            <v-card class="elevation-12">
+            <v-card 
+              class="mx-auto elevation-6"
+              min-width="400"
+                       
+              >
               <v-toolbar
-                color="primary"
+                color="blue darken-1"
                 dark
                 flat
               >
-                <v-toolbar-title>Verify Phone Number</v-toolbar-title>
+                <v-toolbar-title>Verify Mobile Number</v-toolbar-title>
                 <v-spacer />
               </v-toolbar>
               <v-card-text>
+              <v-row class="m-2 mb-4" justify="center">
+                <v-icon medium color="blue darken-2">mdi-message-text</v-icon>
+                <p>OTP has been sent to your registered mobile number</p>               
+                
+              </v-row>
                 <v-form>
                   <v-text-field
                     label="Enter OTP"
@@ -42,6 +51,19 @@
             </v-card>
           </v-col>
         </v-row>
+          <v-snackbar
+              v-model="snackbar"
+              :timeout="timeout"
+            >
+              {{ text }}
+                <v-btn
+                  color="primary"
+                  text
+                  @click="snackbar = false"
+                >
+                  Close
+                </v-btn>
+            </v-snackbar>
       </v-container>
 </template>
 
@@ -55,6 +77,9 @@ export default {
       user:{
         contact_no:'',
       },
+      snackbar: true,
+      text: 'Please verify your mobile number',
+      timeout: 2000,
     };
   },
   created() {
@@ -79,7 +104,9 @@ export default {
           if(response.data.type == 'success'){
             axios.get('http://127.0.0.1:8000/api/mobileOtpVerified').then(response =>{
               console.log(response);
-              this.$router.push('/profile');
+              this.$router.push('/profile', () => {
+                    this.$toasted.show('Successfully Verified');
+                  });
             })
           }
           else{

@@ -20,6 +20,19 @@
         </form>
       </div>
     </div>
+    <v-snackbar
+              v-model="snackbar"
+              :timeout="timeout"
+            >
+              {{ text }}
+                <v-btn
+                  color="primary"
+                  text
+                  @click="snackbar = false"
+                >
+                  Close
+                </v-btn>
+            </v-snackbar>
   </div>
 </template>
 
@@ -29,7 +42,10 @@
       return {
         email: null,
         password: null,
-        has_error: false
+        has_error: false,
+        snackbar: true,
+        text: 'Please Log In and verify your mobile number',
+        timeout: 2500,
       }
     },
 

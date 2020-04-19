@@ -1,12 +1,30 @@
 <template>
-  <div class="container">
-    <div class="card card-default">
-      <div class="card-header">Inscription</div>
+  <v-container
+        class="fill-height"
+        fluid
+      >
+    <v-card 
+      class="mx-auto elevation-6"
+      width="60%"
+      >
+    
+        <v-toolbar
+          color="primary"
+          dark
+          flat
+        >
+            <v-spacer />
+              <v-toolbar-title>Registration</v-toolbar-title>
+            <v-spacer />
+        </v-toolbar>
+  
+        
 
-      <div class="card-body">
+      <v-form>
+        <v-container class="p-4">
         <div class="alert alert-danger" v-if="has_error && !success">
-          <p v-if="error == 'registration_validation_error'">Erreur(s) de validation, veuillez consulter le(s) message(s) ci-dessous.</p>
-          <p v-else>Erreur, impossible de s'inscrire pour le moment. Si le problème persiste, veuillez contacter un administrateur.</p>
+          <p v-if="error == 'registration_validation_error'">Validation error(s), please see the message(s) below.</p>
+          <p v-else>Error, unable to register at this moment. If the problem persists, please contact our administrator.</p>
         </div>
 
         <form autocomplete="off" @submit.prevent="register" v-if="!success" method="post">
@@ -35,9 +53,11 @@
 
           <button type="submit" class="btn btn-default">Inscription</button>
         </form>
-      </div>
-    </div>
-  </div>
+        </v-container>
+      </v-form>
+    
+    </v-card>
+  </v-container>
 </template>
 <script>
   export default {
