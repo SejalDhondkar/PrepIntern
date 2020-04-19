@@ -1,251 +1,93 @@
 <template>
-  
+    <v-card>
+      <v-toolbar flat color="primary" dark>
+        <v-toolbar-title>User Profile</v-toolbar-title>
+      </v-toolbar>
+      <v-tabs vertical>
+        <v-tab>
+          <v-icon left>mdi-account</v-icon>
+          Option 1
+        </v-tab>
+        <v-tab>
+          <v-icon left>mdi-lock</v-icon>
+          Option 2
+        </v-tab>
+        <v-tab>
+          <v-icon left>mdi-access-point</v-icon>
+          Option 3
+        </v-tab>
 
-    <v-row>
-			<v-col
-        cols="12"
-        md="7"
-        >
-        <v-card
-          raised
-          class="mx-auto"
-          width="95%"
-        > 
-          <v-card
-            class="mx-auto grey lighten-3 p-0"
-            width="98%"
-            >
-              <v-row justify="center">
-                <v-col
-                  align="center"
-                  cols="12"
-                  md="2"
-                  >
-                    <v-avatar color="white" size="80" left>
-                      <v-icon x-large>mdi-account-circle</v-icon>
-                    </v-avatar>
-                </v-col>
+        <v-tab-item>
+          <v-card flat>
+            <v-card-text>
+              <p>
+                Sed aliquam ultrices mauris. Donec posuere vulputate arcu. Morbi ac felis. Etiam feugiat lorem non metus. Sed a libero.
+              </p>
 
-                <v-col
-                  cols="12"
-                  md="10"
-                  >
-                  <p class="display-1 p-4 text--lighten-1">{{company.name}}</p>        
-                </v-col>
-              </v-row> 
+              <p>
+                Nam ipsum risus, rutrum vitae, vestibulum eu, molestie vel, lacus. Aenean tellus metus, bibendum sed, posuere ac, mattis non, nunc. Aliquam lobortis. Aliquam lobortis. Suspendisse non nisl sit amet velit hendrerit rutrum.
+              </p>
+
+              <p class="mb-0">
+                Phasellus dolor. Fusce neque. Fusce fermentum odio nec arcu. Pellentesque libero tortor, tincidunt et, tincidunt eget, semper nec, quam. Phasellus blandit leo ut odio.
+              </p>
+            </v-card-text>
           </v-card>
-        
-            <v-container class="py-0">
-              <v-row class="text--muted m-0 p-0">
-                
-                <v-col
-                  cols="12"
-                  md="12"
-                >
-                <p class="subtitle-1 pt-3">Name: {{company.name}} </p>
-                </v-col>
+        </v-tab-item>
+        <v-tab-item>
+          <v-card flat>
+            <v-card-text>
+              <p>
+                Morbi nec metus. Suspendisse faucibus, nunc et pellentesque egestas, lacus ante convallis tellus, vitae iaculis lacus elit id tortor. Sed mollis, eros et ultrices tempus, mauris ipsum aliquam libero, non adipiscing dolor urna a orci. Curabitur ligula sapien, tincidunt non, euismod vitae, posuere imperdiet, leo. Nunc sed turpis.
+              </p>
 
-                <v-col
-                  cols="12"
-                  md="6"
-                >
-                  <p class="subtitle-1 pt-3">Email: {{company.email}} </p>
-                </v-col>
+              <p>
+                Suspendisse feugiat. Suspendisse faucibus, nunc et pellentesque egestas, lacus ante convallis tellus, vitae iaculis lacus elit id tortor. Proin viverra, ligula sit amet ultrices semper, ligula arcu tristique sapien, a accumsan nisi mauris ac eros. In hac habitasse platea dictumst. Fusce ac felis sit amet ligula pharetra condimentum.
+              </p>
 
-                <v-col
-                  cols="12"
-                  md="6"
-                >
-                  <p class="subtitle-1 pt-3">Contact No: {{company.contact_no}}</p>
-                </v-col>                
+              <p>
+                Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero. Nam commodo suscipit quam. In consectetuer turpis ut velit. Sed cursus turpis vitae tortor. Aliquam eu nunc.
+              </p>
 
-                <v-col
-                  cols="12"
-                  md="4"
-                >
-                  <p class="subtitle-1 pt-3">Country: {{company.country}}</p>
-                </v-col>
+              <p>
+                Etiam ut purus mattis mauris sodales aliquam. Ut varius tincidunt libero. Aenean viverra rhoncus pede. Duis leo. Fusce fermentum odio nec arcu.
+              </p>
 
-                <v-col
-                  cols="12"
-                  md="4"
-                >
-                  <p class="subtitle-1 pt-3">State: {{company.state}} </p>
-                </v-col>
+              <p class="mb-0">
+                Donec venenatis vulputate lorem. Aenean viverra rhoncus pede. In dui magna, posuere eget, vestibulum et, tempor auctor, justo. Fusce commodo aliquam arcu. Suspendisse enim turpis, dictum sed, iaculis a, condimentum nec, nisi.
+              </p>
+            </v-card-text>
+          </v-card>
+        </v-tab-item>
+        <v-tab-item>
+          <v-card flat>
+            <v-card-text>
+              <p>
+                Fusce a quam. Phasellus nec sem in justo pellentesque facilisis. Nam eget dui. Proin viverra, ligula sit amet ultrices semper, ligula arcu tristique sapien, a accumsan nisi mauris ac eros. In dui magna, posuere eget, vestibulum et, tempor auctor, justo.
+              </p>
 
-                <v-col
-                  cols="12"
-                  md="4"
-                >
-                  <p class="subtitle-1 pt-3">City: {{company.city}}</p>
-                </v-col>
-
-
-                <v-col
-                  cols="12"
-                  md="12"
-                >
-                  <p class="subtitle-1 pt-3">Registered Address: {{company.registered_address}} </p>
-                </v-col>
-
-                <v-col
-                  cols="12"
-                  md="6"
-                >
-                  <p class="subtitle-1 pt-3">Registration Number: {{company.registration_no}} </p>
-                </v-col>
-                
-                <v-col
-                  cols="12"
-                  md="6"
-                >
-                  <p class="subtitle-1 pt-3">Certificate of Incorporation: {{company.certificate_of_incorporation}} </p>
-                </v-col>
-                
-                <v-col
-                  cols="12"
-                  md="6"
-                >
-                  <p class="subtitle-1 pt-3">Website: {{company.website}} </p>
-                </v-col>
-
-                <v-col
-                  cols="12"
-                  md="6"
-                >
-                  <p class="subtitle-1 pt-3"> PinCode: {{company.pincode}} </p>
-                </v-col>
-
-                <v-col
-                  cols="12"
-                  md="6"
-                >
-                  <p class="subtitle-1 pt-3">Year of Establishment: {{company.year_of_establishment}} </p>
-                </v-col>
-
-                <v-col
-                  cols="12"
-                  md="6"
-                >
-                  <p class="subtitle-1 pt-3">Type of Company: {{company.type_of_company}} </p>
-                </v-col>
-
-                <v-col
-                  cols="12"
-                  md="6"
-                >
-                  <p class="subtitle-1 pt-3">Description: {{company.description}} </p>
-                </v-col>
-
-                <v-col
-                  cols="12"
-                  md="6"
-                >
-                  <p class="subtitle-1 pt-3">Range of Employees: {{company.range_of_employees}} </p>
-                </v-col>
-                 
-                
-                <v-col
-                  cols="12"
-                  class="text-right"
-                >
-                  <v-btn
-                    color="success"
-                    class="mr-0"
-                    @click="edit"
-                  >
-                    Edit Profile
-                  </v-btn>
-                </v-col>
-
-                
-              </v-row>
-            </v-container> 
-              </v-card>   
-			</v-col>
-
-      <v-col
-        class="my-auto"
-        cols="12"
-        md="5"
-        >
-
-        <v-card
-    class="mx-auto"
-    max-width="300"
-    tile
-  >
-    <v-list rounded>
-      <!-- <v-subheader>REPORTS</v-subheader> -->
-      <v-list-item-group v-model="item" color="primary">
-        <v-list-item
-          v-for="(item, i) in items"
-          :key="i"
-          :replace="true" 
-          :to="item.path"
-        >
-          <v-list-item-icon>
-            <v-icon v-text="item.icon"></v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title v-text="item.text"></v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list-item-group>
-    </v-list>
-  </v-card>
-
-        </v-col>
-
-</v-row>
-
-</template>
+              <p class="mb-0">
+                Cras sagittis. Phasellus nec sem in justo pellentesque facilisis. Proin sapien ipsum, porta a, auctor quis, euismod ut, mi. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nam at tortor in tellus interdum sagittis.
+              </p>
+            </v-card-text>
+          </v-card>
+        </v-tab-item>
+      </v-tabs>
+    </v-card>
+  </template>
 
 <script>
 export default {
   data() {
     return {
-      company: [],
-      item: 1,
-      items: [
-        { text: 'Primary Details', icon: 'mdi-clock', path: `/company/${this.$route.params.id}/primarydetails` },
-        { text: 'Registration Details', icon: 'mdi-account', path: `/company/${this.$route.params.id}/registrationdetails` },
-        { text: 'Other details', icon: 'mdi-flag', path: `/company/${this.$route.params.id}/otherdetails` },
-        { text: 'Social Media Links', icon: 'mdi-flag', path: `/company/${this.$route.params.id}/socialmedialinks` },
-      ],
     }
   },
 
   mounted() {
-      this.getCompany()
-    },
+    this.getCompany()
+  },
 
-    methods: {
-      getCompany() {
-        this.$http({
-          url: `company/${this.$route.params.id}`,
-          method: 'GET'
-        })
-          .then((res) => {
-            this.company = res.data;
-          }, () => {
-            console.log("error")
-          })
-      },
-
-      edit() {
-      this.errors = {};
-      axios.get(`/company/edit/${this.$route.params.id}`, this.company).then(response => {
-        this.$router.push(`/company/edit/${this.$route.params.id}`);
-      }).catch(error => {
-        if (error.response.status === 422) {
-        console.log("error");
-        }
-      });
-      
-    },
-      
-    }
-
+  methods: {
+  }
 }
 </script>
