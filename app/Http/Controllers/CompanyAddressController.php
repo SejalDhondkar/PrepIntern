@@ -1,22 +1,26 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
+use App\CompanyAddress;
 use App\Company;
+use Illuminate\Support\Facades\Auth;
 
-
-class CompanyController extends Controller
+class CompanyAddressController extends Controller
 {
-
     public function store(Request $request)
     {
-        $company = new Company;
-        $company->name = $request->name;
-        $company->contact_email = $request->contact_email;
-        $company->contact_no = $request->contact_no;
-        $company->admin_id = auth()->user()->id;
+        $admin_id = auth()->user()->id;
+        $this_company_id = Company::where('admin_id', $admin_id)->value('id');        
+
+        $company = new CompanyAddress;
+        $company->country_id = $request->country_id;
+        $company->state_id = $request->state_id;
+        $company->city_id = $request->city_id;
+        $company->registered_address = $request->registered_address;
+        $company->company_id = $this_company_id;
+        $company->pincode = $request->pincode;
         $company->save();
 
         $success = 'success';
@@ -48,5 +52,4 @@ class CompanyController extends Controller
         return $success;
 
     }
-
 }

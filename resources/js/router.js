@@ -15,6 +15,12 @@ import ProfileIndex from './pages/profile/index'
 import ProfileEdit from './pages/profile/edit'
 import CompanyProfile from './pages/company/profile'
 import CompanyEdit from './pages/company/edit'
+import CompanyRegister from './pages/company/register'
+import CompanyLogin from './pages/company/login'
+import CompanyVerifyMobile from './pages/company/VerifyMobile'
+import CompanyPrimaryDetails from './pages/company/PrimaryDetails'
+import CompanyAddress from './pages/company/Address'
+import CompanyAdditionalDetails from './pages/company/AdditionalDetails'
 
 import VerifyMobile from './pages/register/VerifyMobile'
 
@@ -117,19 +123,74 @@ const routes = [{
         }
     },
 
+    // Company Routes
+
     {
-        path: '/company/:id',
-        name: 'company.profile',
-        component: CompanyProfile,
+        path: '/company/register',
+        name: 'company.register',
+        component: CompanyRegister,
+        meta: {
+            auth: true
+        }
+    },
+    {
+        path: '/company/login',
+        name: 'company.login',
+        component: CompanyLogin,
         meta: {
             auth: true
         }
     },
 
     {
+        path: '/company/verifyMobile',
+        name: 'company.VerifyMobile',
+        component: CompanyVerifyMobile,
+        meta: {
+            auth: true
+        }
+    },
+
+    // {
+    //     path: '/company/:id',
+    //     name: 'company.profile',
+    //     component: CompanyProfile,
+    //     meta: {
+    //         auth: true
+    //     }
+    // },
+
+    {
         path: '/company/edit/',
         name: 'company.edit',
         component: CompanyEdit,
+        meta: {
+            auth: true
+        }
+    },
+
+    {
+        path: '/company/primarydetails',
+        name: 'company.PrimaryDetails',
+        component: CompanyPrimaryDetails,
+        meta: {
+            auth: true
+        }
+    },
+
+    {
+        path: '/company/address',
+        name: 'company.Address',
+        component: CompanyAddress,
+        meta: {
+            auth: true
+        }
+    },
+
+    {
+        path: '/company/additionaldetails',
+        name: 'company.AdditionalDetails',
+        component: CompanyAdditionalDetails,
         meta: {
             auth: true
         }

@@ -1,0 +1,34 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\CompanyAdditionalDetails;
+use App\Company;
+use Illuminate\Support\Facades\Auth;
+
+class CompanyAdditionalDetailsController extends Controller
+{
+    public function store(Request $request)
+    {
+        $admin_id = auth()->user()->id;
+        $this_company_id = Company::where('admin_id', $admin_id)->value('id');        
+
+        $company = new CompanyAdditionalDetails;
+        $company->company_id = $this_company_id;
+        $company->registration_no = $request->registration_no;
+        $company->certificate_of_incorporation = $request->certificate_of_incorporation;
+        $company->website = $request->website;
+        $company->year_of_establishment = $request->year_of_establishment;        
+        $company->type_of_company = $request->type_of_company;
+        $company->description = $request->description;
+        $company->range_of_employees = $request->range_of_employees;
+        $company->save();
+
+        $success = 'success';
+        return $success;
+    }
+
+    
+
+}
