@@ -143,7 +143,7 @@
       this.errors = {};
       axios.post('/company/additionaldetails', this.company).then(response => {
         console.log('Message sent!');
-        // this.$router.push('/company/socialmedialinks');
+        this.$router.push('/company/socialmedialinks');
       }).catch(error => {
         if (error.response.status === 422) {
         console.log("error");

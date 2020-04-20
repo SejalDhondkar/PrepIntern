@@ -49,6 +49,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('/company/address','CompanyAddressController@store');
     Route::post('/company/additionaldetails','CompanyAdditionalDetailsController@store');
 
+    Route::post('/company/socialmedialinks','CompanySocialMediaController@store');
     Route::get('/company/{company_id}/socialmedialinks', 'CompanySocialMediaController@show');
     Route::get('/company/edit/{company_id}/socialmedialinks', 'CompanySocialMediaController@edit');
     Route::put('/company/update/{company_id}/socialmedialinks', 'CompanySocialMediaController@update');

@@ -17,65 +17,37 @@
           <v-form>
             <v-container class="py-0">
               <v-row>
-                <!-- <v-row align="center"> -->
+                <v-row align="center" class="py-2">
 
-                  <!-- DropDowns for country state and city fields -->
-
-                    <!-- <v-col cols="6">
+                    <v-col cols="6">
                         <v-subheader>Country</v-subheader>
                     </v-col>
 
                     <v-col cols="6">
-                        <v-select
-                        v-model="country_id"
-                        :hint="`${country.state}, ${select.abbr}`"
-                        :items="items"
-                        item-text="state"
-                        item-value="abbr"
-                        label="Select"
-                        persistent-hint
-                        return-object
-                        single-line
-                        ></v-select>
+                        <v-autocomplete
+                        label="Country"
+                        :filterable="false"
+                        :options="options"
+                        @search="onSearch"
+                        v-model="company.country_id"
+                        >
+                          <template slot="no-options">
+                            Type to search countries...
+                          </template>
+                          <template slot="option" slot-scope="option">
+                            <div class="d-center">
+                              {{option.full_name}}
+                            </div>
+                          </template>
+                          <template slot="selected-option" slot-scope="option">
+                            <div class="selected d-center">
+                              {{option.full_name}}
+                            </div>
+                          </template>
+                        </v-autocomplete>
                     </v-col>
 
-                    <v-col cols="6">
-                        <v-subheader>State</v-subheader>
-                    </v-col>
-
-                    <v-col cols="6">
-                        <v-select
-                        v-model="select"
-                        :hint="`${select.state}, ${select.abbr}`"
-                        :items="items"
-                        item-text="state"
-                        item-value="abbr"
-                        label="Select"
-                        persistent-hint
-                        return-object
-                        single-line
-                        ></v-select>
-                    </v-col>
-
-                    <v-col cols="6">
-                        <v-subheader>City</v-subheader>
-                    </v-col>
-
-                    <v-col cols="6">
-                        <v-select
-                        v-model="select"
-                        :hint="`${select.state}, ${select.abbr}`"
-                        :items="items"
-                        item-text="state"
-                        item-value="abbr"
-                        label="Select"
-                        persistent-hint
-                        return-object
-                        single-line
-                        ></v-select>
-                    </v-col>
-
-                    </v-row> -->
+                    </v-row>
 
 
                 <v-col
@@ -126,6 +98,7 @@
   export default {
     data() {
       return {
+        options: [],
         company: {
           id: '',
           company_id: '',
@@ -153,9 +126,28 @@
       });
       
     },
+
+    onSearch(search, loading) {
+      loading(true);
+      this.search(loading, search, this);
+    },
+    search: _.debounce((loading, search, vm) => {
+      fetch(
+        `https://api.github.com/search/repositories?q=${escape(search)}`
+      ).then(res => {
+        res.json().then(json => (vm.options = json.items));
+        loading(false);
+      });
+    }, 350)
+  
+
   },
   
 
   
   }
 </script>
+
+<style scoped>
+
+</style>

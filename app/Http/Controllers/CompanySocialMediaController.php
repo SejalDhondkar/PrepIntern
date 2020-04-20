@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\CompanySocialMedia;
+use App\Company;
+use Illuminate\Support\Facades\Auth;
 
 class CompanySocialMediaController extends Controller
 {
+    
     public function show(Request $request, $company_id)
     {
         $links= CompanySocialMedia::where('company_id', $company_id)->get();
