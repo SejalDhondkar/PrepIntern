@@ -19,33 +19,100 @@
               <v-row>
                 <v-row align="center" class="py-2">
 
-                    <v-col cols="6">
+                    <v-col cols="4">
                         <v-subheader>Country</v-subheader>
                     </v-col>
 
-                    <v-col cols="6">
-                        <v-autocomplete
-                        label="Country"
-                        :filterable="false"
-                        :options="options"
-                        @search="onSearch"
-                        v-model="company.country_id"
-                        >
-                          <template slot="no-options">
-                            Type to search countries...
-                          </template>
-                          <template slot="option" slot-scope="option">
-                            <div class="d-center">
-                              {{option.full_name}}
-                            </div>
-                          </template>
-                          <template slot="selected-option" slot-scope="option">
-                            <div class="selected d-center">
-                              {{option.full_name}}
-                            </div>
-                          </template>
-                        </v-autocomplete>
+                    <v-col cols="8">
+                        <v-text-field
+                          v-model="searchquery"
+                          label="Type to search country"
+                          class="purple-input mr-4"
+                          v-on:keyup="autoComplete"
+                        />
+                        <v-card class="mx-auto mr-4"
+                          
+                          v-if="data_results.length">
+                            <v-list>
+                              <v-list-item-group v-model="data" color="primary">
+                                <v-list-item
+                                  v-for="(data, i) in data_results"
+                                  :key="i"
+                                  @click="selectCountry(data)"
+                                >
+                                  <v-list-item-content>
+                                    <v-list-item-title v-text="data.name"></v-list-item-title>
+                                  </v-list-item-content>
+                                </v-list-item>
+                              </v-list-item-group>
+                            </v-list>
+                          </v-card>
+
                     </v-col>
+
+                    <v-col cols="4">
+                        <v-subheader>State</v-subheader>
+                    </v-col>
+
+                    <v-col cols="8">
+                        <v-text-field
+                          :disabled="state"
+                          v-model="statesearchquery"
+                          label="Type to search state"
+                          class="purple-input mr-4"
+                          v-on:keyup="autoCompleteState"
+                        />
+                        <v-card class="mx-auto mr-4"
+                          
+                          v-if="state_data_results.length">
+                            <v-list>
+                              <v-list-item-group v-model="data" color="primary">
+                                <v-list-item
+                                  v-for="(data, i) in state_data_results"
+                                  :key="i"
+                                  @click="selectState(data)"
+                                >
+                                  <v-list-item-content>
+                                    <v-list-item-title v-text="data.name"></v-list-item-title>
+                                  </v-list-item-content>
+                                </v-list-item>
+                              </v-list-item-group>
+                            </v-list>
+                          </v-card>
+
+                    </v-col>
+
+                    <v-col cols="4">
+                        <v-subheader>City</v-subheader>
+                    </v-col>
+
+                    <v-col cols="8">
+                        <v-text-field
+                          :disabled="city"
+                          v-model="citysearchquery"
+                          label="Type to search city"
+                          class="purple-input mr-4"
+                          v-on:keyup="autoCompleteCity"
+                        />
+                        <v-card class="mx-auto mr-4"
+                          
+                          v-if="city_data_results.length">
+                            <v-list>
+                              <v-list-item-group v-model="data" color="primary">
+                                <v-list-item
+                                  v-for="(data, i) in city_data_results"
+                                  :key="i"
+                                  @click="selectCity(data)"
+                                >
+                                  <v-list-item-content>
+                                    <v-list-item-title v-text="data.name"></v-list-item-title>
+                                  </v-list-item-content>
+                                </v-list-item>
+                              </v-list-item-group>
+                            </v-list>
+                          </v-card>
+
+                    </v-col>                    
 
                     </v-row>
 
@@ -98,7 +165,15 @@
   export default {
     data() {
       return {
-        options: [],
+        state: true,
+        city: true,
+        searchquery: '',
+        statesearchquery: '',
+        citysearchquery: '',
+        data: 1,
+        data_results: [],
+        state_data_results: [],
+        city_data_results: [],
         company: {
           id: '',
           company_id: '',
@@ -117,7 +192,7 @@
     submit() {
       this.errors = {};
       axios.post('/company/address', this.company).then(response => {
-        console.log('Message sent!');
+        console.log(this.company);
         this.$router.push('/company/additionaldetails');
       }).catch(error => {
         if (error.response.status === 422) {
@@ -127,18 +202,66 @@
       
     },
 
-    onSearch(search, loading) {
-      loading(true);
-      this.search(loading, search, this);
+    
+  
+    autoComplete(){
+        this.data_results = [];
+        // console.log(this.searchquery);
+        if(this.searchquery.length > 2){
+         axios.get('/company/address/countrysearch',{params: {searchquery: this.searchquery}}).then(response => {
+            console.log(response);
+          this.data_results = response.data;
+         });
+        }
     },
-    search: _.debounce((loading, search, vm) => {
-      fetch(
-        `https://api.github.com/search/repositories?q=${escape(search)}`
-      ).then(res => {
-        res.json().then(json => (vm.options = json.items));
-        loading(false);
-      });
-    }, 350)
+
+    selectCountry(data){
+      this.searchquery = data.name;
+      this.data_results.length = false;
+      this.company.country_id = data.id;
+      console.log(this.company.country_id);
+      this.state = false;
+    },
+  
+
+    autoCompleteState(){
+        this.state_data_results = [];
+        console.log(this.statesearchquery);
+        if(this.statesearchquery.length > 1){
+         axios.get('/company/address/statesearch',{params: {statesearchquery: this.statesearchquery, country_id: this.company.country_id}}).then(response => {
+            console.log(response);
+          this.state_data_results = response.data;
+         });
+        }
+    },
+
+    
+    selectState(data){
+      this.statesearchquery = data.name;
+      this.state_data_results.length = false;
+      this.company.state_id = data.id;
+      console.log(this.company.state_id);
+      this.city = false;
+    },
+
+    autoCompleteCity(){
+        this.city_data_results = [];
+        console.log(this.citysearchquery);
+        if(this.citysearchquery.length > 2){
+         axios.get('/company/address/citysearch',{params: {citysearchquery: this.citysearchquery, state_id: this.company.state_id}}).then(response => {
+            console.log(response);
+          this.city_data_results = response.data;
+         });
+        }
+    },
+
+    
+    selectCity(data){
+      this.citysearchquery = data.name;
+      this.city_data_results.length = false;
+      this.company.city_id = data.id;
+      console.log(this.company.city_id);
+    }
   
 
   },
@@ -148,6 +271,3 @@
   }
 </script>
 
-<style scoped>
-
-</style>

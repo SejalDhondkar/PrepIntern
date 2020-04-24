@@ -4298,10 +4298,85 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      options: [],
+      state: true,
+      city: true,
+      searchquery: '',
+      statesearchquery: '',
+      citysearchquery: '',
+      data: 1,
+      data_results: [],
+      state_data_results: [],
+      city_data_results: [],
       company: {
         id: '',
         company_id: '',
@@ -4319,7 +4394,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.errors = {};
       axios.post('/company/address', this.company).then(function (response) {
-        console.log('Message sent!');
+        console.log(_this.company);
 
         _this.$router.push('/company/additionaldetails');
       })["catch"](function (error) {
@@ -4328,18 +4403,78 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    onSearch: function onSearch(search, loading) {
-      loading(true);
-      this.search(loading, search, this);
-    },
-    search: _.debounce(function (loading, search, vm) {
-      fetch("https://api.github.com/search/repositories?q=".concat(escape(search))).then(function (res) {
-        res.json().then(function (json) {
-          return vm.options = json.items;
+    autoComplete: function autoComplete() {
+      var _this2 = this;
+
+      this.data_results = []; // console.log(this.searchquery);
+
+      if (this.searchquery.length > 2) {
+        axios.get('/company/address/countrysearch', {
+          params: {
+            searchquery: this.searchquery
+          }
+        }).then(function (response) {
+          console.log(response);
+          _this2.data_results = response.data;
         });
-        loading(false);
-      });
-    }, 350)
+      }
+    },
+    selectCountry: function selectCountry(data) {
+      this.searchquery = data.name;
+      this.data_results.length = false;
+      this.company.country_id = data.id;
+      console.log(this.company.country_id);
+      this.state = false;
+    },
+    autoCompleteState: function autoCompleteState() {
+      var _this3 = this;
+
+      this.state_data_results = [];
+      console.log(this.statesearchquery);
+
+      if (this.statesearchquery.length > 1) {
+        axios.get('/company/address/statesearch', {
+          params: {
+            statesearchquery: this.statesearchquery,
+            country_id: this.company.country_id
+          }
+        }).then(function (response) {
+          console.log(response);
+          _this3.state_data_results = response.data;
+        });
+      }
+    },
+    selectState: function selectState(data) {
+      this.statesearchquery = data.name;
+      this.state_data_results.length = false;
+      this.company.state_id = data.id;
+      console.log(this.company.state_id);
+      this.city = false;
+    },
+    autoCompleteCity: function autoCompleteCity() {
+      var _this4 = this;
+
+      this.city_data_results = [];
+      console.log(this.citysearchquery);
+
+      if (this.citysearchquery.length > 2) {
+        axios.get('/company/address/citysearch', {
+          params: {
+            citysearchquery: this.citysearchquery,
+            state_id: this.company.state_id
+          }
+        }).then(function (response) {
+          console.log(response);
+          _this4.city_data_results = response.data;
+        });
+      }
+    },
+    selectCity: function selectCity(data) {
+      this.citysearchquery = data.name;
+      this.city_data_results.length = false;
+      this.company.city_id = data.id;
+      console.log(this.company.city_id);
+    }
   }
 });
 
@@ -44349,10 +44484,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/company/Address.vue?vue&type=template&id=f9703e2e&scoped=true&":
-/*!*************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/company/Address.vue?vue&type=template&id=f9703e2e&scoped=true& ***!
-  \*************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/company/Address.vue?vue&type=template&id=f9703e2e&":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/company/Address.vue?vue&type=template&id=f9703e2e& ***!
+  \*************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -44397,75 +44532,273 @@ var render = function() {
                     [
                       _c(
                         "v-col",
-                        { attrs: { cols: "6" } },
+                        { attrs: { cols: "4" } },
                         [_c("v-subheader", [_vm._v("Country")])],
                         1
                       ),
                       _vm._v(" "),
                       _c(
                         "v-col",
-                        { attrs: { cols: "6" } },
+                        { attrs: { cols: "8" } },
                         [
-                          _c(
-                            "v-autocomplete",
-                            {
-                              attrs: {
-                                label: "Country",
-                                filterable: false,
-                                options: _vm.options
+                          _c("v-text-field", {
+                            staticClass: "purple-input mr-4",
+                            attrs: { label: "Type to search country" },
+                            on: { keyup: _vm.autoComplete },
+                            model: {
+                              value: _vm.searchquery,
+                              callback: function($$v) {
+                                _vm.searchquery = $$v
                               },
-                              on: { search: _vm.onSearch },
-                              scopedSlots: _vm._u([
-                                {
-                                  key: "option",
-                                  fn: function(option) {
-                                    return [
-                                      _c("div", { staticClass: "d-center" }, [
-                                        _vm._v(
-                                          "\n                            " +
-                                            _vm._s(option.full_name) +
-                                            "\n                          "
-                                        )
-                                      ])
-                                    ]
-                                  }
-                                },
-                                {
-                                  key: "selected-option",
-                                  fn: function(option) {
-                                    return [
+                              expression: "searchquery"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _vm.data_results.length
+                            ? _c(
+                                "v-card",
+                                { staticClass: "mx-auto mr-4" },
+                                [
+                                  _c(
+                                    "v-list",
+                                    [
                                       _c(
-                                        "div",
-                                        { staticClass: "selected d-center" },
-                                        [
-                                          _vm._v(
-                                            "\n                            " +
-                                              _vm._s(option.full_name) +
-                                              "\n                          "
+                                        "v-list-item-group",
+                                        {
+                                          attrs: { color: "primary" },
+                                          model: {
+                                            value: _vm.data,
+                                            callback: function($$v) {
+                                              _vm.data = $$v
+                                            },
+                                            expression: "data"
+                                          }
+                                        },
+                                        _vm._l(_vm.data_results, function(
+                                          data,
+                                          i
+                                        ) {
+                                          return _c(
+                                            "v-list-item",
+                                            {
+                                              key: i,
+                                              on: {
+                                                click: function($event) {
+                                                  return _vm.selectCountry(data)
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "v-list-item-content",
+                                                [
+                                                  _c("v-list-item-title", {
+                                                    domProps: {
+                                                      textContent: _vm._s(
+                                                        data.name
+                                                      )
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
                                           )
-                                        ]
+                                        }),
+                                        1
                                       )
-                                    ]
-                                  }
-                                }
-                              ]),
-                              model: {
-                                value: _vm.company.country_id,
-                                callback: function($$v) {
-                                  _vm.$set(_vm.company, "country_id", $$v)
-                                },
-                                expression: "company.country_id"
-                              }
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            : _vm._e()
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "4" } },
+                        [_c("v-subheader", [_vm._v("State")])],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "8" } },
+                        [
+                          _c("v-text-field", {
+                            staticClass: "purple-input mr-4",
+                            attrs: {
+                              disabled: _vm.state,
+                              label: "Type to search state"
                             },
-                            [
-                              _c("template", { slot: "no-options" }, [
-                                _vm._v(
-                                  "\n                          Type to search countries...\n                        "
-                                )
-                              ])
-                            ],
-                            2
-                          )
+                            on: { keyup: _vm.autoCompleteState },
+                            model: {
+                              value: _vm.statesearchquery,
+                              callback: function($$v) {
+                                _vm.statesearchquery = $$v
+                              },
+                              expression: "statesearchquery"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _vm.state_data_results.length
+                            ? _c(
+                                "v-card",
+                                { staticClass: "mx-auto mr-4" },
+                                [
+                                  _c(
+                                    "v-list",
+                                    [
+                                      _c(
+                                        "v-list-item-group",
+                                        {
+                                          attrs: { color: "primary" },
+                                          model: {
+                                            value: _vm.data,
+                                            callback: function($$v) {
+                                              _vm.data = $$v
+                                            },
+                                            expression: "data"
+                                          }
+                                        },
+                                        _vm._l(_vm.state_data_results, function(
+                                          data,
+                                          i
+                                        ) {
+                                          return _c(
+                                            "v-list-item",
+                                            {
+                                              key: i,
+                                              on: {
+                                                click: function($event) {
+                                                  return _vm.selectState(data)
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "v-list-item-content",
+                                                [
+                                                  _c("v-list-item-title", {
+                                                    domProps: {
+                                                      textContent: _vm._s(
+                                                        data.name
+                                                      )
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        }),
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            : _vm._e()
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "4" } },
+                        [_c("v-subheader", [_vm._v("City")])],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "8" } },
+                        [
+                          _c("v-text-field", {
+                            staticClass: "purple-input mr-4",
+                            attrs: {
+                              disabled: _vm.city,
+                              label: "Type to search city"
+                            },
+                            on: { keyup: _vm.autoCompleteCity },
+                            model: {
+                              value: _vm.citysearchquery,
+                              callback: function($$v) {
+                                _vm.citysearchquery = $$v
+                              },
+                              expression: "citysearchquery"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _vm.city_data_results.length
+                            ? _c(
+                                "v-card",
+                                { staticClass: "mx-auto mr-4" },
+                                [
+                                  _c(
+                                    "v-list",
+                                    [
+                                      _c(
+                                        "v-list-item-group",
+                                        {
+                                          attrs: { color: "primary" },
+                                          model: {
+                                            value: _vm.data,
+                                            callback: function($$v) {
+                                              _vm.data = $$v
+                                            },
+                                            expression: "data"
+                                          }
+                                        },
+                                        _vm._l(_vm.city_data_results, function(
+                                          data,
+                                          i
+                                        ) {
+                                          return _c(
+                                            "v-list-item",
+                                            {
+                                              key: i,
+                                              on: {
+                                                click: function($event) {
+                                                  return _vm.selectCity(data)
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "v-list-item-content",
+                                                [
+                                                  _c("v-list-item-title", {
+                                                    domProps: {
+                                                      textContent: _vm._s(
+                                                        data.name
+                                                      )
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        }),
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            : _vm._e()
                         ],
                         1
                       )
@@ -105064,7 +105397,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Address_vue_vue_type_template_id_f9703e2e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Address.vue?vue&type=template&id=f9703e2e&scoped=true& */ "./resources/js/pages/company/Address.vue?vue&type=template&id=f9703e2e&scoped=true&");
+/* harmony import */ var _Address_vue_vue_type_template_id_f9703e2e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Address.vue?vue&type=template&id=f9703e2e& */ "./resources/js/pages/company/Address.vue?vue&type=template&id=f9703e2e&");
 /* harmony import */ var _Address_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Address.vue?vue&type=script&lang=js& */ "./resources/js/pages/company/Address.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
@@ -105076,11 +105409,11 @@ __webpack_require__.r(__webpack_exports__);
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _Address_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Address_vue_vue_type_template_id_f9703e2e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Address_vue_vue_type_template_id_f9703e2e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Address_vue_vue_type_template_id_f9703e2e___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Address_vue_vue_type_template_id_f9703e2e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  "f9703e2e",
+  null,
   null
   
 )
@@ -105106,19 +105439,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/pages/company/Address.vue?vue&type=template&id=f9703e2e&scoped=true&":
-/*!*******************************************************************************************!*\
-  !*** ./resources/js/pages/company/Address.vue?vue&type=template&id=f9703e2e&scoped=true& ***!
-  \*******************************************************************************************/
+/***/ "./resources/js/pages/company/Address.vue?vue&type=template&id=f9703e2e&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/pages/company/Address.vue?vue&type=template&id=f9703e2e& ***!
+  \*******************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Address_vue_vue_type_template_id_f9703e2e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Address.vue?vue&type=template&id=f9703e2e&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/company/Address.vue?vue&type=template&id=f9703e2e&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Address_vue_vue_type_template_id_f9703e2e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Address_vue_vue_type_template_id_f9703e2e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Address.vue?vue&type=template&id=f9703e2e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/company/Address.vue?vue&type=template&id=f9703e2e&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Address_vue_vue_type_template_id_f9703e2e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Address_vue_vue_type_template_id_f9703e2e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Address_vue_vue_type_template_id_f9703e2e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

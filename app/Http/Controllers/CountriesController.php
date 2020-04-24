@@ -7,10 +7,13 @@ use App\Countries;
 
 class CountriesController extends Controller
 {
-    public function getCountries()
+    public function getCountries(Request $request)
     {
+        $searchquery = $request->searchquery;
+        $data = Countries::where('name','like','%'.$searchquery.'%')->get();
 
-        // 
+        return response()->json($data);        
 
     }
+
 }
