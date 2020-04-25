@@ -21,6 +21,8 @@ import CompanyVerifyMobile from './pages/company/VerifyMobile'
 import CompanyPrimaryDetails from './pages/company/PrimaryDetails'
 import CompanyAddress from './pages/company/Address'
 import CompanyAdditionalDetails from './pages/company/AdditionalDetails'
+import CompanySocialMediaLinks from './pages/company/SocialMediaLinks'
+import CompanyDashboard from './pages/company/Dashboard'
 
 import VerifyMobile from './pages/register/VerifyMobile'
 
@@ -191,6 +193,24 @@ const routes = [{
         path: '/company/additionaldetails',
         name: 'company.AdditionalDetails',
         component: CompanyAdditionalDetails,
+        meta: {
+            auth: true
+        }
+    },
+
+    {
+        path: '/company/socialmedialinks',
+        name: 'company.SocialMediaLinks',
+        component: CompanySocialMediaLinks,
+        meta: {
+            auth: true
+        }
+    },
+
+    {
+        path: '/company/dashboard',
+        name: 'company.Dashboard',
+        component: CompanyDashboard,
         meta: {
             auth: true
         }

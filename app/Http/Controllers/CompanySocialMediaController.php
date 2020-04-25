@@ -10,6 +10,27 @@ use Illuminate\Support\Facades\Auth;
 class CompanySocialMediaController extends Controller
 {
     
+    public function store(Request $request)
+    {
+        $admin_id = auth()->user()->id;
+        $this_company_id = Company::where('admin_id', $admin_id)->value('id');
+        
+        $links = $request->input('company_links');
+
+        foreach($links as $link)
+        {
+            $company = new CompanySocialMedia;
+            $company->company_id = $this_company_id;
+            $company->social_media_link_id = $link['social_media_link_id'];
+            $company->url = $link['url'];
+            $company->save();
+            
+        }
+
+        $success = 'success';
+        return $success;
+    }
+
     public function show(Request $request, $company_id)
     {
         $links= CompanySocialMedia::where('company_id', $company_id)->get();

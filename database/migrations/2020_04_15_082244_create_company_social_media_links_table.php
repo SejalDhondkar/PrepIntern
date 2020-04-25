@@ -19,7 +19,7 @@ class CreateCompanySocialMediaLinksTable extends Migration
             $table->foreign('company_id')->references('id')->on('companies');
             $table->bigInteger('social_media_link_id')->unsigned()->nullable();
             $table->foreign('social_media_link_id')->references('id')->on('social_media_links');
-            $table->text('url');
+            $table->text('url')->nullable();
             $table->timestamps();
         });
     }

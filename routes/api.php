@@ -51,8 +51,8 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('/company/address/countrysearch','CountriesController@getCountries');
     Route::get('/company/address/statesearch','StatesController@getStates');
     Route::get('/company/address/citysearch','CitiesController@getCity');
-    
     Route::post('/company/socialmedialinks','CompanySocialMediaController@store');
+    
     Route::get('/company/{company_id}/socialmedialinks', 'CompanySocialMediaController@show');
     Route::get('/company/edit/{company_id}/socialmedialinks', 'CompanySocialMediaController@edit');
     Route::put('/company/update/{company_id}/socialmedialinks', 'CompanySocialMediaController@update');

@@ -104,7 +104,7 @@ export default {
           if(response.data.type == 'success'){
             axios.get('http://127.0.0.1:8000/api/mobileOtpVerified').then(response =>{
               console.log(response);
-              this.$router.push('/profile', () => {
+              this.$router.push('/company/primarydetails', () => {
                     this.$toasted.show('Successfully Verified');
                   });
             })

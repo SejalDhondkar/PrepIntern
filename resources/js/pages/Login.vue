@@ -30,6 +30,7 @@
         email: null,
         password: null,
         has_error: false,
+        user: '',
       }
     },
 

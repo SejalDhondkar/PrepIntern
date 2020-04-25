@@ -51,7 +51,7 @@
             // handle redirection
             const redirectTo = redirect ? redirect.from.name : this.$auth.user().role === 2 ? 'admin.dashboard' : 'dashboard'
 
-            this.$router.push({name: redirectTo})
+            this.$router.push('/company/dashboard')
           },
           error: function() {
             app.has_error = true

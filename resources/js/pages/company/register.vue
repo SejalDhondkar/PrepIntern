@@ -102,7 +102,7 @@
               this.errored = true
             })
             app.success = true
-            this.$router.push({name: 'verifyMobile', params: {successRegistrationRedirect: true}})
+            this.$router.push('/company/verifymobile',{ params: {successRegistrationRedirect: true}})
           },
           error: function (res) {
             console.log(res.response.data.errors)
