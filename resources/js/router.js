@@ -42,7 +42,7 @@ const routes = [{
         name: 'register',
         component: Register,
         meta: {
-            auth: true
+            auth: false
         }
     },
     {
@@ -50,7 +50,7 @@ const routes = [{
         name: 'login',
         component: Login,
         meta: {
-            auth: true
+            auth: false
         }
     },
     // USER ROUTES

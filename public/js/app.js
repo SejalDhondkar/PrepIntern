@@ -106892,14 +106892,14 @@ var routes = [{
   name: 'register',
   component: _pages_Register__WEBPACK_IMPORTED_MODULE_3__["default"],
   meta: {
-    auth: true
+    auth: false
   }
 }, {
   path: '/login',
   name: 'login',
   component: _pages_Login__WEBPACK_IMPORTED_MODULE_4__["default"],
   meta: {
-    auth: true
+    auth: false
   }
 }, // USER ROUTES
 {
@@ -107119,8 +107119,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\laravel-vue-spa\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\laravel-vue-spa\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\web-app\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\web-app\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
