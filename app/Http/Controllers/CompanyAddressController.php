@@ -27,6 +27,20 @@ class CompanyAddressController extends Controller
         return $success;
     }
 
+    public function check()
+    {
+        $admin_id = auth()->user()->id;
+        $company_id = Company::where('admin_id', $admin_id)->value('id');
+
+        if($company_id){
+            $flag = 'true';
+        }else{
+            $flag = 'false';
+        }
+
+        return $flag;
+    }
+
     public function show(Request $request, $id)
     {
 

@@ -50,9 +50,22 @@
           },
           success: function() {
             // handle redirection
-            const redirectTo = redirect ? redirect.from.name : this.$auth.user().role === 2 ? 'admin.dashboard' : 'dashboard'
 
-            this.$router.push({name: redirectTo})
+            if(this.$auth.user().role_id === 1)
+            {
+              this.$router.push({path: '/roles/index'});
+            }
+            if(this.$auth.user().role_id === 4 && this.$auth.user().mobile_verified === 1)
+            {
+              this.$router.push({path:'/company/dashboard'});
+            }
+            if(this.$auth.user().role_id === 4 && this.$auth.user().mobile_verified === 0)
+            {
+              this.$router.push({path: '/company/verifyMobile'});
+            }
+            // const redirectTo = redirect ? redirect.from.name : this.$auth.user().role === 2 ? 'admin.dashboard' : 'dashboard'
+
+            // this.$router.push({name: redirectTo})
           },
           error: function() {
             app.has_error = true

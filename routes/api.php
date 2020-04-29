@@ -57,4 +57,9 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('/company/edit/{company_id}/socialmedialinks', 'CompanySocialMediaController@edit');
     Route::put('/company/update/{company_id}/socialmedialinks', 'CompanySocialMediaController@update');
 
+    Route::get('/company/address/check', 'CompanyAddressController@check');
+    Route::get('/company/additionaldetails/check', 'CompanyAdditionalDetailsController@check');
+    Route::get('/company/socialmedialinks/check','CompanySocialMediaController@check');
+    Route::get('/company/dashboard/check','CompanySocialMediaController@checkForDashboard');
+
 });

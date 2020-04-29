@@ -132,8 +132,23 @@
           type_of_company: '',
           description: '',
           range_of_employees: '',
-        }
+        },
+        flag: ''
       }
+  },
+
+  beforeCreate() {
+    axios.get('/company/additionaldetails/check',{params: {flag: this.flag}}).then(response => {
+            console.log(response);
+            this.flag = response.data;
+            console.log(this.flag);
+            if (this.flag) {
+              console.log("Continue")
+            } else {
+              this.$router.push('/company/address');
+              console.log("redirected")
+            }
+         });
   },
 
   

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\CompanySocialMedia;
 use App\Company;
 use Illuminate\Support\Facades\Auth;
+use App\CompanyAdditionalDetails;
 
 class CompanySocialMediaController extends Controller
 {
@@ -29,6 +30,36 @@ class CompanySocialMediaController extends Controller
 
         $success = 'success';
         return $success;
+    }
+
+    public function check()
+    {
+        $admin_id = auth()->user()->id;
+        $company_id = Company::where('admin_id', $admin_id)->value('id');
+        $this_company_id = CompanyAdditionalDetails::where('company_id', $company_id)->value('company_id');
+
+        if($this_company_id){
+            $flag = 'true';
+        }else{
+            $flag = 'false';
+        }
+
+        return $flag;
+    }
+
+    public function checkForDashboard()
+    {
+        $admin_id = auth()->user()->id;
+        $company_id = Company::where('admin_id', $admin_id)->value('id');
+        $this_company_id = CompanySocialMedia::where('company_id', $company_id)->value('company_id');
+
+        if($this_company_id){
+            $flag = 'true';
+        }else{
+            $flag = 'false';
+        }
+
+        return $flag;
     }
 
     public function show(Request $request, $company_id)

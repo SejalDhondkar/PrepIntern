@@ -72,8 +72,23 @@ export default {
         {social_media_link_id: 4, title: 'Youtube', url: ''},
         {social_media_link_id: 5, title: 'Website', url: ''},
       ],
-      link: 1,      
+      link: 1,
+      flag: ''      
     }
+  },
+
+  beforeCreate() {
+    axios.get('/company/socialmedialinks/check',{params: {flag: this.flag}}).then(response => {
+            console.log(response);
+            this.flag = response.data;
+            console.log(this.flag);
+            if (this.flag) {
+              console.log("Continue")
+            } else {
+              this.$router.push('/company/additionaldetails');
+              console.log("redirected")
+            }
+         });
   },
 
     methods: {

@@ -132,7 +132,7 @@ const routes = [{
         name: 'company.register',
         component: CompanyRegister,
         meta: {
-            auth: true
+            auth: false
         }
     },
     {
@@ -140,7 +140,7 @@ const routes = [{
         name: 'company.login',
         component: CompanyLogin,
         meta: {
-            auth: true
+            auth: false
         }
     },
 

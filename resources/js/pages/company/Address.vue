@@ -182,8 +182,22 @@
           city_id: '',
           registered_address: '',
           pincode: '',
-        }
+        },
+        flag: ''
       }
+  },
+
+  beforeCreate() {
+    axios.get('/company/address/check',{params: {flag: this.flag}}).then(response => {
+            this.flag = response.data;
+            console.log(this.flag);
+            if (this.flag) {
+              console.log("Continue")
+            } else {
+              this.$router.push('/company/primarydetails');
+              console.log("redirected")
+            }
+         });
   },
 
   

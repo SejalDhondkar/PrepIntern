@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="card card-default">
-      <div class="card-header">Log In Com</div>
+      <div class="card-header">Log In Company</div>
 
       <div class="card-body">
         <div class="alert alert-danger" v-if="has_error">

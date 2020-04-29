@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\CompanyAdditionalDetails;
 use App\Company;
 use Illuminate\Support\Facades\Auth;
+use App\CompanyAddress;
 
 class CompanyAdditionalDetailsController extends Controller
 {
@@ -27,6 +28,21 @@ class CompanyAdditionalDetailsController extends Controller
 
         $success = 'success';
         return $success;
+    }
+
+    public function check()
+    {
+        $admin_id = auth()->user()->id;
+        $company_id = Company::where('admin_id', $admin_id)->value('id');
+        $this_company_id = CompanyAddress::where('company_id', $company_id)->value('company_id');
+
+        if($this_company_id){
+            $flag = 'true';
+        }else{
+            $flag = 'false';
+        }
+
+        return $flag;
     }
 
     

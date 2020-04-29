@@ -3837,10 +3837,25 @@ __webpack_require__.r(__webpack_exports__);
         },
         success: function success() {
           // handle redirection
-          var redirectTo = redirect ? redirect.from.name : this.$auth.user().role === 2 ? 'admin.dashboard' : 'dashboard';
-          this.$router.push({
-            name: redirectTo
-          });
+          if (this.$auth.user().role_id === 1) {
+            this.$router.push({
+              path: '/roles/index'
+            });
+          }
+
+          if (this.$auth.user().role_id === 4 && this.$auth.user().mobile_verified === 1) {
+            this.$router.push({
+              path: '/company/dashboard'
+            });
+          }
+
+          if (this.$auth.user().role_id === 4 && this.$auth.user().mobile_verified === 0) {
+            this.$router.push({
+              path: '/company/verifyMobile'
+            });
+          } // const redirectTo = redirect ? redirect.from.name : this.$auth.user().role === 2 ? 'admin.dashboard' : 'dashboard'
+          // this.$router.push({name: redirectTo})
+
         },
         error: function error() {
           app.has_error = true;
@@ -4171,18 +4186,40 @@ __webpack_require__.r(__webpack_exports__);
         type_of_company: '',
         description: '',
         range_of_employees: ''
-      }
+      },
+      flag: ''
     };
+  },
+  beforeCreate: function beforeCreate() {
+    var _this = this;
+
+    axios.get('/company/additionaldetails/check', {
+      params: {
+        flag: this.flag
+      }
+    }).then(function (response) {
+      console.log(response);
+      _this.flag = response.data;
+      console.log(_this.flag);
+
+      if (_this.flag) {
+        console.log("Continue");
+      } else {
+        _this.$router.push('/company/address');
+
+        console.log("redirected");
+      }
+    });
   },
   methods: {
     submit: function submit() {
-      var _this = this;
+      var _this2 = this;
 
       this.errors = {};
       axios.post('/company/additionaldetails', this.company).then(function (response) {
         console.log('Message sent!');
 
-        _this.$router.push('/company/socialmedialinks');
+        _this2.$router.push('/company/socialmedialinks');
       })["catch"](function (error) {
         if (error.response.status === 422) {
           console.log("error");
@@ -4386,18 +4423,39 @@ __webpack_require__.r(__webpack_exports__);
         city_id: '',
         registered_address: '',
         pincode: ''
-      }
+      },
+      flag: ''
     };
+  },
+  beforeCreate: function beforeCreate() {
+    var _this = this;
+
+    axios.get('/company/address/check', {
+      params: {
+        flag: this.flag
+      }
+    }).then(function (response) {
+      _this.flag = response.data;
+      console.log(_this.flag);
+
+      if (_this.flag) {
+        console.log("Continue");
+      } else {
+        _this.$router.push('/company/primarydetails');
+
+        console.log("redirected");
+      }
+    });
   },
   methods: {
     submit: function submit() {
-      var _this = this;
+      var _this2 = this;
 
       this.errors = {};
       axios.post('/company/address', this.company).then(function (response) {
-        console.log(_this.company);
+        console.log(_this2.company);
 
-        _this.$router.push('/company/additionaldetails');
+        _this2.$router.push('/company/additionaldetails');
       })["catch"](function (error) {
         if (error.response.status === 422) {
           console.log("error");
@@ -4405,7 +4463,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     autoComplete: function autoComplete() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.data_results = []; // console.log(this.searchquery);
 
@@ -4416,7 +4474,7 @@ __webpack_require__.r(__webpack_exports__);
           }
         }).then(function (response) {
           console.log(response);
-          _this2.data_results = response.data;
+          _this3.data_results = response.data;
         });
       }
     },
@@ -4428,7 +4486,7 @@ __webpack_require__.r(__webpack_exports__);
       this.state = false;
     },
     autoCompleteState: function autoCompleteState() {
-      var _this3 = this;
+      var _this4 = this;
 
       this.state_data_results = [];
       console.log(this.statesearchquery);
@@ -4441,7 +4499,7 @@ __webpack_require__.r(__webpack_exports__);
           }
         }).then(function (response) {
           console.log(response);
-          _this3.state_data_results = response.data;
+          _this4.state_data_results = response.data;
         });
       }
     },
@@ -4453,7 +4511,7 @@ __webpack_require__.r(__webpack_exports__);
       this.city = false;
     },
     autoCompleteCity: function autoCompleteCity() {
-      var _this4 = this;
+      var _this5 = this;
 
       this.city_data_results = [];
       console.log(this.citysearchquery);
@@ -4466,7 +4524,7 @@ __webpack_require__.r(__webpack_exports__);
           }
         }).then(function (response) {
           console.log(response);
-          _this4.city_data_results = response.data;
+          _this5.city_data_results = response.data;
         });
       }
     },
@@ -4518,7 +4576,33 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      flag: ''
+    };
+  },
+  beforeCreate: function beforeCreate() {
+    var _this = this;
+
+    axios.get('/company/dashboard/check', {
+      params: {
+        flag: this.flag
+      }
+    }).then(function (response) {
+      console.log(response);
+      _this.flag = response.data;
+      console.log(_this.flag);
+
+      if (_this.flag) {
+        console.log("Continue");
+      } else {
+        _this.$router.push('/company/socialmedialinks');
+
+        console.log("redirected");
+      }
+    });
+  }
 });
 
 /***/ }),
@@ -4735,19 +4819,41 @@ __webpack_require__.r(__webpack_exports__);
         title: 'Website',
         url: ''
       }],
-      link: 1
+      link: 1,
+      flag: ''
     };
+  },
+  beforeCreate: function beforeCreate() {
+    var _this = this;
+
+    axios.get('/company/socialmedialinks/check', {
+      params: {
+        flag: this.flag
+      }
+    }).then(function (response) {
+      console.log(response);
+      _this.flag = response.data;
+      console.log(_this.flag);
+
+      if (_this.flag) {
+        console.log("Continue");
+      } else {
+        _this.$router.push('/company/additionaldetails');
+
+        console.log("redirected");
+      }
+    });
   },
   methods: {
     submit: function submit() {
-      var _this = this;
+      var _this2 = this;
 
       this.errors = {};
       console.log(this.company);
       axios.post('/company/socialmedialinks', {
         company_links: this.company
       }).then(function (response) {
-        _this.$router.push('/company/dashboard');
+        _this2.$router.push('/company/dashboard');
       })["catch"](function (error) {
         if (error.response.status === 422) {
           console.log("error");
@@ -45379,7 +45485,9 @@ var render = function() {
                     "v-toolbar",
                     { attrs: { color: "blue darken-1", dark: "", flat: "" } },
                     [
-                      _c("v-toolbar-title", [_vm._v("C Verify Mobile Number")]),
+                      _c("v-toolbar-title", [
+                        _vm._v("Test Verify Mobile Number")
+                      ]),
                       _vm._v(" "),
                       _c("v-spacer")
                     ],
@@ -45889,7 +45997,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "card card-default" }, [
-      _c("div", { staticClass: "card-header" }, [_vm._v("Log In Com")]),
+      _c("div", { staticClass: "card-header" }, [_vm._v("Log In Company")]),
       _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [
         _vm.has_error
@@ -106989,14 +107097,14 @@ var routes = [{
   name: 'company.register',
   component: _pages_company_register__WEBPACK_IMPORTED_MODULE_15__["default"],
   meta: {
-    auth: true
+    auth: false
   }
 }, {
   path: '/company/login',
   name: 'company.login',
   component: _pages_company_login__WEBPACK_IMPORTED_MODULE_16__["default"],
   meta: {
-    auth: true
+    auth: false
   }
 }, {
   path: '/company/verifyMobile',
