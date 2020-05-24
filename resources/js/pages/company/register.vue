@@ -3,7 +3,7 @@
         class="fill-height"
         fluid
       >
-    <v-card 
+    <v-card
       class="mx-auto elevation-6"
       width="60%"
       >
@@ -14,7 +14,7 @@
           flat
         >
             <v-spacer />
-              <v-toolbar-title>Company Registration</v-toolbar-title>
+              <v-toolbar-title>Registration</v-toolbar-title>
             <v-spacer />
         </v-toolbar>
   
@@ -28,6 +28,11 @@
         </div>
 
         <form autocomplete="off" @submit.prevent="register" v-if="!success" method="post">
+
+          <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" class="form-control" placeholder="" v-model="name">
+            </div>
 
           <div class="form-group" v-bind:class="{ 'has-error': has_error && errors.email }">
             <label for="email">E-mail</label>
@@ -71,7 +76,8 @@
         phone_number:'',
         error: '',
         errors: {},
-        success: false
+        success: false,
+        role_id: 4,
       }
     },
 
@@ -80,10 +86,12 @@
         var app = this
         this.$auth.register({
           data: {
+            name: app.name,
             email: app.email,
             phone_number: app.phone_number,
             password: app.password,
-            password_confirmation: app.password_confirmation
+            password_confirmation: app.password_confirmation,
+            role_id: app.role_id,
           },
           success: function () {
             let authkey= '308476ARq4VkPBV55df64864';

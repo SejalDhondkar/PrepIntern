@@ -1,0 +1,160 @@
+<template>
+  <v-card
+    outlined
+    class="mx-auto"
+    width="450"
+  >
+    
+    <v-toolbar
+      color="purple darken-1"
+      dark
+    >
+    <v-card-text>
+      <v-toolbar-title class="text-center">X (Secondary) Details</v-toolbar-title>
+      
+    </v-card-text>
+    </v-toolbar>
+          <v-form>
+            <v-container class="p-4">
+
+              <p class="font-weight-medium">Matriculation status:</p>
+              <v-radio-group v-model="student.status" row>
+                <v-radio label="Pursuing" value="pursuing"></v-radio>
+                <v-radio label="Completed" value="completed"></v-radio>
+            	</v-radio-group>
+
+							<v-row>
+
+							<v-col cols="4"
+                    class="text-center">
+                        <v-subheader>Board</v-subheader>
+                    </v-col>
+										<v-col cols="8">
+                      <v-text-field
+                          v-model="student.board"
+                          label=""
+                          class="purple-input mr-4"
+                        />
+                    </v-col>
+
+										<v-col cols="4"
+                    class="text-center">
+                        <v-subheader>Year of completion:</v-subheader>
+                    </v-col>
+
+										<v-col cols="8">
+                      <v-menu offset-y>
+                      <template v-slot:activator="{ on }">
+                        <v-text-field
+                          v-model="student.year_of_completion"
+                          label=""
+                          class="purple-input mr-4"
+                          v-on="on"
+                        />
+                      </template>
+                        
+                            <v-list style="max-height: 250px"
+       														class="overflow-y-auto">
+                              <v-list-item-group v-model="year" color="primary">
+                                <v-list-item
+                                  v-for="(year, i) in year_list"
+                                  :key="i"
+                                  @click="student.year_of_completion=year"
+                                >
+                                  <v-list-item-content>
+                                    <v-list-item-title v-text="year"></v-list-item-title>
+                                  </v-list-item-content>
+                                </v-list-item>
+                              </v-list-item-group>
+                            </v-list>
+                      </v-menu>
+                    </v-col>
+
+										<v-col cols="4"
+                    class="text-center">
+                        <v-subheader>School:</v-subheader>
+                    </v-col>
+
+                    <v-col cols="8">
+                      <v-text-field
+                          v-model="student.school_name"
+                          label=""
+                          class="purple-input mr-4"
+                        />
+                    </v-col>
+
+                    <v-col cols="4"
+                    class="text-center">
+                        <v-subheader>GPA/Score:</v-subheader>
+                    </v-col>
+
+                    <v-col cols="8">
+                      <v-text-field
+                          v-model="student.score"
+                          label="Enter your GPA"
+                          class="purple-input mr-4"
+                        />
+                    </v-col>
+
+
+
+						
+							<v-col
+                  cols="12"
+                  class="text-right"
+                >
+                  <v-btn
+                    color="success"
+                    @click="submit"
+                  >
+                    Save
+                  </v-btn>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-form>
+        
+  </v-card>
+
+      
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        student: {
+						status: '',
+						school_name: '',
+						board: '',
+						year_of_completion: '',
+            score: '',
+				},
+				year: 1,
+				year_list: ['2022','2021','2020','2019','2018','2017','2016','2015',
+										'2014','2013','2012','2011','2010','2009','2008','2007','2006','2005',
+										'2004','2003','2002','2001','2000','1999','1998','1997','1996','1995',
+										'1994','1993','1992','1991','1990','1989','1988','1987','1986','1985'],
+      }
+  },
+
+  
+  methods: {
+
+    submit() {
+      this.errors = {};
+      axios.post('/student/tenthdetails', this.student).then(response => {
+        console.log(this.student);
+        this.$router.push('/student/educationdetails');
+      }).catch(error => {
+        if (error.response.status === 422) {
+        console.log("error");
+        }
+      });
+      
+		},
+
+	}
+  
+  }
+</script>

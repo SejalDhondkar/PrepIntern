@@ -53,7 +53,7 @@
 
             if(this.$auth.user().role_id === 1)
             {
-              this.$router.push({path: '/roles/index'});
+              this.$router.push({path: '/admin'});
             }
             if(this.$auth.user().role_id === 4 && this.$auth.user().mobile_verified === 1)
             {
@@ -62,6 +62,14 @@
             if(this.$auth.user().role_id === 4 && this.$auth.user().mobile_verified === 0)
             {
               this.$router.push({path: '/company/verifyMobile'});
+            }
+            if(this.$auth.user().role_id === 5 && this.$auth.user().mobile_verified === 1)
+            {
+              this.$router.push({path:'/student/dashboard'});
+            }
+            if(this.$auth.user().role_id === 5 && this.$auth.user().mobile_verified === 0)
+            {
+              this.$router.push({path: '/student/verifyMobile'});
             }
             // const redirectTo = redirect ? redirect.from.name : this.$auth.user().role === 2 ? 'admin.dashboard' : 'dashboard'
 

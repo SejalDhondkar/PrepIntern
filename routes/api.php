@@ -52,6 +52,8 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('/company/address/statesearch','StatesController@getStates');
     Route::get('/company/address/citysearch','CitiesController@getCity');
     Route::post('/company/socialmedialinks','CompanySocialMediaController@store');
+
+    Route::get('/admin/internships/index','AdminInternshipPostsController@index');
     
     Route::get('/company/{company_id}/socialmedialinks', 'CompanySocialMediaController@show');
     Route::get('/company/edit/{company_id}/socialmedialinks', 'CompanySocialMediaController@edit');
@@ -61,5 +63,41 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('/company/additionaldetails/check', 'CompanyAdditionalDetailsController@check');
     Route::get('/company/socialmedialinks/check','CompanySocialMediaController@check');
     Route::get('/company/dashboard/check','CompanySocialMediaController@checkForDashboard');
+    Route::get('/internships/profiles','CompanyPostInternshipController@getProfiles');
+    Route::get('/internships/citysearch','CompanyPostInternshipController@getCity');
+    Route::get('/internships/skills','CompanyPostInternshipController@getSkills');
+    Route::post('/company/postinternship','CompanyPostInternshipController@store');
+    Route::get('/company/view/internships','CompanyViewPostedInternshipsController@index');
+    Route::get('/company/view/{id}/applications','CompanyViewApplicationsController@index');
+    Route::get('/company/view/{id}/response','CompanyViewApplicationsController@getStudent');
+    Route::post('/applicant/status/change','ApplicantsSelectionStatusController@changeStatus');
+
+    Route::post('/student/primarydetails','StudentPrimaryDetailsController@store');
+    Route::get('/student/internships/fields','InternshipPreferencesController@getFields');
+    Route::get('/student/internships/citysearch','InternshipPreferencesController@getCity');
+    Route::post('/student/internshippreferences','InternshipPreferencesController@store');
+    Route::get('/student/dashboard/check','InternshipPreferencesController@checkForDashboard');
+    Route::get('/student/internships/check','InternshipPreferencesController@check');
+    Route::post('/student/graduationdetails','StudentGraduationDetailsController@store');
+    Route::post('/student/postgraduationdetails','StudentPostGradDetailsController@store');
+    Route::post('/student/tenthdetails','StudentTenthDetailsController@store');
+    Route::post('/student/twelthdetails','StudentTwelthDetailsController@store');
+    Route::post('/student/diplomadetails','StudentDiplomaDetailsController@store');
+    Route::post('/student/phddetails','StudentPhdDetailsController@store');
+    Route::post('/student/jobdetails','StudentJobDetailsController@store');
+    Route::post('/student/internshipdetails','StudentInternshipDetailsController@store');
+    Route::post('/student/positionofresponsibility','StudentPositionOfRespDetailsController@store');
+    Route::post('/student/trainingdetails','StudentTrainingDetailsController@store');
+    Route::post('/student/projectdetails','StudentProjectDetailsController@store');
+    Route::post('/student/additionaldetails','StudentAdditionalDetailsController@store');
+    Route::post('/student/links','StudentLinksController@store');
+    Route::get('/student/skillsearch','StudentSkillsDetailsController@getSkills');
+    Route::post('/student/skilldetails','StudentSkillsDetailsController@store');
+    Route::get('/student/internship/{id}/details','CompanyPostInternshipController@show');
+    Route::post('/student/internship/assessment','InternshipAssessmentAnswersController@store');
+
+    Route::get('/student/collegesearch','CollegesController@getCollege');
+    Route::get('/student/degreesearch','DegreesController@getDegree');
+    Route::get('/student/streamsearch','StreamsController@getStream');
 
 });

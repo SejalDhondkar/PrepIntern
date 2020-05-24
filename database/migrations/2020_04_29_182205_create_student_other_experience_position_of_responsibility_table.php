@@ -13,7 +13,7 @@ class CreateStudentOtherExperiencePositionOfResponsibilityTable extends Migratio
      */
     public function up()
     {
-        Schema::create('student_other_experience_position_of_responsibility', function (Blueprint $table) {
+        Schema::create('student_other_exp_position_of_resp', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
