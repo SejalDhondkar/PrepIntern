@@ -55,6 +55,7 @@ import StudentExperienceDetails from './pages/student/ExperienceDetails'
 import StudentOtherExperienceDetails from './pages/student/OtherExperienceDetails'
 import StudentInternshipPostPage from './pages/student/InternshipPostPage'
 import StudentAssessmentQuestionsPage from './pages/student/AssessmentQuestionsPage'
+import StudentViewResume from './pages/student/ViewResume'
 
 import VerifyMobile from './pages/register/VerifyMobile'
 
@@ -498,9 +499,18 @@ const routes = [{
     },
 
     {
-        path: '/student/internship/:id/assessment',
+        path: '/student/internship/:id/assessment/questions',
         name: 'student.AssessmentQuestionsPage',
         component: StudentAssessmentQuestionsPage,
+        meta: {
+            auth: true
+        }
+    },
+
+    {
+        path: '/student/resume/view',
+        name: 'student.ViewResume',
+        component: StudentViewResume,
         meta: {
             auth: true
         }

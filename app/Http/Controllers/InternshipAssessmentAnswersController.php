@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\InternshipAssessmentAnswers;
+use App\CompanyPostInternship;
+use App\ApplicantsSelectionStatus;
 
 class InternshipAssessmentAnswersController extends Controller
 {
@@ -24,8 +26,16 @@ class InternshipAssessmentAnswersController extends Controller
         $status->post_id = $request->post_id;
         $status->student_id = $request->student_id;
         $status->status = 'none';
+        $status->save();
 
         $success = 'success';
         return $success;
+    }
+
+    public function getQuestions($id)
+    {
+        $post = CompanyPostInternship::findOrFail($id);
+
+        return $post;
     }
 }

@@ -10,25 +10,25 @@
         <v-container class="p-4">
 					<p class="headline"> {{post.profile_name}} </p>
 					<p class="subtitle-1"> {{post.company_name}} </p>
-					<p class="body-2">Location: {{post.type_of_internship}}</p>
+					<p class="body-2">Location(s): <span v-for="(loc,i) in post.location" :key="i"> {{loc}} </span></p>
+          <br>
           <v-row>
-            <v-col cols="4">
-              <p class="body-2" v-if="post.start_date_type=='Immediately'">Start Date: {{post.start_date_type}}</p>
-              <p class="body-2" v-if="post.start_date_type=='Later'">Start Date: {{post.start_date}}</p>
+            <v-col cols="3">
+              <p class="body-2" v-if="post.start_date_type=='Immediately'">Start Date: <br> {{post.start_date_type}}</p>
+              <p class="body-2" v-if="post.start_date_type=='Later'">Start Date: <br> {{post.start_date}}</p>
             </v-col>
-            <v-col cols="4">
-              <p class="body-2">Duration: {{post.internship_duration}}</p>
+            <v-col cols="3">
+              <p class="body-2">Duration: <br> {{post.internship_duration}}</p>
             </v-col>
-            <v-col cols="4">
-              <p class="body-2" v-if="post.stipend_category=='Fixed'">Stipend: Rs. {{post.stipend_fixed}} {{post.stipend_type}}</p>
-              <p class="body-2" v-if="post.stipend_category=='Negotiable'">Stipend: Rs. {{post.stipend_amount_min}} - {{post.stipend_amount_max}} {{post.stipend_type}}</p>
-              <p class="body-2" v-if="post.stipend_category=='Performance based'">Stipend: Rs. {{post.stipend_amount_min}} {{post.stipend_type}} Incentive: {{post.stipend_incentive}}</p>
-              <p class="body-2" v-if="post.stipend_category=='Unpaid'">Stipend: Unpaid</p>              
+            <v-col cols="6">
+              <p class="body-2" v-if="post.stipend_category=='Fixed'">Stipend: <br> Rs. {{post.stipend_fixed}} {{post.stipend_type}}</p>
+              <p class="body-2" v-if="post.stipend_category=='Negotiable'">Stipend: <br> Rs. {{post.stipend_amount_min}} - {{post.stipend_amount_max}} {{post.stipend_type}}</p>
+              <p class="body-2" v-if="post.stipend_category=='Performance based'">Stipend: <br> Rs. {{post.stipend_amount_min}} {{post.stipend_type}} Incentive: {{post.stipend_incentive}}</p>
+              <p class="body-2" v-if="post.stipend_category=='Unpaid'">Stipend: <br> Unpaid</p>              
             </v-col>
-            <v-col cols="12" v-if="post.is_part_time_allowed==1"><p class="body-2">Part time allowed</p></v-col>
-          </v-row>
+            </v-row>
 
-            
+            <p class="body-2 mt-4" v-if="post.is_part_time_allowed==1">Part time allowed</p>
         </v-container>
         
         </v-card-text>
@@ -42,18 +42,34 @@
           
         <v-container class="p-4">			
 					
-					<p class="body-2">About Internship:</p>
-          <p class="body-2"> {{post.intern_resp_desc}}</p>
-          <p class="body-2"># of internships available: {{post.no_of_openings}} </p>
+					<p class="body-1">About Internship:</p>
+          <p class="body-2"> {{post.intern_resp_desc}}</p> <br>
+          <p class="body-1"># of internships available: {{post.no_of_openings}} </p><br>
 
-          <p class="body-2">Skills required: {{post.skills_id}}</p>
-          <p class="body-2">Who can apply:</p>
+          <p class="body-1">Skills required:</p>
+          <p class="body-2"><span v-for="(skill,i) in post.skills" :key="i"> {{skill}}, </span></p><br>
+          <p class="body-1">Who can apply:</p>
           <p class="body-2">Only those candidates can apply who:</p>
           <p class="body-2">1. are available for duration of {{post.internship_duration}}</p>
-          <p class="body-2">2. have relevant skills and interests</p>
-          <p class="body-2">Perks: {{post.perks}}</p>
+          <p class="body-2">2. have relevant skills and interests</p><br>
+          <p class="body-1">Perks: </p>
+          <p class="body-2"><span v-for="(perk,i) in post.perks_array" :key="i"> {{perk}}, </span></p>
 
-          <v-btn class="ma-2 text-center" outlined color="indigo" @click="apply()">Apply Now</v-btn><br>
+          <br><br>
+
+          <v-row>
+          <v-col
+                  cols="12"
+                  class="text-center"
+                >
+                  <v-btn
+                    color="success"
+                    @click="apply()"
+                  >
+                    Apply Now
+                  </v-btn>
+                </v-col>
+              </v-row>
 
             
         </v-container>
@@ -69,6 +85,7 @@ export default {
     data(){
       return {
           post: [],
+          i: 0,
       }
     },
 
@@ -81,8 +98,17 @@ export default {
 
     methods: {
       apply(){
-        this.$router.push(`/student/internship/${this.$route.params.id}/assessment`);
+        this.$router.push({name: 'student.ViewResume', params: {post_id: this.post.id}});
       }
     }
 }
 </script>
+
+<style scoped>
+.headline, .body-1 {
+  color: black;
+}
+p {
+  margin: 0%;
+}
+</style>

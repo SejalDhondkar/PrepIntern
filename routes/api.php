@@ -94,7 +94,9 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('/student/skillsearch','StudentSkillsDetailsController@getSkills');
     Route::post('/student/skilldetails','StudentSkillsDetailsController@store');
     Route::get('/student/internship/{id}/details','CompanyPostInternshipController@show');
+    Route::get('/student/internship/{id}/assessment/questions','InternshipAssessmentAnswersController@getQuestions');
     Route::post('/student/internship/assessment','InternshipAssessmentAnswersController@store');
+    Route::get('/student/resume/view', 'StudentViewResumeController@viewResume');
 
     Route::get('/student/collegesearch','CollegesController@getCollege');
     Route::get('/student/degreesearch','DegreesController@getDegree');

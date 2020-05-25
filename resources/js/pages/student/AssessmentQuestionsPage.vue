@@ -61,7 +61,7 @@
                     color="success"
                     @click="submit"
                   >
-                    Save
+                    Submit
                   </v-btn>
                 </v-col>
               </v-row>
@@ -92,7 +92,7 @@
   },
 
 created() {
-        axios.get(`/student/internship/${this.$route.params.id}/details`).then(response => {
+        axios.get(`/student/internship/${this.$route.params.id}/assessment/questions`).then(response => {
             this.post = response.data;
             console.log(this.post);
         });

@@ -83,6 +83,29 @@ class CompanyPostInternshipController extends Controller
 
         $data = CompanyPostInternship::findOrFail($id);
 
+        $cities = json_decode($data->city_preferences);
+        if($data->type_of_internship=='Regular'){
+            for ($i=0; $i < count($cities); $i++) { 
+                $location[$i] = Cities::where('id',$cities[$i])->value('name');
+            }       
+        }
+        if($data->type_of_internship=='Work from home'){
+            $location = ['Work from home'];
+        }
+
+        $data->location = $location;
+
+        $skills = json_decode($data->skills_id);
+        for ($i=0; $i < count($skills); $i++) { 
+            $skills_name[$i] = Skills::where('id',$skills[$i])->value('title');
+        }
+
+        $data->skills = $skills_name;
+
+        $perks = json_decode($data->perks);
+
+        $data->perks_array = $perks;
+
         $this_profile_id = $data->profile_id;
         $data->profile_name = InternshipProfiles::where('id',$this_profile_id)->value('title');
 
