@@ -61,6 +61,9 @@
       }
   },
 
+  created(){
+    this.$store.commit('SET_LAYOUT', 'student-layout');
+  },
   
   methods: {
 

@@ -5,7 +5,7 @@
       >
     <v-card
       class="mx-auto elevation-6"
-      width="60%"
+      width="50%"
       >
     
         <v-toolbar
@@ -41,7 +41,7 @@
           </div>
           <div class="form-group">
             <label for="phone_number">Phone Number</label>
-            <input type="text" id="phone_number" class="form-control" placeholder="+918765432101" v-model="phone_number">
+            <input type="text" id="phone_number" class="form-control" placeholder="918765432101" v-model="phone_number">
             <span class="help-block" v-if="has_error && errors.email">{{ errors.email }}</span>
           </div>
 
@@ -56,7 +56,7 @@
             <input type="password" id="password_confirmation" class="form-control" v-model="password_confirmation">
           </div>
 
-          <button type="submit" class="btn btn-default">Register</button>
+          <button type="submit" class="btn btn-success">Register</button>
         </form>
         </v-container>
       </v-form>
@@ -79,6 +79,10 @@
         success: false,
         role_id: 4,
       }
+    },
+
+    created(){
+      this.$store.commit('SET_LAYOUT', 'loginsignup-layout');
     },
 
     methods: {

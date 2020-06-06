@@ -92,10 +92,11 @@
   },
 
 created() {
-        axios.get(`/student/internship/${this.$route.params.id}/assessment/questions`).then(response => {
-            this.post = response.data;
-            console.log(this.post);
-        });
+      this.$store.commit('SET_LAYOUT', 'student-layout');
+      axios.get(`/student/internship/${this.$route.params.id}/assessment/questions`).then(response => {
+          this.post = response.data;
+          console.log(this.post);
+      });
     },
   
   methods: {

@@ -219,6 +219,7 @@ export default {
   },
 
 		created() {
+      this.$store.commit('SET_LAYOUT', 'student-layout');
 			axios.get('/student/internships/fields').then(response => {
 						this.fields_list= response.data;					
 			});

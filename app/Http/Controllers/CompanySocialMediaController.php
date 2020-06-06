@@ -7,6 +7,7 @@ use App\CompanySocialMedia;
 use App\Company;
 use Illuminate\Support\Facades\Auth;
 use App\CompanyAdditionalDetails;
+use App\SocialMediaLinks;
 
 class CompanySocialMediaController extends Controller
 {
@@ -68,28 +69,36 @@ class CompanySocialMediaController extends Controller
         return $links;
     }
 
-    public function edit(Request $request, $company_id)
+    public function edit()
     {
-        $links= CompanySocialMedia::where('company_id', $company_id)->get();
+        $admin_id = auth()->user()->id;
+        $this_company_id = Company::where('admin_id', $admin_id)->value('id');
+
+        $links= CompanySocialMedia::where('company_id', $this_company_id)->get();
+        foreach($links as $link){
+            $link->title = SocialMediaLinks::where('id',$link->social_media_link_id)->value('title');
+        }
+
         return $links;
     }
 
-    public function update(Request $request, $company_id)
+    public function update(Request $request)
     {
-        $links = CompanySocialMedia::where('company_id', $company_id)->get();
-        $var_request = $request;
-        foreach($links as $link){
-            foreach($var_request as $req){
-                if($link->social_media_link_id == $req->social_media_link_id){
-                    $link->url = $req->url;
-                    $link->update();
-                    
-                }
-            }
+        $admin_id = auth()->user()->id;
+        $this_company_id = Company::where('admin_id', $admin_id)->value('id');
+        
+        $links = $request->input('company_links');
+
+        foreach($links as $link)
+        {
+            $company = CompanySocialMedia::where('id',$link['id'])->first();
+            $company->social_media_link_id = $link['social_media_link_id'];
+            $company->url = $link['url'];
+            $company->update();
             
-        }        
+        }
 
         $success = 'success';
-        return $success;
+        return $success;    
     }
 }

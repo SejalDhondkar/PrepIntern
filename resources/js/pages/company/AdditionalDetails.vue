@@ -89,11 +89,30 @@
                   cols="12"
                   md="12"
                 >
-                  <v-text-field
-                    v-model="company.range_of_employees"
-                    label="Range of Employees"
-                    class="purple-input"
-                  />
+                  <v-menu offset-y>
+                    <template v-slot:activator="{ on }">
+                      <v-text-field
+                        v-model="company.range_of_employees"
+                        label="Range of Employees"
+                        class="purple-input mr-4"
+                        v-on="on"
+                      />
+                    </template>                        
+                          <v-list style="max-height: 250px"
+                                class="overflow-y-auto">
+                            <v-list-item-group v-model="data" color="primary">
+                              <v-list-item
+                                v-for="(range,i) in this.range_list"
+                                :key="i"
+                                @click="company.range_of_employees=range"
+                              >
+                                <v-list-item-content>
+                                  <v-list-item-title v-text="range"></v-list-item-title>
+                                </v-list-item-content>
+                              </v-list-item>
+                            </v-list-item-group>
+                          </v-list>
+                  </v-menu>
                 </v-col>
 
 
@@ -133,7 +152,9 @@
           description: '',
           range_of_employees: '',
         },
-        flag: ''
+        flag: '',
+        data: '',
+        range_list: ['Self-Employed','1-10','11-50','51-100','101-200','201-500','501-1000','1001-5000','5001-10,000','10,001+']
       }
   },
 
@@ -151,7 +172,9 @@
          });
   },
 
-  
+  created(){
+    this.$store.commit('SET_LAYOUT', 'company-layout');
+  },
   
   methods: {
     submit() {

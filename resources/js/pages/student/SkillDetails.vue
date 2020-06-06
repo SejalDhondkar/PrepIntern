@@ -15,7 +15,7 @@
     </v-card-text>
     </v-toolbar>
           <v-container class="p-4 m-4">
-						<p class="font-weight-medium">Add your skills here</p>
+						<p class="font-weight-medium">Add your top 5 skills here</p>
 											<v-menu offset-y>
                       <template v-slot:activator="{ on }">
                         <v-text-field
@@ -123,6 +123,78 @@
 														:value="level"
 													></v-radio>
 												</v-radio-group>
+
+                        <v-menu offset-y>
+                      <template v-slot:activator="{ on }">
+                        <v-text-field
+                          v-model="skillsearchquery4"
+                          label="Skill 4"
+                          class="purple-input mr-4"
+                          v-on:keyup="autoCompleteSkill4"
+													v-on="on"
+                        />
+                      </template>                        
+                            <v-list v-if="skill_data_results.length"
+																	style="max-height: 250px"
+       														class="overflow-y-auto">
+                              <v-list-item-group v-model="data" color="primary">
+                                <v-list-item
+                                  v-for="(data, i) in skill_data_results"
+                                  :key="i"
+                                  @click="selectSkill4(data)"
+                                >
+                                  <v-list-item-content>
+                                    <v-list-item-title v-text="data.title"></v-list-item-title>
+                                  </v-list-item-content>
+                                </v-list-item>
+                              </v-list-item-group>
+                            </v-list>
+											</v-menu>
+
+											<v-radio-group v-model="student.level_4" row>
+													<v-radio
+														v-for="(level,n) in this.level_list"
+														:key="n"
+														:label="level"
+														:value="level"
+													></v-radio>
+												</v-radio-group>
+
+                        <v-menu offset-y>
+                      <template v-slot:activator="{ on }">
+                        <v-text-field
+                          v-model="skillsearchquery5"
+                          label="Skill 5"
+                          class="purple-input mr-4"
+                          v-on:keyup="autoCompleteSkill5"
+													v-on="on"
+                        />
+                      </template>                        
+                            <v-list v-if="skill_data_results.length"
+																	style="max-height: 250px"
+       														class="overflow-y-auto">
+                              <v-list-item-group v-model="data" color="primary">
+                                <v-list-item
+                                  v-for="(data, i) in skill_data_results"
+                                  :key="i"
+                                  @click="selectSkill5(data)"
+                                >
+                                  <v-list-item-content>
+                                    <v-list-item-title v-text="data.title"></v-list-item-title>
+                                  </v-list-item-content>
+                                </v-list-item>
+                              </v-list-item-group>
+                            </v-list>
+											</v-menu>
+
+											<v-radio-group v-model="student.level_5" row>
+													<v-radio
+														v-for="(level,n) in this.level_list"
+														:key="n"
+														:label="level"
+														:value="level"
+													></v-radio>
+												</v-radio-group>
 						
 
                     
@@ -170,22 +242,70 @@ export default {
 				student: {
 					skill_1: '',
 					skill_2: '',
-					skill_3: '',
+          skill_3: '',
+          skill_4: '',
+          skill_5: '',
 					level_1: '',
 					level_2: '',
-					level_3: '',
+          level_3: '',
+          level_4: '',
+          level_5: '',
+          id_1: '',
+          id_2: '',
+          id_3: '',
+          id_4: '',
+          id_5: '',
 				},
 				skillsearchquery1: '',
 				skillsearchquery2: '',
-				skillsearchquery3: '',
+        skillsearchquery3: '',
+        skillsearchquery4: '',
+        skillsearchquery5: '',
 				skill_data_results: [],
 				counter: 2,
 				i: 2,
 				data: 1,
 				level_list: ['Beginner','Intermediate','Advanced'],
-				
 			}
-		},
+    },
+    
+    created(){
+    this.$store.commit('SET_LAYOUT', 'student-layout');
+    this.axios.get('/student/skilldetails/edit').then((response) => {
+            console.log(response.data);
+            if(response.data[0]){
+              this.skillsearchquery1 = response.data[0].skill_name;
+              this.student.skill_1 = response.data[0].skill_id;
+              this.student.level_1 = response.data[0].level;
+              this.student.id_1 = response.data[0].id;
+            }
+            if(response.data[1]){
+              this.skillsearchquery2 = response.data[1].skill_name;
+              this.student.skill_2 = response.data[1].skill_id;
+              this.student.level_2 = response.data[1].level;
+              this.student.id_2 = response.data[1].id;
+            }
+            if(response.data[2]){
+              this.skillsearchquery3 = response.data[2].skill_name;
+              this.student.skill_3 = response.data[2].skill_id;
+              this.student.level_3 = response.data[2].level;
+              this.student.id_3 = response.data[2].id;
+            }
+            if(response.data[3]){
+              this.skillsearchquery4 = response.data[3].skill_name;
+              this.student.skill_4 = response.data[3].skill_id;
+              this.student.level_4 = response.data[3].level;
+              this.student.id_4 = response.data[3].id;
+            }
+            if(response.data[4]){
+              this.skillsearchquery5 = response.data[4].skill_name;
+              this.student.skill_5 = response.data[4].skill_id;
+              this.student.level_5 = response.data[4].level;
+              this.student.id_5 = response.data[4].id;
+            }
+            // this.student = response.data;
+        });
+    },
 
 		methods: {
 
@@ -193,7 +313,7 @@ export default {
 				this.errors = {};
 					axios.post('/student/skilldetails', this.student).then(response => {
 						console.log(this.student);
-						this.$router.push('/student/links');
+						this.$router.push('/student/otherdetails');
 					}).catch(error => {
 						if (error.response.status === 422) {
 						console.log("error");
@@ -202,7 +322,7 @@ export default {
       },
       
       previous(){
-            this.$router.push('/student/otherexperiencedetails');
+            this.$router.push('/student/otherdetails');
 				},
 
 			autoCompleteSkill1(){
@@ -232,6 +352,24 @@ export default {
         }
     },
 
+    autoCompleteSkill4(){
+        this.skill_data_results = [];
+        if(this.skillsearchquery4.length > 2){
+         axios.get('/student/skillsearch',{params: {skillsearchquery: this.skillsearchquery4}}).then(response => {
+         this.skill_data_results = response.data;
+         });
+        }
+    },
+
+    autoCompleteSkill5(){
+        this.skill_data_results = [];
+        if(this.skillsearchquery5.length > 2){
+         axios.get('/student/skillsearch',{params: {skillsearchquery: this.skillsearchquery5}}).then(response => {
+         this.skill_data_results = response.data;
+         });
+        }
+    },
+
     
     selectSkill1(data){
       this.skillsearchquery1 = data.title;
@@ -249,6 +387,18 @@ export default {
       this.skillsearchquery3 = data.title;
       this.skill_data_results.length = false;
       this.student.skill_3 = data.id;
+    },
+
+    selectSkill4(data){
+      this.skillsearchquery4 = data.title;
+      this.skill_data_results.length = false;
+      this.student.skill_4 = data.id;
+    },
+
+    selectSkill5(data){
+      this.skillsearchquery5 = data.title;
+      this.skill_data_results.length = false;
+      this.student.skill_5 = data.id;
     },
 
 		}

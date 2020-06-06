@@ -45,6 +45,36 @@ class CompanyAdditionalDetailsController extends Controller
         return $flag;
     }
 
+    public function edit()
+    {
+        $admin_id = auth()->user()->id;
+        $this_company_id = Company::where('admin_id', $admin_id)->value('id');
+
+        $company = CompanyAdditionalDetails::where('company_id',$this_company_id)->first();
+
+        return $company;
+    }
+
+    public function update(Request $request)
+    {
+        $admin_id = auth()->user()->id;
+        $this_company_id = Company::where('admin_id', $admin_id)->value('id');
+
+        $company = CompanyAdditionalDetails::where('company_id',$this_company_id)->first();
+        $company->company_id = $this_company_id;
+        $company->registration_no = $request->registration_no;
+        $company->certificate_of_incorporation = $request->certificate_of_incorporation;
+        $company->website = $request->website;
+        $company->year_of_establishment = $request->year_of_establishment;        
+        $company->type_of_company = $request->type_of_company;
+        $company->description = $request->description;
+        $company->range_of_employees = $request->range_of_employees;
+        $company->update();
+
+        $success = 'success';
+        return $success;
+
+    }
     
 
 }

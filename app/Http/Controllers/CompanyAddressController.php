@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\CompanyAddress;
 use App\Company;
 use Illuminate\Support\Facades\Auth;
+use App\Countries;
+use App\States;
+use App\Cities;
 
 class CompanyAddressController extends Controller
 {
@@ -50,16 +53,28 @@ class CompanyAddressController extends Controller
 
     public function edit(Request $request)
     {
-        $company = Company::where('admin_id',Auth::id())->get();
+        $admin_id = auth()->user()->id;
+        $this_company_id = Company::where('admin_id', $admin_id)->value('id');
+
+        $company = CompanyAddress::where('company_id',$this_company_id)->first();
+        $company->country_name = Countries::where('id',$company->country_id)->value('name');
+        $company->state_name = States::where('id',$company->state_id)->value('name');
+        $company->city_name = Cities::where('id',$company->city_id)->value('name');
         return $company;
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $company = Company::findOrFail($id);
-        $company->name = $request->name;
-        $company->contact_email = $request->contact_email;
-        $company->contact_no = $request->contact_no;        
+        $admin_id = auth()->user()->id;
+        $this_company_id = Company::where('admin_id', $admin_id)->value('id');
+
+        $company = CompanyAddress::where('company_id',$this_company_id)->first();
+        $company->country_id = $request->country_id;
+        $company->state_id = $request->state_id;
+        $company->city_id = $request->city_id;
+        $company->registered_address = $request->registered_address;
+        $company->company_id = $this_company_id;
+        $company->pincode = $request->pincode;        
         $company->update();
 
         $success = 'success';

@@ -26,16 +26,48 @@ use App\StudentLinks;
 use App\StudentAdditionalDetails;
 use App\CompanyPostInternship;
 use App\ApplicantsSelectionStatus;
+use Illuminate\Support\Facades\Auth;
+use App\Company;
 
 class CompanyViewApplicationsController extends Controller
 {
     public function index($id)
     {
-        $data = InternshipAssessmentAnswers::where('post_id',$id)->get();
+        $admin_id = auth()->user()->id;
+        $this_company_id = Company::where('admin_id', $admin_id)->value('id');
+
+        $data = InternshipAssessmentAnswers::where('company_id',$this_company_id)->where('post_id',$id)->get();
         foreach($data as $dt){
             $student_id = $dt->student_id;
             $dt->student_name = User::where('id',$student_id)->value('name');
             $dt->status = ApplicantsSelectionStatus::where('student_id',$student_id)->where('post_id',$dt->post_id)->value('status');
+        }
+        return $data;
+    }
+
+    public function sortByStatus(Request $request, $id)
+    {
+        $admin_id = auth()->user()->id;
+        $this_company_id = Company::where('admin_id', $admin_id)->value('id');
+
+        $status = $request->status;
+
+        if($status!='none'){
+            $data = ApplicantsSelectionStatus::where('company_id',$this_company_id)->where('post_id',$id)->where('status', $status)->get();
+            foreach($data as $dt){
+                $student_id = $dt->student_id;
+                $dt->student_name = User::where('id',$student_id)->value('name');
+                $dt->status = ApplicantsSelectionStatus::where('student_id',$student_id)->where('post_id',$dt->post_id)->value('status');
+            }
+        }
+
+        if($status=='none'){
+            $data = InternshipAssessmentAnswers::where('company_id',$this_company_id)->where('post_id',$id)->get();
+            foreach($data as $dt){
+                $student_id = $dt->student_id;
+                $dt->student_name = User::where('id',$student_id)->value('name');
+                $dt->status = ApplicantsSelectionStatus::where('student_id',$student_id)->where('post_id',$dt->post_id)->value('status');
+            }
         }
 
         return $data;

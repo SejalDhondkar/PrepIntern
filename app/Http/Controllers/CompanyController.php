@@ -30,15 +30,15 @@ class CompanyController extends Controller
         return $company;
     }
 
-    public function edit(Request $request)
+    public function edit()
     {
-        $company = Company::where('admin_id',Auth::id())->get();
+        $company = Company::where('admin_id',Auth::id())->first();
         return $company;
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $company = Company::findOrFail($id);
+        $company = Company::where('admin_id',Auth::id())->first();
         $company->name = $request->name;
         $company->contact_email = $request->contact_email;
         $company->contact_no = $request->contact_no;        

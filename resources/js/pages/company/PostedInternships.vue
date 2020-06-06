@@ -56,6 +56,7 @@ export default {
     },
 
 		created() {
+      this.$store.commit('SET_LAYOUT', 'company-layout');
 			axios.get('/company/view/internships').then(response => {
 						this.posts= response.data;
 						console.log(response.data);			
