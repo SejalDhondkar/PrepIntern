@@ -194,17 +194,27 @@
 
                     <v-col cols="8">
                       <v-text-field
-                          v-model="student.score"
+                          v-model="student.gpa_score"
                           label="Enter your GPA"
                           class="purple-input mr-4"
                         />
                     </v-col>
 
-
+              <v-col
+                  cols="6"
+                  class="text-left"
+                >
+                  <v-btn
+                    color="primary"
+                    @click="back"
+                  >
+                    Back
+                  </v-btn>
+                </v-col>
 
 						
 							<v-col
-                  cols="12"
+                  cols="6"
                   class="text-right"
                 >
                   <v-btn
@@ -234,7 +244,7 @@
             end_year: '',
             degree_id: '',
             stream_id: '',
-            score: '',
+            gpa_score: '',
 				},
 				collegesearchquery: '',
 				degreesearchquery: '',
@@ -249,11 +259,23 @@
       }
   },
 
+  created(){
+    this.$store.commit('SET_LAYOUT', 'student-layout');
+    this.axios.get('/student/graduationdetails/edit').then((response) => {
+						console.log(response.data);
+            this.student = response.data;
+            this.collegesearchquery = response.data.college_name;
+            this.streamsearchquery = response.data.stream_name;
+            this.degreesearchquery = response.data.degree_name;
+        });
+  },
+
   
   methods: {
 
     submit() {
       this.errors = {};
+      console.log(this.student);
       axios.post('/student/graduationdetails', this.student).then(response => {
         console.log(this.student);
         this.$router.push('/student/educationdetails');
@@ -263,7 +285,11 @@
         }
       });
       
-		},
+    },
+    
+    back(){
+      this.$router.push('/student/educationdetails');
+    },
 		
 		autoCompleteCollege(){
         this.data_results = [];

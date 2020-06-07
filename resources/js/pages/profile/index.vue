@@ -2,7 +2,7 @@
   <v-card
     raised
     class="mx-auto"
-    width="95%"
+    width="60%"
   >  
 
   <v-card
@@ -57,21 +57,21 @@
                   cols="12"
                   md="4"
                 >
-                  <p class="subtitle-1 pt-3">Country: {{profile.country}}</p>
+                  <p class="subtitle-1 pt-3">Country: {{profile.country_name}}</p>
                 </v-col>
 
                 <v-col
                   cols="12"
                   md="4"
                 >
-                  <p class="subtitle-1 pt-3">State: {{profile.state}} </p>
+                  <p class="subtitle-1 pt-3">State: {{profile.state_name}} </p>
                 </v-col>
 
                 <v-col
                   cols="12"
                   md="4"
                 >
-                  <p class="subtitle-1 pt-3">City: {{profile.city}}</p>
+                  <p class="subtitle-1 pt-3">City: {{profile.city_name}}</p>
                 </v-col>
 
                 
@@ -90,7 +90,20 @@
                 </v-col> 
                 
                 <v-col
-                  cols="12"
+                  cols="6"
+                  class="text-left"
+                >
+                  <v-btn
+                    color="primary"
+                    class="mr-0"
+                    @click="back"
+                  >
+                    Back
+                  </v-btn>
+                </v-col>
+
+                <v-col
+                  cols="6"
                   class="text-right"
                 >
                   <v-btn
@@ -102,20 +115,6 @@
                   </v-btn>
                 </v-col>
               </v-row>
-
-              <v-snackbar
-                  v-model="snackbar"
-                  :timeout="timeout"
-                >
-                  {{ text }}
-                    <v-btn
-                      color="primary"
-                      text
-                      @click="snackbar = false"
-                    >
-                      Close
-                    </v-btn>
-            </v-snackbar>
             </v-container>    
   </v-card>
 </template>
@@ -125,9 +124,15 @@ export default {
   data() {
     return {
       profile: [],
-      snackbar: false,
-      text: 'Mobile Number Verified Successfully',
-      timeout: 2000,
+    }
+  },
+
+  created(){
+    if(this.$auth.user().role_id === 4){
+      this.$store.commit('SET_LAYOUT', 'company-layout');
+    }
+    if(this.$auth.user().role_id === 5){
+      this.$store.commit('SET_LAYOUT', 'student-layout');
     }
   },
 
@@ -157,8 +162,18 @@ export default {
         console.log("error");
         }
       });
+      },
+
+      back(){
+        if(this.$auth.user().role_id === 4){
+          this.$router.push('/company/dashboard');
+        }
+        if(this.$auth.user().role_id === 5){
+          this.$router.push('/student/dashboard');
+        }
+      }
       
-    },
+    
       
     }
 

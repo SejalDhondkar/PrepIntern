@@ -24,16 +24,17 @@
                     </v-col>
 
                     <v-col cols="8">
+                      <v-menu offset-y>
+                      <template v-slot:activator="{ on }">
                         <v-text-field
                           v-model="searchquery"
                           label="Type to search country"
                           class="purple-input mr-4"
                           v-on:keyup="autoComplete"
+                          v-on="on"
                         />
-                        <v-card class="mx-auto mr-4"
-                          
-                          v-if="data_results.length">
-                            <v-list>
+                        </template>
+                            <v-list v-if="data_results.length">
                               <v-list-item-group v-model="data" color="primary">
                                 <v-list-item
                                   v-for="(data, i) in data_results"
@@ -46,7 +47,7 @@
                                 </v-list-item>
                               </v-list-item-group>
                             </v-list>
-                          </v-card>
+                      </v-menu>
 
                     </v-col>
 
@@ -55,17 +56,19 @@
                     </v-col>
 
                     <v-col cols="8">
+                      <v-menu offset-y>
+                      <template v-slot:activator="{ on }">
                         <v-text-field
                           :disabled="state"
                           v-model="statesearchquery"
                           label="Type to search state"
                           class="purple-input mr-4"
-                          v-on:keyup="autoCompleteState"
+                          v-on:keyup="autoCompleteState"                          
+                          v-on="on"
                         />
-                        <v-card class="mx-auto mr-4"
-                          
-                          v-if="state_data_results.length">
-                            <v-list>
+                      </template>
+                        
+                            <v-list v-if="state_data_results.length">
                               <v-list-item-group v-model="data" color="primary">
                                 <v-list-item
                                   v-for="(data, i) in state_data_results"
@@ -78,7 +81,7 @@
                                 </v-list-item>
                               </v-list-item-group>
                             </v-list>
-                          </v-card>
+                      </v-menu>
 
                     </v-col>
 
@@ -87,17 +90,18 @@
                     </v-col>
 
                     <v-col cols="8">
+                      <v-menu offset-y>
+                      <template v-slot:activator="{ on }">
                         <v-text-field
                           :disabled="city"
                           v-model="citysearchquery"
                           label="Type to search city"
                           class="purple-input mr-4"
                           v-on:keyup="autoCompleteCity"
+                          v-on="on"
                         />
-                        <v-card class="mx-auto mr-4"
-                          
-                          v-if="city_data_results.length">
-                            <v-list>
+                      </template>
+                            <v-list v-if="city_data_results.length">
                               <v-list-item-group v-model="data" color="primary">
                                 <v-list-item
                                   v-for="(data, i) in city_data_results"
@@ -110,7 +114,7 @@
                                 </v-list-item>
                               </v-list-item-group>
                             </v-list>
-                          </v-card>
+                      </v-menu>
 
                     </v-col>                    
 
@@ -200,6 +204,9 @@
          });
   },
 
+  created(){
+    this.$store.commit('SET_LAYOUT', 'company-layout');
+  },
   
   methods: {
 

@@ -59,6 +59,10 @@ export default {
       }
     },
 
+    created(){
+    this.$store.commit('SET_LAYOUT', 'student-layout');
+  },
+
     methods: {
         job(){
             this.$router.push('/student/jobdetails');

@@ -91,6 +91,10 @@ export default {
          });
   },
 
+  created(){
+    this.$store.commit('SET_LAYOUT', 'company-layout');
+  },
+
     methods: {
 
     submit() {

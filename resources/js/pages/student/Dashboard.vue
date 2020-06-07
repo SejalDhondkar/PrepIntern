@@ -18,7 +18,6 @@
           
         <v-container class="p-4">
             <v-card-subtitle>Welcome To PrepIntern.</v-card-subtitle>
-            <v-btn class="ma-2" outlined color="indigo" @click="details()">Add Details</v-btn>
         </v-container>
         
         
@@ -47,10 +46,8 @@ export default {
          });
   },
 
-  methods: {
-    details(){
-            this.$router.push('/student/educationdetails');
-        },
-  }
+    created(){
+    this.$store.commit('SET_LAYOUT', 'student-layout');
+  },
 }
 </script>

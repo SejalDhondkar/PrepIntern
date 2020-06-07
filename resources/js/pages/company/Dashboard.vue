@@ -17,9 +17,7 @@
     </v-toolbar>
           
         <v-container class="p-4">
-            <v-card-subtitle>Welcome. Please wait till we confirm your account.</v-card-subtitle>
-            <v-btn class="ma-2" outlined color="indigo" @click="post()">Post Internship</v-btn>
-            <v-btn class="ma-2" outlined color="indigo" @click="view()">View Internship Posts</v-btn>
+            <v-card-subtitle>Welcome to PrepIntern. Please wait till we confirm your account.</v-card-subtitle>
         </v-container>
         
         
@@ -50,14 +48,9 @@ export default {
          });
   },
 
-  methods: {
-    post(){
-            this.$router.push('/company/postinternship');
-        },
-
-    view(){
-        this.$router.push('/company/view/internships');
-    },
-  }
+  
+    created(){
+    this.$store.commit('SET_LAYOUT', 'company-layout');
+  },
 }
 </script>

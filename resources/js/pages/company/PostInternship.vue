@@ -664,6 +664,7 @@
   },
 
 	created() {
+      this.$store.commit('SET_LAYOUT', 'company-layout');
 			axios.get('/internships/profiles').then(response => {
 						this.profiles_list= response.data;					
       });

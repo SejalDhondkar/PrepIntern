@@ -5,8 +5,9 @@
 </template>
 
 <script>
-import BackendLayout from './layouts/BackendLayout'
-import FrontendLayout from './layouts/FrontendLayout'
+import CompanyLayout from './layouts/CompanyLayout'
+import StudentLayout from './layouts/StudentLayout'
+import LoginSignupLayout from './layouts/LoginSignupLayout'
 export default {
   computed: {
     layout () {
@@ -14,8 +15,9 @@ export default {
     }
   },
   components: {
-    'backend-layout': BackendLayout,
-    'frontend-layout': FrontendLayout
+    'company-layout': CompanyLayout,
+    'student-layout': StudentLayout,
+    'loginsignup-layout': LoginSignupLayout,
     // define as many layouts you want for the application
   }
 }

@@ -90,17 +90,27 @@
 
                     <v-col cols="8">
                       <v-text-field
-                          v-model="student.score"
+                          v-model="student.gpa_score"
                           label="Enter your GPA"
                           class="purple-input mr-4"
                         />
                     </v-col>
 
 
-
+              <v-col
+                  cols="6"
+                  class="text-left"
+                >
+                  <v-btn
+                    color="primary"
+                    @click="back"
+                  >
+                    Back
+                  </v-btn>
+                </v-col>
 						
 							<v-col
-                  cols="12"
+                  cols="6"
                   class="text-right"
                 >
                   <v-btn
@@ -128,7 +138,7 @@
 						school_name: '',
 						board: '',
 						year_of_completion: '',
-            score: '',
+            gpa_score: '',
 				},
 				year: 1,
 				year_list: ['2022','2021','2020','2019','2018','2017','2016','2015',
@@ -136,6 +146,14 @@
 										'2004','2003','2002','2001','2000','1999','1998','1997','1996','1995',
 										'1994','1993','1992','1991','1990','1989','1988','1987','1986','1985'],
       }
+  },
+
+created(){
+    this.$store.commit('SET_LAYOUT', 'student-layout');
+    this.axios.get('/student/tenthdetails/edit').then((response) => {
+						console.log(response.data);
+            this.student = response.data;
+        });
   },
 
   
@@ -152,7 +170,11 @@
         }
       });
       
-		},
+    },
+    
+    back(){
+      this.$router.push('/student/educationdetails');
+    },
 
 	}
   

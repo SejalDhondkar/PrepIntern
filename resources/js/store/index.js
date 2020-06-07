@@ -7,7 +7,7 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
     state: {
-        layout: 'frontend-layout'
+        layout: 'loginsignup-layout'
     },
     mutations: {
         SET_LAYOUT(state, payload) {

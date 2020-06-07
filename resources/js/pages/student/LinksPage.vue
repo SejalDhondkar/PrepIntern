@@ -120,6 +120,13 @@
         },
       }
   },
+  created(){
+    this.$store.commit('SET_LAYOUT', 'student-layout');
+    this.axios.get('/student/links/edit').then((response) => {
+						console.log(response.data);
+            this.student = response.data;
+        });
+  },
 
   
   methods: {
@@ -128,7 +135,7 @@
       this.errors = {};
       axios.post('/student/links', this.student).then(response => {
         console.log(this.student);
-        this.$router.push('/student/additionaldetails');
+        this.$router.push('/student/otherdetails');
       }).catch(error => {
         if (error.response.status === 422) {
         console.log("error");
@@ -137,7 +144,7 @@
      },
 
      previous(){
-            this.$router.push('/student/skilldetails');
+            this.$router.push('/student/otherdetails');
 				},
 
   }

@@ -83,6 +83,7 @@ export default {
     };
   },
   created() {
+      this.$store.commit('SET_LAYOUT', 'loginsignup-layout');
       let uri = `http://127.0.0.1:8000/api/user`;
       this.axios.get(uri).then((response) => {
           this.user = response.data;

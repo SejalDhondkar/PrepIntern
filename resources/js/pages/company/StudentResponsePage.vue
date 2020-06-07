@@ -297,6 +297,7 @@ export default {
     },
 
     created() {
+        this.$store.commit('SET_LAYOUT', 'company-layout');
         axios.get(`/company/view/${this.$route.params.id}/response`).then(response => {
             this.student = response.data;
             console.log(response.data);

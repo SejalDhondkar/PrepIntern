@@ -29,6 +29,12 @@ import CompanyPostInternship from './pages/company/PostInternship'
 import CompanyPostedInternships from './pages/company/PostedInternships'
 import CompanyViewApplications from './pages/company/ViewApplications'
 import CompanyStudentResponsePage from './pages/company/StudentResponsePage'
+import CompanyPrimaryDetailsEdit from './pages/company/edit/PrimaryDetailsEdit'
+import CompanyAddressEdit from './pages/company/edit/AddressEdit'
+import CompanyAdditionalDetailsEdit from './pages/company/edit/AdditionalDetailsEdit'
+import CompanySocialMediaLinksEdit from './pages/company/edit/SocialMediaLinksEdit'
+import CompanyEditPage from './pages/company/edit/EditPage'
+
 
 
 import StudentRegister from './pages/student/register'
@@ -53,6 +59,7 @@ import StudentSkillDetails from './pages/student/SkillDetails'
 import StudentEducationDetails from './pages/student/EducationDetails'
 import StudentExperienceDetails from './pages/student/ExperienceDetails'
 import StudentOtherExperienceDetails from './pages/student/OtherExperienceDetails'
+import StudentOtherDetails from './pages/student/OtherDetails'
 import StudentInternshipPostPage from './pages/student/InternshipPostPage'
 import StudentAssessmentQuestionsPage from './pages/student/AssessmentQuestionsPage'
 import StudentViewResume from './pages/student/ViewResume'
@@ -294,6 +301,51 @@ const routes = [{
         }
     },
 
+    {
+        path: '/company/primarydetails/edit',
+        name: 'company.PrimaryDetailsEdit',
+        component: CompanyPrimaryDetailsEdit,
+        meta: {
+            auth: true
+        }
+    },
+
+    {
+        path: '/company/address/edit',
+        name: 'company.AddressEdit',
+        component: CompanyAddressEdit,
+        meta: {
+            auth: true
+        }
+    },
+
+    {
+        path: '/company/additionaldetails/edit',
+        name: 'company.AdditionalDetailsEdit',
+        component: CompanyAdditionalDetailsEdit,
+        meta: {
+            auth: true
+        }
+    },
+
+    {
+        path: '/company/socialmedialinks/edit',
+        name: 'company.SocialMediaLinksEdit',
+        component: CompanySocialMediaLinksEdit,
+        meta: {
+            auth: true
+        }
+    },
+
+    {
+        path: '/company/editpage',
+        name: 'company.EditPage',
+        component: CompanyEditPage,
+        meta: {
+            auth: true
+        }
+    },
+
     // Student Routes
 
     {
@@ -484,6 +536,15 @@ const routes = [{
         path: '/student/otherexperiencedetails',
         name: 'student.OtherExperienceDetails',
         component: StudentOtherExperienceDetails,
+        meta: {
+            auth: true
+        }
+    },
+
+    {
+        path: '/student/otherdetails',
+        name: 'student.OtherDetails',
+        component: StudentOtherDetails,
         meta: {
             auth: true
         }

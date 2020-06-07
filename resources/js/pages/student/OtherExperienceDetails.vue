@@ -60,6 +60,10 @@ export default {
       }
     },
 
+    created(){
+    this.$store.commit('SET_LAYOUT', 'student-layout');
+  },
+
     methods: {
         position(){
             this.$router.push('/student/positionofresponsibility');
@@ -78,7 +82,7 @@ export default {
 				},
 				
 				next(){
-            this.$router.push('/student/skilldetails');
+            this.$router.push('/student/otherdetails');
         },
     }
   
