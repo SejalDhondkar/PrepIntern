@@ -69,6 +69,13 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('/company/additionaldetails/check', 'CompanyAdditionalDetailsController@check');
     Route::get('/company/socialmedialinks/check','CompanySocialMediaController@check');
     Route::get('/company/dashboard/check','CompanySocialMediaController@checkForDashboard');
+
+    Route::get('/admin/verifycompanies','VerifyCompanyController@index');
+    Route::put('/admin/verifycompanies/changeverify','VerifyCompanyController@changeVerified');
+    Route::get('/company/verify','VerifyCompanyController@getaccess');
+
+
+
     Route::get('/internships/profiles','CompanyPostInternshipController@getProfiles');
     Route::get('/internships/citysearch','CompanyPostInternshipController@getCity');
     Route::get('/internships/skills','CompanyPostInternshipController@getSkills');

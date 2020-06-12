@@ -8,6 +8,7 @@ import Login from './pages/Login'
 import Dashboard from './pages/user/Dashboard'
 import AdminDashboard from './pages/admin/Dashboard'
 import AdminInternshipPosts from './pages/admin/InternshipPosts'
+import AdminVerifyCompanies from './pages/admin/VerifyCompanies'
 
 import LandingPage from './pages/LandingPage'
 
@@ -117,6 +118,15 @@ const routes = [{
         path: '/admin/internshipposts',
         name: 'admin.InternshipPosts',
         component: AdminInternshipPosts,
+        meta: {
+            auth: { roles: 1, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
+        }
+    },
+
+    {
+        path: '/admin/verifycompanies',
+        name: 'admin.VerifyCompanies',
+        component: AdminVerifyCompanies,
         meta: {
             auth: { roles: 1, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
