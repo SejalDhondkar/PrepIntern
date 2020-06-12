@@ -114,6 +114,8 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('/student/internship/assessment','InternshipAssessmentAnswersController@store');
     Route::get('/student/resume/view', 'StudentViewResumeController@viewResume');
 
+    Route::get('/student/internships/main', 'StudentViewInternshipsController@index');
+
     Route::get('/student/collegesearch','CollegesController@getCollege');
     Route::get('/student/degreesearch','DegreesController@getDegree');
     Route::get('/student/streamsearch','StreamsController@getStream');

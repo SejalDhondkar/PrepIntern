@@ -108,7 +108,7 @@ created() {
       this.errors = {};
       axios.post('/student/internship/assessment', this.answer).then(response => {
         console.log(this.answer);
-        this.$router.push('/student/dashboard');
+        this.$router.push('/student/internships/main');
       }).catch(error => {
         if (error.response.status === 422) {
         console.log("error");

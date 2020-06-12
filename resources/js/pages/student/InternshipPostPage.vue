@@ -58,9 +58,20 @@
           <br><br>
 
           <v-row>
-          <v-col
-                  cols="12"
-                  class="text-center"
+
+            <v-col
+                  cols="6"
+                  class="text-right"
+                >
+                  <v-btn
+                    @click="back()"
+                  >
+                    Go back
+                  </v-btn>
+                </v-col>
+                <v-col
+                  cols="6"
+                  class="text-left"
                 >
                   <v-btn
                     color="success"
@@ -69,6 +80,8 @@
                     Apply Now
                   </v-btn>
                 </v-col>
+
+                
               </v-row>
 
             
@@ -100,7 +113,10 @@ export default {
     methods: {
       apply(){
         this.$router.push({name: 'student.ViewResume', params: {post_id: this.post.id}});
-      }
+      },
+      back(){
+        this.$router.go(-1);
+      },
     }
 }
 </script>

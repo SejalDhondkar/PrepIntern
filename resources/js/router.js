@@ -9,6 +9,8 @@ import Dashboard from './pages/user/Dashboard'
 import AdminDashboard from './pages/admin/Dashboard'
 import AdminInternshipPosts from './pages/admin/InternshipPosts'
 
+import LandingPage from './pages/LandingPage'
+
 import MyComponent from './components/MyComponent'
 import RolesIndex from './pages/roles/index'
 import RolesCreate from './pages/roles/create'
@@ -63,16 +65,15 @@ import StudentOtherDetails from './pages/student/OtherDetails'
 import StudentInternshipPostPage from './pages/student/InternshipPostPage'
 import StudentAssessmentQuestionsPage from './pages/student/AssessmentQuestionsPage'
 import StudentViewResume from './pages/student/ViewResume'
+import StudentInternshipsMainPage from './pages/student/InternshipsMainPage'
 
 import VerifyMobile from './pages/register/VerifyMobile'
 
 // Routes
 const routes = [{
         path: '/',
-        // name: 'home',
-        // component: Home,
-        name: 'MyComponent',
-        component: MyComponent,
+        name: 'LandingPage',
+        component: LandingPage,
         meta: {
             auth: undefined
         }
@@ -545,6 +546,15 @@ const routes = [{
         path: '/student/otherdetails',
         name: 'student.OtherDetails',
         component: StudentOtherDetails,
+        meta: {
+            auth: true
+        }
+    },
+
+    {
+        path: '/student/internships/main',
+        name: 'student.InternshipsMainPage',
+        component: StudentInternshipsMainPage,
         meta: {
             auth: true
         }

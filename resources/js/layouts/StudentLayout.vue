@@ -162,7 +162,7 @@
             { text: 'Other Details',  link: '/student/otherdetails' },
           ],
         },
-        { icon: 'mdi-file-multiple-outline', text: 'View Internships', link: '' },
+        { icon: 'mdi-file-multiple-outline', text: 'View Internships', link: '/student/internships/main' },
         { icon: 'mdi-message-outline', text: 'Send feedback', link: '' },
         { icon: 'mdi-phone-outline', text: 'Contact Us', link: '' },
         { icon: 'mdi-power', text: 'Log Out', link: '' },
