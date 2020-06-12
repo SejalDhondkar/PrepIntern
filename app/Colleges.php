@@ -7,4 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Colleges extends Model
 {
     protected $table = 'colleges'; 
+
+    protected $fillabe = ['name'];
+
 }
