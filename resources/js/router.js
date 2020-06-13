@@ -9,6 +9,7 @@ import Dashboard from './pages/user/Dashboard'
 import AdminDashboard from './pages/admin/Dashboard'
 import AdminInternshipPosts from './pages/admin/InternshipPosts'
 import AdminVerifyCompanies from './pages/admin/VerifyCompanies'
+import ContactPage from './pages/ContactPage'
 
 import LandingPage from './pages/LandingPage'
 
@@ -100,6 +101,15 @@ const routes = [{
         path: '/dashboard',
         name: 'dashboard',
         component: Dashboard,
+        meta: {
+            auth: true
+        }
+    },
+
+    {
+        path: '/contact',
+        name: 'ContactPage',
+        component: ContactPage,
         meta: {
             auth: true
         }
