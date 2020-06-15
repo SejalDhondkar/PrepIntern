@@ -19,7 +19,7 @@
         <v-container class="px-4 text-center">
             <v-btn class="ma-2" outlined color="indigo" @click="skills()">Skills</v-btn><br>
             <v-btn class="ma-2" outlined color="indigo" @click="links()">Work Samples</v-btn><br>
-						<v-btn class="ma-2" outlined color="indigo" @click="bio()">Additional Details</v-btn><br>
+						<v-btn class="ma-2" outlined color="indigo" @click="bio()">Additional Details / Summary</v-btn><br>
 						<br><br><br><br><br>
             
         <v-row>

@@ -17,7 +17,8 @@
     </v-toolbar>
           
         <v-container class="p-4">
-            <v-card-subtitle>Welcome to PrepIntern. Please wait till we confirm your account.</v-card-subtitle>
+            <v-card-subtitle>Welcome to PrepIntern.</v-card-subtitle>
+            <v-card-subtitle>{{this.message}}</v-card-subtitle>
         </v-container>
         
         
@@ -31,14 +32,14 @@ export default {
     data(){
       return {
         flag: '',
+        flag_for_access: '',
+        message: '',
       }
     },
 
     beforeCreate() {
     axios.get('/company/dashboard/check',{params: {flag: this.flag}}).then(response => {
-            console.log(response);
             this.flag = response.data;
-            console.log(this.flag);
             if (this.flag) {
               console.log("Continue")
             } else {
@@ -46,11 +47,19 @@ export default {
               console.log("redirected")
             }
          });
+    axios.get('/company/verify/access').then(response => {
+            this.flag_for_access = response.data;
+            if (this.flag_for_access) {
+              this.message = 'Your account has been confirmed. You can post and view internships.';
+            } else {
+              this.message = 'You cannot post and view internships yet. Please wait till we confirm your account.';
+            }
+      });
   },
 
   
     created(){
-    this.$store.commit('SET_LAYOUT', 'company-layout');
+    this.$store.commit('SET_LAYOUT', 'company-layout');    
   },
 }
 </script>

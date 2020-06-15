@@ -103,7 +103,6 @@
 	created() {
         this.$store.commit('SET_LAYOUT', 'company-layout');
         this.axios.get('/company/primarydetails/edit').then((response) => {
-						console.log(response.data.name);
             this.company = response.data;
         });
       },

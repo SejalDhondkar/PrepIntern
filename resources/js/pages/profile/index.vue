@@ -128,6 +128,9 @@ export default {
   },
 
   created(){
+    if(this.$auth.user().role_id === 1){
+      this.$store.commit('SET_LAYOUT', 'admin-layout');
+    }
     if(this.$auth.user().role_id === 4){
       this.$store.commit('SET_LAYOUT', 'company-layout');
     }
@@ -165,6 +168,9 @@ export default {
       },
 
       back(){
+        if(this.$auth.user().role_id === 1){
+          this.$router.push('/admin');
+        }
         if(this.$auth.user().role_id === 4){
           this.$router.push('/company/dashboard');
         }

@@ -106,24 +106,14 @@
       <v-btn icon>
         <v-icon>mdi-bell</v-icon>
       </v-btn> -->
-      <v-tooltip bottom>
-      <template v-slot:activator="{ on }">
-        <v-btn
-          icon
-          large
+      <v-btn
+    tile color="default"
+        outlined
           class="mr-4"
-          v-on="on"
-          @click="profile"
+          @click="logout"
         >
-          <v-avatar
-            size="32px"
-            item
-          >
-            <v-icon dark>mdi-account</v-icon></v-avatar>
+            <v-icon dark>mdi-power</v-icon> Logout
         </v-btn>
-      </template>
-      <span>View Profile</span>
-    </v-tooltip>
     </v-app-bar>
     <v-content>
       <v-container
@@ -151,18 +141,23 @@
       items: [
         { icon: 'mdi-view-dashboard-outline', text: 'Dashboard', link: '/company/dashboard' },
         { icon: 'mdi-shape-rectangle-plus', text: 'Post Internship', link: '/company/postinternship' },
-        { icon: 'mdi-file-multiple-outline', text: 'View Internships', link: '/company/view/internships' },
+        { icon: 'mdi-file-multiple-outline', text: 'View Posted Internships', link: '/company/view/internships' },
         { icon: 'mdi-account-outline', text: 'Edit Details', link: '/company/editpage' },
-        { icon: 'mdi-message-outline', text: 'Send feedback', link: '' },
-        { icon: 'mdi-phone-outline', text: 'Contact Us', link: '' },
-        { icon: 'mdi-power', text: 'Log Out', link: '' },
+        { icon: 'mdi-account-outline', text: 'View Profile', link: '/profile' },
+        { icon: 'mdi-phone-outline', text: 'Contact Us', link: '/contact' },
         // { icon: 'mdi-help-circle-outline', text: 'Help' },
       ],
     }),
 
     methods: {
-      profile(){
-        this.$router.push('/profile');
+      logout(){
+        axios.post('auth/logout').then(response => {
+        this.$router.push('/');
+      }).catch(error => {
+        if (error.response.status === 422) {
+        console.log("error");
+        }
+      });
       }
     }
   }

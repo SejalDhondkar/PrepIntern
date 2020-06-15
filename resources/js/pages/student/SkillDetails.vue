@@ -272,7 +272,6 @@ export default {
     created(){
     this.$store.commit('SET_LAYOUT', 'student-layout');
     this.axios.get('/student/skilldetails/edit').then((response) => {
-            console.log(response.data);
             if(response.data[0]){
               this.skillsearchquery1 = response.data[0].skill_name;
               this.student.skill_1 = response.data[0].skill_id;
@@ -312,7 +311,6 @@ export default {
 			submit(){
 				this.errors = {};
 					axios.post('/student/skilldetails', this.student).then(response => {
-						console.log(this.student);
 						this.$router.push('/student/otherdetails');
 					}).catch(error => {
 						if (error.response.status === 422) {

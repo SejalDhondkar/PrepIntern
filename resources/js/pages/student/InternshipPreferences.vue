@@ -208,7 +208,6 @@ export default {
 		beforeCreate() {
     axios.get('/student/internships/check',{params: {flag: this.flag}}).then(response => {
             this.flag = response.data;
-            console.log(this.flag);
             if (this.flag) {
               console.log("Continue")
             } else {
@@ -230,7 +229,6 @@ export default {
 			submit(){
 				this.errors = {};
 					axios.post('/student/internshippreferences', this.student).then(response => {
-						console.log(this.student);
 						this.$router.push('/student/dashboard');
 					}).catch(error => {
 						if (error.response.status === 422) {

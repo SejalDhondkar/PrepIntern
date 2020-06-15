@@ -199,7 +199,7 @@
           country_id:'',
           state_id: '',
           city_id: '',
-          date_of_birth: new Date().toISOString().substr(0, 10),
+          date_of_birth: '',
         },
         flag: '',
         menu: false,
@@ -216,7 +216,6 @@
     submit() {
       this.errors = {};
       axios.post('/student/primarydetails', this.student).then(response => {
-        console.log(this.student);
         this.$router.push('/student/internshippreferences');
       }).catch(error => {
         if (error.response.status === 422) {
@@ -233,7 +232,6 @@
         // console.log(this.searchquery);
         if(this.searchquery.length > 2){
          axios.get('/company/address/countrysearch',{params: {searchquery: this.searchquery}}).then(response => {
-            console.log(response);
           this.data_results = response.data;
          });
         }
@@ -243,7 +241,6 @@
       this.searchquery = data.name;
       this.data_results.length = false;
       this.student.country_id = data.id;
-      console.log(this.student.country_id);
       this.state = false;
     },
   
@@ -253,7 +250,6 @@
         console.log(this.statesearchquery);
         if(this.statesearchquery.length > 1){
          axios.get('/company/address/statesearch',{params: {statesearchquery: this.statesearchquery, country_id: this.student.country_id}}).then(response => {
-            console.log(response);
           this.state_data_results = response.data;
          });
         }
@@ -264,16 +260,14 @@
       this.statesearchquery = data.name;
       this.state_data_results.length = false;
       this.student.state_id = data.id;
-      console.log(this.student.state_id);
       this.city = false;
     },
 
     autoCompleteCity(){
         this.city_data_results = [];
-        console.log(this.citysearchquery);
+        // console.log(this.citysearchquery);
         if(this.citysearchquery.length > 2){
          axios.get('/company/address/citysearch',{params: {citysearchquery: this.citysearchquery, state_id: this.student.state_id}}).then(response => {
-            console.log(response);
           this.city_data_results = response.data;
          });
         }
@@ -284,7 +278,6 @@
       this.citysearchquery = data.name;
       this.city_data_results.length = false;
       this.student.city_id = data.id;
-      console.log(this.student.city_id);
     }
   
 

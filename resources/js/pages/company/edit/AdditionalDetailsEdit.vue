@@ -172,7 +172,6 @@
   created() {
       this.$store.commit('SET_LAYOUT', 'company-layout');
 			this.axios.get('/company/additionaldetails/edit').then((response) => {
-					console.log(response.data);
 					this.company = response.data;
 			});
 		},
@@ -181,7 +180,6 @@
     submit() {
       this.errors = {};
       axios.put('/company/additionaldetails/update', this.company).then(response => {
-        console.log('Message sent!');
         this.$router.push('/company/editpage');
       }).catch(error => {
         if (error.response.status === 422) {

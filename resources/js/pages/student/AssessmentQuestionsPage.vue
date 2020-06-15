@@ -95,7 +95,6 @@ created() {
       this.$store.commit('SET_LAYOUT', 'student-layout');
       axios.get(`/student/internship/${this.$route.params.id}/assessment/questions`).then(response => {
           this.post = response.data;
-          console.log(this.post);
       });
     },
   
@@ -107,7 +106,6 @@ created() {
 			this.answer.student_id = this.$auth.user().id
       this.errors = {};
       axios.post('/student/internship/assessment', this.answer).then(response => {
-        console.log(this.answer);
         this.$router.push('/student/internships/main');
       }).catch(error => {
         if (error.response.status === 422) {

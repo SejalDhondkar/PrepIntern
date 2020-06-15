@@ -160,9 +160,7 @@
 
   beforeCreate() {
     axios.get('/company/additionaldetails/check',{params: {flag: this.flag}}).then(response => {
-            console.log(response);
             this.flag = response.data;
-            console.log(this.flag);
             if (this.flag) {
               console.log("Continue")
             } else {

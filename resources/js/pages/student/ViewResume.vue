@@ -244,7 +244,6 @@ export default {
       this.$store.commit('SET_LAYOUT', 'student-layout');
         axios.get(`/student/resume/view`).then(response => {
             this.student = response.data;
-            console.log(response.data);
         });
     },
 

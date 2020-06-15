@@ -208,7 +208,6 @@
     submit() {
       this.errors = {};
       axios.post('/student/internshipdetails', this.student).then(response => {
-        console.log(this.student);
         this.$router.push('/student/experiencedetails');
       }).catch(error => {
         if (error.response.status === 422) {

@@ -151,7 +151,6 @@
 created(){
     this.$store.commit('SET_LAYOUT', 'student-layout');
     this.axios.get('/student/tenthdetails/edit').then((response) => {
-						console.log(response.data);
             this.student = response.data;
         });
   },
@@ -162,7 +161,6 @@ created(){
     submit() {
       this.errors = {};
       axios.post('/student/tenthdetails', this.student).then(response => {
-        console.log(this.student);
         this.$router.push('/student/educationdetails');
       }).catch(error => {
         if (error.response.status === 422) {

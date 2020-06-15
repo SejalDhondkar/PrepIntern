@@ -2,7 +2,7 @@
   <v-card
     raised
     class="mx-auto"
-    width="60%"
+    width="50%"
     min-height="400"
   >
     
@@ -18,6 +18,7 @@
           
         <v-container class="p-4">
             <v-card-subtitle>Welcome To PrepIntern.</v-card-subtitle>
+            <v-card-subtitle>Generate Resume by going to Add/Edit Details section before applying for internships</v-card-subtitle>
         </v-container>
         
         

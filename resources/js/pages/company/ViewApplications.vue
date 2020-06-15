@@ -88,7 +88,6 @@ export default {
       this.$store.commit('SET_LAYOUT', 'company-layout');
 			axios.get(`/company/view/${this.$route.params.id}/applications`).then(response => {
 						this.applications = response.data;
-						console.log(response.data);
       });
     },
     
@@ -100,7 +99,6 @@ export default {
       status(){
         axios.get(`/company/view/${this.$route.params.id}/applications/sort`,{params: {status: this.group.status}}).then(response => {
 						this.applications = response.data;
-						console.log(response.data);
       });
       },
       back(){

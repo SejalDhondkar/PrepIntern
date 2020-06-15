@@ -660,11 +660,24 @@
         skill_data_results: [],
         question1: false,
         question2: false,
+        flag: '',
       }
   },
 
+  beforeCreate(){
+    axios.get('/company/verify/access').then(response => {
+            this.flag = response.data;
+            if (this.flag == true) {
+              console.log("Continue");
+            } else {
+              this.$router.push('/company/dashboard');
+              console.log("redirected");
+            }					
+      });
+  },
+
 	created() {
-      this.$store.commit('SET_LAYOUT', 'company-layout');
+      this.$store.commit('SET_LAYOUT', 'company-layout');      
 			axios.get('/internships/profiles').then(response => {
 						this.profiles_list= response.data;					
       });
@@ -678,7 +691,7 @@
     submit() {
       this.errors = {};
       axios.post('/company/postinternship', this.post).then(response => {
-        console.log(this.post);
+        console.log("posted");
       }).catch(error => {
         if (error.response.status === 422) {
         console.log("error");
@@ -697,7 +710,6 @@
         if(this.citysearchquery1.length > 2){
          axios.get('/internships/citysearch',{params: {citysearchquery: this.citysearchquery1}}).then(response => {
           this.city_data_results = response.data;
-          console.log(response.data);
          });
         }
 		},
@@ -767,7 +779,6 @@
 
     duration(){
       this.post.internship_duration = this.choose_duration + ' ' + this.duration_type;
-      console.log(this.post.internship_duration);
     },
 
     clearModels(){
@@ -780,7 +791,6 @@
 
     incentive(){
       this.post.stipend_incentive = this.incentive_amount + ' ' + this.incentive_type;
-      console.log(this.post.stipend_incentive);
     },
     
     Switch2(){

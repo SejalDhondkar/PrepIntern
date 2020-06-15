@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container my-auto">
     <div class="card mx-auto">
       <div class="card-header">Login</div>
 

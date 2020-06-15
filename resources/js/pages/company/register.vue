@@ -1,6 +1,6 @@
 <template>
   <v-container
-        class="fill-height"
+        class="fill-height my-auto"
         fluid
       >
     <v-card
@@ -107,7 +107,7 @@
               crossDomain:true
             },options)
             .then(response => {
-              console.log(response)
+              console.log('')
             })
             .catch(error => {
               console.log(error)

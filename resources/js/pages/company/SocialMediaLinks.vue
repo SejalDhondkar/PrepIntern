@@ -79,9 +79,7 @@ export default {
 
   beforeCreate() {
     axios.get('/company/socialmedialinks/check',{params: {flag: this.flag}}).then(response => {
-            console.log(response);
             this.flag = response.data;
-            console.log(this.flag);
             if (this.flag) {
               console.log("Continue")
             } else {
@@ -99,7 +97,6 @@ export default {
 
     submit() {
       this.errors = {};
-			console.log(this.company);
       axios.post('/company/socialmedialinks',{company_links: this.company}).then(response => {
       this.$router.push('/company/dashboard');
       }).catch(error => {

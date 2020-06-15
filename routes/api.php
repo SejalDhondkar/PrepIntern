@@ -59,7 +59,11 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('/company/socialmedialinks/edit','CompanySocialMediaController@edit');
     Route::put('/company/socialmedialinks/update','CompanySocialMediaController@update');
 
-    Route::get('/admin/internships/index','AdminInternshipPostsController@index');
+    Route::get('/admin/internships/index','AdminInternshipPostsController@index')->middleware('Admin');
+    Route::get('/admin/verifycompanies','VerifyCompanyController@index')->middleware('Admin');
+    Route::put('/admin/verifycompanies/changeverify','VerifyCompanyController@changeVerified');
+    Route::get('/company/verify/access','VerifyCompanyController@getAccess');
+
     
     Route::get('/company/{company_id}/socialmedialinks', 'CompanySocialMediaController@show');
     Route::get('/company/edit/{company_id}/socialmedialinks', 'CompanySocialMediaController@edit');
@@ -69,10 +73,6 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('/company/additionaldetails/check', 'CompanyAdditionalDetailsController@check');
     Route::get('/company/socialmedialinks/check','CompanySocialMediaController@check');
     Route::get('/company/dashboard/check','CompanySocialMediaController@checkForDashboard');
-
-    Route::get('/admin/verifycompanies','VerifyCompanyController@index');
-    Route::put('/admin/verifycompanies/changeverify','VerifyCompanyController@changeVerified');
-    Route::get('/company/verify','VerifyCompanyController@getaccess');
 
 
 

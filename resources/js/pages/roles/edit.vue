@@ -62,6 +62,7 @@
     }),
 
     created() {
+      this.$store.commit('SET_LAYOUT', 'admin-layout');
         let uri = `http://127.0.0.1:8000/api/roles/edit/${this.$route.params.id}`;
         this.axios.get(uri).then((response) => {
             this.role = response.data;

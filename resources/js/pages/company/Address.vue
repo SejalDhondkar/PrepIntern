@@ -194,7 +194,6 @@
   beforeCreate() {
     axios.get('/company/address/check',{params: {flag: this.flag}}).then(response => {
             this.flag = response.data;
-            console.log(this.flag);
             if (this.flag) {
               console.log("Continue")
             } else {
@@ -213,7 +212,6 @@
     submit() {
       this.errors = {};
       axios.post('/company/address', this.company).then(response => {
-        console.log(this.company);
         this.$router.push('/company/additionaldetails');
       }).catch(error => {
         if (error.response.status === 422) {
@@ -230,7 +228,6 @@
         // console.log(this.searchquery);
         if(this.searchquery.length > 2){
          axios.get('/company/address/countrysearch',{params: {searchquery: this.searchquery}}).then(response => {
-            console.log(response);
           this.data_results = response.data;
          });
         }
@@ -240,17 +237,14 @@
       this.searchquery = data.name;
       this.data_results.length = false;
       this.company.country_id = data.id;
-      console.log(this.company.country_id);
       this.state = false;
     },
   
 
     autoCompleteState(){
         this.state_data_results = [];
-        console.log(this.statesearchquery);
         if(this.statesearchquery.length > 1){
          axios.get('/company/address/statesearch',{params: {statesearchquery: this.statesearchquery, country_id: this.company.country_id}}).then(response => {
-            console.log(response);
           this.state_data_results = response.data;
          });
         }
@@ -261,16 +255,13 @@
       this.statesearchquery = data.name;
       this.state_data_results.length = false;
       this.company.state_id = data.id;
-      console.log(this.company.state_id);
       this.city = false;
     },
 
     autoCompleteCity(){
         this.city_data_results = [];
-        console.log(this.citysearchquery);
         if(this.citysearchquery.length > 2){
          axios.get('/company/address/citysearch',{params: {citysearchquery: this.citysearchquery, state_id: this.company.state_id}}).then(response => {
-            console.log(response);
           this.city_data_results = response.data;
          });
         }
@@ -281,7 +272,6 @@
       this.citysearchquery = data.name;
       this.city_data_results.length = false;
       this.company.city_id = data.id;
-      console.log(this.company.city_id);
     }
   
 

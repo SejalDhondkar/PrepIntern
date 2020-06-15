@@ -52,14 +52,26 @@ export default {
         ],
         posts: [],
         data: [],
+        flag: '',
       }
     },
+
+    beforeCreate(){
+    axios.get('/company/verify/access').then(response => {
+            this.flag = response.data;
+            if (this.flag == true) {
+              console.log("Continue");
+            } else {
+              this.$router.push('/company/dashboard');
+              console.log("redirected");
+            }					
+      });
+  },
 
 		created() {
       this.$store.commit('SET_LAYOUT', 'company-layout');
 			axios.get('/company/view/internships').then(response => {
 						this.posts= response.data;
-						console.log(response.data);			
       });
     },
     
@@ -67,7 +79,6 @@ export default {
       view(item){
         this.data = item;
         this.$route.params.id = item.id;
-        console.log(this.data.id);
         this.$router.push(`/company/view/${this.$route.params.id}/applications`);          
         
          }

@@ -26,6 +26,9 @@
     },
     components: {
       userList
-    }
+    },
+    created(){
+    this.$store.commit('SET_LAYOUT', 'admin-layout');    
+  },
   }
 </script>

@@ -24,7 +24,7 @@ class VerifyCompanyController extends Controller
         
     }
 
-    public function getaccess() {
+    public function getAccess() {
         $admin_id = auth()->user()->id;
         $this_company_id = Company::where('admin_id', $admin_id)->value('id');  
         $company = Company::where('id',$this_company_id)->value('is_verified');

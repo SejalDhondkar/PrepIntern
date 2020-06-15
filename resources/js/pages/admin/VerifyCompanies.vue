@@ -25,9 +25,6 @@
           <template v-slot:item.actions="{ item }">
             <v-btn class="ma-2" color="green dark-3" dark @click="accept(item)" >Accept</v-btn>
             <v-btn class="ma-2" color="red dark-3" dark @click="reject(item)" >Reject</v-btn>
-            <!-- <v-btn class="ma-2" color="yellow dark-3" dark @click="shortlist(item)" >Shortlist</v-btn>
-            <v-btn class="ma-2" color="green dark-3" dark @click="accept(item)" >Accept</v-btn>
-            <v-btn class="ma-2" color="red dark-3" dark @click="reject(item)" >Reject</v-btn> -->
           </template>
 
           </v-data-table>
@@ -63,6 +60,7 @@ export default {
     },
 
 		created() {
+      this.$store.commit('SET_LAYOUT', 'admin-layout');   
 			axios.get('/admin/verifycompanies').then(response => {
 						this.companies = response.data;
 						console.log(this.companies);					

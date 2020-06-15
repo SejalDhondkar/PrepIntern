@@ -39,9 +39,9 @@ export default {
             text: 'Company ID',
             align: 'start',
             sortable: true,
-            value: 'id',
+            value: 'company_id',
           },
-          { text: 'Company Name', value: 'name' },
+          { text: 'Company Name', value: 'company_name' },
 					{ text: 'Internship post ID', value: 'id' },
 					{ text: 'Created at', value: 'created_at'},
 					{ text: 'Is Verified', value: 'is_verified'},
@@ -53,6 +53,7 @@ export default {
     },
 
 		created() {
+      this.$store.commit('SET_LAYOUT', 'admin-layout');   
 			axios.get('/admin/internships/index').then(response => {
 						this.posts= response.data;
 						console.log(this.posts);					

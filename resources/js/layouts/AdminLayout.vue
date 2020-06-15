@@ -89,7 +89,7 @@
         style="width: 300px"
         class="ml-0 pl-4"
       >
-        <span class="hidden-sm-and-down">PrepIntern</span>
+        <span class="hidden-sm-and-down"> PrepIntern (Admin Portal)</span>
       </v-toolbar-title>
      <!-- <v-text-field
         flat
@@ -106,8 +106,7 @@
       <v-btn icon>
         <v-icon>mdi-bell</v-icon>
       </v-btn> -->
-      
-    <v-btn
+      <v-btn
     tile color="default"
         outlined
           class="mr-4"
@@ -140,23 +139,12 @@
     data: () => ({
       drawer: false,
       items: [
-        { icon: 'mdi-view-dashboard-outline', text: 'Dashboard', link: '/student/dashboard' },
-        {
-          icon: 'mdi-chevron-up',
-          'icon-alt': 'mdi-chevron-down',
-          text: 'Add/Edit Details',
-          model: false,
-          children: [
-            { text: 'Education Details', link: '/student/educationdetails'},
-            { text: 'Experience Details', link: '/student/experiencedetails' },
-            { text: 'Training/Project Details', link: '/student/otherexperiencedetails' },
-            { text: 'Other Details',  link: '/student/otherdetails' },
-          ],
-        },
-        { icon: 'mdi-file-multiple-outline', text: 'View Internships', link: '/student/internships/main' },
+        { icon: 'mdi-view-dashboard-outline', text: 'Dashboard', link: '/admin' },
+        { icon: 'mdi-file-multiple-outline', text: 'View Posted Internship', link: '/admin/internshipposts' },
+        { icon: 'mdi-account-outline', text: 'View Unverified Companies', link: '/admin/verifycompanies' },
+        { icon: 'mdi-account-outline', text: 'View Roles', link: '/roles' },
+        { icon: 'mdi-plus', text: 'Create New Role', link: '/roles/store' },
         { icon: 'mdi-account-outline', text: 'View Profile', link: '/profile' },
-        { icon: 'mdi-phone-outline', text: 'Contact Us', link: '/contact' },
-        // { icon: 'mdi-help-circle-outline', text: 'Help' },
       ],
     }),
 

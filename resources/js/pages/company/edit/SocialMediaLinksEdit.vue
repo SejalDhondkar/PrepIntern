@@ -91,7 +91,6 @@ export default {
 	created() {
         this.$store.commit('SET_LAYOUT', 'company-layout');
         this.axios.get('/company/socialmedialinks/edit').then((response) => {
-						console.log(response.data);
             this.company = response.data;
         });
       },

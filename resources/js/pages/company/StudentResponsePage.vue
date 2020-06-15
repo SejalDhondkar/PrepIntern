@@ -300,7 +300,7 @@ export default {
         this.$store.commit('SET_LAYOUT', 'company-layout');
         axios.get(`/company/view/${this.$route.params.id}/response`).then(response => {
             this.student = response.data;
-            console.log(response.data);
+            // console.log(response.data);
         });
     },
 
@@ -313,7 +313,7 @@ export default {
         
         this.errors = {};
         axios.post('/applicant/status/change', this.status_array).then(response => {
-          console.log(this.status_array);
+          // console.log(this.status_array);
         }).catch(error => {
           if (error.response.status === 422) {
           console.log("error");
@@ -330,7 +330,7 @@ export default {
 
         this.errors = {};
         axios.post('/applicant/status/change', this.status_array).then(response => {
-          console.log(this.status_array);
+          // console.log(this.status_array);
         }).catch(error => {
           if (error.response.status === 422) {
           console.log("error");
@@ -345,7 +345,7 @@ export default {
         
         this.errors = {};
         axios.post('/applicant/status/change', this.status_array).then(response => {
-          console.log(this.status_array);
+          // console.log(this.status_array);
         }).catch(error => {
           if (error.response.status === 422) {
           console.log("error");

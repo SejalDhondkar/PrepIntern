@@ -72,7 +72,6 @@ export default {
 	created(){
     this.$store.commit('SET_LAYOUT', 'student-layout');
     this.axios.get('/student/internships/main').then((response) => {
-			console.log(response.data);
 			this.posts = response.data;
     });
   },

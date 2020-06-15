@@ -224,6 +224,9 @@
   },
 
   created() {
+    if(this.$auth.user().role_id === 1){
+      this.$store.commit('SET_LAYOUT', 'admin-layout');
+    }
     if(this.$auth.user().role_id === 4){
       this.$store.commit('SET_LAYOUT', 'company-layout');
     }
@@ -263,7 +266,6 @@
         // console.log(this.searchquery);
         if(this.searchquery.length > 2){
          axios.get('/company/address/countrysearch',{params: {searchquery: this.searchquery}}).then(response => {
-            console.log(response);
           this.data_results = response.data;
          });
         }
@@ -273,16 +275,14 @@
       this.searchquery = data.name;
       this.data_results.length = false;
       this.profile.country_id = data.id;
-      console.log(this.profile.country_id);
     },
   
 
     autoCompleteState(){
         this.state_data_results = [];
-        console.log(this.statesearchquery);
+        // console.log(this.statesearchquery);
         if(this.statesearchquery.length > 1){
          axios.get('/company/address/statesearch',{params: {statesearchquery: this.statesearchquery, country_id: this.company.country_id}}).then(response => {
-            console.log(response);
           this.state_data_results = response.data;
          });
         }
@@ -293,15 +293,13 @@
       this.statesearchquery = data.name;
       this.state_data_results.length = false;
       this.profile.state_id = data.id;
-      console.log(this.profile.state_id);
     },
 
     autoCompleteCity(){
         this.city_data_results = [];
-        console.log(this.citysearchquery);
+        // console.log(this.citysearchquery);
         if(this.citysearchquery.length > 2){
          axios.get('/company/address/citysearch',{params: {citysearchquery: this.citysearchquery, state_id: this.company.state_id}}).then(response => {
-            console.log(response);
           this.city_data_results = response.data;
          });
         }
@@ -312,7 +310,6 @@
       this.citysearchquery = data.name;
       this.city_data_results.length = false;
       this.profile.city_id = data.id;
-      console.log(this.profile.city_id);
     }
   
   },

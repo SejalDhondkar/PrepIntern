@@ -1,6 +1,6 @@
 <template>
   <v-container
-        class="fill-height"
+        class="fill-height my-auto"
         fluid
       >
         <v-row
@@ -35,7 +35,7 @@
                   <v-text-field
                     label="Enter OTP"
                     v-model="phone_number.otp"
-                    prepend-icon="person"
+                    prepend-icon="mdi-account-circle-outline"
                     type="number"
                   />
                 </v-form>
@@ -104,7 +104,6 @@ export default {
           this.response = response;
           if(response.data.type == 'success'){
             axios.get('http://127.0.0.1:8000/api/mobileOtpVerified').then(response =>{
-              console.log(response);
               this.$router.push('/student/primarydetails');
             })
           }

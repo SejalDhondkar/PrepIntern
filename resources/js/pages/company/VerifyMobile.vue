@@ -1,6 +1,6 @@
 <template>
   <v-container
-        class="fill-height"
+        class="fill-height my-auto"
         fluid
       >
         <v-row
@@ -35,7 +35,7 @@
                   <v-text-field
                     label="Enter OTP"
                     v-model="phone_number.otp"
-                    prepend-icon="person"
+                    prepend-icon="mdi-account-circle-outline"
                     type="number"
                   />
                 </v-form>

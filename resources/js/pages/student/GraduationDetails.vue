@@ -262,7 +262,6 @@
   created(){
     this.$store.commit('SET_LAYOUT', 'student-layout');
     this.axios.get('/student/graduationdetails/edit').then((response) => {
-						console.log(response.data);
             this.student = response.data;
             this.collegesearchquery = response.data.college_name;
             this.streamsearchquery = response.data.stream_name;
@@ -275,9 +274,7 @@
 
     submit() {
       this.errors = {};
-      console.log(this.student);
       axios.post('/student/graduationdetails', this.student).then(response => {
-        console.log(this.student);
         this.$router.push('/student/educationdetails');
       }).catch(error => {
         if (error.response.status === 422) {
@@ -296,7 +293,6 @@
         // console.log(this.searchquery);
         if(this.collegesearchquery.length > 2){
          axios.get('/student/collegesearch',{params: {collegesearchquery: this.collegesearchquery}}).then(response => {
-            console.log(response);
           this.data_results = response.data;
          });
         }
@@ -306,7 +302,6 @@
       this.collegesearchquery = data.name;
       this.data_results.length = false;
       this.student.college_id = data.id;
-      console.log(this.student.college_id);
 		},
 		
 		autoCompleteDegree(){
@@ -314,7 +309,6 @@
         // console.log(this.searchquery);
         if(this.degreesearchquery.length > 2){
          axios.get('/student/degreesearch',{params: {degreesearchquery: this.degreesearchquery}}).then(response => {
-            console.log(response);
           this.data_results = response.data;
          });
         }
@@ -324,7 +318,6 @@
       this.degreesearchquery = data.title;
       this.data_results.length = false;
       this.student.degree_id = data.id;
-      console.log(this.student.degree_id);
 		},
 		
 		autoCompleteStream(){
@@ -332,7 +325,6 @@
         // console.log(this.searchquery);
         if(this.streamsearchquery.length > 2){
          axios.get('/student/streamsearch',{params: {streamsearchquery: this.streamsearchquery}}).then(response => {
-            console.log(response);
           this.data_results = response.data;
          });
         }
@@ -342,7 +334,6 @@
       this.streamsearchquery = data.title;
       this.data_results.length = false;
       this.student.stream_id = data.id;
-      console.log(this.student.stream_id);
     }
 
   }
