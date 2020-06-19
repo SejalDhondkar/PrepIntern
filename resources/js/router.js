@@ -41,7 +41,7 @@ import CompanyEditPage from './pages/company/edit/EditPage'
 
 
 
-import StudentRegister from './pages/student/register'
+import StudentRegister from './pages/student/Register'
 import StudentVerifyMobile from './pages/student/VerifyMobile'
 import StudentDashboard from './pages/student/Dashboard'
 import StudentPrimaryDetails from './pages/student/PrimaryDetails'
