@@ -7,7 +7,7 @@
       class="mx-auto elevation-6"
       width="50%"
       >
-    
+
         <v-toolbar
           color="primary"
           dark
@@ -17,8 +17,8 @@
               <v-toolbar-title>Registration</v-toolbar-title>
             <v-spacer />
         </v-toolbar>
-  
-        
+
+
 
       <v-form>
         <v-container class="p-4">
@@ -60,7 +60,7 @@
         </form>
         </v-container>
       </v-form>
-    
+
     </v-card>
   </v-container>
 </template>
@@ -100,7 +100,7 @@
           success: function () {
             let authkey= '308476ARq4VkPBV55df64864';
             let template_id= '5e98ab48d6fc055d4e6baac2';
-            let extra_param= '{"Company_Name":"Learn Intern"}';
+            let extra_param= '{"Company_Name":"PrepIntern"}';
             const options = { headers: {'content-type': 'application/json'}};
 
             axios.get(`https://api.msg91.com/api/v5/otp?authkey=${authkey}&template_id=${template_id}&extra_param=${extra_param}&mobile=${app.phone_number}&invisible=0&otp=&userip=&email=&otp_length=&otp_expiry=`,{

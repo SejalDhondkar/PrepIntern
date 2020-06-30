@@ -11,11 +11,11 @@ const config = {
     tokenDefaultName: 'laravel-vue-spa',
     tokenStore: ['localStorage'],
     rolesVar: 'role_id',
-    registerData: { url: 'auth/register', method: 'POST', redirect: '/login' },
-    loginData: { url: 'auth/login', method: 'POST', redirect: '', fetchUser: true },
-    logoutData: { url: 'auth/logout', method: 'POST', redirect: '/', makeRequest: true },
-    fetchData: { url: 'auth/user', method: 'GET', enabled: true },
-    refreshData: { url: 'auth/refresh', method: 'GET', enabled: true, interval: 30 }
+    registerData: { url: '/auth/register', method: 'POST', redirect: '/login' },
+    loginData: { url: '/auth/login', method: 'POST', redirect: '', fetchUser: true },
+    logoutData: { url: '/auth/logout', method: 'POST', redirect: '/', makeRequest: true },
+    fetchData: { url: '/auth/user', method: 'GET', enabled: true },
+    refreshData: { url: '/auth/refresh', method: 'GET', enabled: true, interval: 30 }
 }
 
 export default config

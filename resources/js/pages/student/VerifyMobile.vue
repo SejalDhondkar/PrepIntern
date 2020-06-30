@@ -5,17 +5,17 @@
       >
         <v-row
           align="center"
-          justify="center"          
+          justify="center"
         >
           <v-col
             cols="12"
             sm="8"
             md="4"
           >
-            <v-card 
+            <v-card
               class="mx-auto elevation-6"
               min-width="400"
-                       
+
               >
               <v-toolbar
                 color="blue darken-1"
@@ -28,8 +28,8 @@
               <v-card-text>
               <v-row class="m-2 mb-4" justify="center">
                 <v-icon medium color="blue darken-2">mdi-message-text</v-icon>
-                <p>OTP has been sent to your registered mobile number</p>               
-                
+                <p>OTP has been sent to your registered mobile number</p>
+
               </v-row>
                 <v-form>
                   <v-text-field
@@ -84,9 +84,10 @@ export default {
   },
   created() {
       this.$store.commit('SET_LAYOUT', 'loginsignup-layout');
-      let uri = `http://127.0.0.1:8000/api/user`;
-      this.axios.get(uri).then((response) => {
+      let url = process.env.MIX_APP_URL + '/api/user';
+      this.axios.get(url).then((response) => {
           this.user = response.data;
+          console.log(response.data);
       });
     },
 
@@ -99,11 +100,13 @@ export default {
         let mobile = this.user.contact_no;
         let otp = this.phone_number.otp;
         let authkey= '308476ARq4VkPBV55df64864';
+        const options = { headers: {'content-type': 'application/x-www-form-urlencoded'}};
         this.errors = {};
-        axios.post(`https://api.msg91.com/api/v5/otp/verify?mobile=${mobile}&otp=${otp}&authkey=${authkey}`).then(response => {
+        axios.post(`https://infinite-depths-06908.herokuapp.com/https://api.msg91.com/api/v5/otp/verify?mobile=${mobile}&otp=${otp}&authkey=${authkey}`,options).then(response => {
           this.response = response;
-          if(response.data.type == 'success'){
-            axios.get('http://127.0.0.1:8000/api/mobileOtpVerified').then(response =>{
+          let url = process.env.MIX_APP_URL + '/api/mobileOtpVerified';
+          if(response.data.type == 'success' || response.data.message == 'Mobile no. already verified'){
+            axios.get(url).then(response =>{
               this.$router.push('/student/primarydetails');
             })
           }

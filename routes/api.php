@@ -12,7 +12,6 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -66,7 +65,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::put('/admin/verifycompanies/changeverify','VerifyCompanyController@changeVerified');
     Route::get('/company/verify/access','VerifyCompanyController@getAccess');
 
-    
+
     Route::get('/company/{company_id}/socialmedialinks', 'CompanySocialMediaController@show');
     Route::get('/company/edit/{company_id}/socialmedialinks', 'CompanySocialMediaController@edit');
     Route::put('/company/update/{company_id}/socialmedialinks', 'CompanySocialMediaController@update');
