@@ -57,7 +57,9 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('/company/socialmedialinks','CompanySocialMediaController@store');
     Route::get('/company/socialmedialinks/edit','CompanySocialMediaController@edit');
     Route::put('/company/socialmedialinks/update','CompanySocialMediaController@update');
-
+    
+    Route::get('/admin/users/list','AdminUsersController@index')->middleware('Admin');
+    Route::get('/admin/users/sort','AdminUsersController@sortByStatus')->middleware('Admin');
     Route::get('/admin/internships/index','AdminInternshipPostsController@index')->middleware('Admin');
     Route::get('/admin/verifycompanies','VerifyCompanyController@index')->middleware('Admin');
     Route::put('/admin/verifycompanies/changeverify','VerifyCompanyController@changeVerified');
