@@ -61,6 +61,8 @@ Route::group(['middleware' => 'auth:api'], function(){
 
     Route::get('/admin/internships/index','AdminInternshipPostsController@index')->middleware('Admin');
     Route::get('/admin/verifycompanies','VerifyCompanyController@index')->middleware('Admin');
+    Route::get('/admin/viewcompanies/{id}/details','ViewCompanyDetailsController@viewDetails')->middleware('Admin');
+
     Route::put('/admin/verifycompanies/changeverify','VerifyCompanyController@changeVerified');
     Route::get('/company/verify/access','VerifyCompanyController@getAccess');
 

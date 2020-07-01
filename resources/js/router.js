@@ -9,6 +9,7 @@ import Dashboard from './pages/user/Dashboard'
 import AdminDashboard from './pages/admin/Dashboard'
 import AdminInternshipPosts from './pages/admin/InternshipPosts'
 import AdminVerifyCompanies from './pages/admin/VerifyCompanies'
+import AdminViewCompanies from './pages/admin/ViewCompanies'
 import ContactPage from './pages/ContactPage'
 
 import LandingPage from './pages/LandingPage'
@@ -143,6 +144,15 @@ const routes = [{
     },
 
     {
+        path: '/admin/viewcompanies/:id/details',
+        name: 'admin.ViewCompanies',
+        component: AdminViewCompanies,
+        meta: {
+            auth: { roles: 1, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
+        }
+    },
+
+    {
         path: '/roles',
         name: 'roles.index',
         component: RolesIndex,
@@ -222,6 +232,7 @@ const routes = [{
             auth: true
         }
     },
+
 
     // {
     //     path: '/company/:id',
