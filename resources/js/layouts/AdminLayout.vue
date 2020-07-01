@@ -110,7 +110,7 @@
     tile color="default"
         outlined
           class="mr-4"
-          @click="logout"
+          @click.prevent="$auth.logout()"
         >
             <v-icon dark>mdi-power</v-icon> Logout
         </v-btn>
@@ -149,15 +149,7 @@
     }),
 
     methods: {
-      logout(){
-        axios.post('auth/logout').then(response => {
-        this.$router.push('/');
-      }).catch(error => {
-        if (error.response.status === 422) {
-        console.log("error");
-        }
-      });
-      }
+      // 
     }
   }
 </script>

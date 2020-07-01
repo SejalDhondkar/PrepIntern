@@ -39,10 +39,7 @@ import CompanyAddressEdit from './pages/company/edit/AddressEdit'
 import CompanyAdditionalDetailsEdit from './pages/company/edit/AdditionalDetailsEdit'
 import CompanySocialMediaLinksEdit from './pages/company/edit/SocialMediaLinksEdit'
 import CompanyEditPage from './pages/company/edit/EditPage'
-
-
-
-import StudentRegister from './pages/student/register'
+import StudentRegister from './pages/student/Register'
 import StudentVerifyMobile from './pages/student/VerifyMobile'
 import StudentDashboard from './pages/student/Dashboard'
 import StudentPrimaryDetails from './pages/student/PrimaryDetails'
@@ -229,7 +226,7 @@ const routes = [{
         name: 'company.VerifyMobile',
         component: CompanyVerifyMobile,
         meta: {
-            auth: true
+            auth: { roles: 4, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
 
@@ -248,7 +245,7 @@ const routes = [{
         name: 'company.edit',
         component: CompanyEdit,
         meta: {
-            auth: true
+            auth: { roles: 4, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
 
@@ -257,7 +254,7 @@ const routes = [{
         name: 'company.PrimaryDetails',
         component: CompanyPrimaryDetails,
         meta: {
-            auth: true
+            auth: { roles: 4, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
 
@@ -266,7 +263,7 @@ const routes = [{
         name: 'company.Address',
         component: CompanyAddress,
         meta: {
-            auth: true
+            auth: { roles: 4, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
 
@@ -275,7 +272,7 @@ const routes = [{
         name: 'company.AdditionalDetails',
         component: CompanyAdditionalDetails,
         meta: {
-            auth: true
+            auth: { roles: 4, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
 
@@ -284,7 +281,7 @@ const routes = [{
         name: 'company.SocialMediaLinks',
         component: CompanySocialMediaLinks,
         meta: {
-            auth: true
+            auth: { roles: 4, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
 
@@ -293,7 +290,7 @@ const routes = [{
         name: 'company.Dashboard',
         component: CompanyDashboard,
         meta: {
-            auth: true
+            auth: { roles: 4, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
 
@@ -302,7 +299,7 @@ const routes = [{
         name: 'company.PostInternship',
         component: CompanyPostInternship,
         meta: {
-            auth: true
+            auth: { roles: 4, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
 
@@ -311,7 +308,7 @@ const routes = [{
         name: 'company.PostedInternships',
         component: CompanyPostedInternships,
         meta: {
-            auth: true
+            auth: { roles: 4, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
 
@@ -320,7 +317,7 @@ const routes = [{
         name: 'company.ViewApplications',
         component: CompanyViewApplications,
         meta: {
-            auth: true
+            auth: { roles: 4, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
 
@@ -329,7 +326,7 @@ const routes = [{
         name: 'company.StudentResponsePage',
         component: CompanyStudentResponsePage,
         meta: {
-            auth: true
+            auth: { roles: 4, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
 
@@ -338,7 +335,7 @@ const routes = [{
         name: 'company.PrimaryDetailsEdit',
         component: CompanyPrimaryDetailsEdit,
         meta: {
-            auth: true
+            auth: { roles: 4, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
 
@@ -347,7 +344,7 @@ const routes = [{
         name: 'company.AddressEdit',
         component: CompanyAddressEdit,
         meta: {
-            auth: true
+            auth: { roles: 4, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
 
@@ -356,7 +353,7 @@ const routes = [{
         name: 'company.AdditionalDetailsEdit',
         component: CompanyAdditionalDetailsEdit,
         meta: {
-            auth: true
+            auth: { roles: 4, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
 
@@ -365,7 +362,7 @@ const routes = [{
         name: 'company.SocialMediaLinksEdit',
         component: CompanySocialMediaLinksEdit,
         meta: {
-            auth: true
+            auth: { roles: 4, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
 
@@ -374,7 +371,7 @@ const routes = [{
         name: 'company.EditPage',
         component: CompanyEditPage,
         meta: {
-            auth: true
+            auth: { roles: 4, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
 
@@ -394,7 +391,7 @@ const routes = [{
         name: 'student.VerifyMobile',
         component: StudentVerifyMobile,
         meta: {
-            auth: true
+            auth: { roles: 5, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
 
@@ -403,7 +400,7 @@ const routes = [{
         name: 'student.Dashboard',
         component: StudentDashboard,
         meta: {
-            auth: true
+            auth: { roles: 5, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
     {
@@ -411,7 +408,7 @@ const routes = [{
         name: 'student.PrimaryDetails',
         component: StudentPrimaryDetails,
         meta: {
-            auth: true
+            auth: { roles: 5, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
     {
@@ -419,7 +416,7 @@ const routes = [{
         name: 'student.InternshipPreferences',
         component: StudentInternshipPreferences,
         meta: {
-            auth: true
+            auth: { roles: 5, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
     {
@@ -427,7 +424,7 @@ const routes = [{
         name: 'student.GraduationDetails',
         component: StudentGraduationDetails,
         meta: {
-            auth: true
+            auth: { roles: 5, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
     {
@@ -435,7 +432,7 @@ const routes = [{
         name: 'student.PostGraduationDetails',
         component: StudentPostGraduationDetails,
         meta: {
-            auth: true
+            auth: { roles: 5, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
     {
@@ -443,7 +440,7 @@ const routes = [{
         name: 'student.TenthDetails',
         component: StudentTenthDetails,
         meta: {
-            auth: true
+            auth: { roles: 5, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
 
@@ -452,7 +449,7 @@ const routes = [{
         name: 'student.TwelthDetails',
         component: StudentTwelthDetails,
         meta: {
-            auth: true
+            auth: { roles: 5, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
 
@@ -461,7 +458,7 @@ const routes = [{
         name: 'student.DiplomaDetails',
         component: StudentDiplomaDetails,
         meta: {
-            auth: true
+            auth: { roles: 5, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
 
@@ -470,7 +467,7 @@ const routes = [{
         name: 'student.PhdDetails',
         component: StudentPhdDetails,
         meta: {
-            auth: true
+            auth: { roles: 5, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
 
@@ -479,7 +476,7 @@ const routes = [{
         name: 'student.JobDetails',
         component: StudentJobDetails,
         meta: {
-            auth: true
+            auth: { roles: 5, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
 
@@ -488,7 +485,7 @@ const routes = [{
         name: 'student.InternshipDetails',
         component: StudentInternshipDetails,
         meta: {
-            auth: true
+            auth: { roles: 5, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
 
@@ -497,7 +494,7 @@ const routes = [{
         name: 'student.PositionOfResp',
         component: StudentPositionOfResp,
         meta: {
-            auth: true
+            auth: { roles: 5, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
 
@@ -506,7 +503,7 @@ const routes = [{
         name: 'student.TrainingDetails',
         component: StudentTrainingDetails,
         meta: {
-            auth: true
+            auth: { roles: 5, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
 
@@ -515,7 +512,7 @@ const routes = [{
         name: 'student.ProjectDetails',
         component: StudentProjectDetails,
         meta: {
-            auth: true
+            auth: { roles: 5, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
 
@@ -524,7 +521,7 @@ const routes = [{
         name: 'student.AdditionalDetails',
         component: StudentAdditionalDetails,
         meta: {
-            auth: true
+            auth: { roles: 5, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
 
@@ -533,7 +530,7 @@ const routes = [{
         name: 'student.LinksPage',
         component: StudentLinksPage,
         meta: {
-            auth: true
+            auth: { roles: 5, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
 
@@ -542,7 +539,7 @@ const routes = [{
         name: 'student.SkillDetails',
         component: StudentSkillDetails,
         meta: {
-            auth: true
+            auth: { roles: 5, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
 
@@ -551,7 +548,7 @@ const routes = [{
         name: 'student.EducationDetails',
         component: StudentEducationDetails,
         meta: {
-            auth: true
+            auth: { roles: 5, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
 
@@ -560,7 +557,7 @@ const routes = [{
         name: 'student.ExperienceDetails',
         component: StudentExperienceDetails,
         meta: {
-            auth: true
+            auth: { roles: 5, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
 
@@ -569,7 +566,7 @@ const routes = [{
         name: 'student.OtherExperienceDetails',
         component: StudentOtherExperienceDetails,
         meta: {
-            auth: true
+            auth: { roles: 5, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
 
@@ -578,7 +575,7 @@ const routes = [{
         name: 'student.OtherDetails',
         component: StudentOtherDetails,
         meta: {
-            auth: true
+            auth: { roles: 5, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
 
@@ -587,7 +584,7 @@ const routes = [{
         name: 'student.InternshipsMainPage',
         component: StudentInternshipsMainPage,
         meta: {
-            auth: true
+            auth: { roles: 5, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
 
@@ -596,7 +593,7 @@ const routes = [{
         name: 'student.InternshipPostPage',
         component: StudentInternshipPostPage,
         meta: {
-            auth: true
+            auth: { roles: 5, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
 
@@ -605,7 +602,7 @@ const routes = [{
         name: 'student.AssessmentQuestionsPage',
         component: StudentAssessmentQuestionsPage,
         meta: {
-            auth: true
+            auth: { roles: 5, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
 
@@ -614,7 +611,7 @@ const routes = [{
         name: 'student.ViewResume',
         component: StudentViewResume,
         meta: {
-            auth: true
+            auth: { roles: 5, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
 

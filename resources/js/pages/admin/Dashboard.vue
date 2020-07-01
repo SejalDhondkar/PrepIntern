@@ -1,34 +1,88 @@
 <template>
-  <div class="container">
-    <div class="card card-default">
-      <div class="card-header">Admin Dashboard</div>
+  <v-card
+    raised
+    class="mx-auto"
+    width="80%"
+    min-height="400"
+  >
+    
+    <v-toolbar
+      color="blue dark-3"
+      dark
+    >
+    <v-card-text>
+      <v-toolbar-title>Dashboard</v-toolbar-title>
+      
+    </v-card-text>
+    </v-toolbar>
+          
+        <v-container class="p-4">
+ 
+          <v-radio-group v-model="users.role_id" row @change="status()">
+                <v-radio label="All Users" value="0"></v-radio>
+                <v-radio label="Students" value="5"></v-radio>
+                <v-radio label="Companies" value="4"></v-radio>
+                <v-radio label="Admins" value="1"></v-radio>
+            	</v-radio-group> 
 
-      <div class="card-body">
-        Bienvenue sur votre dashboard administrateur
-      </div>
+            <v-data-table
+							:headers="headers"
+							:items="users"
+							class="elevation-1"
+					>
+       
+            
+          </v-data-table>
+          
+        </v-container>
+        
+        
+  </v-card>
 
-    </div>
-    <div class="card card-default">
-      <div class="card-header">Liste des utilisateurs</div>
-
-      <div class="card-body">
-        <userList></userList>
-      </div>
-    </div>
-  </div>
+      
 </template>
 
 <script>
-  import userList from '../../components/user-list.vue'
-  export default {
-    mounted() {
-      //
+export default {
+    data(){
+      return {
+        headers: [
+          {
+            text: 'id',
+            align: 'start',
+            sortable: true,
+            value: 'id',
+          },
+          { text: 'Name', value: 'name'},
+          { text: 'Email', value: 'email'},
+					{ text: 'Contact Number', value: 'contact_no',  },
+					
+          
+        ],
+        users: [],
+        
+      }
     },
-    components: {
-      userList
+
+		created() {
+      this.$store.commit('SET_LAYOUT', 'admin-layout');
+			axios.get('/admin/users/list').then(response => {
+            this.users = response.data;
+            console.log(this.users);
+      });
     },
-    created(){
-    this.$store.commit('SET_LAYOUT', 'admin-layout');    
-  },
-  }
-</script>
+
+    methods:{
+      status(){
+        axios.get('/admin/users/sort',{params: {status: this.users.role_id}}).then(response => {
+       
+            this.users = response.data;
+             console.log(this.users);   
+      });
+      },
+    } 
+    
+  
+    
+}
+</script> 

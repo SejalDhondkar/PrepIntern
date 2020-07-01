@@ -4,14 +4,14 @@
     class="mx-auto"
     width="95%"
   >
-    
+
     <v-toolbar
       color="blue dark-3"
       dark
     >
     <v-card-text>
       <v-toolbar-title>Edit Profile</v-toolbar-title>
-      
+
     </v-card-text>
     </v-toolbar>
           <v-form>
@@ -28,7 +28,7 @@
                   />
                 </v-col>
 
-                
+
 
                 <v-col
                   cols="12"
@@ -182,9 +182,9 @@
                   />
                 </v-col>
 
-                
 
-                
+
+
                 <v-col
                   cols="12"
                   class="text-right"
@@ -200,10 +200,10 @@
               </v-row>
             </v-container>
           </v-form>
-        
+
   </v-card>
 
-      
+
 </template>
 
 <script>
@@ -232,13 +232,13 @@
   },
 
   created() {
-        let uri = `http://127.0.0.1:8000/api/company/edit/${this.$route.params.id}`;
-        this.axios.get(uri).then((response) => {
+        let url = process.env.MIX_APP_URL + `/api/company/edit/${this.$route.params.id}`;
+        this.axios.get(url).then((response) => {
             this.company = response.data;
         });
       },
 
-  
+
   methods: {
     submit() {
       this.errors = {};
@@ -250,11 +250,11 @@
         console.log("error");
         }
       });
-      
+
     },
   },
-  
 
-  
+
+
   }
 </script>
