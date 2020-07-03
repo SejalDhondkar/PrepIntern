@@ -21,7 +21,13 @@
 							:headers="headers"
 							:items="posts"
 							class="elevation-1"
-					></v-data-table>
+
+					>
+            <template v-slot:item.actions="{ item }">
+            <v-btn class="ma-2" color="green dark-3" dark @click="view(item)" >View</v-btn>
+            
+             </template>
+          </v-data-table>
         </v-container>
         
         
@@ -42,9 +48,10 @@ export default {
             value: 'company_id',
           },
           { text: 'Company Name', value: 'company_name' },
-					{ text: 'Internship post ID', value: 'id' },
+          { text: 'Internship post ID', value: 'id' },
+          { text: 'Profile Name', value: 'profile_name' },
 					{ text: 'Created at', value: 'created_at'},
-					{ text: 'Is Verified', value: 'is_verified'},
+				  { text: 'Action', value: 'actions', sortable: false },
 					
           
         ],
@@ -59,7 +66,14 @@ export default {
 						console.log(this.posts);					
       });
 		},
-  
+    methods:
+    {
+      view(item)
+      {
+        this.$route.params.id = item.id;
+        this.$router.push(`/admin/${this.$route.params.id}/viewinternshipsdetail`);     
+      }
+    }
     
 }
 </script>
