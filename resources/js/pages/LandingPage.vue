@@ -12,13 +12,11 @@
 
           <v-spacer></v-spacer>
 
-          <v-btn class="ma-2 text-decoration-none" tile outlined color="primary" to="/login">
+          <v-btn v-if="!$auth.check()" class="ma-2 text-decoration-none" tile outlined color="primary" to="/login">
             Log In
-          </v-btn>
+          </v-btn>          
 
-          
-
-          <v-menu offset-y>
+          <v-menu offset-y v-if="!$auth.check()">
           <template v-slot:activator="{ on }">
             <v-btn class="ma-2" tile color="primary" v-on="on">
             Register
@@ -35,6 +33,14 @@
             </v-list-item>
           </v-list>
         </v-menu>
+
+        <v-btn v-if="$auth.check()" class="ma-2 text-decoration-none" tile outlined color="primary" @click="dashboard()">
+          Go to Dashboard
+        </v-btn>
+
+        <v-btn v-if="$auth.check()" class="ma-2 text-decoration-none" tile color="primary" @click.prevent="$auth.logout()">
+          Log Out
+        </v-btn>
       
       </v-app-bar>
 
@@ -150,6 +156,23 @@ export default {
   created(){
       this.$store.commit('SET_LAYOUT', 'loginsignup-layout');
     },
+
+    methods: {
+      dashboard(){
+        if(this.$auth.user().role_id === 1)
+            {
+              this.$router.push({path: '/admin'});
+            }
+        if(this.$auth.user().role_id === 4)
+            {
+              this.$router.push({path: '/company/dashboard'});
+            }
+        if(this.$auth.user().role_id === 5)
+            {
+              this.$router.push({path: '/student/dashboard'});
+            }
+      }
+    }
 }
 </script>
 

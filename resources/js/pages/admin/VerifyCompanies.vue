@@ -23,11 +23,22 @@
 							class="elevation-1"
 					>
           <template v-slot:item.actions="{ item }">
-            <v-btn class="ma-2" color="green dark-3" dark @click="accept(item)" >Accept</v-btn>
-            <v-btn class="ma-2" color="red dark-3" dark @click="reject(item)" >Reject</v-btn>
+            <v-btn class="ma-2" color="blue dark-3" dark @click="view(item)" >View Application</v-btn>
           </template>
-
           </v-data-table>
+          <v-row>
+            <v-col cols="12"
+              class="text-left">
+              <br>
+              <v-btn              
+              color="primary"
+              @click="back"
+              >
+              Back
+              </v-btn>
+            </v-col>
+          </v-row>
+      
 
         </v-container>
         
@@ -68,30 +79,13 @@ export default {
     },
     
     methods:{
-      accept(item){
-        item.is_verified = 1;
-         this.errors = {};
-      axios.put(`/admin/verifycompanies/changeverify`,item).then(response => {
-        console.log('Verified');
-      }).catch(error => {
-        if (error.response.status === 422) {
-        console.log("error");
-        }
-      });
+      view(item){
+        this.$route.params.id = item.id;
+        this.$router.push(`/admin/viewcompanies/${this.$route.params.id}/details`);
       },
-      reject(item) {
-        item.is_verified = 0;
-        this.errors = {};
-      axios.put(`/admin/verifycompanies/changeverify`,item).then(response => {
-        console.log('Verified');
-      }).catch(error => {
-        if (error.response.status === 422) {
-        console.log("error");
-        }
-      });
-      },
-    }
-  
-    
+      back(){
+        this.$router.go(-1);
+      } 
+    }   
 }
 </script>
