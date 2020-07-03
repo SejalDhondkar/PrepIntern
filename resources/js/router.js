@@ -11,6 +11,8 @@ import AdminInternshipPosts from './pages/admin/InternshipPosts'
 import AdminVerifyCompanies from './pages/admin/VerifyCompanies'
 import AdminViewCompanies from './pages/admin/ViewCompanies'
 import ContactPage from './pages/ContactPage'
+import AdminRegister from './pages/admin/Register'
+
 
 import LandingPage from './pages/LandingPage'
 
@@ -117,6 +119,14 @@ const routes = [{
         path: '/admin',
         name: 'admin.dashboard',
         component: AdminDashboard,
+        meta: {
+            auth: { roles: 1, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
+        }
+    },
+    {
+        path: '/admin/register',
+        name: 'admin.register',
+        component: AdminRegister,
         meta: {
             auth: { roles: 1, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
