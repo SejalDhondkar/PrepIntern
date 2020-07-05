@@ -25,6 +25,7 @@ use App\Skills;
 use App\StudentLinks;
 use App\StudentAdditionalDetails;
 
+
 class StudentViewResumeController extends Controller
 {
     public function viewResume()

@@ -9,7 +9,11 @@ import Dashboard from './pages/user/Dashboard'
 import AdminDashboard from './pages/admin/Dashboard'
 import AdminInternshipPosts from './pages/admin/InternshipPosts'
 import AdminVerifyCompanies from './pages/admin/VerifyCompanies'
+import AdminViewInternshipsDetail from './pages/admin/ViewInternshipsDetail' 
+import AdminViewCompanies from './pages/admin/ViewCompanies'
 import ContactPage from './pages/ContactPage'
+import AdminRegister from './pages/admin/Register'
+
 
 import LandingPage from './pages/LandingPage'
 
@@ -120,6 +124,14 @@ const routes = [{
             auth: { roles: 1, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
+    {
+        path: '/admin/register',
+        name: 'admin.register',
+        component: AdminRegister,
+        meta: {
+            auth: { roles: 1, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
+        }
+    },
 
     {
         path: '/admin/internshipposts',
@@ -134,6 +146,23 @@ const routes = [{
         path: '/admin/verifycompanies',
         name: 'admin.VerifyCompanies',
         component: AdminVerifyCompanies,
+        meta: {
+            auth: { roles: 1, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
+        }
+    },
+    {
+        path: '/admin/:id/viewinternshipsdetail',
+        name: 'admin.ViewInternshipsDetail',
+        component: AdminViewInternshipsDetail,
+        meta: {
+            auth: { roles: 1, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
+        }
+    },
+
+    {
+        path: '/admin/viewcompanies/:id/details',
+        name: 'admin.ViewCompanies',
+        component: AdminViewCompanies,
         meta: {
             auth: { roles: 1, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
@@ -219,6 +248,7 @@ const routes = [{
             auth: { roles: 4, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
+
 
     // {
     //     path: '/company/:id',

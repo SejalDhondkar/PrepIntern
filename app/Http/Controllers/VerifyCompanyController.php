@@ -14,7 +14,7 @@ class VerifyCompanyController extends Controller
         return $verification;
     }
     public function changeVerified(Request $request) {
-        $company_id = $request->id;
+        $company_id = $request->company_id;
         $company = Company::where('id',$company_id)->first();
         $company->is_verified = $request->is_verified;
         $company->update();
