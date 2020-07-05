@@ -87,12 +87,11 @@
 
       passwordRules: [
         v => !!v || 'password is required',
-        v => (v && v.length <=8) || 'password must be less than 8 characters',
+        v => (v && v.length >=8) || 'password must be more than 8 characters',
       ],
 
       confirmPasswordRules: [
         v => !!v || 'Confirm Password is required',
-        // v => (this.register.password === this.register.confirmpassword) || 'Password must match',
       ],
 
       numberRules: [
@@ -124,26 +123,26 @@
 
     methods: {
     submit()   {
-        var app = this.register
+        var app = this.register;
         this.$auth.register({
           data: {
-            name:app.name,
+            name: app.name,
             email: app.email,
             phone_number: app.phone_number,
             password: app.password,
             password_confirmation: app.confirmpassword,
-            role_id:app.role_id
+            role_id: app.role_id,
           },
           success: function () {
-            
-            app.success = true
-            this.$router.push('/admin')
+            console.log("Created.");
+            // this.$router.push('/admin');
           },
           error: function (res) {
-            console.log(res.response.data.errors)
-            app.has_error = true
-            app.error = res.response.data.error
-            app.errors = res.response.data.errors || {}
+            console.log("Error.");
+            console.log(res.response.data.errors);
+            app.has_error = true;
+            app.error = res.response.data.error;
+            app.errors = res.response.data.errors || {};
           }
         })
     }

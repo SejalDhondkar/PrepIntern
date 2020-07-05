@@ -11,7 +11,7 @@
       dark
     >
     <v-card-text>
-      <v-toolbar-title>Registered Companies</v-toolbar-title>
+      <v-toolbar-title>Newly Registered Companies</v-toolbar-title>
       
     </v-card-text>
     </v-toolbar>
@@ -23,7 +23,7 @@
 							class="elevation-1"
 					>
           <template v-slot:item.actions="{ item }">
-            <v-btn class="ma-2" color="blue dark-3" dark @click="view(item)" >View Application</v-btn>
+            <v-btn class="ma-2" color="blue dark-3" dark @click="view(item)" >View Details</v-btn>
           </template>
           </v-data-table>
           <v-row>
@@ -60,6 +60,7 @@ export default {
             value: 'id',
           },
           { text: 'Company Name', value: 'name' },
+          { text: 'Company Email', value: 'contact_email' },
 					{ text: 'Admin ID', value: 'admin_id' },
 					{ text: 'Registered at', value: 'created_at'},
           { text: 'Action', value: 'actions', sortable: false },

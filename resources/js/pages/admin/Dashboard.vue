@@ -21,7 +21,7 @@
           <v-radio-group v-model="group.role_id" row @change="status()">
                 <v-radio label="All Users" value="0"></v-radio>
                 <v-radio label="Students" value="5"></v-radio>
-                <v-radio label="Companies" value="4"></v-radio>
+                <v-radio label="Companies(Admins)" value="4"></v-radio>
                 <v-radio label="Admins" value="1"></v-radio>
             	</v-radio-group> 
 
@@ -55,7 +55,8 @@ export default {
           },
           { text: 'Name', value: 'name'},
           { text: 'Email', value: 'email'},
-					{ text: 'Contact Number', value: 'contact_no',  },
+          { text: 'Contact Number', value: 'contact_no'},
+          { text: 'Registered at', value: 'created_at'},
 					
           
         ],
