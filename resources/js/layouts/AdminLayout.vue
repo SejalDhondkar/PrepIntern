@@ -140,6 +140,7 @@
       drawer: false,
       items: [
         { icon: 'mdi-view-dashboard-outline', text: 'Dashboard', link: '/admin' },
+        { icon: 'mdi-plus', text: 'Add New Admin', link: '/admin/register' },
         { icon: 'mdi-file-multiple-outline', text: 'View Posted Internship', link: '/admin/internshipposts' },
         { icon: 'mdi-account-outline', text: 'View Unverified Companies', link: '/admin/verifycompanies' },
         { icon: 'mdi-account-outline', text: 'View Roles', link: '/roles' },

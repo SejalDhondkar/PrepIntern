@@ -24,7 +24,7 @@ class StudentViewInternshipsController extends Controller
             }
             $result_array = [];
     
-            $all_posts = CompanyPostInternship::all();
+            $all_posts = CompanyPostInternship::where('is_verified',1)->get();
             foreach($all_posts as $post){
                 $post->skills_array = json_decode($post->skills_id);
                 foreach($post->skills_array as $company_skill_id){
@@ -57,7 +57,7 @@ class StudentViewInternshipsController extends Controller
 
         if(count($student_skills_full)==0){
             
-            $result = CompanyPostInternship::all();
+            $result = CompanyPostInternship::where('is_verified',1)->get();
 
             foreach($result as $res){
                 $res->profile_name = InternshipProfiles::where('id',$res->profile_id)->value('title');
