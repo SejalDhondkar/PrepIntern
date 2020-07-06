@@ -11,19 +11,15 @@ class StudentPrimaryDetailsController extends Controller
 {
     public function store(Request $request)
     {
-        $this_user_id = auth()->user()->id;
-        
         $student = new StudentPrimaryDetails;
-        $student->user_id = $this_user_id;
+        $student->user_id = Auth::id();
         $student->date_of_birth = $request->date_of_birth;
         $student->save();
-
         $student = User::findOrFail(Auth::id());
         $student->country_id = $request->country_id;
         $student->state_id = $request->state_id;
         $student->city_id = $request->city_id;
         $student->update();
-
         $success = 'success';
         return $success;
     }

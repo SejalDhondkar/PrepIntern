@@ -105,7 +105,7 @@ export default {
         axios.post(`https://infinite-depths-06908.herokuapp.com/https://api.msg91.com/api/v5/otp/verify?mobile=${mobile}&otp=${otp}&authkey=${authkey}`,options).then(response => {
           this.response = response;
           let url = process.env.MIX_APP_URL + '/api/mobileOtpVerified';
-          if(response.data.type == 'success' || response.data.message == 'Mobile no. already verified'){
+          if(response.data.type == 'success'){
             axios.get(url).then(response =>{
               this.$router.push('/student/primarydetails');
             })
@@ -115,8 +115,12 @@ export default {
           }
           console.log(response);
         }).catch(error => {
-          if (error.response.status === 422) {
-          console.log("error");
+          if (error.response.status === 422 && response.data.message == 'Mobile no. already verified') {
+            this.$router.push('/student/primarydetails');
+          }
+          else
+          {
+            console.log('error')
           }
         });
       },

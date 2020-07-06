@@ -11,12 +11,11 @@ use App\SocialMediaLinks;
 
 class CompanySocialMediaController extends Controller
 {
-    
+
     public function store(Request $request)
     {
-        $admin_id = auth()->user()->id;
-        $this_company_id = Company::where('admin_id', $admin_id)->value('id');
-        
+        $this_company_id = Company::where('admin_id', Auth::id())->value('id');
+
         $links = $request->input('company_links');
 
         foreach($links as $link)
@@ -26,7 +25,7 @@ class CompanySocialMediaController extends Controller
             $company->social_media_link_id = $link['social_media_link_id'];
             $company->url = $link['url'];
             $company->save();
-            
+
         }
 
         $success = 'success';
@@ -35,8 +34,7 @@ class CompanySocialMediaController extends Controller
 
     public function check()
     {
-        $admin_id = auth()->user()->id;
-        $company_id = Company::where('admin_id', $admin_id)->value('id');
+        $company_id = Company::where('admin_id', Auth::id())->value('id');
         $this_company_id = CompanyAdditionalDetails::where('company_id', $company_id)->value('company_id');
 
         if($this_company_id){
@@ -50,8 +48,7 @@ class CompanySocialMediaController extends Controller
 
     public function checkForDashboard()
     {
-        $admin_id = auth()->user()->id;
-        $company_id = Company::where('admin_id', $admin_id)->value('id');
+        $company_id = Company::where('admin_id', Auth::id())->value('id');
         $this_company_id = CompanySocialMedia::where('company_id', $company_id)->value('company_id');
 
         if($this_company_id){
@@ -71,8 +68,7 @@ class CompanySocialMediaController extends Controller
 
     public function edit()
     {
-        $admin_id = auth()->user()->id;
-        $this_company_id = Company::where('admin_id', $admin_id)->value('id');
+        $this_company_id = Company::where('admin_id', Auth::id())->value('id');
 
         $links= CompanySocialMedia::where('company_id', $this_company_id)->get();
         foreach($links as $link){
@@ -86,7 +82,7 @@ class CompanySocialMediaController extends Controller
     {
         $admin_id = auth()->user()->id;
         $this_company_id = Company::where('admin_id', $admin_id)->value('id');
-        
+
         $links = $request->input('company_links');
 
         foreach($links as $link)
@@ -95,10 +91,8 @@ class CompanySocialMediaController extends Controller
             $company->social_media_link_id = $link['social_media_link_id'];
             $company->url = $link['url'];
             $company->update();
-            
         }
-
         $success = 'success';
-        return $success;    
+        return $success;
     }
 }

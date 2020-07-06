@@ -3,11 +3,11 @@
         class="fill-height"
         fluid
       >
-    <v-card 
+    <v-card
       class="mx-auto elevation-6"
       width="60%"
       >
-    
+
         <v-toolbar
           color="primary"
           dark
@@ -17,8 +17,8 @@
               <v-toolbar-title>Registration</v-toolbar-title>
             <v-spacer />
         </v-toolbar>
-  
-        
+
+
 
       <v-form>
         <v-container class="p-4">
@@ -55,7 +55,7 @@
         </form>
         </v-container>
       </v-form>
-    
+
     </v-card>
   </v-container>
 </template>

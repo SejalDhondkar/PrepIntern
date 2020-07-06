@@ -21,31 +21,23 @@ class CompanyPostInternshipController extends Controller
 
     public function getCity(Request $request)
     {
-
-        $admin_id = auth()->user()->id;
-        $this_company_id = Company::where('admin_id', $admin_id)->value('id');
-
+        $this_company_id = Company::where('admin_id', Auth::id())->value('id');
         $this_country_id = CompanyAddress::where('company_id',$this_company_id)->value('country_id');
-
         $citysearchquery = $request->citysearchquery;
         $data = Cities::where('country_id',$this_country_id)->where('name','like','%'.$citysearchquery.'%')->get();
-
-        return response()->json($data);       
+        return response()->json($data);
 
     }
 
     public function getSkills()
     {
         $data = Skills::select('id','title')->get();
-
         return response()->json($data);
     }
 
     public function store(Request $request)
     {
-        $admin_id = auth()->user()->id;
-        $this_company_id = Company::where('admin_id', $admin_id)->value('id');
-
+        $this_company_id = Company::where('admin_id', Auth::id())->value('id');
         $post = new CompanyPostInternship;
         $post->company_id = $this_company_id;
         $post->profile_id = $request->profile_id;
@@ -85,9 +77,9 @@ class CompanyPostInternshipController extends Controller
 
         $cities = json_decode($data->city_preferences);
         if($data->type_of_internship=='Regular'){
-            for ($i=0; $i < count($cities); $i++) { 
+            for ($i=0; $i < count($cities); $i++) {
                 $location[$i] = Cities::where('id',$cities[$i])->value('name');
-            }       
+            }
         }
         if($data->type_of_internship=='Work from home'){
             $location = ['Work from home'];
@@ -96,7 +88,7 @@ class CompanyPostInternshipController extends Controller
         $data->location = $location;
 
         $skills = json_decode($data->skills_id);
-        for ($i=0; $i < count($skills); $i++) { 
+        for ($i=0; $i < count($skills); $i++) {
             $skills_name[$i] = Skills::where('id',$skills[$i])->value('title');
         }
 
@@ -111,7 +103,7 @@ class CompanyPostInternshipController extends Controller
 
         $this_company_id = $data->company_id;
         $data->company_name = Company::where('id',$this_company_id)->value('name');
-        
+
         return $data;
     }
 }

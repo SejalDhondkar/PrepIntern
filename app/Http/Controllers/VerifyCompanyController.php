@@ -9,8 +9,8 @@ use App\Company;
 class VerifyCompanyController extends Controller
 {
     public function index (){
-        $null = null;
-        $verification = Company::where('is_verified',$null)->get();
+        //$null = null;
+        $verification = Company::whereNull('is_verified')->get();
         return $verification;
     }
     public function changeVerified(Request $request) {
@@ -21,15 +21,14 @@ class VerifyCompanyController extends Controller
 
         $success = 'success';
         return $success;
-        
+
     }
 
     public function getAccess() {
-        $admin_id = auth()->user()->id;
-        $this_company_id = Company::where('admin_id', $admin_id)->value('id');  
+        $this_company_id = Company::where('admin_id', Auth::id())->value('id');
         $company = Company::where('id',$this_company_id)->value('is_verified');
         if($company==1) {
-            $flag = 'true'; 
+            $flag = 'true';
         }else{
             $flag = 'false';
         }

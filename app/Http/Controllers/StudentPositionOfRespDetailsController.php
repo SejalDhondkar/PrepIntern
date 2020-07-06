@@ -10,13 +10,10 @@ class StudentPositionOfRespDetailsController extends Controller
 {
     public function store(Request $request)
     {
-        $this_user_id = auth()->user()->id;
-        
         $student = new StudentPositionOfRespDetails;
-        $student->user_id = $this_user_id;
+        $student->user_id = Auth::id();
         $student->description = $request->description;
         $student->save();
-
         $success = 'success';
         return $success;
     }

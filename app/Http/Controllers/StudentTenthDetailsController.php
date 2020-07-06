@@ -10,7 +10,7 @@ class StudentTenthDetailsController extends Controller
 {
     public function store(Request $request)
     {
-        $this_user_id = auth()->user()->id;
+        $this_user_id = Auth::id();
 
         $student = StudentTenthDetails::where('user_id',$this_user_id)->first();
         if($student){
@@ -38,9 +38,7 @@ class StudentTenthDetailsController extends Controller
 
     public function edit()
     {
-        $this_user_id = auth()->user()->id;
-
-        $student = StudentTenthDetails::where('user_id',$this_user_id)->first();
+        $student = StudentTenthDetails::where('user_id',Auth::id())->first();
         if($student){
             return $student;
         }else{

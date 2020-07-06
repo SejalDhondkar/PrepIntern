@@ -15,7 +15,7 @@ class AuthController extends Controller
         $v = Validator::make($request->all(), [
             'email' => 'required|email|unique:users',
             'password'  => 'required|min:3|confirmed',
-            'phone_number'=> 'required'
+            //'contact_no'=> 'required'
         ]);
 
         if ($v->fails())
@@ -25,7 +25,6 @@ class AuthController extends Controller
                 'errors' => $v->errors()
             ], 422);
         }
-
         $user = new User;
         $user->name = $request->name;
         $user->email = $request->email;
@@ -33,14 +32,12 @@ class AuthController extends Controller
         $user->contact_no = $request->phone_number;
         $user->role_id = $request->role_id;
         $user->save();
-
         return response()->json(['status' => 'success'], 200);
     }
 
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
-
         if ($token = $this->guard()->attempt($credentials)) {
             return response()->json(['status' => 'success'], 200)->header('Authorization', $token);
         }

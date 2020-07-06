@@ -10,11 +10,9 @@ class StudentLinksController extends Controller
 {
     public function store(Request $request)
     {
-        $this_user_id = auth()->user()->id;
-
-        $student = StudentLinks::where('user_id',$this_user_id)->first();
+        $student = StudentLinks::where('user_id',Auth::id())->first();
         if($student){
-            $student->user_id = $this_user_id;
+            $student->user_id = Auth::id();
             $student->blog_url = $request->blog_url;
             $student->github_url = $request->github_url;
             $student->linkedin_url = $request->linkedin_url;
@@ -23,7 +21,7 @@ class StudentLinksController extends Controller
             $student->update();
         }else{
             $new_student = new StudentLinks;
-            $new_student->user_id = $this_user_id;
+            $new_student->user_id = Auth::id();
             $new_student->blog_url = $request->blog_url;
             $new_student->github_url = $request->github_url;
             $new_student->linkedin_url = $request->linkedin_url;
@@ -31,17 +29,15 @@ class StudentLinksController extends Controller
             $new_student->other_url = $request->other_url;
             $new_student->save();
         }
-        
+
         $success = 'success';
         return $success;
     }
 
-    
+
     public function edit()
     {
-        $this_user_id = auth()->user()->id;
-
-        $student = StudentLinks::where('user_id',$this_user_id)->first();
+        $student = StudentLinks::where('user_id',Auth::id())->first();
         if($student){
             return $student;
         }else{

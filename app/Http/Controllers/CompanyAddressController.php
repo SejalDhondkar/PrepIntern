@@ -9,14 +9,12 @@ use Illuminate\Support\Facades\Auth;
 use App\Countries;
 use App\States;
 use App\Cities;
-
+use Auth;
 class CompanyAddressController extends Controller
 {
     public function store(Request $request)
     {
-        $admin_id = auth()->user()->id;
-        $this_company_id = Company::where('admin_id', $admin_id)->value('id');        
-
+        $this_company_id = Company::where('admin_id', Auth::id())->value('id');
         $company = new CompanyAddress;
         $company->country_id = $request->country_id;
         $company->state_id = $request->state_id;
@@ -25,15 +23,13 @@ class CompanyAddressController extends Controller
         $company->company_id = $this_company_id;
         $company->pincode = $request->pincode;
         $company->save();
-
         $success = 'success';
         return $success;
     }
 
     public function check()
     {
-        $admin_id = auth()->user()->id;
-        $company_id = Company::where('admin_id', $admin_id)->value('id');
+        $company_id = Company::where('admin_id', Auth::id())->value('id');
 
         if($company_id){
             $flag = 'true';
@@ -46,16 +42,13 @@ class CompanyAddressController extends Controller
 
     public function show(Request $request, $id)
     {
-
-        $company = Company::findOrFail($id);
-        return $company;
+      $company = Company::findOrFail($id);
+      return $company;
     }
 
     public function edit(Request $request)
     {
-        $admin_id = auth()->user()->id;
-        $this_company_id = Company::where('admin_id', $admin_id)->value('id');
-
+        $this_company_id = Company::where('admin_id', Auth::id())->value('id');
         $company = CompanyAddress::where('company_id',$this_company_id)->first();
         $company->country_name = Countries::where('id',$company->country_id)->value('name');
         $company->state_name = States::where('id',$company->state_id)->value('name');
@@ -65,8 +58,7 @@ class CompanyAddressController extends Controller
 
     public function update(Request $request)
     {
-        $admin_id = auth()->user()->id;
-        $this_company_id = Company::where('admin_id', $admin_id)->value('id');
+        $this_company_id = Company::where('admin_id', Auth::id())->value('id');
 
         $company = CompanyAddress::where('company_id',$this_company_id)->first();
         $company->country_id = $request->country_id;
@@ -74,7 +66,7 @@ class CompanyAddressController extends Controller
         $company->city_id = $request->city_id;
         $company->registered_address = $request->registered_address;
         $company->company_id = $this_company_id;
-        $company->pincode = $request->pincode;        
+        $company->pincode = $request->pincode;
         $company->update();
 
         $success = 'success';

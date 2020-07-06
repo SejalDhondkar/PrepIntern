@@ -20,9 +20,9 @@ class AdminInternshipPostsController extends Controller
     }
     public function changeStatusVerification(Request $request)
     {
-        $Internship =CompanyPostInternship::where('id',$request->post_id)->first();
-        $Internship->is_verified = $request->is_verified;
-        $Internship->update();
+        $internship =CompanyPostInternship::where('id',$request->post_id)->first();
+        $internship->is_verified = $request->is_verified;
+        $internship->update();
 
         $success = 'success';
         return $success;

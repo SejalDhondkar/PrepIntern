@@ -28,13 +28,12 @@ use App\CompanyPostInternship;
 use App\ApplicantsSelectionStatus;
 use Illuminate\Support\Facades\Auth;
 use App\Company;
-
+use Auth;
 class CompanyViewApplicationsController extends Controller
 {
     public function index($id)
     {
-        $admin_id = auth()->user()->id;
-        $this_company_id = Company::where('admin_id', $admin_id)->value('id');
+        $this_company_id = Company::where('admin_id',Auth::id())->value('id');
 
         $data = InternshipAssessmentAnswers::where('company_id',$this_company_id)->where('post_id',$id)->get();
         foreach($data as $dt){
@@ -47,12 +46,11 @@ class CompanyViewApplicationsController extends Controller
 
     public function sortByStatus(Request $request, $id)
     {
-        $admin_id = auth()->user()->id;
-        $this_company_id = Company::where('admin_id', $admin_id)->value('id');
+        $this_company_id = Company::where('admin_id',Auth::id())->value('id');
 
         $status = $request->status;
 
-        if($status!='none'){
+        if($status != 'none'){
             $data = ApplicantsSelectionStatus::where('company_id',$this_company_id)->where('post_id',$id)->where('status', $status)->get();
             foreach($data as $dt){
                 $student_id = $dt->student_id;
@@ -61,7 +59,7 @@ class CompanyViewApplicationsController extends Controller
             }
         }
 
-        if($status=='none'){
+        elseif($status == 'none'){
             $data = InternshipAssessmentAnswers::where('company_id',$this_company_id)->where('post_id',$id)->get();
             foreach($data as $dt){
                 $student_id = $dt->student_id;
@@ -78,7 +76,7 @@ class CompanyViewApplicationsController extends Controller
         $student_assessment = InternshipAssessmentAnswers::where('id',$id)->first();
         $student_id = $student_assessment->student_id;
         $student_assessment->student_name = User::where('id',$student_id)->value('name');
-        
+
         $student_basic_info = User::where('id',$student_id)->first();
         $student_basic_info->city_name = Cities::where('id',$student_basic_info->city_id)->value('name');
 
@@ -159,7 +157,7 @@ class CompanyViewApplicationsController extends Controller
 
         $status = ApplicantsSelectionStatus::where('student_id',$student_id)->where('post_id',$student_assessment->post_id)->value('status');
 
-        
+
         return response()->json(['student_assessment'=>$student_assessment , 'student_basic_info'=>$student_basic_info ,
                                 'student_grad'=>$student_grad , 'student_post_grad'=>$student_post_grad ,
                                 'student_xii'=>$student_xii , 'student_x'=>$student_x ,
@@ -167,7 +165,7 @@ class CompanyViewApplicationsController extends Controller
                                 'student_job'=>$student_job , 'student_internship'=>$student_internship ,
                                 'student_pos_of_resp'=>$student_pos_of_resp , 'student_training'=>$student_training ,
                                 'student_project'=>$student_project , 'student_skills'=>$student_skills,
-                                'student_links'=>$student_links , 'student_additional'=>$student_additional , 
+                                'student_links'=>$student_links , 'student_additional'=>$student_additional ,
                                 'post_data'=>$post_data , 'status'=>$status]);
     }
 }

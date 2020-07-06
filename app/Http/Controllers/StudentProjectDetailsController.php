@@ -10,10 +10,8 @@ class StudentProjectDetailsController extends Controller
 {
     public function store(Request $request)
     {
-        $this_user_id = auth()->user()->id;
-        
         $student = new StudentProjectDetails;
-        $student->user_id = $this_user_id;
+        $student->user_id = Auth::id();
         $student->project_name = $request->project_name;
         $student->start_month = $request->start_month;
         $student->end_month = $request->end_month;

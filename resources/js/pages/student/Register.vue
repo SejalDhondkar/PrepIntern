@@ -42,7 +42,7 @@
           <div class="form-group">
             <label for="phone_number">Phone Number</label>
             <input type="text" id="phone_number" class="form-control" placeholder="918765432101" v-model="phone_number">
-            <span class="help-block" v-if="has_error && errors.email">{{ errors.email }}</span>
+            <span class="help-block" v-if="has_error && errors.contact_no">{{ errors.contact_no }}</span>
           </div>
 
           <div class="form-group" v-bind:class="{ 'has-error': has_error && errors.password }">

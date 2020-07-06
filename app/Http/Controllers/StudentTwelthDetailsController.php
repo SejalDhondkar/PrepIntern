@@ -10,11 +10,9 @@ class StudentTwelthDetailsController extends Controller
 {
     public function store(Request $request)
     {
-        $this_user_id = auth()->user()->id;
-        
-        $student = StudentTwelthDetails::where('user_id',$this_user_id)->first();
+        $student = StudentTwelthDetails::where('user_id',Auth::id())->first();
         if($student){
-            $student->user_id = $this_user_id;
+            $student->user_id = Auth::id();
             $student->status = $request->status;
             $student->school_name = $request->school_name;
             $student->year_of_completion = $request->year_of_completion;
@@ -24,7 +22,7 @@ class StudentTwelthDetailsController extends Controller
             $student->update();
         }else{
             $new_student = new StudentTwelthDetails;
-            $new_student->user_id = $this_user_id;
+            $new_student->user_id = Auth::id();
             $new_student->status = $request->status;
             $new_student->school_name = $request->school_name;
             $new_student->year_of_completion = $request->year_of_completion;
@@ -40,9 +38,7 @@ class StudentTwelthDetailsController extends Controller
 
     public function edit()
     {
-        $this_user_id = auth()->user()->id;
-
-        $student = StudentTwelthDetails::where('user_id',$this_user_id)->first();
+        $student = StudentTwelthDetails::where('user_id',Auth::id())->first();
         if($student){
             return $student;
         }else{

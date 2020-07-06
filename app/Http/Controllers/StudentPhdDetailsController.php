@@ -13,11 +13,9 @@ class StudentPhdDetailsController extends Controller
 {
     public function store(Request $request)
     {
-        $this_user_id = auth()->user()->id;
-
-        $student = StudentPhdDetails::where('user_id',$this_user_id)->first();
+        $student = StudentPhdDetails::where('user_id',Auth::id())->first();
         if($student){
-            $student->user_id = $this_user_id;
+            $student->user_id = Auth::id();
             $student->status = $request->status;
             $student->college_id = $request->college_id;
             $student->start_year = $request->start_year;
@@ -27,7 +25,7 @@ class StudentPhdDetailsController extends Controller
             $student->update();
         }else{
             $new_student = new StudentPhdDetails;
-            $new_student->user_id = $this_user_id;
+            $new_student->user_id = Auth::id();
             $new_student->status = $request->status;
             $new_student->college_id = $request->college_id;
             $new_student->start_year = $request->start_year;
@@ -43,9 +41,7 @@ class StudentPhdDetailsController extends Controller
 
     public function edit()
     {
-        $this_user_id = auth()->user()->id;
-
-        $student = StudentPhdDetails::where('user_id',$this_user_id)->first();
+        $student = StudentPhdDetails::where('user_id',Auth::id())->first();
         if($student){
             $student->college_name = Colleges::where('id',$student->college_id)->value('name');
             $student->stream_name = Streams::where('id',$student->stream_id)->value('title');

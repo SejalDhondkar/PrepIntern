@@ -19,7 +19,7 @@ class StudentSkillsDetailsController extends Controller
 
     public function store(Request $request)
     {
-        $this_user_id = auth()->user()->id;
+        $this_user_id = Auth::id();
 
         if($request->id_1){
             $student = StudentSkillsDetails::where('user_id',$this_user_id)->where('id',$request->id_1)->first();

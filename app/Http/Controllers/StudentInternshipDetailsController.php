@@ -10,10 +10,8 @@ class StudentInternshipDetailsController extends Controller
 {
     public function store(Request $request)
     {
-        $this_user_id = auth()->user()->id;
-        
         $student = new StudentInternshipDetails;
-        $student->user_id = $this_user_id;
+        $student->user_id = Auth::id();
         $student->position = $request->position;
         $student->organization = $request->organization;
         $student->city_id = $request->city_id;

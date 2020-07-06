@@ -11,8 +11,7 @@ class CountriesController extends Controller
     {
         $searchquery = $request->searchquery;
         $data = Countries::where('name','like','%'.$searchquery.'%')->get();
-
-        return response()->json($data);        
+        return response()->json($data);
 
     }
 
