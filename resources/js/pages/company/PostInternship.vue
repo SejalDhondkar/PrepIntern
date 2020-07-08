@@ -1,4 +1,5 @@
 <template>
+<div>
   <v-card
     outlined
     class="mx-auto"
@@ -602,6 +603,27 @@
         
   </v-card>
 
+    <v-snackbar
+        v-model="snackbar"
+        :timeout="timeout"
+        :multi-line="multiLine"
+      >
+        {{ text }}
+
+        <template v-slot:action="{ attrs }">
+          <v-btn
+            color="blue"
+            text
+            v-bind="attrs"
+            @click="snackbar = false"
+          >
+            Close
+          </v-btn>
+        </template>
+      </v-snackbar>
+
+  </div>
+
       
 </template>
 
@@ -661,6 +683,10 @@
         question1: false,
         question2: false,
         flag: '',
+        snackbar: false,
+        text: 'We have successfully received your post. It will be posted after we verify it',
+        timeout: 3000,
+        multiLine: true,
       }
   },
 
@@ -691,7 +717,7 @@
     submit() {
       this.errors = {};
       axios.post('/company/postinternship', this.post).then(response => {
-        console.log("posted");
+        this.snackbar = true;
       }).catch(error => {
         if (error.response.status === 422) {
         console.log("error");

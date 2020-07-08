@@ -74,8 +74,7 @@ export default {
 		created() {
       this.$store.commit('SET_LAYOUT', 'admin-layout');   
 			axios.get('/admin/verifycompanies').then(response => {
-						this.companies = response.data;
-						console.log(this.companies);					
+						this.companies = response.data;		
       });
     },
     

@@ -99,7 +99,6 @@ export default {
 
     submit() {
       this.errors = {};
-			console.log(this.company);
       axios.put('/company/socialmedialinks/update',{company_links: this.company}).then(response => {
     	this.$router.push('/company/editpage');
       }).catch(error => {

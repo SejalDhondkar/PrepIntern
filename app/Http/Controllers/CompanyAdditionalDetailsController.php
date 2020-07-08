@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\CompanyAdditionalDetails;
 use App\Company;
-use Illuminate\Support\Facades\Auth;
 use App\CompanyAddress;
 use Auth;
+
 class CompanyAdditionalDetailsController extends Controller
 {
     public function store(Request $request)

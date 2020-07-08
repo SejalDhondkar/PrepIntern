@@ -1,4 +1,5 @@
 <template>
+<div>
   <v-card
     class="mx-auto p-4"
     width="700"
@@ -68,6 +69,25 @@
     
   </v-form>
   </v-card>
+  <v-snackbar
+      v-model="snackbar"
+      :timeout="timeout"
+    >
+      {{ text }}
+
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="blue"
+          text
+          v-bind="attrs"
+          @click="snackbar = false"
+        >
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
+
+</div>
 </template>
 
 <script>
@@ -109,6 +129,10 @@
 
       show1: false,
       show2: false,
+
+      snackbar: false,
+      text: '',
+      timeout: 2500,
       
     }),
     computed: {
@@ -135,10 +159,14 @@
           },
           success: function () {
             console.log("Created.");
+            this.text = "Account Created Successfully";
+            this.snackbar = true;
             // this.$router.push('/admin');
           },
           error: function (res) {
             console.log("Error.");
+            this.text = "Email already taken";
+            this.snackbar = true;
             console.log(res.response.data.errors);
             app.has_error = true;
             app.error = res.response.data.error;

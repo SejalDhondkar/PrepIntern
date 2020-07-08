@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\CompanyAddress;
 use App\Company;
-use Illuminate\Support\Facades\Auth;
 use App\Countries;
 use App\States;
 use App\Cities;
 use Auth;
+
 class CompanyAddressController extends Controller
 {
     public function store(Request $request)

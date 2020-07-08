@@ -26,9 +26,9 @@ use App\StudentLinks;
 use App\StudentAdditionalDetails;
 use App\CompanyPostInternship;
 use App\ApplicantsSelectionStatus;
-use Illuminate\Support\Facades\Auth;
 use App\Company;
 use Auth;
+
 class CompanyViewApplicationsController extends Controller
 {
     public function index($id)
