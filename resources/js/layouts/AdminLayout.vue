@@ -146,6 +146,8 @@
         { icon: 'mdi-account-outline', text: 'View Roles', link: '/roles' },
         { icon: 'mdi-plus', text: 'Create New Role', link: '/roles/store' },
         { icon: 'mdi-account-outline', text: 'View Profile', link: '/profile' },
+        { icon: 'mdi-account-outline', text: 'View All Posts', link: '/admin/postedinternships' },
+        { icon: 'mdi-account-outline', text: 'View All Companies', link: '/admin/registeredcompanies' },
       ],
     }),
 

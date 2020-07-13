@@ -13,6 +13,10 @@ import AdminViewInternshipsDetail from './pages/admin/ViewInternshipsDetail'
 import AdminViewCompanies from './pages/admin/ViewCompanies'
 import ContactPage from './pages/ContactPage'
 import AdminRegister from './pages/admin/Register'
+import AdminRegisteredCompanies from './pages/admin/RegisteredCompanies'
+import AdminViewRegisteredCompanies from './pages/admin/ViewRegisteredCompanies'
+import AdminPostedInternships from './pages/admin/PostedInternships'
+import AdminViewPostedInternships from './pages/admin/ViewPostedInternships'
 
 
 import LandingPage from './pages/LandingPage'
@@ -69,6 +73,8 @@ import StudentInternshipPostPage from './pages/student/InternshipPostPage'
 import StudentAssessmentQuestionsPage from './pages/student/AssessmentQuestionsPage'
 import StudentViewResume from './pages/student/ViewResume'
 import StudentInternshipsMainPage from './pages/student/InternshipsMainPage'
+import StudentInternship from './pages/student/StudentInternship'
+import ViewStudentInternship from './pages/student/ViewStudentInternship'
 
 import VerifyMobile from './pages/register/VerifyMobile'
 
@@ -163,6 +169,41 @@ const routes = [{
         path: '/admin/viewcompanies/:id/details',
         name: 'admin.ViewCompanies',
         component: AdminViewCompanies,
+        meta: {
+            auth: { roles: 1, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
+        }
+    },
+
+    {
+        path: '/admin/registeredcompanies',
+        name: 'admin.RegisteredCompanies',
+        component: AdminRegisteredCompanies,
+        meta: {
+            auth: { roles: 1, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
+        }
+    },
+    {
+        path: '/admin/viewregisteredcompanies/:id/details',
+        name: 'admin.ViewRegisteredCompanies',
+        component: AdminViewRegisteredCompanies,
+        meta: {
+            auth: { roles: 1, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
+        }
+    },
+
+    {
+        path: '/admin/postedinternships',
+        name: 'admin.PostedInternships',
+        component: AdminPostedInternships,
+        meta: {
+            auth: { roles: 1, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
+        }
+    },
+
+    {
+        path: '/admin/viewpostedinternships/:id/details',
+        name: 'admin.ViewPostedInternships',
+        component: AdminViewPostedInternships,
         meta: {
             auth: { roles: 1, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
@@ -633,6 +674,25 @@ const routes = [{
             auth: { roles: 5, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
     },
+
+    {
+        path: '/student/studentinternship',
+        name: 'student.StudentInternship',
+        component: StudentInternship,
+        meta: {
+            auth: { roles: 5, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
+        }
+    },
+
+    {
+        path: '/student/viewstudentinternship/:id/details',
+        name: 'student.ViewStudentInternship',
+        component: ViewStudentInternship,
+        meta: {
+            auth: { roles: 5, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
+        }
+    },
+
 
 ]
 
