@@ -10,6 +10,7 @@ import auth from './auth'
 import router from './router'
 import Vuetify from 'vuetify'
 import { store } from './store/index'
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import AxiosPlugin from 'vue-axios-cors';
 Vue.use(Vuetify)
 
@@ -20,7 +21,7 @@ window.Vue = Vue
 Vue.router = router
 Vue.use(VueRouter)
 Vue.use(AxiosPlugin)
-// Set Vue authentication
+    // Set Vue authentication
 Vue.use(VueAxios, axios)
 axios.defaults.baseURL = `${process.env.MIX_APP_URL}/api`
 Vue.use(VueAuth, auth)

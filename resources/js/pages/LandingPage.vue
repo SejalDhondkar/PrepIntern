@@ -2,10 +2,10 @@
 		<v-app>
       <v-app-bar app color="white">
           <v-img
-            src="./images/Prepintern1.png"
+            src="./images/Prepintern_new_1.png"
             alt="Vuetify"
-            width="90px"
-            height="30px"
+            width="110px"
+            height="45px"
             contain
           ></v-img>
         
@@ -60,13 +60,13 @@
             ></v-carousel-item>
           </v-carousel>
 
-          <br><br><br>
+          <br><br>
 
           <p class="headings">Features</p>
 
           <v-row>
-            <v-col cols="6" class="d-flex justify-end">
-              <v-card raised class="m-4 p-4 " width="400">
+            <v-col cols="12" sm="6" class="d-flex justify-end">
+              <v-card raised class="m-4 p-4" width="400">
                 <p class="feature-heading">For Students</p><br>
                 <p class="features"><v-icon color="success">mdi-check</v-icon>100% Verified Internships</p>
                 <p class="features"><v-icon color="success">mdi-check</v-icon>In-Built Resume Feature</p>
@@ -75,7 +75,7 @@
               </v-card>
             </v-col>
 
-            <v-col cols="6" class="d-flex justify-start">
+            <v-col cols="12" sm="6" class="d-flex justify-start">
               <v-card raised class="m-4 p-4" width="400">
                 <p class="feature-heading">For Employers</p><br>
                 <p class="features"><v-icon color="success">mdi-check</v-icon>Post Internships for free</p>
@@ -89,9 +89,25 @@
 
           <br><br><br>
 
+          <p class="headings">Get Internships</p><br>
+          <v-row>
+            <v-col cols="12" sm="3"><v-card class="cards"><p class="cards-text"><v-icon x-large color="indigo darken-2">mdi-volume-high</v-icon>Marketing</p></v-card></v-col>
+            <v-col cols="12" sm="3"><v-card class="cards"><p class="cards-text"><v-icon x-large color="indigo darken-2">business_center</v-icon>Business Development</p></v-card></v-col>
+            <v-col cols="12" sm="3"><v-card class="cards"><p class="cards-text"><v-icon x-large color="indigo darken-2">mdi-book-open-page-variant</v-icon>Content Writing</p></v-card></v-col>
+            <v-col cols="12" sm="3"><v-card class="cards"><p class="cards-text"><v-icon x-large color="indigo darken-2">mdi-draw</v-icon>Graphic Design</p></v-card></v-col>
+            <v-col cols="12" sm="3"><v-card class="cards"><p class="cards-text"><v-icon x-large color="indigo darken-2">attach_money</v-icon>Finance</p></v-card></v-col>
+            <v-col cols="12" sm="3"><v-card class="cards"><p class="cards-text"><v-icon x-large color="indigo darken-2">mdi-account-group-outline</v-icon>Human Resources</p></v-card></v-col>
+            <v-col cols="12" sm="3"><v-card class="cards"><p class="cards-text"><v-icon x-large color="indigo darken-2">mdi-remote-desktop</v-icon>Engineering</p></v-card></v-col>
+            <v-col cols="12" sm="3"><v-card class="cards"><p class="cards-text"><v-icon x-large color="indigo darken-2">mdi-search-web</v-icon>All Internships</p></v-card></v-col>
+            
+          </v-row>
+
+
+          <br><br><br><br>
+
           <p class="headings">About Us</p>
           <v-row>
-            <v-col cols="6">
+            <v-col cols="12" sm="4">
               <v-card flat tile class="d-flex align-end">
               <v-img
                 src="./images/logo2.jpeg"
@@ -102,15 +118,55 @@
               ></v-img>
               </v-card>
             </v-col>
-            <v-col cols="6" class="text d-flex flex-column justify-center">
+            <v-col cols="12" sm="8" class="text d-flex flex-column justify-center">
               <v-card flat tile>
-                PrepIntern is a Startup initiative of Yuvaleads aimed towards providing guaranteed paid/unpaid internships to everyone in technical/non-technical domains.
-                <br><br>"We welcome beginners in Internship Journey" 
+                PrepIntern is a startup initiative of YuvaLeads aimed at providing guaranteed internships in all technical & non technical domains and tracking intern's performance throughout the internship.<br>
+In today's digital world getting an internship is not a very difficult task but evaluating that "HOW MUCH HAVE I LEARNT IN THIS INTERNSHIP ?" is still a question mark.<br>
+PrepIntern is focused on providing end to end solution to Internship System. Students can apply for internships in any technical & non technical domain.
+<br>Companies interested in hiring interns will be benefited by getting potential interns through PrepIntern. We match up company's requirements with our pool of interns to serve you best results.
               </v-card>
             </v-col>
           </v-row>
-          
-          <br><br><br><br><br>
+
+
+
+          <v-carousel
+            cycle
+            min-height="200"
+            show-arrows-on-hover
+          >
+            <v-carousel-item
+              v-for="(slide, i) in slides"
+              :key="i"
+            >
+            <v-row
+                  class="fill-height"
+                  align="center"
+                  justify="center"
+                >
+              <v-card
+                light
+                shaped
+                raised
+                color="indigo lighten-5"
+                class="mx-auto my-auto"
+                width="80%"
+              >
+                <v-row
+                  class="fill-height p-2"
+                  align="center"
+                  justify="center"
+                >
+                <v-col class="text-center" cols="12" sm="3"><p class="slide-name">{{slide.name}}</p><p class="slide-position">{{slide.position}}</p></v-col>
+                <v-col class="slide-msg" cols="12" sm="9">
+                    {{slide.msg}}
+                    </v-col>
+                </v-row>
+              </v-card>
+            </v-row>
+            </v-carousel-item>
+          </v-carousel>
+
         </v-container>
 
       <v-footer app absolute padless color="grey darken-3" class="p-2">
@@ -118,6 +174,8 @@
         <v-btn class="text-decoration-none" icon dark href="https://m.facebook.com/PrepIntern/?tsid=0.7696890637138489&source=result" ><v-icon>mdi-facebook</v-icon>
             </v-btn>
             <v-btn class="mx-2 text-decoration-none"  icon dark href="https://www.instagram.com/p/CBShS3Nn4lO/?igshid=dr3lpnp2ro8q"  ><v-icon>mdi-instagram</v-icon>
+            </v-btn>
+            <v-btn class="mx-2 text-decoration-none"  icon dark href="https://www.linkedin.com/company/prepintern/"  ><v-icon>mdi-linkedin</v-icon>
             </v-btn>
             <v-btn class="mx-2 text-decoration-none"  icon dark href="mailto:prepinternindia@gmail.com"  ><v-icon>mdi-email-outline</v-icon>
             </v-btn>
@@ -141,14 +199,20 @@ export default {
         i: 0,
         carousel: [
           {
-            src: './images/image3.png',
+            src: './images/image1.png',
           },
           {
             src: './images/image2.png',
           },
           {
-            src: './images/image1.png',
+            src: './images/image3.png',
           },
+        ],
+        slides: [
+          {name: 'John Doe', position: 'Intern at xyz company', msg: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec maximus ornare tempus. Nulla in erat ex. In luctus nibh nisl, nec iaculis augue tincidunt ac. Quisque egestas blandit sapien nec convallis. Donec porta velit at urna sodales varius. Phasellus vulputate purus velit, et suscipit nisl congue in. Mauris lacus erat, laoreet a placerat a, luctus non lorem.'},
+          {name: 'Dotty Mcmahon',position: 'Intern at xyz company', msg: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec maximus ornare tempus. Nulla in erat ex. In luctus nibh nisl, nec iaculis augue tincidunt ac. Quisque egestas blandit sapien nec convallis. Donec porta velit at urna sodales varius. Phasellus vulputate purus velit, et suscipit nisl congue in. Mauris lacus erat, laoreet a placerat a, luctus non lorem.'},
+          {name: 'Humza Melton',position: 'Intern at xyz company', msg: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec maximus ornare tempus. Nulla in erat ex. In luctus nibh nisl, nec iaculis augue tincidunt ac. Quisque egestas blandit sapien nec convallis. Donec porta velit at urna sodales varius. Phasellus vulputate purus velit, et suscipit nisl congue in. Mauris lacus erat, laoreet a placerat a, luctus non lorem.'},
+          {name: 'Summer-Rose Byrne',position: 'Intern at xyz company', msg: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec maximus ornare tempus. Nulla in erat ex. In luctus nibh nisl, nec iaculis augue tincidunt ac. Quisque egestas blandit sapien nec convallis. Donec porta velit at urna sodales varius. Phasellus vulputate purus velit, et suscipit nisl congue in. Mauris lacus erat, laoreet a placerat a, luctus non lorem.'},
         ],
       }
   },
@@ -206,5 +270,43 @@ export default {
   font-size: 1.5rem;
   font-weight: 40;
   color: #424242;
+}
+.cards{
+  background-color: #F5F5F5;
+  width: 100%;
+  height: 180px;
+}
+.cards-text{
+  text-align: center;
+  padding-top: 60px;
+  font-size: 1.4rem;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: 50;
+  color: #212121;
+  font-stretch: semi-expanded;  
+}
+.slide-name{
+  text-align: center;
+  padding-left: 10px;
+  color: black;
+  font-size: 1.4rem;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: 60;
+}
+.slide-position{
+  text-align: center;
+  padding: 10px;
+  color: #283593;
+  font-size: 1.1rem;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: 40;
+}
+.slide-msg{
+  text-align: justify;
+  padding: 30px;
+  color: #212121;
+  font-size: 0.9rem;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: 30;  
 }
 </style>
