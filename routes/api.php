@@ -66,7 +66,15 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('/admin/viewcompanies/{id}/details','ViewCompanyDetailsController@viewDetails')->middleware('Admin');
     
     Route::put('/admin/verifycompanies/changeverify','VerifyCompanyController@changeVerified');
+    Route::get('/admin/registeredcompanies/sort','RegisteredCompaniesController@sortByStatus');
+    Route::get('/admin/registeredcompanies','RegisteredCompaniesController@index');
+    Route::get('/admin/viewregisteredcompanies/{id}/details','ViewCompanyDetailsController@viewDetails')->middleware('Admin');
     Route::get('/company/verify/access','VerifyCompanyController@getAccess');
+    Route::get('/admin/postedinternships/sort','PostedInternshipsController@sortByStatus');
+    Route::get('/admin/postedinternships','PostedInternshipsController@index');
+    Route::get('/admin/viewpostedinternships/{id}/details','CompanyViewPostedInternshipsController@index');
+    Route::get('/student/studentinternship','StudentInternshipController@viewDetails');
+
 
     Route::get('/company/{company_id}/socialmedialinks', 'CompanySocialMediaController@show');
     Route::get('/company/edit/{company_id}/socialmedialinks', 'CompanySocialMediaController@edit');
