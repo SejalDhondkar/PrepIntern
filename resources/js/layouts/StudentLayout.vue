@@ -154,6 +154,7 @@
           ],
         },
         { icon: 'mdi-file-multiple-outline', text: 'View Internships', link: '/student/internships/main' },
+        { icon: 'mdi-file-multiple-outline', text: 'Applied Internships', link: '/student/studentinternship' },
         { icon: 'mdi-account-outline', text: 'View Profile', link: '/profile' },
         { icon: 'mdi-phone-outline', text: 'Contact Us', link: '/contact' },
         // { icon: 'mdi-help-circle-outline', text: 'Help' },
