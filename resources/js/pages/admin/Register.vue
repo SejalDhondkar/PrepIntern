@@ -69,24 +69,6 @@
     
   </v-form>
   </v-card>
-  <v-snackbar
-      v-model="snackbar"
-      :timeout="timeout"
-    >
-      {{ text }}
-
-      <template v-slot:action="{ attrs }">
-        <v-btn
-          color="blue"
-          text
-          v-bind="attrs"
-          @click="snackbar = false"
-        >
-          Close
-        </v-btn>
-      </template>
-    </v-snackbar>
-
 </div>
 </template>
 
@@ -130,10 +112,7 @@
       show1: false,
       show2: false,
 
-      snackbar: false,
-      text: '',
-      timeout: 2500,
-      
+            
     }),
     computed: {
     passwordConfirmationRule() {
@@ -147,26 +126,22 @@
 
     methods: {
     submit()   {
-        var app = this.register;
+        // var app = this.register;
         this.$auth.register({
           data: {
-            name: app.name,
-            email: app.email,
-            phone_number: app.phone_number,
-            password: app.password,
-            password_confirmation: app.confirmpassword,
-            role_id: app.role_id,
+            name: this.register.name,
+            email: this.register.email,
+            phone_number: this.register.phone_number,
+            password: this.register.password,
+            password_confirmation: this.register.confirmpassword,
+            role_id: this.register.role_id,
           },
           success: function () {
             console.log("Created.");
-            this.text = "Account Created Successfully";
-            this.snackbar = true;
-            // this.$router.push('/admin');
+            this.$router.push('/roles');
           },
           error: function (res) {
             console.log("Error.");
-            this.text = "Email already taken";
-            this.snackbar = true;
             console.log(res.response.data.errors);
             app.has_error = true;
             app.error = res.response.data.error;

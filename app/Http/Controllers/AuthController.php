@@ -32,7 +32,8 @@ class AuthController extends Controller
         $user->contact_no = $request->phone_number;
         $user->role_id = $request->role_id;
         $user->save();
-        return response()->json(['status' => 'success'], 200);
+        
+        
     }
 
     public function login(Request $request)

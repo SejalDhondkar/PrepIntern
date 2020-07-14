@@ -685,7 +685,7 @@
         flag: '',
         snackbar: false,
         text: 'We have successfully received your post. It will be posted after we verify it',
-        timeout: 3000,
+        timeout: 6000,
         multiLine: true,
       }
   },

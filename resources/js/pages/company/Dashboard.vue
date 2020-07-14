@@ -52,7 +52,7 @@ export default {
             if (this.flag_for_access) {
               this.message = 'Your account has been confirmed. You can post and view internships.';
             } else {
-              this.message = 'You cannot post and view internships yet. Please wait till we confirm your account.';
+              this.message = 'To post and view internships, Please wait till we confirm your account.';
             }
       });
   },

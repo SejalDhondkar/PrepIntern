@@ -21,6 +21,7 @@ class StudentInternshipController extends Controller
         $result = [];
         foreach($student_data as $student){
             $post = CompanyPostInternship::where('id',$student->post_id)->first();
+            $post->status = $student->status;
             $post->company_name = Company::where('id',$post->company_id)->value('name');
             $post->profile_name = InternshipProfiles::where('id',$post->profile_id)->value('title');
             $array = Arr::prepend($array,$post);

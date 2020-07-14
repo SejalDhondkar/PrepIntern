@@ -60,6 +60,7 @@ export default {
           },
 
           { text: 'Profile Name', value: 'profile_name' },
+          { text: 'Status', value: 'status' },
 		      { text: 'Action', value: 'actions', sortable: false },
 					
           
@@ -73,7 +74,8 @@ export default {
 		created() {
             this.$store.commit('SET_LAYOUT', 'student-layout');   
 			axios.get('/student/studentinternship').then(response => {
-			this.posts = response.data;	
+			this.posts = response.data;
+      console.log(this.posts);	
       });
         
     },
