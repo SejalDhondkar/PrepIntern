@@ -116,9 +116,21 @@
                         />
                     </v-col>
 
+              <v-col
+                  cols="6"
+                  class="text-left"
+                >
+                  <v-btn
+                    color="primary"
+                    @click="back"
+                  >
+                    Back
+                  </v-btn>
+                </v-col>
+
 						
 							<v-col
-                  cols="12"
+                  cols="6"
                   class="text-right"
                 >
                   <v-btn
@@ -141,14 +153,7 @@
   export default {
     data() {
       return {
-        student: {
-						project_name: '',
-						start_month: '',
-						end_month: '',
-						is_currently_ongoing: 0,
-						description: '',
-						project_link: '',
-        },
+        student: [],
         checkbox2: false,
         menu1: false,
         menu2: false,
@@ -157,14 +162,23 @@
 
   created(){
     this.$store.commit('SET_LAYOUT', 'student-layout');
+    this.axios.get(`/student/projectdetails/${this.$route.params.id}/edit`).then((response) => {
+						this.student = response.data;
+						if(this.student.is_currently_ongoing==0){
+							this.checkbox2 = false;
+						}
+						if(this.student.is_currently_ongoing==1){
+							this.checkbox2 = true;
+						}
+        });
   },
   
   methods: {
 
     submit() {
       this.errors = {};
-      axios.post('/student/projectdetails', this.student).then(response => {
-        this.$router.push('/student/otherexperiencedetails');
+      axios.post(`/student/projectdetails/${this.$route.params.id}/update`, this.student).then(response => {
+        this.$router.go(-1);
       }).catch(error => {
         if (error.response.status === 422) {
         console.log("error");
@@ -172,6 +186,9 @@
       });
     },
     
+    back(){
+      this.$router.go(-1);
+    },
     
     checkOngoing(){
       if (this.checkbox2==true) {
@@ -180,17 +197,6 @@
         this.student.is_currently_ongoing = 0;
       }
     }
-		
-		
-
-  }
-
-    
-  
-    
-  
-
-  
-  
+  }  
   }
 </script>

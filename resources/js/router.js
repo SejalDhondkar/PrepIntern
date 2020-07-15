@@ -9,7 +9,7 @@ import Dashboard from './pages/user/Dashboard'
 import AdminDashboard from './pages/admin/Dashboard'
 import AdminInternshipPosts from './pages/admin/InternshipPosts'
 import AdminVerifyCompanies from './pages/admin/VerifyCompanies'
-import AdminViewInternshipsDetail from './pages/admin/ViewInternshipsDetail' 
+import AdminViewInternshipsDetail from './pages/admin/ViewInternshipsDetail'
 import AdminViewCompanies from './pages/admin/ViewCompanies'
 import ContactPage from './pages/ContactPage'
 import AdminRegister from './pages/admin/Register'
@@ -75,6 +75,12 @@ import StudentViewResume from './pages/student/ViewResume'
 import StudentInternshipsMainPage from './pages/student/InternshipsMainPage'
 import StudentInternship from './pages/student/StudentInternship'
 import ViewStudentInternship from './pages/student/ViewStudentInternship'
+import StudentViewAndEditResume from './pages/student/ViewAndEditResume'
+import StudentInternshipDetailsEdit from './pages/student/InternshipDetailsEdit'
+import StudentJobDetailsEdit from './pages/student/JobDetailsEdit'
+import StudentPositionOfRespEdit from './pages/student/PositionOfRespEdit'
+import StudentTrainingDetailsEdit from './pages/student/TrainingDetailsEdit'
+import StudentProjectDetailsEdit from './pages/student/ProjectDetailsEdit'
 
 import VerifyMobile from './pages/register/VerifyMobile'
 
@@ -693,6 +699,59 @@ const routes = [{
         }
     },
 
+    {
+        path: '/student/resume/edit',
+        name: 'student.ViewAndEditResume',
+        component: StudentViewAndEditResume,
+        meta: {
+            auth: { roles: 5, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
+        }
+    },
+
+    {
+        path: '/student/internshipdetails/:id/edit',
+        name: 'student.InternshipDetailsEdit',
+        component: StudentInternshipDetailsEdit,
+        meta: {
+            auth: { roles: 5, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
+        }
+    },
+
+    {
+        path: '/student/jobdetails/:id/edit',
+        name: 'student.JobDetailsEdit',
+        component: StudentJobDetailsEdit,
+        meta: {
+            auth: { roles: 5, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
+        }
+    },
+
+    {
+        path: '/student/positionofresponsibility/:id/edit',
+        name: 'student.PositionOfRespEdit',
+        component: StudentPositionOfRespEdit,
+        meta: {
+            auth: { roles: 5, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
+        }
+    },
+
+    {
+        path: '/student/trainingdetails/:id/edit',
+        name: 'student.TrainingDetailsEdit',
+        component: StudentTrainingDetailsEdit,
+        meta: {
+            auth: { roles: 5, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
+        }
+    },
+
+    {
+        path: '/student/projectdetails/:id/edit',
+        name: 'student.ProjectDetailsEdit',
+        component: StudentProjectDetailsEdit,
+        meta: {
+            auth: { roles: 5, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
+        }
+    },
 
 ]
 

@@ -311,7 +311,7 @@ export default {
 			submit(){
 				this.errors = {};
 					axios.post('/student/skilldetails', this.student).then(response => {
-						this.$router.push('/student/otherdetails');
+						this.$router.go(-1);
 					}).catch(error => {
 						if (error.response.status === 422) {
 						console.log("error");
@@ -320,7 +320,7 @@ export default {
       },
       
       previous(){
-            this.$router.push('/student/otherdetails');
+            this.$router.go(-1);
 				},
 
 			autoCompleteSkill1(){

@@ -6,11 +6,11 @@
   >
     
     <v-toolbar
-      color="orange darken-1"
+      color="yellow darken-1"
       dark
     >
     <v-card-text>
-      <v-toolbar-title class="text-center">Additional Details</v-toolbar-title>
+      <v-toolbar-title class="text-center">Position of Responsibility</v-toolbar-title>
       
     </v-card-text>
     </v-toolbar>
@@ -20,7 +20,7 @@
 							<v-row>
 
                   <v-col cols="12">
-                        <v-subheader>Example:<br>Secured 1st rank among 500 entries in national level story writing competition organised by XYZ.</v-subheader>
+                        <v-subheader>Example:<br>		Project leader in Swechha foundation’s Cleanliness Project in 2015 for Delhi region.</v-subheader>
                     </v-col>
 										<v-col cols="12">
                       <v-textarea
@@ -30,16 +30,15 @@
 											></v-textarea>
                     </v-col>
 
-              <v-col
+							<v-col
                   cols="6"
                   class="text-left"
                 >
                   <v-btn
                     color="primary"
-                    class="mr-0"
-                    @click="previous"
+                    @click="back"
                   >
-                    Previous
+                    Back
                   </v-btn>
                 </v-col>
 
@@ -75,28 +74,28 @@
   },
 
   created(){
-    this.$store.commit('SET_LAYOUT', 'student-layout');
-    this.axios.get('/student/additionaldetails/edit').then((response) => {
-            this.student = response.data;
+		this.$store.commit('SET_LAYOUT', 'student-layout');
+		this.axios.get(`/student/positionofresponsibility/${this.$route.params.id}/edit`).then((response) => {
+			this.student = response.data;
         });
   },
-
   
   methods: {
 
     submit() {
       this.errors = {};
-      axios.post('/student/additionaldetails', this.student).then(response => {
+      axios.post(`/student/positionofresponsibility/${this.$route.params.id}/update`, this.student).then(response => {
         this.$router.go(-1);
       }).catch(error => {
         if (error.response.status === 422) {
         console.log("error");
         }
       });
+		},
+		
+		back(){
+      this.$router.go(-1);
     },
-    previous(){
-            this.$router.go(-1);
-				},
 }
 
   }

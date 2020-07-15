@@ -17,9 +17,9 @@
     </v-toolbar>
           
         <v-container class="px-4 text-center">
-            <v-btn class="ma-2" outlined color="indigo" @click="position()">Position of Responsibility</v-btn><br>
-            <v-btn class="ma-2" outlined color="indigo" @click="training()">Training Details</v-btn><br>
-						<v-btn class="ma-2" outlined color="indigo" @click="project()">Project details</v-btn>
+            <v-btn class="ma-2" outlined color="indigo" @click="position()">Add New Position of Responsibility</v-btn><br>
+            <v-btn class="ma-2" outlined color="indigo" @click="training()">Add New Training Details</v-btn><br>
+						<v-btn class="ma-2" outlined color="indigo" @click="project()">Add New Project details</v-btn>
 						<br><br><br><br><br>
             
         <v-row>

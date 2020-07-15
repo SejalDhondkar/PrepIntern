@@ -133,7 +133,7 @@
     submit() {
       this.errors = {};
       axios.post('/student/links', this.student).then(response => {
-        this.$router.push('/student/otherdetails');
+        this.$router.go(-1);
       }).catch(error => {
         if (error.response.status === 422) {
         console.log("error");
@@ -142,7 +142,7 @@
      },
 
      previous(){
-            this.$router.push('/student/otherdetails');
+            this.$router.go(-1);
 				},
 
   }

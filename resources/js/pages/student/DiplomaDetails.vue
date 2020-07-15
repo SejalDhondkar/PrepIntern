@@ -277,7 +277,7 @@
     submit() {
       this.errors = {};
       axios.post('/student/diplomadetails', this.student).then(response => {
-        this.$router.push('/student/educationdetails');
+        this.$router.go(-1);
       }).catch(error => {
         if (error.response.status === 422) {
         console.log("error");
@@ -287,7 +287,7 @@
     },
     
     back(){
-      this.$router.push('/student/educationdetails');
+      this.$router.go(-1);
     },
 		
 		autoCompleteCollege(){

@@ -17,8 +17,8 @@
     </v-toolbar>
           
         <v-container class="px-4 text-center">
-            <v-btn class="ma-2" outlined color="indigo" @click="job()">Job details</v-btn><br>
-            <v-btn class="ma-2" outlined color="indigo" @click="internship()">Internship details</v-btn>
+            <v-btn class="ma-2" outlined color="indigo" @click="job()">Add New Job details</v-btn><br>
+            <v-btn class="ma-2" outlined color="indigo" @click="internship()">Add New Internship details</v-btn>
 						<br><br><br><br><br>
             
         <v-row>

@@ -23,4 +23,27 @@ class StudentProjectDetailsController extends Controller
         $success = 'success';
         return $success;
     }
+
+    public function show($id)
+    {
+        $student = StudentProjectDetails::findOrFail($id);
+        return $student;
+    }
+
+    public function update(Request $request, $id)
+    {
+        $student = StudentProjectDetails::findOrFail($id);
+        $student->user_id = Auth::id();
+        $student->project_name = $request->project_name;
+        $student->start_month = $request->start_month;
+        $student->end_month = $request->end_month;
+        $student->is_currently_ongoing = $request->is_currently_ongoing;
+        $student->description = $request->description;
+        $student->project_link = $request->project_link;
+        $student->update();
+
+        $success = 'success';
+        return $success;
+
+    }
 }

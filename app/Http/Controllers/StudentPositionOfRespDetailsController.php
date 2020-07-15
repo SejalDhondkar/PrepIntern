@@ -17,4 +17,22 @@ class StudentPositionOfRespDetailsController extends Controller
         $success = 'success';
         return $success;
     }
+
+    public function show($id)
+    {
+        $student = StudentPositionOfRespDetails::findOrFail($id);
+        return $student;
+    }
+
+    public function update(Request $request, $id)
+    {
+        $student = StudentPositionOfRespDetails::findOrFail($id);
+        $student->user_id = Auth::id();
+        $student->description = $request->description;
+        $student->update();
+
+        $success = 'success';
+        return $success;
+
+    }
 }
