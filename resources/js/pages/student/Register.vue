@@ -103,12 +103,13 @@
             let extra_param= '{"Company_Name":"PrepIntern"}';
             const options = { headers: {'content-type': 'application/x-www-form-urlencoded'}};
             var self = this;
-            this.$http.get(`https://infinite-depths-06908.herokuapp.com/https://api.msg91.com/api/v5/otp?authkey=${authkey}&template_id=${template_id}&extra_param=${extra_param}&mobile=${app.phone_number}&invisible=0&otp=&userip=&email=&otp_length=&otp_expiry=`).then(response => {
-              // get body data
-              console.log(response);
-            }, response => {
-              console.log('error');
-            });
+            this.$http.get(`https://infinite-depths-06908.herokuapp.com/https://api.msg91.com/api/v5/otp?authkey=${authkey}&template_id=${template_id}&extra_param=${extra_param}&mobile=${app.phone_number}&invisible=0&otp=&userip=&email=&otp_length=&otp_expiry=`)
+              .then(response => {
+                console.log(response);
+              })
+              .catch(error =>{
+                console.log('error');
+              })
 
             app.success = true
             this.$router.push('/student/verifymobile',{ params: {successRegistrationRedirect: true}})

@@ -90,20 +90,17 @@ export default {
       });
     },
 
-  mounted() {
-      this.verifyOtp()
-    },
-
     methods: {
       verifyOtp() {
         let mobile = this.user.contact_no;
         let otp = this.phone_number.otp;
         let authkey= '308476ARq4VkPBV55df64864';
         this.errors = {};
-        axios.post(`https://api.msg91.com/api/v5/otp/verify?mobile=${mobile}&otp=${otp}&authkey=${authkey}`).then(response => {
+        axios.post(`https://infinite-depths-06908.herokuapp.com/https://api.msg91.com/api/v5/otp/verify?mobile=${mobile}&otp=${otp}&authkey=${authkey}`).then(response => {
           this.response = response;
           if(response.data.type == 'success'){
-            axios.get('http://127.0.0.1:8000/api/mobileOtpVerified').then(response =>{
+            let url = process.env.MIX_APP_URL + '/api/mobileOtpVerified';
+            axios.get(url).then(response =>{
               console.log(response);
               this.$router.push('/company/primarydetails', () => {
                     this.$toasted.show('Successfully Verified');

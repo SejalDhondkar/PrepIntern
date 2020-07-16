@@ -91,10 +91,6 @@ export default {
       });
     },
 
-  mounted() {
-      this.verifyOtp()
-    },
-
     methods: {
       verifyOtp() {
         let mobile = this.user.contact_no;
