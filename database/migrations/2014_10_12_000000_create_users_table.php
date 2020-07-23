@@ -18,7 +18,6 @@ class CreateUsersTable extends Migration
             $table->string('name')->nullable();
             $table->string('email')->unique();
             $table->text('contact_no')->nullable();
-            $table->integer('role')->default(1);
             $table->bigInteger('role_id')->unsigned()->nullable();
             $table->foreign('role_id')->references('id')->on('roles');
             $table->integer('email_verified')->default(0);
