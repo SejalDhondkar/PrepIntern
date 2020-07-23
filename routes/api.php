@@ -28,10 +28,10 @@ Route::prefix('auth')->group(function () {
     });
 });
 
-Route::get('states',['uses'=>'StatesController@index','as'=>'states.index']);
 // Move this back to auth:api
 
 Route::group(['middleware' => 'auth:api'], function(){
+  Route::get('states',['uses'=>'StatesController@index','as'=>'states.index']);
     // Users
     Route::get('users', 'UserController@index');
     Route::get('users/{id}', 'UserController@show');
