@@ -4,14 +4,14 @@
     class="mx-auto"
     width="60%"
   >
-    
+
     <v-toolbar
       color="blue dark-3"
       dark
     >
     <v-card-text>
       <v-toolbar-title>Edit Profile</v-toolbar-title>
-      
+
     </v-card-text>
     </v-toolbar>
           <v-form>
@@ -28,7 +28,7 @@
                   />
                 </v-col>
 
-                
+
 
                 <v-col
                   cols="12"
@@ -92,11 +92,11 @@
                           v-model="statesearchquery"
                           label="State"
                           class="purple-input mr-4"
-                          v-on:keyup="autoCompleteState"                          
+                          v-on:keyup="autoCompleteState"
                           v-on="on"
                         />
                       </template>
-                        
+
                             <v-list v-if="state_data_results.length">
                               <v-list-item-group v-model="data" color="primary">
                                 <v-list-item
@@ -177,7 +177,7 @@
                   </v-btn>
                 </v-col>
 
-                
+
                 <v-col
                   cols="6"
                   class="text-right"
@@ -193,10 +193,10 @@
               </v-row>
             </v-container>
           </v-form>
-        
+
   </v-card>
 
-      
+
 </template>
 
 <script>
@@ -233,8 +233,8 @@
     if(this.$auth.user().role_id === 5){
       this.$store.commit('SET_LAYOUT', 'student-layout');
     }
-    let uri = `http://127.0.0.1:8000/api/profile/edit`;
-    this.axios.get(uri).then((response) => {
+    let url = process.env.MIX_APP_URL + '/api/profile/edit';
+    this.axios.get(url).then((response) => {
         this.profile = response.data;
         this.searchquery = response.data.country_name;
         this.statesearchquery = response.data.state_name;
@@ -242,7 +242,7 @@
     });
   },
 
-  
+
   methods: {
     submit() {
       this.errors = {};
@@ -254,7 +254,7 @@
         console.log("error");
         }
       });
-      
+
     },
 
     cancel(){
@@ -276,7 +276,7 @@
       this.data_results.length = false;
       this.profile.country_id = data.id;
     },
-  
+
 
     autoCompleteState(){
         this.state_data_results = [];
@@ -288,7 +288,7 @@
         }
     },
 
-    
+
     selectState(data){
       this.statesearchquery = data.name;
       this.state_data_results.length = false;
@@ -305,16 +305,16 @@
         }
     },
 
-    
+
     selectCity(data){
       this.citysearchquery = data.name;
       this.city_data_results.length = false;
       this.profile.city_id = data.id;
     }
-  
-  },
-  
 
-  
+  },
+
+
+
   }
 </script>

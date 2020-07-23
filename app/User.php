@@ -51,4 +51,24 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    public function users_get_countries()
+    {
+      return $this->belongsTo('App\Countries','country_id');
+    }
+
+    public function users_get_states()
+    {
+      return $this->belongsTo('App\States','state_id');
+    }
+
+    public function users_get_cities()
+    {
+      return $this->belongsTo('App\Cities','city_id');
+    }
+
+    public function company_get_users()
+    {
+      return $this->hasMany('App\Company','admin_id');
+    }
 }

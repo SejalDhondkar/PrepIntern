@@ -106,7 +106,7 @@ const routes = [{
         name: 'login',
         component: Login,
         meta: {
-            auth: false
+            auth: undefined
         }
     },
     // USER ROUTES

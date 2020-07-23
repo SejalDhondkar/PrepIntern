@@ -13,7 +13,13 @@ class StatesController extends Controller
         $statesearchquery = $request->statesearchquery;
         $data = States::where('country_id',$country_id)->where('name','like','%'.$statesearchquery.'%')->get();
 
-        return response()->json($data);        
+        return response()->json($data);
 
+    }
+
+    public function index()
+    {
+      $states = States::with('states_get_countries')->get();
+      return $states;
     }
 }

@@ -19,11 +19,8 @@ class CreateStatesTable extends Migration
           $table->bigInteger('country_id')->unsigned();
           $table->foreign('country_id')->references('id')->on('countries');
           $table->text('country_code')->nullable();
-          $table->text('fips_code')->nullable();
           $table->text('iso2')->nullable();
           $table->timestamps();
-          $table->integer('flag')->nullable();
-          $table->text('wikiDataId')->nullable();
         });
     }
 

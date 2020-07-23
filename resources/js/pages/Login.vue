@@ -36,6 +36,10 @@
 
     created(){
       this.$store.commit('SET_LAYOUT', 'loginsignup-layout');
+      if($auth.check())
+      {
+        this.$router.push('/');
+      }
     },
 
     mounted() {

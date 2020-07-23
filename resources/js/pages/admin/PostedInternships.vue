@@ -5,26 +5,26 @@
     width="80%"
     min-height="400"
   >
-    
+
     <v-toolbar
       color="blue dark-3"
       dark
     >
     <v-card-text>
       <v-toolbar-title>Posted Internships</v-toolbar-title>
-      
+
     </v-card-text>
     </v-toolbar>
-          
-        <v-container class="p-4">
- 
-          <v-radio-group v-model="group.is_verified" row @change="status()">
-                <v-radio label="Selected" value="1"></v-radio>
-                <v-radio label="Rejected" value="2"></v-radio>
-            	</v-radio-group> 
 
-            
-          
+        <v-container class="p-4">
+
+          <v-radio-group v-model="group.is_verified" row @change="status()">
+                <v-radio label="Approved" value="1"></v-radio>
+                <v-radio label="Rejected" value="2"></v-radio>
+            	</v-radio-group>
+
+
+
         </v-container>
         <v-container class="p-4">
             <v-data-table
@@ -40,7 +40,7 @@
             <v-col cols="12"
               class="text-left">
               <br>
-              <v-btn              
+              <v-btn
               color="primary"
               @click="back"
               >
@@ -48,14 +48,14 @@
               </v-btn>
             </v-col>
           </v-row>
-      
+
 
         </v-container>
-        
-        
+
+
   </v-card>
 
-      
+
 </template>
 <script>
 export default {
@@ -73,25 +73,25 @@ export default {
           { text: 'Profile Name', value: 'profile_name' },
 		  { text: 'Created at', value: 'created_at'},
 		  { text: 'Action', value: 'actions', sortable: false },
-					
-          
+
+
         ],
         posts: [],
         group: {
           is_verified: "1",
         }
-        
+
       }
     },
 
 		created() {
-            this.$store.commit('SET_LAYOUT', 'admin-layout');   
+            this.$store.commit('SET_LAYOUT', 'admin-layout');
 			axios.get('/admin/postedinternships').then(response => {
-			this.posts = response.data;	
+			this.posts = response.data;
       });
-        
+
     },
-    
+
     methods:{
       view(item){
         this.$route.params.id = item.id;
@@ -101,10 +101,10 @@ export default {
         this.$router.go(-1);
       },
       status(){
-        axios.get('/admin/postedinternships/sort',{params: {status: this.group.is_verified}}).then(response => {       
+        axios.get('/admin/postedinternships/sort',{params: {status: this.group.is_verified}}).then(response => {
             this.posts = response.data;
       });
       },
-    }   
+    }
 }
 </script>

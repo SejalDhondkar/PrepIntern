@@ -1,6 +1,6 @@
 <template>
 <div>
-<div >  
+<div >
   <v-card
     raised
     class="mx-auto"
@@ -8,7 +8,7 @@
   >
     <v-card-text>
       <v-flex>
-      
+
         <v-container class="p-4">
 		     <p class="display-1">{{company.company_basic_info.name}}</p>
           <p class="body-2">{{company.company_basic_info.contact_email}}</p>
@@ -57,17 +57,17 @@
               <p class="body-2">Type Of Company - <b>{{company.company_additional_details.type_of_company}}</b></p>
               <p class="body-2">Description - <b>{{company.company_additional_details.description}}</b></p>
               <p class="body-2">Range of employee - <b>{{company.company_additional_details.range_of_employees}}</b></p>
-              
+
             </div>
             </v-col>
-          
+
           <v-col cols="12"><v-divider></v-divider></v-col>
 
 
             <v-col cols="4">
               <p class="title">Social Media</p>
             </v-col>
-            
+
             <v-col cols="8">
               <div class="my-4" v-for="(com,i) in company.company_social_media_links" :key="i">
                   <p class="body-2">{{com.title}}- <b>{{com.url}}</b></p>
@@ -86,14 +86,14 @@
       grow
       :v-model="company.company_basic_info.is_verified"
     >
-   
-      
+
+
       <v-btn text color="grey" left @click="back()">
         <span>Go Back</span>
       </v-btn>
 
       <v-btn text color="success" value=1 @click="select()">
-        <span>Select</span>
+        <span>Approve</span>
         <v-icon>mdi-checkbox-marked-circle-outline</v-icon>
       </v-btn>
 
@@ -102,7 +102,7 @@
         <v-icon>mdi-close-circle-outline</v-icon>
       </v-btn>
 
-      
+
     </v-bottom-navigation>
 </div>
 </template>
@@ -132,14 +132,14 @@ export default {
         axios.get(`/admin/viewcompanies/${this.$route.params.id}/details`).then(response => {
             this.company = response.data;
             console.log(this.company);
-            
+
         });
     },
     methods:{
       select(){
         this.verify.company_id = this.company.company_basic_info.id;
         this.verify.is_verified = 1;
-        
+
         this.errors = {};
         axios.put('/admin/verifycompanies/changeverify', this.verify).then(response => {
           // console.log(this.status_array);
@@ -152,7 +152,7 @@ export default {
       reject(){
         this.verify.company_id = this.company.company_basic_info.id;
         this.verify.is_verified = 0;
-   
+
         this.errors = {};
         axios.put('/admin/verifycompanies/changeverify', this.verify).then(response => {
           // console.log(this.status_array);
@@ -170,7 +170,7 @@ export default {
     }
 }
 
-    
+
 
 </script>
 <style scoped>

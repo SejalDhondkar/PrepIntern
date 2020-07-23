@@ -10,13 +10,8 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::all();
-
-        return response()->json(
-            [
-                'status' => 'success',
-                'users' => $users->toArray()
-            ], 200);
+        $users = User::with('users_get_countries')->get();
+        return $users;
     }
 
 
@@ -30,15 +25,10 @@ class UserController extends Controller
       return $success;
     }
 
-    public function show(Request $request, $id)
+    public function show($id)
     {
-        $user = User::find($id);
-
-        return response()->json(
-            [
-                'status' => 'success',
-                'user' => $user->toArray()
-            ], 200);
+        $user = User::where('id',$id)->with('users_get_countries','users_get_states','users_get_cities')->get();
+        return $user;
     }
 
 

@@ -28,9 +28,12 @@ Route::prefix('auth')->group(function () {
     });
 });
 
+Route::get('states',['uses'=>'StatesController@index','as'=>'states.index']);
+// Move this back to auth:api
+
 Route::group(['middleware' => 'auth:api'], function(){
     // Users
-    Route::get('users', 'UserController@index')->middleware('Admin');
+    Route::get('users', 'UserController@index');
     Route::get('users/{id}', 'UserController@show');
     Route::get('roles','RolesController@index')->middleware('Admin');
     Route::post('roles/store','RolesController@store')->middleware('Admin');
@@ -57,14 +60,14 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('/company/socialmedialinks','CompanySocialMediaController@store');
     Route::get('/company/socialmedialinks/edit','CompanySocialMediaController@edit');
     Route::put('/company/socialmedialinks/update','CompanySocialMediaController@update');
-    
+
     Route::get('/admin/users/list','AdminUsersController@index')->middleware('Admin');
     Route::get('/admin/users/sort','AdminUsersController@sortByStatus')->middleware('Admin');
     Route::get('/admin/internships/index','AdminInternshipPostsController@index')->middleware('Admin');
     Route::post('/internships/status/verification','AdminInternshipPostsController@changeStatusVerification')->middleware('Admin');
     Route::get('/admin/verifycompanies','VerifyCompanyController@index')->middleware('Admin');
     Route::get('/admin/viewcompanies/{id}/details','ViewCompanyDetailsController@viewDetails')->middleware('Admin');
-    
+
     Route::put('/admin/verifycompanies/changeverify','VerifyCompanyController@changeVerified');
     Route::get('/admin/registeredcompanies/sort','RegisteredCompaniesController@sortByStatus');
     Route::get('/admin/registeredcompanies','RegisteredCompaniesController@index');

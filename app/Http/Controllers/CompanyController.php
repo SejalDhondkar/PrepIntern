@@ -20,9 +20,9 @@ class CompanyController extends Controller
         return $success;
     }
 
-    public function show(Request $request, $id)
+    public function show($id)
     {
-      $company = Company::findOrFail($id);
+      $company = Company::with('company_get_users:id,name,email,contact_no')->where('id',$id)->get();
       return $company;
     }
 

@@ -5,26 +5,26 @@
     width="80%"
     min-height="400"
   >
-    
+
     <v-toolbar
       color="blue dark-3"
       dark
     >
     <v-card-text>
       <v-toolbar-title>Companies</v-toolbar-title>
-      
+
     </v-card-text>
     </v-toolbar>
-          
-        <v-container class="p-4">
- 
-          <v-radio-group v-model="group.is_verified" row @change="status()">
-                <v-radio label="Selected" value="1"></v-radio>
-                <v-radio label="Rejected" value="0"></v-radio>
-            	</v-radio-group> 
 
-            
-          
+        <v-container class="p-4">
+
+          <v-radio-group v-model="group.is_verified" row @change="status()">
+                <v-radio label="Approved" value="1"></v-radio>
+                <v-radio label="Rejected" value="0"></v-radio>
+            	</v-radio-group>
+
+
+
         </v-container>
         <v-container class="p-4">
             <v-data-table
@@ -40,7 +40,7 @@
             <v-col cols="12"
               class="text-left">
               <br>
-              <v-btn              
+              <v-btn
               color="primary"
               @click="back"
               >
@@ -48,14 +48,14 @@
               </v-btn>
             </v-col>
           </v-row>
-      
+
 
         </v-container>
-        
-        
+
+
   </v-card>
 
-      
+
 </template>
 <script>
 export default {
@@ -73,8 +73,8 @@ export default {
 		      { text: 'Admin ID', value: 'admin_id' },
 		      { text: 'Registered at', value: 'created_at'},
           { text: 'Action', value: 'actions', sortable: false },
-					
-          
+
+
         ],
         companies: [],
         group: {
@@ -84,13 +84,13 @@ export default {
     },
 
 		created() {
-            this.$store.commit('SET_LAYOUT', 'admin-layout');   
+            this.$store.commit('SET_LAYOUT', 'admin-layout');
 			axios.get('/admin/registeredcompanies').then(response => {
-			this.companies = response.data;	
+			this.companies = response.data;
       });
-        
+
     },
-    
+
     methods:{
       view(item){
         this.$route.params.id = item.id;
@@ -100,10 +100,10 @@ export default {
         this.$router.go(-1);
       },
       status(){
-        axios.get('/admin/registeredcompanies/sort',{params: {status: this.group.is_verified}}).then(response => {       
+        axios.get('/admin/registeredcompanies/sort',{params: {status: this.group.is_verified}}).then(response => {
             this.companies = response.data;
       });
       },
-    }   
+    }
 }
 </script>

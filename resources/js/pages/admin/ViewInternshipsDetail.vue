@@ -6,7 +6,7 @@
     width="700"
   >
     <v-card-text>
-          
+
         <v-container class="p-4">
 					<p class="headline"> {{post.profile_name}} </p>
 					<p class="subtitle-1"> {{post.company_name}} </p>
@@ -24,13 +24,13 @@
               <p class="body-2" v-if="post.stipend_category=='Fixed'">Stipend: <br> Rs. {{post.stipend_fixed}} {{post.stipend_type}}</p>
               <p class="body-2" v-if="post.stipend_category=='Negotiable'">Stipend: <br> Rs. {{post.stipend_amount_min}} - {{post.stipend_amount_max}} {{post.stipend_type}}</p>
               <p class="body-2" v-if="post.stipend_category=='Performance based'">Stipend: <br> Rs. {{post.stipend_amount_min}} {{post.stipend_type}} Incentive: {{post.stipend_incentive}}</p>
-              <p class="body-2" v-if="post.stipend_category=='Unpaid'">Stipend: <br> Unpaid</p>              
+              <p class="body-2" v-if="post.stipend_category=='Unpaid'">Stipend: <br> Unpaid</p>
             </v-col>
             </v-row>
 
             <p class="body-2 mt-4" v-if="post.is_part_time_allowed==1">Part time allowed</p>
         </v-container>
-        
+
         </v-card-text>
   </v-card>
   <v-card
@@ -39,9 +39,9 @@
     width="700"
   >
     <v-card-text>
-          
-        <v-container class="p-4">			
-					
+
+        <v-container class="p-4">
+
 					<p class="body-1">About Internship:</p>
           <p class="body-2"> {{post.intern_resp_desc}}</p> <br>
           <p class="body-1"># of internships available: {{post.no_of_openings}} </p><br>
@@ -57,11 +57,11 @@
 
           <br><br>
 
-         
 
-            
+
+
         </v-container>
-        
+
         </v-card-text>
   </v-card>
    <v-bottom-navigation
@@ -74,21 +74,21 @@
         <span>Go Back</span>
       </v-btn>
       <v-btn text color="success" value="1" @click="select()">
-        <span>Select</span>
+        <span>Approve</span>
         <v-icon>mdi-checkbox-marked-circle-outline</v-icon>
       </v-btn>
 
-     
+
       <v-btn text color="red" value="2" @click="reject()">
         <span>Reject</span>
         <v-icon>mdi-close-circle-outline</v-icon>
       </v-btn>
 
-      
+
     </v-bottom-navigation>
 
 </div>
-      
+
 </template>
 
 <script>
@@ -115,11 +115,11 @@ export default {
 
     methods: {
        select(){
-       
+
         this.status_array.post_id= this.post.id;
         this.status_array.is_verified = 1;
-        
-        
+
+
         this.errors = {};
         axios.post('/internships/status/verification', this.status_array).then(response => {
           // console.log(this.status_array);
@@ -130,11 +130,11 @@ export default {
         });
        },
         reject() {
-        
+
         this.status_array.post_id= this.post.id;
         this.status_array.is_verified = 2;
-        
-        
+
+
         this.errors = {};
         axios.post('/internships/status/verification', this.status_array).then(response => {
           // console.log(this.status_array);
@@ -149,7 +149,7 @@ export default {
         this.$router.go(-1);
       }
 
-      
+
     }
 }
 </script>
