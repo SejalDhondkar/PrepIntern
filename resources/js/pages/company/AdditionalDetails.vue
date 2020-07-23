@@ -2,16 +2,16 @@
   <v-card
     raised
     class="mx-auto"
-    width="60%"
+    width="700"
   >
-    
+
     <v-toolbar
       color="blue dark-3"
       dark
     >
     <v-card-text>
       <v-toolbar-title>Company Additional Details</v-toolbar-title>
-      
+
     </v-card-text>
     </v-toolbar>
           <v-form>
@@ -28,7 +28,7 @@
                   />
                 </v-col>
 
-                
+
 
                 <v-col
                   cols="12"
@@ -97,7 +97,7 @@
                         class="purple-input mr-4"
                         v-on="on"
                       />
-                    </template>                        
+                    </template>
                           <v-list style="max-height: 250px"
                                 class="overflow-y-auto">
                             <v-list-item-group v-model="data" color="primary">
@@ -116,7 +116,7 @@
                 </v-col>
 
 
-                              
+
                 <v-col
                   cols="12"
                   class="text-right"
@@ -132,10 +132,10 @@
               </v-row>
             </v-container>
           </v-form>
-        
+
   </v-card>
 
-      
+
 </template>
 
 <script>
@@ -173,7 +173,7 @@
   created(){
     this.$store.commit('SET_LAYOUT', 'company-layout');
   },
-  
+
   methods: {
     submit() {
       this.errors = {};
@@ -185,11 +185,11 @@
         console.log("error");
         }
       });
-      
+
     },
   },
-  
 
-  
+
+
   }
 </script>

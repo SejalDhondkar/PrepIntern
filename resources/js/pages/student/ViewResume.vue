@@ -4,10 +4,10 @@
   <v-card
     raised
     class="mx-auto"
-    width="800"
+    width="700"
   >
     <v-card-text>
-      
+
         <v-container class="p-4">
 					<p class="display-1">{{student.student_basic_info.name}}</p>
           <p class="body-2">{{student.student_basic_info.email}}</p>
@@ -173,7 +173,7 @@
                   <p class="body-2">Other Profile</p>
                   <p class="body-2">{{student.student_links.other_url}}</p>
               </div>
-                  
+
             </v-col>
 
             <v-col cols="12" v-if="student.student_additional.length!=0"><v-divider></v-divider></v-col>
@@ -205,14 +205,14 @@
 
           </v-row>
 
-            
+
         </v-container>
-        
+
         </v-card-text>
   </v-card>
-  
+
 </div>
-      
+
 </template>
 
 <script>
@@ -236,7 +236,7 @@ export default {
             student_additional: [],
           },
           i: '',
-          
+
       }
     },
 

@@ -2,16 +2,16 @@
   <v-card
     outlined
     class="mx-auto"
-    width="450"
+    width="750"
   >
-    
+
     <v-toolbar
       color="yellow darken-1"
       dark
     >
     <v-card-text>
       <v-toolbar-title class="text-center">Position of Responsibility</v-toolbar-title>
-      
+
     </v-card-text>
     </v-toolbar>
           <v-form>
@@ -30,7 +30,7 @@
 											></v-textarea>
                     </v-col>
 
-						
+
 							<v-col
                   cols="12"
                   class="text-right"
@@ -45,10 +45,10 @@
               </v-row>
             </v-container>
           </v-form>
-        
+
   </v-card>
 
-      
+
 </template>
 
 <script>
@@ -64,7 +64,7 @@
   created(){
     this.$store.commit('SET_LAYOUT', 'student-layout');
   },
-  
+
   methods: {
 
     submit() {

@@ -1,17 +1,17 @@
 <template>
   <v-card
-    outlined
+    raised
     class="mx-auto"
-    width="500"
+    width="700"
   >
-    
+
     <v-toolbar
       color="green dark-3"
       dark
     >
     <v-card-text>
       <v-toolbar-title class="text-center">Internship Preferences</v-toolbar-title>
-      
+
     </v-card-text>
     </v-toolbar>
           <v-container class="p-4 m-4">
@@ -50,17 +50,17 @@
 										dense
 										return-object
 									></v-select>
-												
+
 						</v-container>
 
-						
+
 							<p class="font-weight-medium">What type of internship are you interested in?</p>
 								<v-radio-group v-model="student.type_of_internship_id">
 										<v-radio
 											v-for="(int,n) in this.type_of_int"
 											:key="n"
 											:label="int.name"
-											:value="int.id"											
+											:value="int.id"
 											return-object
 											@change="city(int.id)"
 										></v-radio>
@@ -68,7 +68,7 @@
 
 							<div v-if="show_city">
 							<p class="font-weight-medium">In which cities would you like to do your internship?</p>
-									
+
 											<v-menu offset-y>
                       <template v-slot:activator="{ on }">
                         <v-text-field
@@ -78,7 +78,7 @@
                           v-on:keyup="autoCompleteCity1"
 													v-on="on"
                         />
-                      </template>                        
+                      </template>
                             <v-list v-if="city_data_results.length"
 																	style="max-height: 250px"
        														class="overflow-y-auto">
@@ -105,7 +105,7 @@
                           v-on:keyup="autoCompleteCity2"
 													v-on="on"
                         />
-                      </template>                        
+                      </template>
                             <v-list v-if="city_data_results.length"
 																	style="max-height: 250px"
        														class="overflow-y-auto">
@@ -132,7 +132,7 @@
                           v-on:keyup="autoCompleteCity3"
 													v-on="on"
                         />
-                      </template>                        
+                      </template>
                             <v-list v-if="city_data_results.length"
 																	style="max-height: 250px"
        														class="overflow-y-auto">
@@ -151,8 +151,8 @@
 											</v-menu>
 							</div>
 
-                    
-						
+
+
           </v-container>
 					<v-row class="px-4">
 
@@ -169,11 +169,11 @@
                   </v-btn>
                 </v-col>
               </v-row>
-                      
-        
+
+
   </v-card>
 
-      
+
 </template>
 
 <script>
@@ -220,7 +220,7 @@ export default {
 		created() {
       this.$store.commit('SET_LAYOUT', 'student-layout');
 			axios.get('/student/internships/fields').then(response => {
-						this.fields_list= response.data;					
+						this.fields_list= response.data;
 			});
 		},
 
@@ -236,7 +236,7 @@ export default {
 						}
 					});
 			},
-			
+
 			city(id){
 				if (id==1 || id==3) {
 					this.show_city = true;
@@ -252,7 +252,7 @@ export default {
          });
         }
 		},
-		
+
 		autoCompleteCity2(){
         this.city_data_results = [];
         if(this.citysearchquery2.length > 2){
@@ -261,7 +261,7 @@ export default {
          });
         }
 		},
-		
+
 		autoCompleteCity3(){
         this.city_data_results = [];
         if(this.citysearchquery3.length > 2){
@@ -271,19 +271,19 @@ export default {
         }
     },
 
-    
+
     selectCity1(data){
       this.citysearchquery1 = data.name;
       this.city_data_results.length = false;
       this.student.city_preferences[0] = data.id;
 		},
-		
+
 		selectCity2(data){
       this.citysearchquery2 = data.name;
       this.city_data_results.length = false;
       this.student.city_preferences[1] = data.id;
 		},
-		
+
 		selectCity3(data){
       this.citysearchquery3 = data.name;
       this.city_data_results.length = false;

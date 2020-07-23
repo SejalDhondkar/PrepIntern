@@ -5,7 +5,7 @@
       >
     <v-card
       class="mx-auto elevation-6"
-      width="50%"
+      width="70%"
       >
 
         <v-toolbar

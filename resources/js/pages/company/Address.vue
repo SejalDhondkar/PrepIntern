@@ -2,16 +2,16 @@
   <v-card
     raised
     class="mx-auto"
-    width="70%"
+    width="700"
   >
-    
+
     <v-toolbar
       color="blue dark-3"
       dark
     >
     <v-card-text>
       <v-toolbar-title>Company Address Details</v-toolbar-title>
-      
+
     </v-card-text>
     </v-toolbar>
           <v-form>
@@ -51,11 +51,11 @@
 
                     </v-col>
 
-                    <v-col cols="4">
+                    <v-col cols="4" v-if="company.country_id == '101'">
                         <v-subheader>State</v-subheader>
                     </v-col>
 
-                    <v-col cols="8">
+                    <v-col cols="8" v-if="company.country_id == '101'">
                       <v-menu offset-y>
                       <template v-slot:activator="{ on }">
                         <v-text-field
@@ -63,11 +63,11 @@
                           v-model="statesearchquery"
                           label="Type to search state"
                           class="purple-input mr-4"
-                          v-on:keyup="autoCompleteState"                          
+                          v-on:keyup="autoCompleteState"
                           v-on="on"
                         />
                       </template>
-                        
+
                             <v-list v-if="state_data_results.length">
                               <v-list-item-group v-model="data" color="primary">
                                 <v-list-item
@@ -85,11 +85,11 @@
 
                     </v-col>
 
-                    <v-col cols="4">
+                    <v-col cols="4" v-if="(company.state_id != '24' || company.state_id != '25' || company.state_id != '28') && company.country_id =='101' ">
                         <v-subheader>City</v-subheader>
                     </v-col>
 
-                    <v-col cols="8">
+                    <v-col cols="8"  v-if="(company.state_id != '24' || company.state_id != '25' || company.state_id != '28') && company.country_id =='101' ">
                       <v-menu offset-y>
                       <template v-slot:activator="{ on }">
                         <v-text-field
@@ -116,7 +116,7 @@
                             </v-list>
                       </v-menu>
 
-                    </v-col>                    
+                    </v-col>
 
                     </v-row>
 
@@ -143,7 +143,7 @@
                   />
                 </v-col>
 
-                              
+
                 <v-col
                   cols="12"
                   class="text-right"
@@ -159,10 +159,10 @@
               </v-row>
             </v-container>
           </v-form>
-        
+
   </v-card>
 
-      
+
 </template>
 
 <script>
@@ -206,7 +206,7 @@
   created(){
     this.$store.commit('SET_LAYOUT', 'company-layout');
   },
-  
+
   methods: {
 
     submit() {
@@ -218,11 +218,11 @@
         console.log("error");
         }
       });
-      
+
     },
 
-    
-  
+
+
     autoComplete(){
         this.data_results = [];
         // console.log(this.searchquery);
@@ -239,7 +239,7 @@
       this.company.country_id = data.id;
       this.state = false;
     },
-  
+
 
     autoCompleteState(){
         this.state_data_results = [];
@@ -250,7 +250,7 @@
         }
     },
 
-    
+
     selectState(data){
       this.statesearchquery = data.name;
       this.state_data_results.length = false;
@@ -267,18 +267,17 @@
         }
     },
 
-    
+
     selectCity(data){
       this.citysearchquery = data.name;
       this.city_data_results.length = false;
       this.company.city_id = data.id;
     }
-  
+
 
   },
-  
 
-  
+
+
   }
 </script>
-

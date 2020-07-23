@@ -2,23 +2,23 @@
   <v-card
     outlined
     class="mx-auto"
-    width="450"
+    width="700"
   >
-    
+
     <v-toolbar
       color="yellow darken-1"
       dark
     >
     <v-card-text>
       <v-toolbar-title class="text-center">Project Details</v-toolbar-title>
-      
+
     </v-card-text>
     </v-toolbar>
           <v-form>
             <v-container class="p-4">
 
 							<v-row>
-              
+
               <v-col cols="4"
                     class="text-center">
                         <v-subheader>Title:</v-subheader>
@@ -31,7 +31,7 @@
                         />
                     </v-col>
 
-                    
+
 
                     <v-col
                       cols="6">
@@ -128,7 +128,7 @@
                   </v-btn>
                 </v-col>
 
-						
+
 							<v-col
                   cols="6"
                   class="text-right"
@@ -143,10 +143,10 @@
               </v-row>
             </v-container>
           </v-form>
-        
+
   </v-card>
 
-      
+
 </template>
 
 <script>
@@ -172,7 +172,7 @@
 						}
         });
   },
-  
+
   methods: {
 
     submit() {
@@ -185,11 +185,11 @@
         }
       });
     },
-    
+
     back(){
       this.$router.go(-1);
     },
-    
+
     checkOngoing(){
       if (this.checkbox2==true) {
         this.student.is_currently_ongoing = 1;
@@ -197,6 +197,6 @@
         this.student.is_currently_ongoing = 0;
       }
     }
-  }  
+  }
   }
 </script>

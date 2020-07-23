@@ -1,13 +1,13 @@
 <template>
 <div>
-<div >  
+<div >
   <v-card
     raised
     class="mx-auto"
-    width="800"
+    width="80%"
   >
     <v-card-text>
-      
+
         <v-container class="p-4">
 					<p class="display-1">{{student.student_assessment.student_name}}</p>
           <p class="body-2">{{student.student_basic_info.email}}</p>
@@ -173,7 +173,7 @@
                   <p class="body-2">Other Profile</p>
                   <p class="body-2">{{student.student_links.other_url}}</p>
               </div>
-                  
+
             </v-col>
 
             <v-col cols="12" v-if="student.student_additional.length!=0"><v-divider></v-divider></v-col>
@@ -192,9 +192,9 @@
 
           </v-row>
 
-            
+
         </v-container>
-        
+
         </v-card-text>
   </v-card>
 
@@ -204,7 +204,7 @@
     width="800"
   >
     <v-card-text>
-        
+
         <v-container class="p-4">
           <p class="headline text-center">Assessment Questions</p>
           <v-divider></v-divider>
@@ -229,7 +229,7 @@
   </v-card>
 
 </div>
-  
+
   <v-bottom-navigation
       fixed
       horizontal
@@ -254,12 +254,12 @@
         <v-icon>mdi-close-circle-outline</v-icon>
       </v-btn>
 
-      
+
     </v-bottom-navigation>
 
-  
+
 </div>
-      
+
 </template>
 
 <script>
@@ -292,7 +292,7 @@ export default {
             student_id: '',
             status: '',
           },
-          
+
       }
     },
 
@@ -310,7 +310,7 @@ export default {
         this.status_array.post_id = this.student.student_assessment.post_id;
         this.status_array.student_id = this.student.student_assessment.student_id;
         this.status_array.status = 'Selected';
-        
+
         this.errors = {};
         axios.post('/applicant/status/change', this.status_array).then(response => {
           // console.log(this.status_array);
@@ -319,7 +319,7 @@ export default {
           console.log("error");
           }
         });
-        
+
 
       },
       shortlist(){
@@ -342,7 +342,7 @@ export default {
         this.status_array.post_id = this.student.student_assessment.post_id;
         this.status_array.student_id = this.student.student_assessment.student_id;
         this.status_array.status = 'Rejected';
-        
+
         this.errors = {};
         axios.post('/applicant/status/change', this.status_array).then(response => {
           // console.log(this.status_array);

@@ -2,25 +2,24 @@
   <v-card
     raised
     class="mx-auto"
-    width="500"
-    min-height="300"
+    width="700"
   >
-    
+
     <v-toolbar
       color="blue dark-3"
       dark
     >
     <v-card-text>
       <v-toolbar-title>Experience Details</v-toolbar-title>
-      
+
     </v-card-text>
     </v-toolbar>
-          
+
         <v-container class="px-4 text-center">
             <v-btn class="ma-2" outlined color="indigo" @click="job()">Add New Job details</v-btn><br>
             <v-btn class="ma-2" outlined color="indigo" @click="internship()">Add New Internship details</v-btn>
 						<br><br><br><br><br>
-            
+
         <v-row>
 					<v-col
 						cols="6"
@@ -46,10 +45,10 @@
 					</v-col>
 				</v-row>
         </v-container>
-        
+
   </v-card>
 
-      
+
 </template>
 
 <script>
@@ -75,11 +74,11 @@ export default {
         previous(){
             this.$router.push('/student/educationdetails');
 				},
-				
+
 				next(){
             this.$router.push('/student/otherexperiencedetails');
         },
     }
-  
+
 }
 </script>

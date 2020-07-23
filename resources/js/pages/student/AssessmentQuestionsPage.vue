@@ -1,17 +1,15 @@
 <template>
-  <v-card
-    outlined
-    class="mx-auto"
-    width="600"
-  >
-    
+  <v-card outlined
+          class="mx-auto"
+          width="700">
+
     <v-toolbar
       color="yellow darken-1"
       dark
     >
     <v-card-text>
       <v-toolbar-title class="text-center">Assessment Questions</v-toolbar-title>
-      
+
     </v-card-text>
     </v-toolbar>
           <v-form>
@@ -52,7 +50,7 @@
 									></v-textarea>
 							</div>
 
-							<v-row>                  
+							<v-row>
 							<v-col
                   cols="12"
                   class="text-center"
@@ -67,10 +65,10 @@
               </v-row>
             </v-container>
           </v-form>
-        
+
   </v-card>
 
-      
+
 </template>
 
 <script>
@@ -97,7 +95,7 @@ created() {
           this.post = response.data;
       });
     },
-  
+
   methods: {
 
     submit() {

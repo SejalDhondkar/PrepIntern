@@ -2,25 +2,25 @@
   <v-card
     raised
     class="mx-auto"
-    width="500"
+    width="70%"
   >
-    
+
     <v-toolbar
       color="blue dark-3"
       dark
     >
     <v-card-text>
       <v-toolbar-title>Edit Details</v-toolbar-title>
-      
+
     </v-card-text>
     </v-toolbar>
-          
+
         <v-container class="px-4 text-center">
             <v-btn class="ma-2" outlined color="indigo" @click="primary()">Primary Details</v-btn><br>
             <v-btn class="ma-2" outlined color="indigo" @click="address()">Address</v-btn><br>
             <v-btn class="ma-2" outlined color="indigo" @click="additional()">Additional Details</v-btn><br>
 						<v-btn class="ma-2" outlined color="indigo" @click="social()">Social Media Links</v-btn>
-        
+
         <v-row>
         <v-col
 						cols="6"
@@ -35,10 +35,10 @@
 					</v-col>
 				</v-row>
         </v-container>
-        
+
   </v-card>
 
-      
+
 </template>
 
 <script>
@@ -73,6 +73,6 @@ export default {
             this.$router.push('/company/dashboard');
         },
     }
-  
+
 }
 </script>

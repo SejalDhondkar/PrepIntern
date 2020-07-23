@@ -4,10 +4,10 @@
   <v-card
     raised
     class="mx-auto"
-    width="800"
+    width="700"
   >
     <v-card-text>
-      
+
         <v-container class="p-4">
           <v-card flat>
 		    	<p class="display-1">{{student.student_basic_info.name}}<v-btn icon dark class="float-right ma-2 text-decoration-none" color="primary" to="/profile/edit"><v-icon>mdi-pencil-outline</v-icon></v-btn></p>
@@ -28,9 +28,9 @@
               <p class="body-2">PhD, {{student.student_phd.stream_name}} ({{student.student_phd.start_year}}-{{student.student_phd.end_year}})<v-btn icon dark class="float-right ma-2 text-decoration-none" color="primary" to="/student/phddetails"><v-icon>mdi-pencil-outline</v-icon></v-btn></p>
               <p class="body-2">{{student.student_phd.college_name}}</p>
               <p class="body-2">Score: {{student.student_phd.gpa_score}}</p>
-							
+
             </v-card>
-						
+
 
             <v-card flat class="my-4" v-if="student.student_post_grad">
               <p class="body-2">{{student.student_post_grad.degree_name}}, {{student.student_post_grad.stream_name}} ({{student.student_post_grad.start_year}}-{{student.student_post_grad.end_year}})<v-btn icon dark class="float-right ma-2 text-decoration-none" color="primary" to="/student/postgraduationdetails"><v-icon>mdi-pencil-outline</v-icon></v-btn></p>
@@ -177,7 +177,7 @@
                   <p class="body-2">Other Profile<span><v-btn icon dark class="float-right ma-2 text-decoration-none" color="primary" to="/student/links"><v-icon>mdi-pencil-outline</v-icon></v-btn></span></p>
                   <p class="body-2">{{student.student_links.other_url}}</p>
               </v-card>
-                  
+
             </v-col>
 
             <v-col cols="12" v-if="student.student_additional.length!=0"><v-divider></v-divider></v-col>
@@ -193,12 +193,12 @@
             </v-col>
           </v-row>
         </v-container>
-        
+
         </v-card-text>
   </v-card>
-  
+
 </div>
-      
+
 </template>
 
 <script>
@@ -222,7 +222,7 @@ export default {
             student_additional: [],
           },
           i: '',
-          
+
       }
     },
 

@@ -12,19 +12,6 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        $v = Validator::make($request->all(), [
-            'email' => 'required|email|unique:users',
-            'password'  => 'required|min:3|confirmed',
-            //'contact_no'=> 'required'
-        ]);
-
-        if ($v->fails())
-        {
-            return response()->json([
-                'status' => 'error',
-                'errors' => $v->errors()
-            ], 422);
-        }
         $user = new User;
         $user->name = $request->name;
         $user->email = $request->email;
@@ -32,8 +19,8 @@ class AuthController extends Controller
         $user->contact_no = $request->phone_number;
         $user->role_id = $request->role_id;
         $user->save();
-        
-        
+
+
     }
 
     public function login(Request $request)

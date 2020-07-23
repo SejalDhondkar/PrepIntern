@@ -2,29 +2,29 @@
   <v-card
     raised
     class="mx-auto"
-    width="60%"
+    width="70%"
     min-height="400"
   >
-    
+
     <v-toolbar
       color="blue dark-3"
       dark
     >
     <v-card-text>
       <v-toolbar-title>Dashboard</v-toolbar-title>
-      
+
     </v-card-text>
     </v-toolbar>
-          
+
         <v-container class="p-4">
             <v-card-subtitle>Welcome to PrepIntern.</v-card-subtitle>
             <v-card-subtitle>{{this.message}}</v-card-subtitle>
         </v-container>
-        
-        
+
+
   </v-card>
 
-      
+
 </template>
 
 <script>
@@ -57,9 +57,9 @@ export default {
       });
   },
 
-  
+
     created(){
-    this.$store.commit('SET_LAYOUT', 'company-layout');    
+    this.$store.commit('SET_LAYOUT', 'company-layout');
   },
 }
 </script>

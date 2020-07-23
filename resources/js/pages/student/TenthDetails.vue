@@ -2,16 +2,16 @@
   <v-card
     outlined
     class="mx-auto"
-    width="450"
+    width="700"
   >
-    
+
     <v-toolbar
       color="purple darken-1"
       dark
     >
     <v-card-text>
       <v-toolbar-title class="text-center">X (Secondary) Details</v-toolbar-title>
-      
+
     </v-card-text>
     </v-toolbar>
           <v-form>
@@ -52,7 +52,7 @@
                           v-on="on"
                         />
                       </template>
-                        
+
                             <v-list style="max-height: 250px"
        														class="overflow-y-auto">
                               <v-list-item-group v-model="year" color="primary">
@@ -108,7 +108,7 @@
                     Back
                   </v-btn>
                 </v-col>
-						
+
 							<v-col
                   cols="6"
                   class="text-right"
@@ -123,10 +123,10 @@
               </v-row>
             </v-container>
           </v-form>
-        
+
   </v-card>
 
-      
+
 </template>
 
 <script>
@@ -155,7 +155,7 @@ created(){
         });
   },
 
-  
+
   methods: {
 
     submit() {
@@ -167,14 +167,14 @@ created(){
         console.log("error");
         }
       });
-      
+
     },
-    
+
     back(){
       this.$router.go(-1);
     },
 
 	}
-  
+
   }
 </script>

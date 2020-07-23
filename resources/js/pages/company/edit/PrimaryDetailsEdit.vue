@@ -2,16 +2,16 @@
   <v-card
     raised
     class="mx-auto"
-    width="60%"
+    width="70%"
   >
-    
+
     <v-toolbar
       color="blue dark-3"
       dark
     >
     <v-card-text>
       <v-toolbar-title>Company Primary Details</v-toolbar-title>
-      
+
     </v-card-text>
     </v-toolbar>
           <v-form>
@@ -28,7 +28,7 @@
                   />
                 </v-col>
 
-                
+
 
                 <v-col
                   cols="12"
@@ -65,7 +65,7 @@
                   </v-btn>
                 </v-col>
 
-                              
+
                 <v-col
                   cols="6"
                   class="text-right"
@@ -81,10 +81,10 @@
               </v-row>
             </v-container>
           </v-form>
-        
+
   </v-card>
 
-      
+
 </template>
 
 <script>
@@ -106,8 +106,8 @@
             this.company = response.data;
         });
       },
-  
-  
+
+
   methods: {
     submit() {
       this.errors = {};
@@ -119,15 +119,15 @@
         console.log("error");
         }
       });
-      
+
     },
 
     back(){
       this.$router.push('/company/editpage');
     }
   },
-  
 
-  
+
+
   }
 </script>

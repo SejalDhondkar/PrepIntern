@@ -2,16 +2,16 @@
   <v-card
     raised
     class="mx-auto"
-    width="60%"
+    width="70%"
   >
-    
+
     <v-toolbar
       color="blue dark-3"
       dark
     >
     <v-card-text>
       <v-toolbar-title>Company Social Media Links</v-toolbar-title>
-      
+
     </v-card-text>
     </v-toolbar>
           <v-form>
@@ -19,7 +19,7 @@
 						<v-row>
               <v-row  class="px-4" v-for="(link, i) in company"
                 :key="i">
-								
+
 
 								<v-col cols="5">
 									<v-subheader>{{link.title}}</v-subheader>
@@ -37,8 +37,8 @@
                 </v-col>
               </v-row>
 
-              
-							        
+
+
                 <v-col
                   cols="12"
                   class="text-right"
@@ -54,7 +54,7 @@
               </v-row>
             </v-container>
           </v-form>
-        
+
   </v-card>
 
 
@@ -73,7 +73,7 @@ export default {
         {social_media_link_id: 5, title: 'Website', url: ''},
       ],
       link: 1,
-      flag: ''      
+      flag: ''
     }
   },
 
@@ -104,9 +104,9 @@ export default {
         console.log("error");
         }
       });
-      
+
     },
-      
+
     }
 
 }

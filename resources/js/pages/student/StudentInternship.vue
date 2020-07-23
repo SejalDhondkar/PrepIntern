@@ -2,20 +2,20 @@
   <v-card
     raised
     class="mx-auto"
-    width="80%"
+    width="700"
     min-height="400"
   >
-    
+
     <v-toolbar
       color="blue dark-3"
       dark
     >
     <v-card-text>
       <v-toolbar-title>Applied Internships</v-toolbar-title>
-      
+
     </v-card-text>
     </v-toolbar>
-          
+
         <v-container class="p-4">
             <v-data-table
 							:headers="headers"
@@ -30,7 +30,7 @@
             <v-col cols="12"
               class="text-left">
               <br>
-              <v-btn              
+              <v-btn
               color="primary"
               @click="back"
               >
@@ -38,14 +38,14 @@
               </v-btn>
             </v-col>
           </v-row>
-      
+
 
         </v-container>
-        
-        
+
+
   </v-card>
 
-      
+
 </template>
 <script>
 export default {
@@ -62,24 +62,24 @@ export default {
           { text: 'Profile Name', value: 'profile_name' },
           { text: 'Status', value: 'status' },
 		      { text: 'Action', value: 'actions', sortable: false },
-					
-          
+
+
         ],
         posts: [],
-       
-        
+
+
       }
     },
 
 		created() {
-            this.$store.commit('SET_LAYOUT', 'student-layout');   
+            this.$store.commit('SET_LAYOUT', 'student-layout');
 			axios.get('/student/studentinternship').then(response => {
 			this.posts = response.data;
-      console.log(this.posts);	
+      console.log(this.posts);
       });
-        
+
     },
-    
+
     methods:{
       view(item){
         this.$route.params.id = item.id;
@@ -88,6 +88,6 @@ export default {
       back(){
         this.$router.go(-1);
       },
-    }   
+    }
 }
 </script>

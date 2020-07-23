@@ -1,16 +1,14 @@
 <template>
-<div>
-  <v-card
-    raised
-    class="mx-auto"
-    width="700"
-  >
-    <v-card-text>
-          
+  <div>
+    <v-card raised
+            class="mx-auto"
+            width="700">
+      <v-card-text>
+
         <v-container class="p-4">
-					<p class="headline"> {{post.profile_name}} </p>
-					<p class="subtitle-1"> {{post.company_name}} </p>
-					<p class="body-2">Location(s): <span v-for="(loc,i) in post.location" :key="i"> {{loc}} </span></p>
+          <p class="headline"> {{post.profile_name}} </p>
+          <p class="subtitle-1"> {{post.company_name}} </p>
+          <p class="body-2">Location(s): <span v-for="(loc,i) in post.location" :key="i"> {{loc}} </span></p>
           <br>
           <v-row>
             <v-col cols="3">
@@ -22,27 +20,28 @@
             </v-col>
             <v-col cols="6">
               <p class="body-2" v-if="post.stipend_category=='Fixed'">Stipend: <br> Rs. {{post.stipend_fixed}} {{post.stipend_type}}</p>
-              <p class="body-2" v-if="post.stipend_category=='Negotiable'">Stipend: <br> Rs. {{post.stipend_amount_min}} - {{post.stipend_amount_max}} {{post.stipend_type}}</p>
-              <p class="body-2" v-if="post.stipend_category=='Performance based'">Stipend: <br> Rs. {{post.stipend_amount_min}} {{post.stipend_type}} Incentive: {{post.stipend_incentive}}</p>
-              <p class="body-2" v-if="post.stipend_category=='Unpaid'">Stipend: <br> Unpaid</p>              
+              <p class="body-2"
+                 v-if="post.stipend_category=='Negotiable'">Stipend: <br> Rs. {{post.stipend_amount_min}} - {{post.stipend_amount_max}} {{post.stipend_type}}</p>
+              <p class="body-2"
+                 v-if="post.stipend_category=='Performance based'">Stipend: <br> Rs. {{post.stipend_amount_min}} {{post.stipend_type}} Incentive: {{post.stipend_incentive}}</p>
+              <p class="body-2"
+                 v-if="post.stipend_category=='Unpaid'">Stipend: <br> Unpaid</p>
             </v-col>
-            </v-row>
+          </v-row>
 
-            <p class="body-2 mt-4" v-if="post.is_part_time_allowed==1">Part time allowed</p>
+          <p class="body-2 mt-4" v-if="post.is_part_time_allowed==1">Part time allowed</p>
         </v-container>
-        
-        </v-card-text>
-  </v-card>
-  <v-card
-    raised
-    class="mx-auto mt-4"
-    width="700"
-  >
-    <v-card-text>
-          
-        <v-container class="p-4">			
-					
-					<p class="body-1">About Internship:</p>
+
+      </v-card-text>
+    </v-card>
+    <v-card raised
+            class="mx-auto mt-4"
+            width="700">
+      <v-card-text>
+
+        <v-container class="p-4">
+
+          <p class="body-1">About Internship:</p>
           <p class="body-2"> {{post.intern_resp_desc}}</p> <br>
           <p class="body-1"># of internships available: {{post.no_of_openings}} </p><br>
 
@@ -59,72 +58,62 @@
 
           <v-row>
 
-            <v-col
-                  cols="6"
-                  class="text-right"
-                >
-                  <v-btn
-                    @click="back()"
-                  >
-                    Go back
-                  </v-btn>
-                </v-col>
-                <v-col
-                  cols="6"
-                  class="text-left"
-                >
-                  <v-btn
-                    color="success"
-                    @click="apply()"
-                  >
-                    Apply Now
-                  </v-btn>
-                </v-col>
+            <v-col cols="6"
+                   class="text-right">
+              <v-btn @click="back()">
+                Go back
+              </v-btn>
+            </v-col>
+            <v-col cols="6"
+                   class="text-left">
+              <v-btn color="success"
+                     @click="apply()">
+                Apply Now
+              </v-btn>
+            </v-col>
 
-                
-              </v-row>
+          </v-row>
 
-            
         </v-container>
-        
-        </v-card-text>
-  </v-card>
-</div>
-      
+
+      </v-card-text>
+    </v-card>
+  </div>
 </template>
 
 <script>
-export default {
-    data(){
+  export default {
+    data() {
       return {
-          post: [],
-          i: 0,
+        post: [],
+        i: 0
       }
     },
 
     created() {
-      this.$store.commit('SET_LAYOUT', 'student-layout');
+      this.$store.commit('SET_LAYOUT', 'student-layout')
       axios.get(`/student/internship/${this.$route.params.id}/details`).then(response => {
-          this.post = response.data;
-      });
+        this.post = response.data
+      })
     },
 
     methods: {
-      apply(){
-        this.$router.push({name: 'student.ViewResume', params: {post_id: this.post.id}});
+      apply() {
+        this.$router.push({ name: 'student.ViewResume', params: { post_id: this.post.id } })
       },
-      back(){
-        this.$router.go(-1);
-      },
+      back() {
+        this.$router.go(-1)
+      }
     }
-}
+  }
 </script>
 
 <style scoped>
-.headline, .body-1 {
-  color: black;
-}
-p {
-  margin: 0%;
-}
+  .headline,
+  .body-1 {
+    color: black;
+  }
+  p {
+    margin: 0%;
+  }
 </style>

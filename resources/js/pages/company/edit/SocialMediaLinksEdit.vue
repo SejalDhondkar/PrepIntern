@@ -2,16 +2,16 @@
   <v-card
     raised
     class="mx-auto"
-    width="60%"
+    width="70%"
   >
-    
+
     <v-toolbar
       color="blue dark-3"
       dark
     >
     <v-card-text>
       <v-toolbar-title>Company Social Media Links</v-toolbar-title>
-      
+
     </v-card-text>
     </v-toolbar>
           <v-form>
@@ -19,7 +19,7 @@
 						<v-row>
               <v-row  class="px-4" v-for="(link, i) in company"
                 :key="i">
-								
+
 
 								<v-col cols="5">
 									<v-subheader>{{link.title}}</v-subheader>
@@ -49,7 +49,7 @@
                     Back
                   </v-btn>
                 </v-col>
-							        
+
                 <v-col
                   cols="6"
                   class="text-right"
@@ -65,7 +65,7 @@
               </v-row>
             </v-container>
           </v-form>
-        
+
   </v-card>
 
 
@@ -84,10 +84,10 @@ export default {
         {social_media_link_id: 5, title: 'Website', url: ''},
       ],
       link: 1,
-      flag: ''      
+      flag: ''
     }
 	},
-	
+
 	created() {
         this.$store.commit('SET_LAYOUT', 'company-layout');
         this.axios.get('/company/socialmedialinks/edit').then((response) => {
@@ -106,13 +106,13 @@ export default {
         console.log("error");
         }
       });
-      
+
 		},
-		
+
 		back(){
 			this.$router.push('/company/editpage');
 		}
-      
+
     }
 
 }

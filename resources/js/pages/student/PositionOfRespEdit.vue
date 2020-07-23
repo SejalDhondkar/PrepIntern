@@ -2,16 +2,16 @@
   <v-card
     outlined
     class="mx-auto"
-    width="450"
+    width="700"
   >
-    
+
     <v-toolbar
       color="yellow darken-1"
       dark
     >
     <v-card-text>
       <v-toolbar-title class="text-center">Position of Responsibility</v-toolbar-title>
-      
+
     </v-card-text>
     </v-toolbar>
           <v-form>
@@ -42,7 +42,7 @@
                   </v-btn>
                 </v-col>
 
-						
+
 							<v-col
                   cols="6"
                   class="text-right"
@@ -57,10 +57,10 @@
               </v-row>
             </v-container>
           </v-form>
-        
+
   </v-card>
 
-      
+
 </template>
 
 <script>
@@ -79,7 +79,7 @@
 			this.student = response.data;
         });
   },
-  
+
   methods: {
 
     submit() {
@@ -92,7 +92,7 @@
         }
       });
 		},
-		
+
 		back(){
       this.$router.go(-1);
     },

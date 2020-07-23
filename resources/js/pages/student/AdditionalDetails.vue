@@ -1,17 +1,15 @@
 <template>
-  <v-card
-    outlined
-    class="mx-auto"
-    width="450"
-  >
-    
+  <v-card outlined
+          class="mx-auto"
+          width="700">
+
     <v-toolbar
       color="orange darken-1"
       dark
     >
     <v-card-text>
       <v-toolbar-title class="text-center">Additional Details</v-toolbar-title>
-      
+
     </v-card-text>
     </v-toolbar>
           <v-form>
@@ -43,7 +41,7 @@
                   </v-btn>
                 </v-col>
 
-						
+
 							<v-col
                   cols="6"
                   class="text-right"
@@ -58,10 +56,10 @@
               </v-row>
             </v-container>
           </v-form>
-        
+
   </v-card>
 
-      
+
 </template>
 
 <script>
@@ -81,7 +79,7 @@
         });
   },
 
-  
+
   methods: {
 
     submit() {

@@ -2,7 +2,7 @@
     <v-container class="mx-4 my-4">
         <v-card raised
 					class="mx-auto my-4 p-4"
-					width="550"
+					width="700"
 					min-height="200"
 					v-for="(post,i) in posts"
 					:key="i"
@@ -24,7 +24,7 @@
 								<p class="body-2" v-if="post.stipend_category=='Fixed'">Stipend: <br> Rs. {{post.stipend_fixed}} {{post.stipend_type}}</p>
 								<p class="body-2" v-if="post.stipend_category=='Negotiable'">Stipend: <br> Rs. {{post.stipend_amount_min}} - {{post.stipend_amount_max}} {{post.stipend_type}}</p>
 								<p class="body-2" v-if="post.stipend_category=='Performance based'">Stipend: <br> Rs. {{post.stipend_amount_min}} {{post.stipend_type}} Incentive: {{post.stipend_incentive}}</p>
-								<p class="body-2" v-if="post.stipend_category=='Unpaid'">Stipend: <br> Unpaid</p>              
+								<p class="body-2" v-if="post.stipend_category=='Unpaid'">Stipend: <br> Unpaid</p>
 							</v-col>
 							</v-row>
 

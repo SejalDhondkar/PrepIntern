@@ -2,16 +2,16 @@
   <v-card
     outlined
     class="mx-auto"
-    width="500"
+    width="700"
   >
-    
+
     <v-toolbar
       color="red darken-1"
       dark
     >
     <v-card-text>
       <v-toolbar-title class="text-center">Skills</v-toolbar-title>
-      
+
     </v-card-text>
     </v-toolbar>
           <v-container class="p-4 m-4">
@@ -25,7 +25,7 @@
                           v-on:keyup="autoCompleteSkill1"
 													v-on="on"
                         />
-                      </template>                        
+                      </template>
                             <v-list v-if="skill_data_results.length"
 																	style="max-height: 250px"
        														class="overflow-y-auto">
@@ -61,7 +61,7 @@
                           v-on:keyup="autoCompleteSkill2"
 													v-on="on"
                         />
-                      </template>                        
+                      </template>
                             <v-list v-if="skill_data_results.length"
 																	style="max-height: 250px"
        														class="overflow-y-auto">
@@ -97,7 +97,7 @@
                           v-on:keyup="autoCompleteSkill3"
 													v-on="on"
                         />
-                      </template>                        
+                      </template>
                             <v-list v-if="skill_data_results.length"
 																	style="max-height: 250px"
        														class="overflow-y-auto">
@@ -133,7 +133,7 @@
                           v-on:keyup="autoCompleteSkill4"
 													v-on="on"
                         />
-                      </template>                        
+                      </template>
                             <v-list v-if="skill_data_results.length"
 																	style="max-height: 250px"
        														class="overflow-y-auto">
@@ -169,7 +169,7 @@
                           v-on:keyup="autoCompleteSkill5"
 													v-on="on"
                         />
-                      </template>                        
+                      </template>
                             <v-list v-if="skill_data_results.length"
 																	style="max-height: 250px"
        														class="overflow-y-auto">
@@ -195,10 +195,10 @@
 														:value="level"
 													></v-radio>
 												</v-radio-group>
-						
 
-                    
-						
+
+
+
           </v-container>
 					<v-row class="px-4">
 
@@ -228,11 +228,11 @@
                   </v-btn>
                 </v-col>
               </v-row>
-                      
-        
+
+
   </v-card>
 
-      
+
 </template>
 
 <script>
@@ -268,7 +268,7 @@ export default {
 				level_list: ['Beginner','Intermediate','Advanced'],
 			}
     },
-    
+
     created(){
     this.$store.commit('SET_LAYOUT', 'student-layout');
     this.axios.get('/student/skilldetails/edit').then((response) => {
@@ -318,7 +318,7 @@ export default {
 						}
 					});
       },
-      
+
       previous(){
             this.$router.go(-1);
 				},
@@ -331,7 +331,7 @@ export default {
          });
         }
 		},
-		
+
 		autoCompleteSkill2(){
         this.skill_data_results = [];
         if(this.skillsearchquery2.length > 2){
@@ -340,7 +340,7 @@ export default {
          });
         }
 		},
-		
+
 		autoCompleteSkill3(){
         this.skill_data_results = [];
         if(this.skillsearchquery3.length > 2){
@@ -368,19 +368,19 @@ export default {
         }
     },
 
-    
+
     selectSkill1(data){
       this.skillsearchquery1 = data.title;
       this.skill_data_results.length = false;
       this.student.skill_1 = data.id;
 		},
-		
+
 		selectSkill2(data){
       this.skillsearchquery2 = data.title;
       this.skill_data_results.length = false;
       this.student.skill_2 = data.id;
 		},
-		
+
 		selectSkill3(data){
       this.skillsearchquery3 = data.title;
       this.skill_data_results.length = false;

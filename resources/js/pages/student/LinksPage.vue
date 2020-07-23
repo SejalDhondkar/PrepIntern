@@ -2,23 +2,23 @@
   <v-card
     outlined
     class="mx-auto"
-    width="500"
+    width="700"
   >
-    
+
     <v-toolbar
       color="orange darken-1"
       dark
     >
     <v-card-text>
       <v-toolbar-title class="text-center">Work Samples</v-toolbar-title>
-      
+
     </v-card-text>
     </v-toolbar>
           <v-form>
             <v-container class="p-4">
 
 							<v-row>
-              
+
               <v-col cols="4">
                         <v-subheader>Blog Link:</v-subheader>
                     </v-col>
@@ -101,10 +101,10 @@
               </v-row>
             </v-container>
           </v-form>
-        
+
   </v-card>
 
-      
+
 </template>
 
 <script>
@@ -127,7 +127,7 @@
         });
   },
 
-  
+
   methods: {
 
     submit() {

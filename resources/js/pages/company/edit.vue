@@ -2,7 +2,7 @@
   <v-card
     raised
     class="mx-auto"
-    width="95%"
+    width="700"
   >
 
     <v-toolbar

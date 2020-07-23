@@ -1,30 +1,29 @@
 <template>
-  <v-card
-    raised
-    class="mx-auto"
-    width="50%"
-    min-height="400"
-  >
-    
+  <v-card outlined
+          class="mx-auto"
+          width="700"
+          min-height="500"
+          >
+
     <v-toolbar
       color="blue dark-3"
       dark
     >
     <v-card-text>
       <v-toolbar-title>Dashboard</v-toolbar-title>
-      
+
     </v-card-text>
     </v-toolbar>
-          
+
         <v-container class="p-4">
             <v-card-subtitle>Welcome To PrepIntern.</v-card-subtitle>
             <v-card-subtitle>Generate Resume by going to Add/Edit Details section before applying for internships</v-card-subtitle>
         </v-container>
-        
-        
+
+
   </v-card>
 
-      
+
 </template>
 
 <script>

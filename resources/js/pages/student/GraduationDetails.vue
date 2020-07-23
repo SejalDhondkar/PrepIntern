@@ -2,16 +2,16 @@
   <v-card
     outlined
     class="mx-auto"
-    width="450"
+    width="700"
   >
-    
+
     <v-toolbar
       color="purple darken-1"
       dark
     >
     <v-card-text>
       <v-toolbar-title class="text-center">Graduation Details</v-toolbar-title>
-      
+
     </v-card-text>
     </v-toolbar>
           <v-form>
@@ -25,40 +25,40 @@
 
 							<v-row>
 
-							<v-col cols="4"
-                    class="text-center">
-                        <v-subheader>College</v-subheader>
-                    </v-col>
+                <v-col cols="4"
+                      class="text-center">
+                          <v-subheader>College</v-subheader>
+                      </v-col>
 
-                    <v-col cols="8">
-                      <v-menu offset-y>
-                      <template v-slot:activator="{ on }">
-                        <v-text-field
-                          v-model="collegesearchquery"
-                          label="Type to search colleges"
-                          class="purple-input mr-4"
-                          v-on:keyup="autoCompleteCollege"
-                          v-on="on"
-                        />
-                      </template>
-                        
-                            <v-list v-if="data_results.length"
-																		style="max-height: 250px"
-       														class="overflow-y-auto">
-                              <v-list-item-group v-model="data" color="primary">
-                                <v-list-item
-                                  v-for="(data, i) in data_results"
-                                  :key="i"
-                                  @click="selectCollege(data)"
-                                >
-                                  <v-list-item-content>
-                                    <v-list-item-title v-text="data.name"></v-list-item-title>
-                                  </v-list-item-content>
-                                </v-list-item>
-                              </v-list-item-group>
-                            </v-list>
-                      </v-menu>
-                    </v-col>
+                      <v-col cols="8">
+                        <v-menu offset-y>
+                        <template v-slot:activator="{ on }">
+                          <v-text-field
+                            v-model="collegesearchquery"
+                            label="Search College and press enter to get the list"
+                            class="purple-input mr-4"
+                            v-on:keyup.enter="autoCompleteCollege"
+                            v-on="on"
+                          />
+                        </template>
+
+                              <v-list v-if="data_results.length"
+  																		style="max-height: 250px"
+         														class="overflow-y-auto">
+                                <v-list-item-group v-model="data" color="primary">
+                                  <v-list-item
+                                    v-for="(data, i) in data_results"
+                                    :key="i"
+                                    @click="selectCollege(data)"
+                                  >
+                                    <v-list-item-content>
+                                      <v-list-item-title v-text="data.name"></v-list-item-title>
+                                    </v-list-item-content>
+                                  </v-list-item>
+                                </v-list-item-group>
+                              </v-list>
+                        </v-menu>
+                      </v-col>
 
 										<v-col cols="6">
                       <v-menu offset-y>
@@ -70,7 +70,7 @@
                           v-on="on"
                         />
                       </template>
-                        
+
                             <v-list style="max-height: 250px"
        														class="overflow-y-auto">
                               <v-list-item-group v-model="year" color="primary">
@@ -98,7 +98,7 @@
                           v-on="on"
                         />
                       </template>
-                        
+
                             <v-list style="max-height: 250px"
        														class="overflow-y-auto">
                               <v-list-item-group v-model="year" color="primary">
@@ -127,13 +127,13 @@
                       <template v-slot:activator="{ on }">
                         <v-text-field
                           v-model="degreesearchquery"
-                          label="Type to search Degree"
+                          label="Search Degree and press enter to get the list"
                           class="purple-input mr-4"
-                          v-on:keyup="autoCompleteDegree"
+                          v-on:keyup.enter="autoCompleteDegree"
                           v-on="on"
                         />
                       </template>
-                        
+
                             <v-list v-if="data_results.length"
 																		style="max-height: 250px"
        														class="overflow-y-auto">
@@ -162,13 +162,13 @@
                       <template v-slot:activator="{ on }">
                         <v-text-field
                           v-model="streamsearchquery"
-                          label="Type to search Stream"
+                          label="Search Stream and press enter to get the list"
                           class="purple-input mr-4"
-                          v-on:keyup="autoCompleteStream"
+                          v-on:keyup.enter="autoCompleteStream"
                           v-on="on"
                         />
                       </template>
-                        
+
                             <v-list v-if="data_results.length"
 																		style="max-height: 250px"
        														class="overflow-y-auto">
@@ -212,7 +212,7 @@
                   </v-btn>
                 </v-col>
 
-						
+
 							<v-col
                   cols="6"
                   class="text-right"
@@ -227,10 +227,10 @@
               </v-row>
             </v-container>
           </v-form>
-        
+
   </v-card>
 
-      
+
 </template>
 
 <script>
@@ -249,6 +249,7 @@
 				collegesearchquery: '',
 				degreesearchquery: '',
 				streamsearchquery: '',
+        college:[],
         data: 1,
 				data_results: [],
 				year: 1,
@@ -262,14 +263,14 @@
   created(){
     this.$store.commit('SET_LAYOUT', 'student-layout');
     this.axios.get('/student/graduationdetails/edit').then((response) => {
-            this.student = response.data;
-            this.collegesearchquery = response.data.college_name;
-            this.streamsearchquery = response.data.stream_name;
-            this.degreesearchquery = response.data.degree_name;
+      this.student = response.data;
+      this.collegesearchquery = response.data.college_name;
+      this.streamsearchquery = response.data.stream_name;
+      this.degreesearchquery = response.data.degree_name;
         });
   },
 
-  
+
   methods: {
 
     submit() {
@@ -281,17 +282,17 @@
         console.log("error");
         }
       });
-      
+
     },
-    
+
     back(){
       this.$router.go(-1);
     },
-		
+
 		autoCompleteCollege(){
         this.data_results = [];
         // console.log(this.searchquery);
-        if(this.collegesearchquery.length > 2){
+        if(this.collegesearchquery.length > 4){
          axios.get('/student/collegesearch',{params: {collegesearchquery: this.collegesearchquery}}).then(response => {
           this.data_results = response.data;
          });
@@ -303,7 +304,7 @@
       this.data_results.length = false;
       this.student.college_id = data.id;
 		},
-		
+
 		autoCompleteDegree(){
         this.data_results = [];
         // console.log(this.searchquery);
@@ -319,7 +320,7 @@
       this.data_results.length = false;
       this.student.degree_id = data.id;
 		},
-		
+
 		autoCompleteStream(){
         this.data_results = [];
         // console.log(this.searchquery);
@@ -338,12 +339,12 @@
 
   }
 
-    
-  
-    
-  
 
-  
-  
+
+
+
+
+
+
   }
 </script>

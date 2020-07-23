@@ -2,23 +2,23 @@
   <v-card
     outlined
     class="mx-auto"
-    width="450"
+    width="700"
   >
-    
+
     <v-toolbar
       color="yellow darken-1"
       dark
     >
     <v-card-text>
       <v-toolbar-title class="text-center">Training Details</v-toolbar-title>
-      
+
     </v-card-text>
     </v-toolbar>
           <v-form>
             <v-container class="p-4">
 
 							<v-row>
-              
+
               <v-col cols="4"
                     class="text-center">
                         <v-subheader>Training Program:</v-subheader>
@@ -47,7 +47,7 @@
                     class="text-center">
                         <v-subheader>Location:</v-subheader>
                     </v-col>
-                    
+
                     <v-col cols="8">
                     <v-menu offset-y>
                       <template v-slot:activator="{ on }">
@@ -58,7 +58,7 @@
                           v-on:keyup="autoCompleteCity"
 													v-on="on"
                         />
-                      </template>                        
+                      </template>
                             <v-list v-if="city_data_results.length"
 																	style="max-height: 250px"
        														class="overflow-y-auto">
@@ -164,7 +164,7 @@
                     Back
                   </v-btn>
                 </v-col>
-						
+
 							<v-col
                   cols="6"
                   class="text-right"
@@ -179,10 +179,10 @@
               </v-row>
             </v-container>
           </v-form>
-        
+
   </v-card>
 
-      
+
 </template>
 
 <script>
@@ -220,7 +220,7 @@
 						}
         });
   },
-  
+
   methods: {
 
     submit() {
@@ -233,11 +233,11 @@
         }
       });
 		},
-		
+
 		back(){
       this.$router.go(-1);
     },
-    
+
     autoCompleteCity(){
         this.city_data_results = [];
         if(this.citysearchquery.length > 2){
@@ -246,13 +246,13 @@
          });
         }
     },
-    
+
     selectCity(data){
       this.citysearchquery = data.name;
       this.city_data_results.length = false;
       this.student.city_id = data.id;
     },
-    
+
     checkOnline(){
       if (this.checkbox==true) {
         this.student.city_id = null;

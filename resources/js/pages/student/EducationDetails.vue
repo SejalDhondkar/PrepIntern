@@ -2,19 +2,19 @@
   <v-card
     raised
     class="mx-auto"
-    width="500"
+    width="700"
   >
-    
+
     <v-toolbar
       color="blue dark-3"
       dark
     >
     <v-card-text>
       <v-toolbar-title>Education Details</v-toolbar-title>
-      
+
     </v-card-text>
     </v-toolbar>
-          
+
         <v-container class="px-4 text-center">
             <v-btn class="ma-2" outlined color="indigo" @click="graduation()">Graduation details</v-btn><br>
             <v-btn class="ma-2" outlined color="indigo" @click="twelth()">XII (Senior Secondary) details</v-btn><br>
@@ -22,7 +22,7 @@
             <v-btn class="ma-2" outlined color="indigo" @click="postgrad()">Post Graduation Details</v-btn><br>
             <v-btn class="ma-2" outlined color="indigo" @click="diploma()">Diploma Details</v-btn><br>
             <v-btn class="ma-2" outlined color="indigo" @click="phd()">PhD Details</v-btn>
-        
+
         <v-row>
           <v-col
 						cols="6"
@@ -48,10 +48,10 @@
 					</v-col>
 				</v-row>
         </v-container>
-        
+
   </v-card>
 
-      
+
 </template>
 
 <script>
@@ -89,7 +89,7 @@ export default {
         phd(){
             this.$router.push('/student/phddetails');
 				},
-				
+
 				next(){
             this.$router.push('/student/experiencedetails');
         },
@@ -97,6 +97,6 @@ export default {
           this.$router.push('/student/dashboard');
         }
     }
-  
+
 }
 </script>

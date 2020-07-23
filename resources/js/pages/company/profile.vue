@@ -1,5 +1,5 @@
 <template>
-    <v-card>
+    <v-card width="700">
       <v-toolbar flat color="primary" dark>
         <v-toolbar-title>User Profile</v-toolbar-title>
       </v-toolbar>
