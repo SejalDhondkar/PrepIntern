@@ -15,6 +15,7 @@ class CreateCitiesTable extends Migration
     {
         Schema::create('cities', function (Blueprint $table) {
           $table->bigIncrements('id');
+          $table->integer('delete_this_id')->nullable();
           $table->text('name');
           $table->bigInteger('state_id')->unsigned();
           $table->foreign('state_id')->references('id')->on('states');
