@@ -105,11 +105,11 @@
 
           </v-col>
 
-          <v-col cols="4" class="text-center" v-if="(student.state_id != '24' || student.state_id != '25' || student.state_id != '28') && student.country_id =='101' ">
+          <v-col cols="4" class="text-center" v-if="(student.country_id =='101' && student.state_id !='24') && (student.country_id =='101' && student.state_id !='25') && (student.country_id =='101' && student.state_id !='28') ">
             <v-subheader>City</v-subheader>
           </v-col>
 
-          <v-col cols="8" v-if="(student.state_id != '24' || student.state_id != '25' || student.state_id != '28') && student.country_id =='101' ">
+          <v-col cols="8" v-if="(student.country_id =='101' && student.state_id !='24') && (student.country_id =='101' && student.state_id !='25') && (student.country_id =='101' && student.state_id !='28') ">
             <v-menu offset-y>
               <template v-slot:activator="{ on }">
                           <v-text-field

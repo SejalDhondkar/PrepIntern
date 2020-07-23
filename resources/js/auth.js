@@ -8,7 +8,7 @@ const config = {
     auth: bearer,
     http: axios,
     router: router,
-    tokenDefaultName: 'laravel-vue-spa',
+    tokenDefaultName: 'prepintern',
     tokenStore: ['localStorage'],
     rolesVar: 'role_id',
     registerData: { url: '/auth/register', method: 'POST', redirect: '/login' },
