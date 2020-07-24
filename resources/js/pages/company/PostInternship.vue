@@ -3,16 +3,16 @@
   <v-card
     outlined
     class="mx-auto"
-    width="600"
+    width="85%"
   >
-    
+
     <v-toolbar
       color="blue-grey darken-1"
       dark
     >
     <v-card-text>
       <v-toolbar-title class="text-center">Post an internship</v-toolbar-title>
-      
+
     </v-card-text>
     </v-toolbar>
           <v-form>
@@ -26,7 +26,7 @@
 												v-for="(profile,n) in this.profiles_list"
 												:key="n"
 												:label="profile.title"
-												:value="profile.id"											
+												:value="profile.id"
 												return-object
 											></v-radio>
 										</v-radio-group>
@@ -40,7 +40,7 @@
                   </v-radio-group>
 								</v-container>
 
-              
+
                 <v-container class="px-4" v-if="post.type_of_internship=='Regular'">
               <v-subheader>City/Cities</v-subheader>
               <v-menu offset-y>
@@ -52,7 +52,7 @@
                           v-on:keyup="autoCompleteCity1"
 													v-on="on"
                         />
-                      </template>                        
+                      </template>
                             <v-list v-if="city_data_results.length"
 																	style="max-height: 250px"
        														class="overflow-y-auto">
@@ -79,7 +79,7 @@
                           v-on:keyup="autoCompleteCity2"
 													v-on="on"
                         />
-                      </template>                        
+                      </template>
                             <v-list v-if="city_data_results.length"
 																	style="max-height: 250px"
        														class="overflow-y-auto">
@@ -106,7 +106,7 @@
                           v-on:keyup="autoCompleteCity3"
 													v-on="on"
                         />
-                      </template>                        
+                      </template>
                             <v-list v-if="city_data_results.length"
 																	style="max-height: 250px"
        														class="overflow-y-auto">
@@ -162,7 +162,7 @@
                       </v-container>
 
                     </v-col>
-                    
+
                     <v-container v-if="post.start_date_type=='Later'">
                       <v-row>
                       <v-col cols="4">
@@ -239,7 +239,7 @@
                                 class="purple-input mr-4"
                                 v-on="on"
                               />
-                            </template>                        
+                            </template>
                                   <v-list style="max-height: 250px"
                                         class="overflow-y-auto">
                                     <v-list-item-group v-model="data" color="primary">
@@ -312,7 +312,7 @@
                                     class="purple-input mr-4"
                                     v-on="on"
                                   />
-                                </template>                        
+                                </template>
                                       <v-list style="max-height: 250px"
                                             class="overflow-y-auto">
                                         <v-list-item-group v-model="data" color="primary">
@@ -330,7 +330,7 @@
                                 </v-menu>
                             </v-col>
                           </v-row>
-                        
+
                         </v-container>
 
                         <v-container v-if="post.stipend_category=='Negotiable'">
@@ -360,7 +360,7 @@
                                     class="purple-input mr-4"
                                     v-on="on"
                                   />
-                                </template>                        
+                                </template>
                                       <v-list style="max-height: 250px"
                                             class="overflow-y-auto">
                                         <v-list-item-group v-model="data" color="primary">
@@ -376,8 +376,8 @@
                                         </v-list-item-group>
                                       </v-list>
                                 </v-menu>
-                            </v-col>                            
-                          </v-row>                        
+                            </v-col>
+                          </v-row>
                         </v-container>
 
                         <v-container v-if="post.stipend_category=='Performance based'">
@@ -400,7 +400,7 @@
                                     class="purple-input mr-4"
                                     v-on="on"
                                   />
-                                </template>                        
+                                </template>
                                       <v-list style="max-height: 250px"
                                             class="overflow-y-auto">
                                         <v-list-item-group v-model="data" color="primary">
@@ -434,11 +434,11 @@
                                 class="purple-input mr-4"
                                 @change="incentive()"
                               />
-                            </v-col>                            
-                          </v-row>                                                 
+                            </v-col>
+                          </v-row>
                         </v-container>
 
-                        <v-subheader>Perks</v-subheader> 
+                        <v-subheader>Perks</v-subheader>
                         <v-container class="px-4">
                           <v-checkbox v-model="post.perks" label="Certificate" value="Certificate"></v-checkbox>
                           <v-checkbox v-model="post.perks" label="Letter of recommendation" value="Letter of recommendation"></v-checkbox>
@@ -468,7 +468,7 @@
                               v-on:keyup="autoCompleteSkill1"
                               v-on="on"
                             />
-                          </template>                        
+                          </template>
                                 <v-list v-if="skill_data_results.length"
                                       style="max-height: 250px"
                                       class="overflow-y-auto">
@@ -495,7 +495,7 @@
                               v-on:keyup="autoCompleteSkill2"
                               v-on="on"
                             />
-                          </template>                        
+                          </template>
                                 <v-list v-if="skill_data_results.length"
                                       style="max-height: 250px"
                                       class="overflow-y-auto">
@@ -522,7 +522,7 @@
                               v-on:keyup="autoCompleteSkill3"
                               v-on="on"
                             />
-                          </template>                        
+                          </template>
                                 <v-list v-if="skill_data_results.length"
                                       style="max-height: 250px"
                                       class="overflow-y-auto">
@@ -539,19 +539,19 @@
                                   </v-list-item-group>
                                 </v-list>
                           </v-menu>
-                        
+
                         <v-divider></v-divider>
-                        
+
                         <v-subheader>Assessment</v-subheader>
                         <v-subheader>Question 1 and 2 will be asked to every applicant by default. If you wish, you may ask two more customized questions.</v-subheader>
-                        
+
                         <v-subheader>Question 1: Why should you be hired for this role?</v-subheader>
                         <v-subheader>Question 2: Are you available for 1 month, starting immediately, for a full time internship at ? If not, what is the time period you are available for and the earliest date you can start this internship on?</v-subheader>
                         <br>
                         <p @click="question1=true">+ Add question 3</p>
 
                         <div v-if="question1==true">
-                          <v-textarea 
+                          <v-textarea
                             name="input-7-1"
                             label="Question 3"
                             v-model="post.question_1"
@@ -561,7 +561,7 @@
                           <p @click="question2=true">+ Add question 4</p>
                         </div>
                         <div v-if="question2==true">
-                          <v-textarea 
+                          <v-textarea
                             name="input-7-1"
                             label="Question 4"
                             v-model="post.question_2"
@@ -571,20 +571,20 @@
                         </div>
 
                         <v-subheader>Mention any other requirements that the applicants should have</v-subheader>
-                        <v-textarea 
+                        <v-textarea
                             name="input-7-1"
                             label="Other Requirements"
                             v-model="post.other_req"
                             outlined
                           >
                           </v-textarea>
-                        
+
 
                         </v-container>
 
-                        
 
-                    
+
+
 							<v-row>
                 <v-col
                     cols="12"
@@ -600,7 +600,7 @@
               </v-row>
             </v-container>
           </v-form>
-        
+
   </v-card>
 
     <v-snackbar
@@ -624,7 +624,7 @@
 
   </div>
 
-      
+
 </template>
 
 <script>
@@ -698,20 +698,20 @@
             } else {
               this.$router.push('/company/dashboard');
               console.log("redirected");
-            }					
+            }
       });
   },
 
 	created() {
-      this.$store.commit('SET_LAYOUT', 'company-layout');      
+      this.$store.commit('SET_LAYOUT', 'company-layout');
 			axios.get('/internships/profiles').then(response => {
-						this.profiles_list= response.data;					
+						this.profiles_list= response.data;
       });
       axios.get('/internships/skills').then(response => {
             this.items= response.data;
 			});
 		},
-  
+
   methods: {
 
     submit() {
@@ -723,9 +723,9 @@
         console.log("error");
         }
       });
-      
+
     },
-    
+
     remove (item) {
         this.chips.splice(this.chips.indexOf(item), 1)
         this.chips = [...this.chips]
@@ -739,7 +739,7 @@
          });
         }
 		},
-		
+
 		autoCompleteCity2(){
         this.city_data_results = [];
         if(this.citysearchquery2.length > 2){
@@ -748,7 +748,7 @@
          });
         }
 		},
-		
+
 		autoCompleteCity3(){
         this.city_data_results = [];
         if(this.citysearchquery3.length > 2){
@@ -758,19 +758,19 @@
         }
     },
 
-    
+
     selectCity1(data){
       this.citysearchquery1 = data.name;
       this.city_data_results.length = false;
       this.post.city_preferences[0] = data.id;
 		},
-		
+
 		selectCity2(data){
       this.citysearchquery2 = data.name;
       this.city_data_results.length = false;
       this.post.city_preferences[1] = data.id;
 		},
-		
+
 		selectCity3(data){
       this.citysearchquery3 = data.name;
       this.city_data_results.length = false;
@@ -818,7 +818,7 @@
     incentive(){
       this.post.stipend_incentive = this.incentive_amount + ' ' + this.incentive_type;
     },
-    
+
     Switch2(){
       if (this.switch2==true) {
         this.post.preplacement_offer = 1;
@@ -835,7 +835,7 @@
          });
         }
 		},
-		
+
 		autoCompleteSkill2(){
         this.skill_data_results = [];
         if(this.skillsearchquery2.length > 2){
@@ -844,7 +844,7 @@
          });
         }
 		},
-		
+
 		autoCompleteSkill3(){
         this.skill_data_results = [];
         if(this.skillsearchquery3.length > 2){
@@ -854,28 +854,28 @@
         }
     },
 
-    
+
     selectSkill1(data){
       this.skillsearchquery1 = data.title;
       this.skill_data_results.length = false;
       this.post.skills_id[0] = data.id;
 		},
-		
+
 		selectSkill2(data){
       this.skillsearchquery2 = data.title;
       this.skill_data_results.length = false;
       this.post.skills_id[1] = data.id;
 		},
-		
+
 		selectSkill3(data){
       this.skillsearchquery3 = data.title;
       this.skill_data_results.length = false;
       this.post.skills_id[2]= data.id;
     },
-		
+
 
   }
 
-  
+
   }
 </script>

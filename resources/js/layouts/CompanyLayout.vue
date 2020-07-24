@@ -91,21 +91,7 @@
       >
         <span class="hidden-sm-and-down"> PrepIntern</span>
       </v-toolbar-title>
-     <!-- <v-text-field
-        flat
-        solo-inverted
-        hide-details
-        prepend-inner-icon="mdi-magnify"
-        label="Search"
-        class="hidden-sm-and-down"
-      ></v-text-field> -->
       <v-spacer></v-spacer>
-      <!-- <v-btn icon>
-        <v-icon>mdi-apps</v-icon>
-      </v-btn>
-      <v-btn icon>
-        <v-icon>mdi-bell</v-icon>
-      </v-btn> -->
       <v-btn
     tile color="default"
         outlined
@@ -123,6 +109,7 @@
         <v-row
           align="center"
           justify="center"
+          cols="12"
         >
           <router-view></router-view>
         </v-row>
@@ -150,7 +137,7 @@
     }),
 
     methods: {
-      // 
+      //
     }
   }
 </script>

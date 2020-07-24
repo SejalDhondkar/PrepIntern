@@ -1,7 +1,7 @@
 <template>
   <v-card outlined
           class="mx-auto"
-          width="700">
+          width="85%">
 
     <v-toolbar
       color="yellow darken-1"

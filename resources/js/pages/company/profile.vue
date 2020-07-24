@@ -1,5 +1,5 @@
 <template>
-    <v-card width="700">
+    <v-card width="85%" class="mx-auto" raised>
       <v-toolbar flat color="primary" dark>
         <v-toolbar-title>User Profile</v-toolbar-title>
       </v-toolbar>

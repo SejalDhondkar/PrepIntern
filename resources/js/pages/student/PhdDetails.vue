@@ -2,7 +2,7 @@
   <v-card
     outlined
     class="mx-auto"
-    width="750"
+    width="85%"
   >
 
     <v-toolbar

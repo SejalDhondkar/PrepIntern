@@ -4,7 +4,7 @@
   <v-card
     raised
     class="mx-auto"
-    width="80%"
+    width="85%"
   >
     <v-card-text>
 

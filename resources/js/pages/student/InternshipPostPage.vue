@@ -2,7 +2,7 @@
   <div>
     <v-card raised
             class="mx-auto"
-            width="700">
+            width="85%">
       <v-card-text>
 
         <v-container class="p-4">

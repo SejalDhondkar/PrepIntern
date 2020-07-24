@@ -91,21 +91,7 @@
       >
         <span class="hidden-sm-and-down"> PrepIntern (Admin Portal)</span>
       </v-toolbar-title>
-     <!-- <v-text-field
-        flat
-        solo-inverted
-        hide-details
-        prepend-inner-icon="mdi-magnify"
-        label="Search"
-        class="hidden-sm-and-down"
-      ></v-text-field> -->
       <v-spacer></v-spacer>
-      <!-- <v-btn icon>
-        <v-icon>mdi-apps</v-icon>
-      </v-btn>
-      <v-btn icon>
-        <v-icon>mdi-bell</v-icon>
-      </v-btn> -->
       <v-btn
     tile color="default"
         outlined
@@ -120,10 +106,11 @@
         class="fill-height"
         fluid
       >
-        <v-row
-          align="center"
-          justify="center"
-        >
+      <v-row
+        align="center"
+        justify="center"
+        cols="12"
+      >
           <router-view></router-view>
         </v-row>
       </v-container>
@@ -152,7 +139,7 @@
     }),
 
     methods: {
-      // 
+      //
     }
   }
 </script>

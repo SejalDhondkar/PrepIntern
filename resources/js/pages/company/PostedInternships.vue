@@ -2,20 +2,20 @@
   <v-card
     raised
     class="mx-auto"
-    width="80%"
+    width="85%"
     min-height="400"
   >
-    
+
     <v-toolbar
       color="blue dark-3"
       dark
     >
     <v-card-text>
       <v-toolbar-title>Posted Internships</v-toolbar-title>
-      
+
     </v-card-text>
     </v-toolbar>
-          
+
         <v-container class="p-4">
             <v-data-table
 							:headers="headers"
@@ -27,11 +27,11 @@
           </template>
           </v-data-table>
         </v-container>
-        
-        
+
+
   </v-card>
 
-      
+
 </template>
 
 <script>
@@ -47,8 +47,8 @@ export default {
           },
 					{ text: 'Posted at', value: 'created_at'},
 					{ text: 'Action', value: 'actions', sortable: false },
-					
-          
+
+
         ],
         posts: [],
         data: [],
@@ -64,7 +64,7 @@ export default {
             } else {
               this.$router.push('/company/dashboard');
               console.log("redirected");
-            }					
+            }
       });
   },
 
@@ -74,16 +74,16 @@ export default {
 						this.posts= response.data;
       });
     },
-    
+
     methods: {
       view(item){
         this.data = item;
         this.$route.params.id = item.id;
-        this.$router.push(`/company/view/${this.$route.params.id}/applications`);          
-        
+        this.$router.push(`/company/view/${this.$route.params.id}/applications`);
+
          }
     }
-  
-    
+
+
 }
 </script>

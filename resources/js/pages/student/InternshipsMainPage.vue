@@ -2,7 +2,7 @@
     <v-container class="mx-4 my-4">
         <v-card raised
 					class="mx-auto my-4 p-4"
-					width="700"
+					width="85%"
 					min-height="200"
 					v-for="(post,i) in posts"
 					:key="i"

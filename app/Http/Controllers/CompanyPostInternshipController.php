@@ -59,7 +59,10 @@ class CompanyPostInternshipController extends Controller
         $post->stipend_type = $request->stipend_type;
         $post->perks = json_encode($request->perks);
         $post->preplacement_offer = $request->preplacement_offer;
-        $post->skills_id = json_encode($request->skills_id);
+        if(!empty($request->skills_id))
+        {
+          $post->skills_id = json_encode($request->skills_id);
+        }
         $post->question_1 = $request->question_1;
         $post->question_2 = $request->question_2;
         $post->other_req = $request->other_req;
@@ -86,7 +89,6 @@ class CompanyPostInternshipController extends Controller
         }
 
         $data->location = $location;
-
         $skills = json_decode($data->skills_id);
         for ($i=0; $i < count($skills); $i++) {
             $skills_name[$i] = Skills::where('id',$skills[$i])->value('title');

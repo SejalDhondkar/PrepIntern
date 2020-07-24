@@ -2,20 +2,20 @@
   <v-card
     raised
     class="mx-auto"
-    width="80%"
+    width="85%"
     min-height="400"
   >
-    
+
     <v-toolbar
       color="blue dark-3"
       dark
     >
     <v-card-text>
       <v-toolbar-title>Applications</v-toolbar-title>
-      
+
     </v-card-text>
     </v-toolbar>
-          
+
         <v-container class="p-4">
 
           <v-radio-group v-model="group.status" row @change="status()">
@@ -44,7 +44,7 @@
             <v-col cols="12"
               class="text-left">
               <br>
-              <v-btn              
+              <v-btn
               color="primary"
               @click="back"
               >
@@ -53,11 +53,11 @@
             </v-col>
           </v-row>
         </v-container>
-        
-        
+
+
   </v-card>
 
-      
+
 </template>
 
 <script>
@@ -74,8 +74,8 @@ export default {
           { text: 'Applied at', value: 'created_at'},
           { text: 'Status', value: 'status'},
 					{ text: 'Action', value: 'actions', sortable: false },
-					
-          
+
+
         ],
         applications: [],
         group: {
@@ -90,7 +90,7 @@ export default {
 						this.applications = response.data;
       });
     },
-    
+
     methods: {
       view(item){
         this.$route.params.id = item.id;
@@ -105,7 +105,7 @@ export default {
         this.$router.go(-1);
       }
     }
-  
-    
+
+
 }
-</script> 
+</script>

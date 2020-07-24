@@ -1,5 +1,4 @@
 <template>
-  <div class="container my-auto">
     <div class="card mx-auto">
       <div class="card-header">Login</div>
 
@@ -20,7 +19,6 @@
         </form>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -36,7 +34,7 @@
 
     created(){
       this.$store.commit('SET_LAYOUT', 'loginsignup-layout');
-      if($auth.check())
+      if(this.$auth.check())
       {
         this.$router.push('/');
       }

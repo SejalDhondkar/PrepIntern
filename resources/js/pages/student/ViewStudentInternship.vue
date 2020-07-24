@@ -3,10 +3,10 @@
   <v-card
     raised
     class="mx-auto"
-    width="700"
+    width="85%"
   >
     <v-card-text>
-          
+
         <v-container class="p-4">
 					<p class="headline"> {{post.profile_name}} </p>
 					<p class="subtitle-1"> {{post.company_name}} </p>
@@ -24,24 +24,24 @@
               <p class="body-2" v-if="post.stipend_category=='Fixed'">Stipend: <br> Rs. {{post.stipend_fixed}} {{post.stipend_type}}</p>
               <p class="body-2" v-if="post.stipend_category=='Negotiable'">Stipend: <br> Rs. {{post.stipend_amount_min}} - {{post.stipend_amount_max}} {{post.stipend_type}}</p>
               <p class="body-2" v-if="post.stipend_category=='Performance based'">Stipend: <br> Rs. {{post.stipend_amount_min}} {{post.stipend_type}} Incentive: {{post.stipend_incentive}}</p>
-              <p class="body-2" v-if="post.stipend_category=='Unpaid'">Stipend: <br> Unpaid</p>              
+              <p class="body-2" v-if="post.stipend_category=='Unpaid'">Stipend: <br> Unpaid</p>
             </v-col>
             </v-row>
 
             <p class="body-2 mt-4" v-if="post.is_part_time_allowed==1">Part time allowed</p>
         </v-container>
-        
+
         </v-card-text>
   </v-card>
   <v-card
     raised
     class="mx-auto mt-4"
-    width="700"
+    width="85%"
   >
     <v-card-text>
-          
-        <v-container class="p-4">			
-					
+
+        <v-container class="p-4">
+
 					<p class="body-1">About Internship:</p>
           <p class="body-2"> {{post.intern_resp_desc}}</p> <br>
           <p class="body-1"># of internships available: {{post.no_of_openings}} </p><br>
@@ -57,15 +57,15 @@
 
           <br><br>
 
-          
 
-            
+
+
         </v-container>
-        
+
         </v-card-text>
   </v-card>
 </div>
-      
+
 </template>
 
 <script>
@@ -84,8 +84,8 @@ export default {
       });
     },
 
-    
-    
+
+
 }
 </script>
 
