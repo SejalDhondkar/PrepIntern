@@ -16,17 +16,16 @@
     </v-toolbar>
           <v-form>
             <v-container class="py-0">
-						<v-row>
               <v-row  class="px-4" v-for="(link, i) in company"
                 :key="i">
 
 
-								<v-col cols="5">
+								<v-col cols="4">
 									<v-subheader>{{link.title}}</v-subheader>
 								</v-col>
 
                 <v-col
-                  cols="7"
+                  cols="8"
                 >
                   <v-text-field
                     v-model="link.url"
@@ -36,7 +35,7 @@
                 </v-col>
               </v-row>
 
-
+              <v-row>
 
                 <v-col
                   cols="12"
