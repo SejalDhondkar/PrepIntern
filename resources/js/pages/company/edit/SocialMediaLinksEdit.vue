@@ -26,8 +26,7 @@
 								</v-col>
 
                 <v-col
-                  cols="12"
-                  md="7"
+                  cols="7"
                 >
                   <v-text-field
                     v-model="link.url"
