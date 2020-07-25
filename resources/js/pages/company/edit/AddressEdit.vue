@@ -2,16 +2,16 @@
   <v-card
     raised
     class="mx-auto"
-    width="70%"
+    width="85%"
   >
-    
+
     <v-toolbar
       color="blue dark-3"
       dark
     >
     <v-card-text>
       <v-toolbar-title>Company Address Details</v-toolbar-title>
-      
+
     </v-card-text>
     </v-toolbar>
           <v-form>
@@ -62,11 +62,11 @@
                           v-model="statesearchquery"
                           label="Type to search state"
                           class="purple-input mr-4"
-                          v-on:keyup="autoCompleteState"                          
+                          v-on:keyup="autoCompleteState"
                           v-on="on"
                         />
                       </template>
-                        
+
                             <v-list v-if="state_data_results.length">
                               <v-list-item-group v-model="data" color="primary">
                                 <v-list-item
@@ -114,7 +114,7 @@
                             </v-list>
                       </v-menu>
 
-                    </v-col>                    
+                    </v-col>
 
                     </v-row>
 
@@ -153,7 +153,7 @@
                     Back
                   </v-btn>
                 </v-col>
-     
+
                 <v-col
                   cols="6"
                   class="text-right"
@@ -169,10 +169,10 @@
               </v-row>
             </v-container>
           </v-form>
-        
+
   </v-card>
 
-      
+
 </template>
 
 <script>
@@ -197,10 +197,10 @@
           registered_address: '',
           pincode: '',
 				},
-				
+
       }
 	},
-	
+
 	created() {
       this.$store.commit('SET_LAYOUT', 'company-layout');
 			this.axios.get('/company/address/edit').then((response) => {
@@ -211,7 +211,7 @@
 			});
 		},
 
-  
+
   methods: {
 
     submit() {
@@ -223,13 +223,13 @@
         console.log("error");
         }
       });
-      
+
     },
 
     back(){
       this.$router.push('/company/editpage');
     },
-  
+
     autoComplete(){
         this.data_results = [];
         // console.log(this.searchquery);
@@ -246,7 +246,7 @@
       this.company.country_id = data.id;
       this.state = false;
     },
-  
+
 
     autoCompleteState(){
         this.state_data_results = [];
@@ -258,7 +258,7 @@
         }
     },
 
-    
+
     selectState(data){
       this.statesearchquery = data.name;
       this.state_data_results.length = false;
@@ -276,14 +276,13 @@
         }
     },
 
-    
+
     selectCity(data){
       this.citysearchquery = data.name;
       this.city_data_results.length = false;
       this.company.city_id = data.id;
     }
   },
-  
+
   }
 </script>
-
