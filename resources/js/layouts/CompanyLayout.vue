@@ -129,7 +129,7 @@
         { icon: 'mdi-view-dashboard-outline', text: 'Dashboard', link: '/company/dashboard' },
         { icon: 'mdi-shape-rectangle-plus', text: 'Post Internship', link: '/company/postinternship' },
         { icon: 'mdi-file-multiple-outline', text: 'View Posted Internships', link: '/company/view/internships' },
-        { icon: 'mdi-account-outline', text: 'Edit Details', link: '/company/editpage' },
+        { icon: 'mdi-pencil-outline', text: 'Edit Details', link: '/company/editpage' },
         { icon: 'mdi-account-outline', text: 'View Profile', link: '/profile' },
         { icon: 'mdi-phone-outline', text: 'Contact Us', link: '/contact' },
         // { icon: 'mdi-help-circle-outline', text: 'Help' },
