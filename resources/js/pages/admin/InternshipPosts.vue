@@ -2,7 +2,7 @@
   <v-card
     raised
     class="mx-auto"
-    width="80%"
+    width="85%"
     min-height="400"
   >
     

@@ -42,7 +42,10 @@ class CompanyPostInternshipController extends Controller
         $post->company_id = $this_company_id;
         $post->profile_id = $request->profile_id;
         $post->type_of_internship = $request->type_of_internship;
-        $post->city_preferences = json_encode($request->city_preferences);
+        if(!empty($request->city_preferences))
+        {
+            $post->city_preferences = json_encode($request->city_preferences);
+        }
         $post->applicants_from_sel_cities = $request->applicants_from_sel_cities;
         $post->is_part_time_allowed = $request->is_part_time_allowed;
         $post->no_of_openings = $request->no_of_openings;
@@ -57,7 +60,9 @@ class CompanyPostInternshipController extends Controller
         $post->stipend_amount_max = $request->stipend_amount_max;
         $post->stipend_incentive = $request->stipend_incentive;
         $post->stipend_type = $request->stipend_type;
-        $post->perks = json_encode($request->perks);
+        if(!empty($request->perks)){
+            $post->perks = json_encode($request->perks);
+        }
         $post->preplacement_offer = $request->preplacement_offer;
         if(!empty($request->skills_id))
         {
@@ -78,7 +83,11 @@ class CompanyPostInternshipController extends Controller
 
         $data = CompanyPostInternship::findOrFail($id);
 
-        $cities = json_decode($data->city_preferences);
+        if(!empty($data->city_preferences)){
+            $cities = json_decode($data->city_preferences);
+        }
+        $location = [];
+
         if($data->type_of_internship=='Regular'){
             for ($i=0; $i < count($cities); $i++) {
                 $location[$i] = Cities::where('id',$cities[$i])->value('name');
@@ -89,16 +98,18 @@ class CompanyPostInternshipController extends Controller
         }
 
         $data->location = $location;
-        $skills = json_decode($data->skills_id);
-        for ($i=0; $i < count($skills); $i++) {
-            $skills_name[$i] = Skills::where('id',$skills[$i])->value('title');
+        if(!empty($data->skills_id)){
+            $skills = json_decode($data->skills_id);
+            for ($i=0; $i < count($skills); $i++) {
+                $skills_name[$i] = Skills::where('id',$skills[$i])->value('title');
+            }
+            $data->skills = $skills_name;
         }
-
-        $data->skills = $skills_name;
-
-        $perks = json_decode($data->perks);
-
-        $data->perks_array = $perks;
+        
+        if(!empty($data->city_preferences)){
+            $perks = json_decode($data->perks);
+            $data->perks_array = $perks;
+        }        
 
         $this_profile_id = $data->profile_id;
         $data->profile_name = InternshipProfiles::where('id',$this_profile_id)->value('title');

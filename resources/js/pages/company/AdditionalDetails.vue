@@ -36,8 +36,8 @@
                 >
                   <v-text-field
                     v-model="company.certificate_of_incorporation"
-                    label="Email Address"
-                    class="Certificate Of Incorporation"
+                    label="Certificate of Incorporation"
+                    class="purple-input"
                   />
                 </v-col>
 

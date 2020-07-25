@@ -1,8 +1,9 @@
 <template>
-  <div>
+  <v-container>
     <v-card raised
             class="mx-auto"
-            width="85%">
+            width="95%"
+            max-width="700px">
       <v-card-text>
 
         <v-container class="p-4">
@@ -11,14 +12,14 @@
           <p class="body-2">Location(s): <span v-for="(loc,i) in post.location" :key="i"> {{loc}} </span></p>
           <br>
           <v-row>
-            <v-col cols="3">
+            <v-col cols="12" sm="3">
               <p class="body-2" v-if="post.start_date_type=='Immediately'">Start Date: <br> {{post.start_date_type}}</p>
               <p class="body-2" v-if="post.start_date_type=='Later'">Start Date: <br> {{post.start_date}}</p>
             </v-col>
-            <v-col cols="3">
+            <v-col cols="12" sm="3">
               <p class="body-2">Duration: <br> {{post.internship_duration}}</p>
             </v-col>
-            <v-col cols="6">
+            <v-col cols="12" sm="6">
               <p class="body-2" v-if="post.stipend_category=='Fixed'">Stipend: <br> Rs. {{post.stipend_fixed}} {{post.stipend_type}}</p>
               <p class="body-2"
                  v-if="post.stipend_category=='Negotiable'">Stipend: <br> Rs. {{post.stipend_amount_min}} - {{post.stipend_amount_max}} {{post.stipend_type}}</p>
@@ -36,7 +37,8 @@
     </v-card>
     <v-card raised
             class="mx-auto mt-4"
-            width="700">
+            width="95%"
+            max-width="700px">
       <v-card-text>
 
         <v-container class="p-4">
@@ -78,7 +80,7 @@
 
       </v-card-text>
     </v-card>
-  </div>
+  </v-container>
 </template>
 
 <script>

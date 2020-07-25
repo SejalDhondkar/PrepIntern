@@ -1,6 +1,6 @@
 <template>
-<div>
-<div >
+<v-container>
+  <v-container>
   <v-card
     raised
     class="mx-auto"
@@ -17,10 +17,10 @@
           <v-divider></v-divider>
 
           <v-row>
-            <v-col cols="4">
+            <v-col cols="12" sm="4">
               <p class="title">Admin Details</p>
             </v-col>
-            <v-col cols="8">
+            <v-col cols="12" sm="8">
             <div class="my-4">
               <p class="body-2">Name-<b> {{company.company_admin_details.name}}</b></p>
               <p class="body-2">Email - <b>{{company.company_admin_details.email}}</b></p>
@@ -30,10 +30,10 @@
 
             <v-col cols="12"><v-divider></v-divider></v-col>
 
-            <v-col cols="4">
+            <v-col cols="12" sm="4">
               <p class="title">Address</p>
             </v-col>
-            <v-col cols="8">
+            <v-col cols="12" sm="8">
             <div class="my-4">
               <p class="body-2">Registered Address-<b> {{company.company_address.registered_address}}</b></p>
               <p class="body-2">Country - <b>{{company.company_address.country_name}}</b></p>
@@ -45,10 +45,10 @@
 
             <v-col cols="12"><v-divider></v-divider></v-col>
 
-            <v-col cols="4">
+            <v-col cols="12" sm="4">
               <p class="title">Additional Details</p>
             </v-col>
-            <v-col cols="8">
+            <v-col cols="12" sm="8">
             <div class="my-4">
               <p class="body-2">Registration No - <b>{{company.company_additional_details.registration_no}}</b></p>
               <p class="body-2">Certificate of incorporation - <b>{{company.company_additional_details.certificate_of_incorporation}}</b></p>
@@ -57,18 +57,18 @@
               <p class="body-2">Type Of Company - <b>{{company.company_additional_details.type_of_company}}</b></p>
               <p class="body-2">Description - <b>{{company.company_additional_details.description}}</b></p>
               <p class="body-2">Range of employee - <b>{{company.company_additional_details.range_of_employees}}</b></p>
-
+              
             </div>
             </v-col>
-
+          
           <v-col cols="12"><v-divider></v-divider></v-col>
 
 
-            <v-col cols="4">
+            <v-col cols="12" sm="4">
               <p class="title">Social Media</p>
             </v-col>
-
-            <v-col cols="8">
+            
+            <v-col cols="12" sm="8">
               <div class="my-4" v-for="(com,i) in company.company_social_media_links" :key="i">
                   <p class="body-2">{{com.title}}- <b>{{com.url}}</b></p>
               </div>
@@ -79,7 +79,7 @@
     </v-card-text>
     </v-card>
     <br><br><br>
-</div>
+</v-container>
 <v-bottom-navigation
       fixed
       horizontal
@@ -104,7 +104,7 @@
 
 
     </v-bottom-navigation>
-</div>
+</v-container>
 </template>
 <script>
 export default {

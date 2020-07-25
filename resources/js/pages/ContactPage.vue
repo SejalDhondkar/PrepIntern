@@ -5,8 +5,8 @@
   </v-card>
   <v-card
     raised
-    class="mx-auto"
-    width="50%"
+    class="mx-auto p-2"
+    width="99%"
     min-height="100"
   >
     <v-row>

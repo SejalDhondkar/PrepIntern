@@ -1,10 +1,10 @@
 <template>
-<div>
+<v-container>
 
   <v-card
     raised
     class="mx-auto"
-    width="85%"
+    width="95%"
   >
     <v-card-text>
 
@@ -18,10 +18,10 @@
           <v-divider></v-divider>
 
           <v-row>
-            <v-col cols="4">
+            <v-col cols="12" sm="4">
               <p class="title">Education</p>
             </v-col>
-            <v-col cols="8">
+            <v-col cols="12" sm="8">
             <div class="my-4" v-if="student.student_phd">
               <p class="body-2">PhD, {{student.student_phd.stream_name}} ({{student.student_phd.start_year}}-{{student.student_phd.end_year}})</p>
               <p class="body-2">{{student.student_phd.college_name}}</p>
@@ -63,11 +63,11 @@
 
             <v-col cols="12" v-if="student.student_job.length!=0"><v-divider></v-divider></v-col>
 
-            <v-col cols="4" v-if="student.student_job.length!=0">
+            <v-col cols="12" sm="4" v-if="student.student_job.length!=0">
               <p class="title">Jobs</p>
             </v-col>
 
-            <v-col cols="8" v-if="student.student_job.length!=0">
+            <v-col cols="12" sm="8" v-if="student.student_job.length!=0">
                 <div class="my-4" v-for="(job,i) in student.student_job" :key="i">
                   <p class="body-2">{{job.position}}</p>
                   <p class="body-2">{{job.organization}} ({{job.location}})</p>
@@ -78,11 +78,11 @@
 
             <v-col cols="12" v-if="student.student_internship.length!=0"><v-divider></v-divider></v-col>
 
-            <v-col cols="4" v-if="student.student_internship.length!=0">
+            <v-col cols="12" sm="4" v-if="student.student_internship.length!=0">
               <p class="title">Internships</p>
             </v-col>
 
-            <v-col cols="8" v-if="student.student_internship.length!=0">
+            <v-col cols="12" sm="8" v-if="student.student_internship.length!=0">
                 <div class="my-4" v-for="(int,i) in student.student_internship" :key="i">
                   <p class="body-2">{{int.position}}</p>
                   <p class="body-2">{{int.organization}} ({{int.location}})</p>
@@ -93,11 +93,11 @@
 
             <v-col cols="12" v-if="student.student_pos_of_resp.length!=0"><v-divider></v-divider></v-col>
 
-            <v-col cols="4" v-if="student.student_pos_of_resp.length!=0">
+            <v-col cols="12" sm="4" v-if="student.student_pos_of_resp.length!=0">
               <p class="title">Position Of Responsibility</p>
             </v-col>
 
-            <v-col cols="8" v-if="student.student_pos_of_resp.length!=0">
+            <v-col cols="12" sm="8" v-if="student.student_pos_of_resp.length!=0">
                 <div class="my-4" v-for="(pos,i) in student.student_pos_of_resp" :key="i">
                   <p class="body-2">{{pos.description}}</p>
               </div>
@@ -105,11 +105,11 @@
 
             <v-col cols="12" v-if="student.student_training.length!=0"><v-divider></v-divider></v-col>
 
-            <v-col cols="4" v-if="student.student_training.length!=0">
+            <v-col cols="12" sm="4" v-if="student.student_training.length!=0">
               <p class="title">Trainings</p>
             </v-col>
 
-            <v-col cols="8" v-if="student.student_training.length!=0">
+            <v-col cols="12" sm="8" v-if="student.student_training.length!=0">
                 <div class="my-4" v-for="(tr,i) in student.student_training" :key="i">
                   <p class="body-2">{{tr.training_program}}</p>
                   <p class="body-2">{{tr.organization}} ({{tr.location}})</p>
@@ -120,11 +120,11 @@
 
             <v-col cols="12" v-if="student.student_project.length!=0"><v-divider></v-divider></v-col>
 
-            <v-col cols="4" v-if="student.student_project.length!=0">
+            <v-col cols="12" sm="4" v-if="student.student_project.length!=0">
               <p class="title">Projects</p>
             </v-col>
 
-            <v-col cols="8" v-if="student.student_project.length!=0">
+            <v-col cols="12" sm="8" v-if="student.student_project.length!=0">
                 <div class="my-4" v-for="(project,i) in student.student_project" :key="i">
                   <p class="body-2">{{project.project_name}}</p>
                   <p class="body-2">{{project.start_month}} - {{project.end_month}}</p>
@@ -135,11 +135,11 @@
 
             <v-col cols="12" v-if="student.student_skills.length!=0"><v-divider></v-divider></v-col>
 
-            <v-col cols="4" v-if="student.student_skills.length!=0">
+            <v-col cols="12" sm="4" v-if="student.student_skills.length!=0">
               <p class="title">Skills</p>
             </v-col>
 
-            <v-col cols="8" v-if="student.student_skills.length!=0">
+            <v-col cols="12" sm="8" v-if="student.student_skills.length!=0">
                 <div class="my-4" v-for="(skill,i) in student.student_skills" :key="i">
                   <p class="body-2">{{skill.skill_name}}</p>
                   <p class="body-2">{{skill.level}}</p>
@@ -148,11 +148,11 @@
 
             <v-col cols="12" v-if="student.student_links"><v-divider></v-divider></v-col>
 
-            <v-col cols="4" v-if="student.student_links">
+            <v-col cols="12" sm="4" v-if="student.student_links">
               <p class="title">Work Samples</p>
             </v-col>
 
-            <v-col cols="8" v-if="student.student_links">
+            <v-col cols="12" sm="8" v-if="student.student_links">
               <div class="my-4" v-if="student.student_links.blog_url">
                 <p class="body-2">Blog Link</p>
                 <p class="body-2">{{student.student_links.blog_url}}</p>
@@ -178,11 +178,11 @@
 
             <v-col cols="12" v-if="student.student_additional.length!=0"><v-divider></v-divider></v-col>
 
-            <v-col cols="4" v-if="student.student_additional.length!=0">
+            <v-col cols="12" sm="4" v-if="student.student_additional.length!=0">
               <p class="title">Additional Details</p>
             </v-col>
 
-            <v-col cols="8" v-if="student.student_additional.length!=0">
+            <v-col cols="12" sm="8" v-if="student.student_additional.length!=0">
                 <div class="my-4" v-for="(add,i) in student.student_additional" :key="i">
                   <p class="body-2">{{add.description}}</p>
               </div>
@@ -211,7 +211,7 @@
         </v-card-text>
   </v-card>
 
-</div>
+</v-container>
 
 </template>
 

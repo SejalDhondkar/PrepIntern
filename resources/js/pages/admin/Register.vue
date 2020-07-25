@@ -1,8 +1,9 @@
 <template>
-<div>
+<v-container>
   <v-card
     class="mx-auto p-4"
-    width="700"
+    width="95%"
+    max-width="700px"
     raised
   >
     <v-form
@@ -69,7 +70,7 @@
     
   </v-form>
   </v-card>
-</div>
+</v-container>
 </template>
 
 <script>

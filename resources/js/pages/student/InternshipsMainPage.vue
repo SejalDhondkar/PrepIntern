@@ -2,7 +2,8 @@
     <v-container class="mx-4 my-4">
         <v-card raised
 					class="mx-auto my-4 p-4"
-					width="85%"
+					width="95%"
+					max-width="600px"
 					min-height="200"
 					v-for="(post,i) in posts"
 					:key="i"
@@ -13,14 +14,14 @@
 
 						<br>
 						<v-row>
-							<v-col cols="3">
+							<v-col cols="12" sm="3">
 								<p class="body-2" v-if="post.start_date_type=='Immediately'">Start Date: <br> {{post.start_date_type}}</p>
 								<p class="body-2" v-if="post.start_date_type=='Later'">Start Date: <br> {{post.start_date}}</p>
 							</v-col>
-							<v-col cols="3">
+							<v-col cols="12" sm="3">
 								<p class="body-2">Duration: <br> {{post.internship_duration}}</p>
 							</v-col>
-							<v-col cols="6">
+							<v-col cols="12" sm="6">
 								<p class="body-2" v-if="post.stipend_category=='Fixed'">Stipend: <br> Rs. {{post.stipend_fixed}} {{post.stipend_type}}</p>
 								<p class="body-2" v-if="post.stipend_category=='Negotiable'">Stipend: <br> Rs. {{post.stipend_amount_min}} - {{post.stipend_amount_max}} {{post.stipend_type}}</p>
 								<p class="body-2" v-if="post.stipend_category=='Performance based'">Stipend: <br> Rs. {{post.stipend_amount_min}} {{post.stipend_type}} Incentive: {{post.stipend_incentive}}</p>

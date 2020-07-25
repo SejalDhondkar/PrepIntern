@@ -12,10 +12,12 @@ class AdminInternshipPostsController extends Controller
     public function index()
     {
         $data = CompanyPostInternship::where('is_verified',0)->get();
-        foreach($data as $dt){
-            $dt->company_name = Company::where('id',$dt->company_id)->value('name');
-            $dt->profile_name = InternshipProfiles::where('id',$dt->profile_id)->value('title');
-        }
+        if(!empty($data)){
+            foreach($data as $dt){
+                $dt->company_name = Company::where('id',$dt->company_id)->value('name');
+                $dt->profile_name = InternshipProfiles::where('id',$dt->profile_id)->value('title');
+            }
+        }        
         return $data;
     }
     public function changeStatusVerification(Request $request)

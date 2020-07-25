@@ -458,7 +458,7 @@
 
                         <p class="title">Skills and assessment</p>
                         <v-container class="px-4">
-                          <v-subheader>Skills required</v-subheader>
+                          <v-subheader>Skills (*required)</v-subheader>
                           <v-menu offset-y>
                           <template v-slot:activator="{ on }">
                             <v-text-field
@@ -542,11 +542,12 @@
 
                         <v-divider></v-divider>
 
-                        <v-subheader>Assessment</v-subheader>
-                        <v-subheader>Question 1 and 2 will be asked to every applicant by default. If you wish, you may ask two more customized questions.</v-subheader>
-
-                        <v-subheader>Question 1: Why should you be hired for this role?</v-subheader>
-                        <v-subheader>Question 2: Are you available for 1 month, starting immediately, for a full time internship at ? If not, what is the time period you are available for and the earliest date you can start this internship on?</v-subheader>
+                        <p>Assessment</p>
+                        <p><b>Question 1 and 2 will be asked to every applicant by default. If you wish, you may ask two more customized questions.</b></p>
+                        
+                        <p>Question 1: Why should you be hired for this role?</p>
+                        
+                        <p>Question 2: Are you available for 1 month, starting immediately, for a full time internship at ? If not, what is the time period you are available for and the earliest date you can start this internship on?</p>
                         <br>
                         <p @click="question1=true">+ Add question 3</p>
 
@@ -570,7 +571,7 @@
                           </v-textarea>
                         </div>
 
-                        <v-subheader>Mention any other requirements that the applicants should have</v-subheader>
+                        <p>Mention any other requirements that the applicants should have (optional)</p>
                         <v-textarea
                             name="input-7-1"
                             label="Other Requirements"

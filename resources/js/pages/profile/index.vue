@@ -2,7 +2,7 @@
   <v-card
     raised
     class="mx-auto"
-    width="60%"
+    width="85%"
   >  
 
   <v-card
@@ -10,19 +10,10 @@
       width="98%"
       >
         <v-row justify="center">
-          <v-col
-            align="center"
-            cols="12"
-            md="2"
-            >
-              <v-avatar color="white" size="80" left>
-                <v-icon x-large>mdi-account-circle</v-icon>
-              </v-avatar>
-          </v-col>
 
           <v-col
             cols="12"
-            md="10"
+            md="12"
             >
             <p class="display-1 p-4 text--lighten-1">{{profile.name}}</p>        
           </v-col>
@@ -111,7 +102,7 @@
                     class="mr-0"
                     @click="edit"
                   >
-                    Edit Profile
+                    Edit
                   </v-btn>
                 </v-col>
               </v-row>
