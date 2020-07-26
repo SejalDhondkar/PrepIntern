@@ -39,23 +39,25 @@
 
     </v-app-bar>
 
-    <v-container fluid class="m-4 p-4 mx-auto">
-      <v-carousel show-arrows-on-hover hide-delimiters cycle
-                  interval="4000"
-                  continuous>
-        <v-carousel-item v-for="(item,i) in carousel"
-                         :key="i"
-                         :src="item.src"
-                         contain></v-carousel-item>
-      </v-carousel>
-
-      <br><br>
-
-      <p class="headings">Features</p>
-
+    <v-container fluid class="m-4 p-4">
       <v-row>
-        <v-col cols="12" sm="6" class="d-flex justify-end">
-          <v-card raised class="m-4 p-4" width="400">
+        <v-col cols="12">
+          <v-carousel show-arrows-on-hover hide-delimiters cycle
+                    interval="4000"
+                    continuous
+                    class="hidden-sm-and-down">
+            <v-carousel-item v-for="(item,i) in carousel"
+                             :key="i"
+                             :src="item.src"
+                             contain>
+            </v-carousel-item>
+        </v-carousel>
+        </v-col>
+        <v-col cols="12">
+          <p class="headings">Features</p>
+        </v-col>
+        <v-col cols="12" sm="6" class="d-flex justify-center mx-auto">
+          <v-card raised class="m-4 p-4 mx-auto" width="400">
             <p class="feature-heading">For Students</p><br>
             <p class="features">
               <v-icon color="success">mdi-check</v-icon>100% Verified Internships</p>
@@ -67,9 +69,8 @@
               <v-icon color="success">mdi-check</v-icon>Profile Ratings</p>
           </v-card>
         </v-col>
-
-        <v-col cols="12" sm="6" class="d-flex justify-start">
-          <v-card raised class="m-4 p-4" width="400">
+        <v-col cols="12" sm="6" class="d-flex justify-center mx-auto">
+          <v-card raised class="m-4 p-4 mx-auto" width="400">
             <p class="feature-heading">For Employers</p><br>
             <p class="features">
               <v-icon color="success">mdi-check</v-icon>Post Internships for free</p>
@@ -79,15 +80,12 @@
               <v-icon color="success">mdi-check</v-icon>Verified Student Profiles</p>
             <p class="features">
               <v-icon color="success">mdi-check</v-icon>24x7 Customer Support</p>
-
           </v-card>
         </v-col>
-      </v-row>
-
-      <br><br><br>
-
-      <p class="headings">Get Internships</p><br>
-      <v-row>
+        <v-col cols="12">
+          <br><br><p class="headings">Get Internships</p><br>
+        </v-col>
+      
         <v-col cols="12"
                sm="3">
           <v-card class="cards">
@@ -145,12 +143,9 @@
           </v-card>
         </v-col>
 
-      </v-row>
-
-      <br><br><br><br>
-
-      <p class="headings">About Us</p>
-      <v-row>
+        <v-col cols="12">
+          <br><br><p class="headings">About Us</p>
+        </v-col>
         <v-col cols="12" sm="4">
           <v-card flat tile class="d-flex align-end">
             <v-img src="./images/logo2.jpeg"
@@ -160,7 +155,8 @@
                    contain></v-img>
           </v-card>
         </v-col>
-        <v-col cols="12" sm="8" class="text d-flex flex-column justify-center">
+        <v-col cols="12" sm="8" class="text d-flex flex-column">
+        <v-container>
           <v-card flat tile>
             PrepIntern is a startup initiative of YuvaLeads aimed at providing guaranteed internships in all technical & non technical
             domains and tracking intern's performance throughout the internship.<br> In today's digital world getting
@@ -170,37 +166,42 @@
             <br>Companies interested in hiring interns will be benefited by getting potential interns through PrepIntern. We
             match up company's requirements with our pool of interns to serve you best results.
           </v-card>
+          </v-container>
         </v-col>
-      </v-row>
 
-      <v-carousel cycle
-                  min-height="200"
-                  show-arrows-on-hover>
-        <v-carousel-item v-for="(slide, i) in slides"
-                         :key="i">
-          <v-row class="fill-height"
-                 align="center"
-                 justify="center">
-            <v-card light shaped raised
-                    color="indigo lighten-5"
-                    class="mx-auto my-auto"
-                    width="80%">
-              <v-row class="fill-height p-2"
+        <v-col cols="12">
+          <v-carousel cycle
+                      min-height="200"
+                      show-arrows-on-hover
+                      hide-delimiters
+                      >
+            <v-carousel-item v-for="(slide, i) in slides"
+                             :key="i">
+              <v-row class="fill-height"
                      align="center"
                      justify="center">
-                <v-col class="text-center" cols="12" sm="3">
-                  <p class="slide-name">{{slide.name}}</p>
-                  <p class="slide-position">{{slide.position}}</p>
-                </v-col>
-                <v-col class="slide-msg" cols="12" sm="9">
-                  {{slide.msg}}
-                </v-col>
+                <v-card light shaped raised
+                        color="indigo lighten-5"
+                        class="mx-auto my-auto"
+                        width="80%">
+                  <v-row class="fill-height p-2"
+                         align="center"
+                         justify="center">
+                    <v-col class="text-center" cols="12" sm="3">
+                      <p class="slide-name">{{slide.name}}</p>
+                      <p class="slide-position">{{slide.position}}</p>
+                    </v-col>
+                    <v-col class="slide-msg" cols="12" sm="9">
+                      {{slide.msg}}
+                    </v-col>
+                  </v-row>
+                </v-card>
               </v-row>
-            </v-card>
-          </v-row>
-        </v-carousel-item>
-      </v-carousel>
-
+            </v-carousel-item>
+          </v-carousel>
+          <br><br><br>
+        </v-col>
+      </v-row>
     </v-container>
 
     <v-footer app absolute padless color="grey darken-3" class="p-2">
@@ -304,13 +305,12 @@
     color: #424242;
   }
   .text {
-    text-align: left;
-    padding-right: 15%;
+    text-align: justify;
     font-size: 1.1rem;
+    padding-left: 10px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-weight: 50;
     color: #212121;
-    font-stretch: semi-expanded;
   }
   .features {
     text-align: center;
