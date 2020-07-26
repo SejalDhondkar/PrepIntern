@@ -160,6 +160,24 @@
             </v-container>
           </v-form>
 
+          <v-snackbar
+            v-model="snackbar"
+            :timeout="timeout"
+          >
+            {{ text }}
+
+            <template v-slot:action="{ attrs }">
+              <v-btn
+                color="blue"
+                text
+                v-bind="attrs"
+                @click="snackbar = false"
+              >
+                Close
+              </v-btn>
+            </template>
+          </v-snackbar>
+
   </v-card>
 
 
@@ -187,7 +205,10 @@
           registered_address: '',
           pincode: '',
         },
-        flag: ''
+        flag: '',
+        snackbar: false,
+        text: 'These details are required to be filled.',
+        timeout: 10000,
       }
   },
 
@@ -205,6 +226,7 @@
 
   created(){
     this.$store.commit('SET_LAYOUT', 'company-layout');
+    this.snackbar = true;
   },
 
   methods: {

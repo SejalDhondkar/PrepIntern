@@ -53,6 +53,24 @@
             </v-container>
           </v-form>
 
+                          <v-snackbar
+            v-model="snackbar"
+            :timeout="timeout"
+          >
+            {{ text }}
+
+            <template v-slot:action="{ attrs }">
+              <v-btn
+                color="blue"
+                text
+                v-bind="attrs"
+                @click="snackbar = false"
+              >
+                Close
+              </v-btn>
+            </template>
+          </v-snackbar>
+
   </v-card>
 
 
@@ -71,7 +89,10 @@ export default {
         {social_media_link_id: 5, title: 'Website', url: ''},
       ],
       link: 1,
-      flag: ''
+      flag: '',
+      snackbar: false,
+        text: 'These details are required to be filled.',
+        timeout: 10000,
     }
   },
 
@@ -89,6 +110,7 @@ export default {
 
   created(){
     this.$store.commit('SET_LAYOUT', 'company-layout');
+    this.snackbar = true;
   },
 
     methods: {

@@ -133,6 +133,24 @@
             </v-container>
           </v-form>
 
+                <v-snackbar
+            v-model="snackbar"
+            :timeout="timeout"
+          >
+            {{ text }}
+
+            <template v-slot:action="{ attrs }">
+              <v-btn
+                color="blue"
+                text
+                v-bind="attrs"
+                @click="snackbar = false"
+              >
+                Close
+              </v-btn>
+            </template>
+          </v-snackbar>
+
   </v-card>
 
 
@@ -154,7 +172,10 @@
         },
         flag: '',
         data: '',
-        range_list: ['Self-Employed','1-10','11-50','51-100','101-200','201-500','501-1000','1001-5000','5001-10,000','10,001+']
+        range_list: ['Self-Employed','1-10','11-50','51-100','101-200','201-500','501-1000','1001-5000','5001-10,000','10,001+'],
+        snackbar: false,
+        text: 'These details are required to be filled.',
+        timeout: 10000,
       }
   },
 
@@ -172,6 +193,7 @@
 
   created(){
     this.$store.commit('SET_LAYOUT', 'company-layout');
+    this.snackbar = true;
   },
 
   methods: {
