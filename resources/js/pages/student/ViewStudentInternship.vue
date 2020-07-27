@@ -41,17 +41,19 @@
         <v-container class="p-4">
 
 					<p class="body-1">About Internship:</p>
-          <p class="body-2"> {{post.intern_resp_desc}}</p> <br>
-          <p class="body-1"># of internships available: {{post.no_of_openings}} </p><br>
+          <p class="body-2" v-if="post.intern_resp_desc">Selected Intern's day-to-day responsibilities include:<br> {{post.intern_resp_desc}}</p> <br>
+          <p class="body-1" v-if="post.no_of_openings"># of internships available: {{post.no_of_openings}} </p><br>
 
-          <p class="body-1">Skills required:</p>
-          <p class="body-2"><span v-for="(skill,i) in post.skills" :key="i"> {{skill}}, </span></p><br>
+          <p class="body-1" v-if="post.skills">Skills required:</p>
+          <p class="body-2" v-if="post.skills"><span v-for="(skill,i) in post.skills" :key="i"> {{skill}}, </span></p><br>
           <p class="body-1">Who can apply:</p>
           <p class="body-2">Only those candidates can apply who:</p>
           <p class="body-2">1. are available for duration of {{post.internship_duration}}</p>
           <p class="body-2">2. have relevant skills and interests</p><br>
-          <p class="body-1">Perks: </p>
-          <p class="body-2"><span v-for="(perk,i) in post.perks_array" :key="i"> {{perk}}, </span></p>
+          <p class="body-1" v-if="post.perks_array">Perks: </p>
+          <p class="body-2" v-if="post.perks_array"><span v-for="(perk,i) in post.perks_array" :key="i"> {{perk}}, </span></p>
+          <p class="body-1" v-if="post.other_req">Other Requirements: </p>
+          <p class="body-2" v-if="post.other_req"> {{post.other_req}} </p>
 
           <br><br>
 

@@ -37,9 +37,8 @@ class CompanyPostInternshipController extends Controller
 
     public function store(Request $request)
     {
-        $this_company_id = Company::where('admin_id', Auth::id())->value('id');
         $post = new CompanyPostInternship;
-        $post->company_id = $this_company_id;
+        $post->company_id = Company::where('admin_id',Auth::id())->pluck('id')->first();
         $post->profile_id = $request->profile_id;
         $post->type_of_internship = $request->type_of_internship;
         if(!empty($request->city_preferences))

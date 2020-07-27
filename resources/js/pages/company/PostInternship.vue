@@ -1,5 +1,5 @@
 <template>
-<div>
+<v-container>
   <v-card
     outlined
     class="mx-auto"
@@ -270,6 +270,7 @@
                         <v-subheader>Intern’s responsibilities:</v-subheader>
                         </v-col>
                         <v-col cols="12">
+                        <p class="body-2">Selected Intern's day-to-day responsibilities include:</p>
                         <v-textarea
                           name="input-7-1"
                           v-model="post.intern_resp_desc"
@@ -604,26 +605,7 @@
 
   </v-card>
 
-    <v-snackbar
-        v-model="snackbar"
-        :timeout="timeout"
-        :multi-line="multiLine"
-      >
-        {{ text }}
-
-        <template v-slot:action="{ attrs }">
-          <v-btn
-            color="blue"
-            text
-            v-bind="attrs"
-            @click="snackbar = false"
-          >
-            Close
-          </v-btn>
-        </template>
-      </v-snackbar>
-
-  </div>
+</v-container>
 
 
 </template>
@@ -643,7 +625,7 @@
            start_date: null,
            end_date: null,
            internship_duration: '',
-           intern_resp_desc: "Selected intern's day-to-day responsibilities include:",
+           intern_resp_desc: '',
            stipend_category: '',
            stipend_fixed: '',
            stipend_amount_min: '',
@@ -684,10 +666,6 @@
         question1: false,
         question2: false,
         flag: '',
-        snackbar: false,
-        text: 'We have successfully received your post. It will be posted after we verify it',
-        timeout: 6000,
-        multiLine: true,
       }
   },
 
@@ -718,7 +696,7 @@
     submit() {
       this.errors = {};
       axios.post('/company/postinternship', this.post).then(response => {
-        this.snackbar = true;
+        this.$router.push('/company/dashboard');
       }).catch(error => {
         if (error.response.status === 422) {
         console.log("error");
