@@ -139,7 +139,7 @@
           },
           success: function () {
             console.log("Created.");
-            this.$router.push('/roles');
+            this.$router.push('/admin');
           },
           error: function (res) {
             console.log("Error.");
