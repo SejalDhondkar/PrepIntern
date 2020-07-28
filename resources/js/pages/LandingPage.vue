@@ -90,56 +90,56 @@
                sm="3">
           <v-card class="cards">
             <p class="cards-text">
-              <v-icon x-large color="indigo darken-2">mdi-volume-high</v-icon>Marketing</p>
+              <v-icon x-large color="blue darken-2">mdi-volume-high</v-icon>Marketing</p>
           </v-card>
         </v-col>
         <v-col cols="12"
                sm="3">
           <v-card class="cards">
             <p class="cards-text">
-              <v-icon x-large color="indigo darken-2">business_center</v-icon>Business Development</p>
+              <v-icon x-large color="blue darken-2">business_center</v-icon>Business Development</p>
           </v-card>
         </v-col>
         <v-col cols="12"
                sm="3">
           <v-card class="cards">
             <p class="cards-text">
-              <v-icon x-large color="indigo darken-2">mdi-book-open-page-variant</v-icon>Content Writing</p>
+              <v-icon x-large color="blue darken-2">mdi-book-open-page-variant</v-icon>Content Writing</p>
           </v-card>
         </v-col>
         <v-col cols="12"
                sm="3">
           <v-card class="cards">
             <p class="cards-text">
-              <v-icon x-large color="indigo darken-2">mdi-draw</v-icon>Graphic Design</p>
+              <v-icon x-large color="blue darken-2">mdi-draw</v-icon>Graphic Design</p>
           </v-card>
         </v-col>
         <v-col cols="12"
                sm="3">
           <v-card class="cards">
             <p class="cards-text">
-              <v-icon x-large color="indigo darken-2">attach_money</v-icon>Finance</p>
+              <v-icon x-large color="blue darken-2">attach_money</v-icon>Finance</p>
           </v-card>
         </v-col>
         <v-col cols="12"
                sm="3">
           <v-card class="cards">
             <p class="cards-text">
-              <v-icon x-large color="indigo darken-2">mdi-account-group-outline</v-icon>Human Resources</p>
+              <v-icon x-large color="blue darken-2">mdi-account-group-outline</v-icon>Human Resources</p>
           </v-card>
         </v-col>
         <v-col cols="12"
                sm="3">
           <v-card class="cards">
             <p class="cards-text">
-              <v-icon x-large color="indigo darken-2">mdi-remote-desktop</v-icon>Engineering</p>
+              <v-icon x-large color="blue darken-2">mdi-remote-desktop</v-icon>Engineering</p>
           </v-card>
         </v-col>
         <v-col cols="12"
                sm="3">
           <v-card class="cards">
             <p class="cards-text">
-              <v-icon x-large color="indigo darken-2">mdi-search-web</v-icon>All Internships</p>
+              <v-icon x-large color="blue darken-2">mdi-search-web</v-icon>All Internships</p>
           </v-card>
         </v-col>
 
@@ -327,7 +327,7 @@
     color: #424242;
   }
   .cards {
-    background-color: #f5f5f5;
+    background-color: #ECEFF1;
     width: 100%;
     height: 180px;
   }

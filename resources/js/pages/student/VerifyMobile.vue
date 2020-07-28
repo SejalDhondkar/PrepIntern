@@ -46,6 +46,7 @@
                   color="success"
                   class="mr-4"
                   @click="verifyOtp"
+                  :loading="loading"
                 >Verify OTP</v-btn>
               </v-card-actions>
             </v-card>
@@ -80,6 +81,7 @@ export default {
       snackbar: true,
       text: 'Please verify your mobile number',
       timeout: 2000,
+      loading: false,
     };
   },
   created() {
@@ -93,6 +95,7 @@ export default {
 
     methods: {
       verifyOtp() {
+        this.loading = true;
         let mobile = this.user.contact_no;
         let otp = this.phone_number.otp;
         let authkey= '308476ARq4VkPBV55df64864';
