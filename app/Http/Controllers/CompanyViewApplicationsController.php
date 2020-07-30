@@ -78,8 +78,9 @@ class CompanyViewApplicationsController extends Controller
         $student_assessment->student_name = User::where('id',$student_id)->value('name');
 
         $student_basic_info = User::where('id',$student_id)->first();
-        $student_basic_info->city_name = Cities::where('id',$student_basic_info->city_id)->value('name');
-
+        if($student_basic_info->city_id){
+            $student_basic_info->city_name = Cities::where('id',$student_basic_info->city_id)->value('name');
+          }
         $student_grad = StudentGraduationDetails::where('user_id',$student_id)->first();
         if($student_grad){
             $student_grad->college_name = Colleges::where('id',$student_grad->college_id)->value('name');

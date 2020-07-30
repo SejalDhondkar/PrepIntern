@@ -67,6 +67,8 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('/internships/status/verification','AdminInternshipPostsController@changeStatusVerification')->middleware('Admin');
     Route::get('/admin/verifycompanies','VerifyCompanyController@index')->middleware('Admin');
     Route::get('/admin/viewcompanies/{id}/details','ViewCompanyDetailsController@viewDetails')->middleware('Admin');
+    Route::get('/admin/allstudents/list','AdminUsersController@allStudents')->middleware('Admin');
+    Route::get('/admin/allstudents/{id}/details','AdminUsersController@ViewStudent')->middleware('Admin');
 
     Route::put('/admin/verifycompanies/changeverify','VerifyCompanyController@changeVerified');
     Route::get('/admin/registeredcompanies/sort','RegisteredCompaniesController@sortByStatus');

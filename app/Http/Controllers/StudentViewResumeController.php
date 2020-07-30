@@ -31,8 +31,9 @@ class StudentViewResumeController extends Controller
     public function viewResume()
     {
         $student_basic_info = User::where('id',Auth::id())->first();
-        $student_basic_info->city_name = Cities::where('id',$student_basic_info->city_id)->value('name');
-
+        if($student_basic_info->city_id){
+            $student_basic_info->city_name = Cities::where('id',$student_basic_info->city_id)->value('name');
+          }
         $student_grad = StudentGraduationDetails::where('user_id',Auth::id())->first();
         if($student_grad){
             $student_grad->college_name = Colleges::where('id',$student_grad->college_id)->value('name');

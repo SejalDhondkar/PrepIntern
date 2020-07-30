@@ -17,6 +17,8 @@ import AdminRegisteredCompanies from './pages/admin/RegisteredCompanies'
 import AdminViewRegisteredCompanies from './pages/admin/ViewRegisteredCompanies'
 import AdminPostedInternships from './pages/admin/PostedInternships'
 import AdminViewPostedInternships from './pages/admin/ViewPostedInternships'
+import AdminAllStudentsList from './pages/admin/AllStudentsList'
+import AdminAllStudentDetails from './pages/admin/AllStudentDetails'
 
 
 import LandingPage from './pages/LandingPage'
@@ -210,6 +212,24 @@ const routes = [{
         path: '/admin/viewpostedinternships/:id/details',
         name: 'admin.ViewPostedInternships',
         component: AdminViewPostedInternships,
+        meta: {
+            auth: { roles: 1, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
+        }
+    },
+
+    {
+        path: '/admin/allstudents/list',
+        name: 'admin.AllStudentsList',
+        component: AdminAllStudentsList,
+        meta: {
+            auth: { roles: 1, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
+        }
+    },
+
+    {
+        path: '/admin/allstudents/:id/details',
+        name: 'admin.AllStudentDetails',
+        component: AdminAllStudentDetails,
         meta: {
             auth: { roles: 1, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }

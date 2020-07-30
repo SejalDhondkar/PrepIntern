@@ -130,6 +130,7 @@
         { icon: 'mdi-plus', text: 'Add New Admin', link: '/admin/register' },
         { icon: 'mdi-file-multiple-outline', text: 'View Posted Internships', link: '/admin/internshipposts' },
         { icon: 'mdi-briefcase-outline', text: 'View Unverified Companies', link: '/admin/verifycompanies' },
+        { icon: 'mdi-school-outline', text: 'View All Students', link: '/admin/allstudents/list' },
         { icon: 'mdi-account-group-outline', text: 'View Roles', link: '/roles' },
         { icon: 'mdi-account-multiple-plus-outline', text: 'Create New Role', link: '/roles/store' },
         { icon: 'mdi-account-outline', text: 'View Profile', link: '/profile' },
