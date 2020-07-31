@@ -15,11 +15,22 @@
       
     </v-card-text>
     </v-toolbar>
-          
         <v-container class="p-4">
+          <v-text-field
+            v-model="search"
+            append-icon="mdi-magnify"
+            label="Search any field"
+            single-line
+            hide-details
+          ></v-text-field>
+          <v-spacer>
+          </v-spacer>
+          <br><br>
+
             <v-data-table
 							:headers="headers"
 							:items="students"
+              :search="search"
 							class="elevation-1"
 
 					>
@@ -56,6 +67,7 @@ export default {
           
         ],
         students: [],
+        search: '',
       }
     },
 

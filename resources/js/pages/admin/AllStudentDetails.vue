@@ -39,7 +39,7 @@
               </v-expansion-panel-content>
             </v-expansion-panel>
 
-            <v-expansion-panel>
+            <v-expansion-panel v-if="(student.student_phd) || (student.student_post_grad) || (student.student_grad) || (student.student_diploma) || (student.student_xii) || (student.student_x)">
             <v-expansion-panel-header>Education Details</v-expansion-panel-header>
               <v-expansion-panel-content>
                 <v-row>
