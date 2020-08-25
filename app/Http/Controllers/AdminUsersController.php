@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\StudentPrimaryDetails;
 use App\StudentGraduationDetails;
 use App\StudentPostGraduationDetails;
 use App\StudentTwelthDetails;
@@ -67,6 +68,9 @@ class AdminUsersController extends Controller
       if($student_basic_info->city_id){
         $student_basic_info->city_name = Cities::where('id',$student_basic_info->city_id)->value('name');
       }
+
+      $student_internship_preferences_string = StudentPrimaryDetails::where('user_id',$id)->value('fields');
+      $student_internship_preferences = json_decode($student_internship_preferences_string);
 
         $student_grad = StudentGraduationDetails::where('user_id',$id)->first();
         if($student_grad){
@@ -141,7 +145,7 @@ class AdminUsersController extends Controller
 
         $student_additional = StudentAdditionalDetails::where('user_id',$id)->get();
 
-        return response()->json(['student_basic_info'=>$student_basic_info ,
+        return response()->json(['student_basic_info'=>$student_basic_info , 'student_internship_preferences'=>$student_internship_preferences,
                                 'student_grad'=>$student_grad , 'student_post_grad'=>$student_post_grad ,
                                 'student_xii'=>$student_xii , 'student_x'=>$student_x ,
                                 'student_diploma'=>$student_diploma , 'student_phd'=>$student_phd ,

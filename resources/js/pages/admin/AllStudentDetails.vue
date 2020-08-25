@@ -30,9 +30,26 @@
               <p class="body-2">Name: {{student.student_basic_info.name}}</p>
               <p class="body-2">Email: {{student.student_basic_info.email}}</p>
               <p class="body-2">Contact No: {{student.student_basic_info.contact_no}}</p>
-              <p class="body-2" v-if="student.student_basic_info.country_name">Counrty: {{student.student_basic_info.country_name}}</p>
+              <p class="body-2" v-if="student.student_basic_info.country_name">Country: {{student.student_basic_info.country_name}}</p>
               <p class="body-2" v-if="student.student_basic_info.state_name">State: {{student.student_basic_info.state_name}}</p>
               <p class="body-2" v-if="student.student_basic_info.city_name">City: {{student.student_basic_info.city_name}}</p>
+            </div>
+            </v-col>
+                </v-row>
+              </v-expansion-panel-content>
+            </v-expansion-panel>
+
+            <v-expansion-panel>
+              <v-expansion-panel-header>Internship Preferences</v-expansion-panel-header>
+              <v-expansion-panel-content>
+                <v-row>
+            <v-col cols="12" sm="4">
+              <p class="title">Internship Preferences</p>
+            </v-col>
+            <v-col cols="12" sm="8">
+            <div class="my-4">
+              <p class="body-2">Fields:</p>
+              <p class="body-2" v-for="(field,i) in student.student_internship_preferences" :key="i"> - {{field['title']}}</p>
             </div>
             </v-col>
                 </v-row>
@@ -266,6 +283,7 @@ export default {
       return {
           student: {
             student_basic_info: [],
+            student_internship_preferences: [],
             student_grad: [],
             student_post_grad: [],
             student_xii: [],

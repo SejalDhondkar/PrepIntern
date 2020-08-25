@@ -229,7 +229,7 @@ export default {
 			submit(){
 				this.errors = {};
 					axios.post('/student/internshippreferences', this.student).then(response => {
-						this.$router.push('/student/dashboard');
+						this.$router.push('/student/addskills');
 					}).catch(error => {
 						if (error.response.status === 422) {
 						console.log("error");

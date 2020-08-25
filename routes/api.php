@@ -106,8 +106,9 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('/student/internships/fields','InternshipPreferencesController@getFields');
     Route::get('/student/internships/citysearch','InternshipPreferencesController@getCity');
     Route::post('/student/internshippreferences','InternshipPreferencesController@store');
-    Route::get('/student/dashboard/check','InternshipPreferencesController@checkForDashboard');
+    Route::get('/student/preferences/check','InternshipPreferencesController@checkForPreferences');
     Route::get('/student/internships/check','InternshipPreferencesController@check');
+    Route::get('/student/addskills/check','InternshipPreferencesController@checkSkills');
     Route::post('/student/graduationdetails','StudentGraduationDetailsController@store');
     Route::get('/student/graduationdetails/edit','StudentGraduationDetailsController@edit');
     Route::post('/student/postgraduationdetails','StudentPostGradDetailsController@store');

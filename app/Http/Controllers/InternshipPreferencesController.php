@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\InternshipFields;
 use App\Cities;
 use App\StudentPrimaryDetails;
+use App\StudentSkillsDetails;
 use Auth;
 class InternshipPreferencesController extends Controller
 {
@@ -45,10 +46,22 @@ class InternshipPreferencesController extends Controller
         return $flag;
     }
 
-    public function checkForDashboard()
+    public function checkForPreferences()
     {
         $student_id = StudentPrimaryDetails::where('user_id', Auth::id())->value('type_of_internship_id');
         if($student_id){
+            $flag = 'true';
+        }else{
+            $flag = 'false';
+        }
+
+        return $flag;
+    }
+
+    public function checkSkills()
+    {
+        $student_skills = StudentSkillsDetails::where('user_id', Auth::id())->first();
+        if($student_skills){
             $flag = 'true';
         }else{
             $flag = 'false';

@@ -35,12 +35,12 @@ export default {
     },
 
     beforeCreate() {
-    axios.get('/student/dashboard/check',{params: {flag: this.flag}}).then(response => {
+    axios.get('/student/addskills/check',{params: {flag: this.flag}}).then(response => {
             this.flag = response.data;
             if (this.flag) {
               console.log("Continue")
             } else {
-              this.$router.push('/student/internshippreferences');
+              this.$router.push('/student/addskills');
               console.log("redirected")
             }
          });

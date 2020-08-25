@@ -145,8 +145,8 @@
 
             <v-col cols="12" sm="8" v-if="student.student_skills.length!=0">
                 <v-card flat class="my-4" v-for="(skill,i) in student.student_skills" :key="i">
-                  <p class="body-2">{{skill.skill_name}}<span><v-btn icon dark class="float-right ma-2 text-decoration-none" color="primary" to="/student/skilldetails"><v-icon>mdi-pencil-outline</v-icon></v-btn></span></p>
-                  <p class="body-2">{{skill.level}}</p>
+                  <p class="body-2" v-if="skill.skill_name">{{skill.skill_name}}<span><v-btn icon dark class="float-right ma-2 text-decoration-none" color="primary" to="/student/skilldetails"><v-icon>mdi-pencil-outline</v-icon></v-btn></span></p>
+                  <p class="body-2" v-if="skill.skill_name">{{skill.level}}</p>
               </v-card>
             </v-col>
 

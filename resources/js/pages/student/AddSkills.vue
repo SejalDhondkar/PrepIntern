@@ -14,7 +14,7 @@
 
     </v-card-text>
     </v-toolbar>
-    <v-banner two-line class="pt-2" elevation="3" v-model="v0" transition="slide-y-transition">
+            <v-banner two-line class="pt-2" elevation="3" v-model="v0" transition="slide-y-transition">
               <v-icon
                 slot="icon"
                 color="warning"
@@ -28,6 +28,7 @@
               </template>
             </v-banner>
           <v-container class="p-4 m-4">
+            
 						<p class="font-weight-medium">Add your top 5 skills here</p>
 											<v-menu offset-y>
                       <template v-slot:activator="{ on }">
@@ -215,21 +216,8 @@
           </v-container>
 					<v-row class="px-4">
 
-            <v-col
-                  cols="6"
-                  class="text-left"
-                >
-                  <v-btn
-                    color="primary"
-                    class="mr-0"
-                    @click="previous"
-                  >
-                    Previous
-                  </v-btn>
-                </v-col>
-
 					<v-col
-                  cols="6"
+                  cols="12"
                   class="text-right"
                 >
                   <v-btn
@@ -283,41 +271,20 @@ export default {
 			}
     },
 
+    beforeCreate() {
+    axios.get('/student/preferences/check',{params: {flag: this.flag}}).then(response => {
+            this.flag = response.data;
+            if (this.flag) {
+              console.log("Continue")
+            } else {
+              this.$router.push('/student/internshippreferences');
+              console.log("redirected")
+            }
+         });
+  },
+
     created(){
     this.$store.commit('SET_LAYOUT', 'student-layout');
-    this.axios.get('/student/skilldetails/edit').then((response) => {
-            if(response.data[0]){
-              this.skillsearchquery1 = response.data[0].skill_name;
-              this.student.skill_1 = response.data[0].skill_id;
-              this.student.level_1 = response.data[0].level;
-              this.student.id_1 = response.data[0].id;
-            }
-            if(response.data[1]){
-              this.skillsearchquery2 = response.data[1].skill_name;
-              this.student.skill_2 = response.data[1].skill_id;
-              this.student.level_2 = response.data[1].level;
-              this.student.id_2 = response.data[1].id;
-            }
-            if(response.data[2]){
-              this.skillsearchquery3 = response.data[2].skill_name;
-              this.student.skill_3 = response.data[2].skill_id;
-              this.student.level_3 = response.data[2].level;
-              this.student.id_3 = response.data[2].id;
-            }
-            if(response.data[3]){
-              this.skillsearchquery4 = response.data[3].skill_name;
-              this.student.skill_4 = response.data[3].skill_id;
-              this.student.level_4 = response.data[3].level;
-              this.student.id_4 = response.data[3].id;
-            }
-            if(response.data[4]){
-              this.skillsearchquery5 = response.data[4].skill_name;
-              this.student.skill_5 = response.data[4].skill_id;
-              this.student.level_5 = response.data[4].level;
-              this.student.id_5 = response.data[4].id;
-            }
-            // this.student = response.data;
-        });
     },
 
 		methods: {
@@ -325,7 +292,7 @@ export default {
 			submit(){
 				this.errors = {};
 					axios.post('/student/skilldetails', this.student).then(response => {
-						this.$router.go(-1);
+						this.$router.push('/student/dashboard');
 					}).catch(error => {
 						if (error.response.status === 422) {
 						console.log("error");

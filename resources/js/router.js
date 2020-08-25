@@ -83,6 +83,7 @@ import StudentJobDetailsEdit from './pages/student/JobDetailsEdit'
 import StudentPositionOfRespEdit from './pages/student/PositionOfRespEdit'
 import StudentTrainingDetailsEdit from './pages/student/TrainingDetailsEdit'
 import StudentProjectDetailsEdit from './pages/student/ProjectDetailsEdit'
+import StudentAddSkills from './pages/student/AddSkills'
 
 import VerifyMobile from './pages/register/VerifyMobile'
 
@@ -768,6 +769,15 @@ const routes = [{
         path: '/student/projectdetails/:id/edit',
         name: 'student.ProjectDetailsEdit',
         component: StudentProjectDetailsEdit,
+        meta: {
+            auth: { roles: 5, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
+        }
+    },
+
+    {
+        path: '/student/addskills',
+        name: 'student.AddSkills',
+        component: StudentAddSkills,
         meta: {
             auth: { roles: 5, redirect: { name: 'login' }, forbiddenRedirect: '/403' }
         }
