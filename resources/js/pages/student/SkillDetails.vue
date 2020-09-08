@@ -37,6 +37,10 @@
                           class="purple-input mr-4"
                           v-on:keyup="autoCompleteSkill1"
 													v-on="on"
+                          :error-messages="skill_1Error"
+                          required
+                          @input="$v.skillsearchquery1.$touch()"
+                          @blur="$v.skillsearchquery1.$touch()"
                         />
                       </template>
                             <v-list v-if="skill_data_results.length"
@@ -73,6 +77,10 @@
                           class="purple-input mr-4"
                           v-on:keyup="autoCompleteSkill2"
 													v-on="on"
+                          :error-messages="skill_2Error"
+                          required
+                          @input="$v.skillsearchquery2.$touch()"
+                          @blur="$v.skillsearchquery2.$touch()"
                         />
                       </template>
                             <v-list v-if="skill_data_results.length"
@@ -109,6 +117,10 @@
                           class="purple-input mr-4"
                           v-on:keyup="autoCompleteSkill3"
 													v-on="on"
+                          :error-messages="skill_3Error"
+                          required
+                          @input="$v.skillsearchquery3.$touch()"
+                          @blur="$v.skillsearchquery3.$touch()"
                         />
                       </template>
                             <v-list v-if="skill_data_results.length"
@@ -249,7 +261,16 @@
 </template>
 
 <script>
+import { validationMixin } from 'vuelidate'
+import { required } from 'vuelidate/lib/validators'
+
 export default {
+   mixins: [validationMixin],
+   validations: {
+      skillsearchquery1: { required },
+      skillsearchquery2: { required },
+      skillsearchquery3: { required },
+   },
     data(){
 			return {
 				student: {
@@ -320,10 +341,36 @@ export default {
         });
     },
 
+    computed: {
+      skill_1Error () {
+        const errors = []
+        if (!this.$v.skillsearchquery1.$dirty) return errors
+        !this.$v.skillsearchquery1.required && errors.push('This field is required.')
+        return errors
+      },
+      skill_2Error () {
+        const errors = []
+        if (!this.$v.skillsearchquery2.$dirty) return errors
+        !this.$v.skillsearchquery2.required && errors.push('This field is required.')
+        return errors
+      },
+      skill_3Error () {
+        const errors = []
+        if (!this.$v.skillsearchquery3.$dirty) return errors
+        !this.$v.skillsearchquery3.required && errors.push('This field is required.')
+        return errors
+      },
+      
+    },
+
 		methods: {
 
 			submit(){
-				this.errors = {};
+        this.$v.$touch();
+        if (this.$v.$invalid) {
+          console.log("invalid");
+        } else {
+         this.errors = {};
 					axios.post('/student/skilldetails', this.student).then(response => {
 						this.$router.go(-1);
 					}).catch(error => {
@@ -331,6 +378,7 @@ export default {
 						console.log("error");
 						}
 					});
+        }
       },
 
       previous(){

@@ -28,6 +28,10 @@
                           v-model="student.project_name"
                           label=""
                           class="purple-input mr-4"
+                          :error-messages="project_nameError"
+                          required
+                          @input="$v.student.project_name.$touch()"
+                          @blur="$v.student.project_name.$touch()"
                         />
                     </v-col>
 
@@ -50,6 +54,10 @@
                               label="Start Month"
                               readonly
                               v-on="on"
+                              :error-messages="start_monthError"
+                              required
+                              @input="$v.student.start_month.$touch()"
+                              @blur="$v.student.start_month.$touch()"
                             ></v-text-field>
                           </template>
                           <v-date-picker v-model="student.start_month" type="month" color="green lighten-1" no-title scrollable>
@@ -101,6 +109,10 @@
                           v-model="student.description"
                           label=""
                           class="purple-input mr-4"
+                          :error-messages="descError"
+                          required
+                          @input="$v.student.description.$touch()"
+                          @blur="$v.student.description.$touch()"
                         />
                     </v-col>
 
@@ -113,7 +125,12 @@
                           v-model="student.project_link"
                           label=""
                           class="purple-input mr-4"
+                          :error-messages="project_linkError"
+                          required
+                          @input="$v.student.project_link.$touch()"
+                          @blur="$v.student.project_link.$touch()"
                         />
+                        <br><p class="caption">(* Provide link of images/video if project link is not available)</p>
                     </v-col>
 
 
@@ -138,7 +155,18 @@
 </template>
 
 <script>
+import { validationMixin } from 'vuelidate'
+import { required } from 'vuelidate/lib/validators'
   export default {
+  mixins: [validationMixin],
+  validations: {
+      student: {
+        project_name: { required },
+        start_month: { required },
+        project_link: { required },
+        description: { required },
+      },
+  },
     data() {
       return {
         student: {
@@ -159,17 +187,50 @@
     this.$store.commit('SET_LAYOUT', 'student-layout');
   },
 
+  computed: {
+      project_nameError () {
+        const errors = []
+        if (!this.$v.student.project_name.$dirty) return errors
+        !this.$v.student.project_name.required && errors.push('This field is required.')
+        return errors
+      },
+      start_monthError () {
+        const errors = []
+        if (!this.$v.student.start_month.$dirty) return errors
+        !this.$v.student.start_month.required && errors.push('This field is required.')
+        return errors
+      }, 
+      descError () {
+        const errors = []
+        if (!this.$v.student.description.$dirty) return errors
+        !this.$v.student.description.required && errors.push('This field is required.')
+        return errors
+      }, 
+      project_linkError () {
+        const errors = []
+        if (!this.$v.student.project_link.$dirty) return errors
+        !this.$v.student.project_link.required && errors.push('This field is required.')
+        return errors
+      },      
+    },
+
   methods: {
 
     submit() {
-      this.errors = {};
-      axios.post('/student/projectdetails', this.student).then(response => {
-        this.$router.push('/student/otherexperiencedetails');
-      }).catch(error => {
-        if (error.response.status === 422) {
-        console.log("error");
-        }
-      });
+      this.$v.$touch();
+        if (this.$v.$invalid) {
+          console.log("invalid");
+        } else {
+        console.log("valid");
+        this.errors = {};
+        axios.post('/student/projectdetails', this.student).then(response => {
+          this.$router.push('/student/otherexperiencedetails');
+        }).catch(error => {
+          if (error.response.status === 422) {
+          console.log("error");
+          }
+        });
+      }      
     },
 
 

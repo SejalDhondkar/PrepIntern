@@ -16,8 +16,35 @@
     </v-toolbar>
 
         <v-container class="p-4">
-            <v-card-subtitle>Welcome To PrepIntern.</v-card-subtitle>
-            <v-card-subtitle>Generate Resume by going to Add/Edit Details section before applying for internships</v-card-subtitle>
+          <v-col cols="12">
+          <v-card
+            color="purple lighten-1"
+            dark
+          >
+            <v-card-title class="headline">Tell us about you</v-card-title>
+
+            <v-card-subtitle>Start building your resume and get best internships.</v-card-subtitle>
+
+            <v-card-actions>
+              <v-btn text class="text-decoration-none" to="/student/educationdetails">Add Details</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-col>
+        <v-col cols="12">
+          <v-card
+            color="pink accent-2"
+            dark
+          >
+            <v-card-title class="headline">Edit your Resume anytime</v-card-title>
+
+            <v-card-subtitle>Have some updates? Edit your details here</v-card-subtitle>
+
+            <v-card-actions>
+              <v-btn text class="text-decoration-none" to="/student/resume/edit">Edit Resume</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-col>
+            
         </v-container>
 
 

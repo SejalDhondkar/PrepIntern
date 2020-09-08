@@ -32,6 +32,10 @@
                             label="Date of birth"
                             readonly
                             v-on="on"
+                            :error-messages="dobError"
+                            required
+                            @input="$v.student.date_of_birth.$touch()"
+                            @blur="$v.student.date_of_birth.$touch()"
                           ></v-text-field>
                         </template>
               <v-date-picker v-model="student.date_of_birth" color="green lighten-1" no-title scrollable>
@@ -55,6 +59,10 @@
                             class="purple-input mr-4"
                             v-on:keyup="autoComplete"
                             v-on="on"
+                            :error-messages="countryError"
+                            required
+                            @input="$v.searchquery.$touch()"
+                            @blur="$v.searchquery.$touch()"
                           />
                         </template>
 
@@ -152,7 +160,16 @@
 </template>
 
 <script>
+import { validationMixin } from 'vuelidate'
+import { required } from 'vuelidate/lib/validators'
   export default {
+  mixins: [validationMixin],
+  validations: {
+      searchquery: { required },
+      student: {
+        date_of_birth: { required },
+      },
+  },
     data() {
       return {
         state: true,
@@ -179,8 +196,28 @@
       this.$store.commit('SET_LAYOUT', 'student-layout')
     },
 
+    computed: {
+      dobError () {
+        const errors = []
+        if (!this.$v.student.date_of_birth.$dirty) return errors
+        !this.$v.student.date_of_birth.required && errors.push('This field is required.')
+        return errors
+      },
+      countryError () {
+        const errors = []
+        if (!this.$v.searchquery.$dirty) return errors
+        !this.$v.searchquery.required && errors.push('This field is required.')
+        return errors
+      },       
+    },
+
     methods: {
       submit() {
+        this.$v.$touch();
+        if (this.$v.$invalid) {
+          console.log("invalid");
+        } else {
+        console.log("valid");
         this.errors = {}
         axios
           .post('/student/primarydetails', this.student)
@@ -191,7 +228,8 @@
             if (error.response.status === 422) {
               console.log('error')
             }
-          })
+          });
+      }
       },
 
       autoComplete() {

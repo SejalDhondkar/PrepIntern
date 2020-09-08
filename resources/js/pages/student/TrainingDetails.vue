@@ -28,6 +28,10 @@
                           v-model="student.training_program"
                           label=""
                           class="purple-input mr-4"
+                          :error-messages="training_programError"
+                          required
+                          @input="$v.student.training_program.$touch()"
+                          @blur="$v.student.training_program.$touch()"
                         />
                     </v-col>
 
@@ -40,6 +44,10 @@
                           v-model="student.organization"
                           label=""
                           class="purple-input mr-4"
+                          :error-messages="orgError"
+                          required
+                          @input="$v.student.organization.$touch()"
+                          @blur="$v.student.organization.$touch()"
                         />
                     </v-col>
 
@@ -150,6 +158,10 @@
                           v-model="student.description"
                           label=""
                           class="purple-input mr-4"
+                          :error-messages="descError"
+                          required
+                          @input="$v.student.description.$touch()"
+                          @blur="$v.student.description.$touch()"
                         />
                     </v-col>
 
@@ -175,7 +187,17 @@
 </template>
 
 <script>
+import { validationMixin } from 'vuelidate'
+import { required } from 'vuelidate/lib/validators'
   export default {
+  mixins: [validationMixin],
+  validations: {
+      student: {
+        training_program: { required },
+        organization: { required },
+        description: { required },
+      }
+   },
     data() {
       return {
         student: {
@@ -183,8 +205,8 @@
 						organization: '',
 						city_id: '',
 						is_online: 0,
-						start_date: new Date().toISOString().substr(0, 10),
-						end_date: new Date().toISOString().substr(0, 10),
+						start_date: '',
+						end_date: '',
 						is_currently_ongoing: 0,
 						description: '',
         },
@@ -202,17 +224,44 @@
     this.$store.commit('SET_LAYOUT', 'student-layout');
   },
 
+  computed: {
+      training_programError () {
+        const errors = []
+        if (!this.$v.student.training_program.$dirty) return errors
+        !this.$v.student.training_program.required && errors.push('This field is required.')
+        return errors
+      },
+      orgError () {
+        const errors = []
+        if (!this.$v.student.organization.$dirty) return errors
+        !this.$v.student.organization.required && errors.push('This field is required.')
+        return errors
+      }, 
+      descError () {
+        const errors = []
+        if (!this.$v.student.description.$dirty) return errors
+        !this.$v.student.description.required && errors.push('This field is required.')
+        return errors
+      },      
+    },
+
   methods: {
 
     submit() {
-      this.errors = {};
-      axios.post('/student/trainingdetails', this.student).then(response => {
-        this.$router.push('/student/otherexperiencedetails');
-      }).catch(error => {
-        if (error.response.status === 422) {
-        console.log("error");
-        }
-      });
+      this.$v.$touch();
+        if (this.$v.$invalid) {
+          console.log("invalid");
+        } else {
+        console.log("valid");
+        this.errors = {};
+        axios.post('/student/trainingdetails', this.student).then(response => {
+          this.$router.push('/student/otherexperiencedetails');
+        }).catch(error => {
+          if (error.response.status === 422) {
+          console.log("error");
+          }
+        });
+      }      
     },
 
     autoCompleteCity(){

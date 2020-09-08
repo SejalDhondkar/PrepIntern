@@ -34,6 +34,10 @@
                       class="purple-input mr-4"
                       v-on:keyup.enter="autoCompleteCollege"
                       v-on="on"
+                      :error-messages="collegeError"
+                      required
+                      @input="$v.collegesearchquery.$touch()"
+                      @blur="$v.collegesearchquery.$touch()"
                     />
                   </template>
 
@@ -126,6 +130,10 @@
                     class="purple-input mr-4"
                     v-on:keyup.enter="autoCompleteDegree"
                     v-on="on"
+                    required
+                    :error-messages="degreeError"
+                    @input="$v.degreesearchquery.$touch()"
+                    @blur="$v.degreesearchquery.$touch()"
                   />
                 </template>
 
@@ -218,7 +226,15 @@
 </template>
 
 <script>
+import { validationMixin } from 'vuelidate'
+import { required } from 'vuelidate/lib/validators'
+
   export default {
+  mixins: [validationMixin],
+  validations: {
+      collegesearchquery: { required },
+      degreesearchquery: { required },
+   },
     data() {
       return {
         student: {
@@ -291,8 +307,29 @@
       })
     },
 
+    computed: {
+      collegeError () {
+        const errors = []
+        if (!this.$v.collegesearchquery.$dirty) return errors
+        !this.$v.collegesearchquery.required && errors.push('This field is required.')
+        return errors
+      },
+      degreeError () {
+        const errors = []
+        if (!this.$v.degreesearchquery.$dirty) return errors
+        !this.$v.degreesearchquery.required && errors.push('This field is required.')
+        return errors
+      },
+      
+    },
+
     methods: {
       submit() {
+        this.$v.$touch();
+        if (this.$v.$invalid) {
+          console.log("invalid");
+        } else {
+        // console.log("valid");
         this.errors = {}
         axios
           .post('/student/postgraduationdetails', this.student)
@@ -304,6 +341,7 @@
               console.log('error')
             }
           })
+      }  
       },
 
       back() {

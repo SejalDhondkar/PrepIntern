@@ -39,6 +39,10 @@
                             class="purple-input mr-4"
                             v-on:keyup.enter="autoCompleteCollege"
                             v-on="on"
+                            :error-messages="collegeError"
+                            required
+                            @input="$v.collegesearchquery.$touch()"
+                            @blur="$v.collegesearchquery.$touch()"
                           />
                         </template>
 
@@ -68,6 +72,10 @@
                           label="Start Year"
                           class="purple-input mr-4"
                           v-on="on"
+                          required
+                          :error-messages="startError"
+                          @input="$v.student.start_year.$touch()"
+                          @blur.native="$v.student.start_year.$touch()"
                         />
                       </template>
 
@@ -96,6 +104,10 @@
                           label="End Year"
                           class="purple-input mr-4"
                           v-on="on"
+                          required
+                          :error-messages="endError"
+                          @input="$v.student.end_year.$touch()"
+                          @blur="$v.student.end_year.$touch()"
                         />
                       </template>
 
@@ -131,6 +143,10 @@
                           class="purple-input mr-4"
                           v-on:keyup.enter="autoCompleteDegree"
                           v-on="on"
+                          required
+                          :error-messages="degreeError"
+                          @input="$v.degreesearchquery.$touch()"
+                          @blur="$v.degreesearchquery.$touch()"
                         />
                       </template>
 
@@ -234,7 +250,19 @@
 </template>
 
 <script>
+import { validationMixin } from 'vuelidate'
+import { required } from 'vuelidate/lib/validators'
+
   export default {
+  mixins: [validationMixin],
+  validations: {
+      collegesearchquery: { required },
+      degreesearchquery: { required },
+      student: {
+        start_year: { required },
+        end_year: { required },
+      }      
+   },
     data() {
       return {
         student: {
@@ -260,6 +288,34 @@
       }
   },
 
+  computed: {
+      collegeError () {
+        const errors = []
+        if (!this.$v.collegesearchquery.$dirty) return errors
+        !this.$v.collegesearchquery.required && errors.push('This field is required.')
+        return errors
+      },
+      startError () {
+        const errors = []
+        if (!this.$v.student.start_year.$dirty) return errors
+        !this.$v.student.start_year.required && errors.push('This field is required.')
+        return errors
+      },
+      endError () {
+        const errors = []
+        if (!this.$v.student.end_year.$dirty) return errors
+        !this.$v.student.end_year.required && errors.push('This field is required.')
+        return errors
+      },
+      degreeError () {
+        const errors = []
+        if (!this.$v.degreesearchquery.$dirty) return errors
+        !this.$v.degreesearchquery.required && errors.push('This field is required.')
+        return errors
+      },
+      
+    },
+
   created(){
     this.$store.commit('SET_LAYOUT', 'student-layout');
     this.axios.get('/student/graduationdetails/edit').then((response) => {
@@ -274,15 +330,19 @@
   methods: {
 
     submit() {
-      this.errors = {};
-      axios.post('/student/graduationdetails', this.student).then(response => {
-        this.$router.go(-1);
-      }).catch(error => {
-        if (error.response.status === 422) {
-        console.log("error");
-        }
-      });
-
+      this.$v.$touch();
+        if (this.$v.$invalid) {
+          console.log("invalid");
+        } else {console.log("valid");
+        // this.errors = {};
+        // axios.post('/student/graduationdetails', this.student).then(response => {
+        //   this.$router.go(-1);
+        // }).catch(error => {
+        //   if (error.response.status === 422) {
+        //   console.log("error");
+        //   }
+        // });
+      }      
     },
 
     back(){

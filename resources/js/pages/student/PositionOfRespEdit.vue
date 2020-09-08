@@ -27,6 +27,10 @@
 												name="input-7-1"
 												label="Description"
 												v-model="student.description"
+                        :error-messages="descError"
+                        required
+                        @input="$v.student.description.$touch()"
+                        @blur="$v.student.description.$touch()"
 											></v-textarea>
                     </v-col>
 
@@ -64,7 +68,15 @@
 </template>
 
 <script>
+import { validationMixin } from 'vuelidate'
+import { required } from 'vuelidate/lib/validators'
   export default {
+  mixins: [validationMixin],
+  validations: {
+      student: {
+        description: { required },
+      }
+   },
     data() {
       return {
         student: {
@@ -80,10 +92,24 @@
         });
   },
 
+computed: {
+      descError () {
+        const errors = []
+        if (!this.$v.student.description.$dirty) return errors
+        !this.$v.student.description.required && errors.push('This field is required.')
+        return errors
+      },      
+    },
+
   methods: {
 
     submit() {
-      this.errors = {};
+      this.$v.$touch();
+        if (this.$v.$invalid) {
+          console.log("invalid");
+        } else {
+        console.log("valid");
+        this.errors = {};
       axios.post(`/student/positionofresponsibility/${this.$route.params.id}/update`, this.student).then(response => {
         this.$router.go(-1);
       }).catch(error => {
@@ -91,6 +117,7 @@
         console.log("error");
         }
       });
+      }      
 		},
 
 		back(){

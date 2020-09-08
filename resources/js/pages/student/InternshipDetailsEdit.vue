@@ -28,6 +28,10 @@
                           v-model="student.position"
                           label=""
                           class="purple-input mr-4"
+                          :error-messages="positionError"
+                          required
+                          @input="$v.student.position.$touch()"
+                          @blur="$v.student.position.$touch()"
                         />
                     </v-col>
 
@@ -40,6 +44,10 @@
                           v-model="student.organization"
                           label=""
                           class="purple-input mr-4"
+                          :error-messages="orgError"
+                          required
+                          @input="$v.student.organization.$touch()"
+                          @blur="$v.student.organization.$touch()"
                         />
                     </v-col>
 
@@ -143,13 +151,17 @@
 
                   <v-col cols="4"
                     class="text-center">
-                        <v-subheader>Description:</v-subheader>
+                        <v-subheader>Description:<br>(Provide link of your work if possible)</v-subheader>
                     </v-col>
 										<v-col cols="8">
-                      <v-text-field
+                      <v-textarea
                           v-model="student.description"
                           label=""
                           class="purple-input mr-4"
+                          :error-messages="descError"
+                          required
+                          @input="$v.student.description.$touch()"
+                          @blur="$v.student.description.$touch()"
                         />
                     </v-col>
 
@@ -187,7 +199,17 @@
 </template>
 
 <script>
+import { validationMixin } from 'vuelidate'
+import { required } from 'vuelidate/lib/validators'
   export default {
+  mixins: [validationMixin],
+  validations: {
+      student: {
+        position: { required },
+        organization: { required },
+        description: { required },
+      }
+   },
     data() {
       return {
         student: [],
@@ -224,18 +246,44 @@
         });
   },
 
+computed: {
+      positionError () {
+        const errors = []
+        if (!this.$v.student.position.$dirty) return errors
+        !this.$v.student.position.required && errors.push('This field is required.')
+        return errors
+      },
+      orgError () {
+        const errors = []
+        if (!this.$v.student.organization.$dirty) return errors
+        !this.$v.student.organization.required && errors.push('This field is required.')
+        return errors
+      }, 
+      descError () {
+        const errors = []
+        if (!this.$v.student.description.$dirty) return errors
+        !this.$v.student.description.required && errors.push('This field is required.')
+        return errors
+      },      
+    },
 
   methods: {
 
     submit() {
-      this.errors = {};
-      axios.post(`/student/internshipdetails/${this.$route.params.id}/update`, this.student).then(response => {
-        this.$router.go(-1);
-      }).catch(error => {
-        if (error.response.status === 422) {
-        console.log("error");
-        }
-      });
+      this.$v.$touch();
+        if (this.$v.$invalid) {
+          console.log("invalid");
+        } else {
+        console.log("valid");
+        this.errors = {};
+        axios.post(`/student/internshipdetails/${this.$route.params.id}/update`, this.student).then(response => {
+          this.$router.go(-1);
+        }).catch(error => {
+          if (error.response.status === 422) {
+          console.log("error");
+          }
+        });
+      }      
 		},
 
 		back(){

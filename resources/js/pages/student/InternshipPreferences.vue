@@ -27,6 +27,10 @@
 										solo
 										dense
 										return-object
+                    :error-messages="f0_Error"
+                    required
+                    @input="$v.student.fields[0].$touch()"
+                    @blur="$v.student.fields[0].$touch()"
 									></v-select>
 
 									<v-select
@@ -38,6 +42,10 @@
 										solo
 										dense
 										return-object
+                    :error-messages="f1_Error"
+                    required
+                    @input="$v.student.fields[1].$touch()"
+                    @blur="$v.student.fields[1].$touch()"
 									></v-select>
 
 									<v-select
@@ -49,13 +57,20 @@
 										solo
 										dense
 										return-object
+                    :error-messages="f2_Error"
+                    required
+                    @input="$v.student.fields[2].$touch()"
+                    @blur="$v.student.fields[2].$touch()"
 									></v-select>
 
 						</v-container>
 
 
 							<p class="font-weight-medium">What type of internship are you interested in?</p>
-								<v-radio-group v-model="student.type_of_internship_id">
+								<v-radio-group v-model="student.type_of_internship_id" :error-messages="type_Error"
+                    required
+                    @input="$v.student.type_of_internship_id.$touch()"
+                    @blur="$v.student.type_of_internship_id.$touch()">
 										<v-radio
 											v-for="(int,n) in this.type_of_int"
 											:key="n"
@@ -177,7 +192,20 @@
 </template>
 
 <script>
-export default {
+import { validationMixin } from 'vuelidate'
+import { required } from 'vuelidate/lib/validators'
+  export default {
+  mixins: [validationMixin],
+  validations: {
+      student: {
+        fields: {
+          0: {required},
+          1: {required},
+          2: {required},
+        },
+        type_of_internship_id: { required },
+      },
+  },
     data(){
 			return {
 				student: {
@@ -222,12 +250,45 @@ export default {
 			axios.get('/student/internships/fields').then(response => {
 						this.fields_list= response.data;
 			});
-		},
+    },
+    
+    computed: {
+      f0_Error () {
+        const errors = []
+        if (!this.$v.student.fields[0].$dirty) return errors
+        !this.$v.student.fields[0].required && errors.push('This field is required.')
+        return errors
+      },
+      f1_Error () {
+        const errors = []
+        if (!this.$v.student.fields[1].$dirty) return errors
+        !this.$v.student.fields[1].required && errors.push('This field is required.')
+        return errors
+      },
+      f2_Error () {
+        const errors = []
+        if (!this.$v.student.fields[2].$dirty) return errors
+        !this.$v.student.fields[2].required && errors.push('This field is required.')
+        return errors
+      },
+      type_Error () {
+        const errors = []
+        if (!this.$v.student.type_of_internship_id.$dirty) return errors
+        !this.$v.student.type_of_internship_id.required && errors.push('This field is required.')
+        return errors
+      },       
+    },
 
 		methods: {
 
 			submit(){
-				this.errors = {};
+        this.$v.$touch();
+        if (this.$v.$invalid) {
+          console.log("invalid");
+        } else {
+        console.log("valid");
+        this.errors = {};
+        this.errors = {};
 					axios.post('/student/internshippreferences', this.student).then(response => {
 						this.$router.push('/student/addskills');
 					}).catch(error => {
@@ -235,6 +296,8 @@ export default {
 						console.log("error");
 						}
 					});
+      }
+				
 			},
 
 			city(id){

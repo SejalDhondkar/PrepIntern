@@ -34,6 +34,10 @@
                           v-model="student.board"
                           label=""
                           class="purple-input mr-4"
+                          required
+                          :error-messages="boardError"
+                          @input="$v.student.board.$touch()"
+                          @blur="$v.student.board.$touch()"
                         />
                     </v-col>
 
@@ -80,6 +84,10 @@
                           v-model="student.school_name"
                           label=""
                           class="purple-input mr-4"
+                          required
+                          :error-messages="schoolError"
+                          @input="$v.student.school_name.$touch()"
+                          @blur="$v.student.school_name.$touch()"
                         />
                     </v-col>
 
@@ -130,7 +138,17 @@
 </template>
 
 <script>
-  export default {
+import { validationMixin } from 'vuelidate'
+import { required } from 'vuelidate/lib/validators'
+
+export default {
+  mixins: [validationMixin],
+  validations: {
+      student: {
+        school_name: { required },
+        board: { required },
+      }      
+   },
     data() {
       return {
         student: {
@@ -155,19 +173,38 @@ created(){
         });
   },
 
+  computed: {
+      boardError () {
+        const errors = []
+        if (!this.$v.student.board.$dirty) return errors
+        !this.$v.student.board.required && errors.push('This field is required.')
+        return errors
+      },
+      schoolError () {
+        const errors = []
+        if (!this.$v.student.school_name.$dirty) return errors
+        !this.$v.student.school_name.required && errors.push('This field is required.')
+        return errors
+      },
+    },
+
 
   methods: {
 
     submit() {
-      this.errors = {};
-      axios.post('/student/tenthdetails', this.student).then(response => {
-        this.$router.go(-1);
-      }).catch(error => {
-        if (error.response.status === 422) {
-        console.log("error");
-        }
-      });
-
+      this.$v.$touch();
+        if (this.$v.$invalid) {
+          console.log("invalid");
+        } else {console.log("valid");
+        this.errors = {};
+        axios.post('/student/tenthdetails', this.student).then(response => {
+          this.$router.go(-1);
+        }).catch(error => {
+          if (error.response.status === 422) {
+          console.log("error");
+          }
+        });
+      } 
     },
 
     back(){

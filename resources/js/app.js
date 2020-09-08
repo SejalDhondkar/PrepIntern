@@ -11,7 +11,9 @@ import router from './router'
 import Vuetify from 'vuetify'
 import { store } from './store/index'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
-import AxiosPlugin from 'vue-axios-cors';
+import Vuelidate from 'vuelidate'
+import AxiosPlugin from 'vue-axios-cors'
+Vue.use(Vuelidate)
 Vue.use(Vuetify)
 
 // Set Vue globally
