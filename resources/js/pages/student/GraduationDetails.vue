@@ -72,10 +72,6 @@
                           label="Start Year"
                           class="purple-input mr-4"
                           v-on="on"
-                          required
-                          :error-messages="startError"
-                          @input="$v.student.start_year.$touch()"
-                          @blur.native="$v.student.start_year.$touch()"
                         />
                       </template>
 
@@ -104,10 +100,6 @@
                           label="End Year"
                           class="purple-input mr-4"
                           v-on="on"
-                          required
-                          :error-messages="endError"
-                          @input="$v.student.end_year.$touch()"
-                          @blur="$v.student.end_year.$touch()"
                         />
                       </template>
 
@@ -258,10 +250,6 @@ import { required } from 'vuelidate/lib/validators'
   validations: {
       collegesearchquery: { required },
       degreesearchquery: { required },
-      student: {
-        start_year: { required },
-        end_year: { required },
-      }      
    },
     data() {
       return {
@@ -295,18 +283,6 @@ import { required } from 'vuelidate/lib/validators'
         !this.$v.collegesearchquery.required && errors.push('This field is required.')
         return errors
       },
-      startError () {
-        const errors = []
-        if (!this.$v.student.start_year.$dirty) return errors
-        !this.$v.student.start_year.required && errors.push('This field is required.')
-        return errors
-      },
-      endError () {
-        const errors = []
-        if (!this.$v.student.end_year.$dirty) return errors
-        !this.$v.student.end_year.required && errors.push('This field is required.')
-        return errors
-      },
       degreeError () {
         const errors = []
         if (!this.$v.degreesearchquery.$dirty) return errors
@@ -334,14 +310,14 @@ import { required } from 'vuelidate/lib/validators'
         if (this.$v.$invalid) {
           console.log("invalid");
         } else {console.log("valid");
-        // this.errors = {};
-        // axios.post('/student/graduationdetails', this.student).then(response => {
-        //   this.$router.go(-1);
-        // }).catch(error => {
-        //   if (error.response.status === 422) {
-        //   console.log("error");
-        //   }
-        // });
+        this.errors = {};
+        axios.post('/student/graduationdetails', this.student).then(response => {
+          this.$router.go(-1);
+        }).catch(error => {
+          if (error.response.status === 422) {
+          console.log("error");
+          }
+        });
       }      
     },
 
