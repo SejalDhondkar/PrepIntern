@@ -87,10 +87,6 @@
                           label="Choose your stream"
                           class="purple-input mr-4"
                           v-on="on"
-                          required
-                          :error-messages="streamError"
-                          @input="$v.student.stream.$touch()"
-                          @blur="$v.student.stream.$touch()"
                         />
                       </template>
 
@@ -184,7 +180,6 @@ import { required } from 'vuelidate/lib/validators'
       student: {
         school_name: { required },
         board: { required },
-        stream: { required },
       }      
    },
     data() {
@@ -225,12 +220,6 @@ import { required } from 'vuelidate/lib/validators'
         const errors = []
         if (!this.$v.student.school_name.$dirty) return errors
         !this.$v.student.school_name.required && errors.push('This field is required.')
-        return errors
-      },
-      streamError () {
-        const errors = []
-        if (!this.$v.student.stream.$dirty) return errors
-        !this.$v.student.stream.required && errors.push('This field is required.')
         return errors
       },
     },
