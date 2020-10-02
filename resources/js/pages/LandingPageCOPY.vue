@@ -1,20 +1,9 @@
 <template>
   <v-app>
 
-
-
-
-
-
-
-
-
-
       <v-spacer></v-spacer>
     <v-app-bar app color="deep-purple lighten-2
-"
-
->
+">
       <v-img src="./images/Prepintern_new_1.png"
              alt="Vuetify"
              width="45px"
@@ -23,88 +12,15 @@
              contain></v-img>
 
       <v-spacer></v-spacer>
-
-
    
-<template>
-  <div class="overflow-hidden">
-    <div class="text-center mb-8">
-      <v-btn class="toggle button"
-        color="grey darken-4"
-        outlined
-        fab
 
-        @click="active = !active"
-       
-      >
-        <v-icon>email</v-icon>
-      </v-btn>
-    </div>
-
-    <v-bottom-navigation
-      v-model="value"
-      :input-value="active"
-      color="grey darken-4"
-    >
-      <v-btn>
-        <span
-
-        @click="dialog=!dialog"> Internships</span>
-
-        <v-icon>search</v-icon>
-      </v-btn>
-
-      <v-btn>
-        <span>internships</span>
-``        <v-icon>mdi-heart</v-icon>
-      </v-btn>
-<v-spacer></v-spacer>
-      <v-btn>
-        <span>Nearby</span>
-
-        <v-icon>mdi-map-marker</v-icon>
-      </v-btn>
-    </v-bottom-navigation>
-
-
-
-
-    <v-dialog
-          v-model="dialog"
-          max-width="500px"
-        >
-          <v-card>
-           <v-input>Enter your search</v-input>
-              <v-spacer></v-spacer>
-
-              <v-btn
-                text
-                color="primary"
-                
-              >
-                Submit
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
-      </v-card>
-  </div>
-
-
-
-</template>
-
-
-
-
-
-<V-spacer></v-spacer>
 
       
 
 
       <v-btn rounded small  v-if="!$auth.check()" class="ma-2 text-decoration-none"  outlined color="grey darken-4" to="/login">
-            <v-icon left> lock</v-icon>
+            <v-icon left> 
+lock_open </v-icon>
 
        <span> Log In</span>
       </v-btn>
@@ -152,24 +68,6 @@
             </v-carousel-item>
         </v-carousel>
         </v-col>
-<v-navigation-drawer>
-
-
-
-
-
-
-
-
-
-</v-navigation-drawer>
-
-
-
-
-
-
-
         <v-col cols="12">
           <p class="headings">Features</p>
         </v-col>
@@ -356,8 +254,6 @@
         ],
         index: 0,
         i: 0,
-        value: 1,
-        active: false,
         carousel: [
           {
             src: './images/image1.png'
@@ -419,8 +315,6 @@
 </script>
 
 <style scoped>
-
-
   .headings {
     text-align: center;
     font-size: 2.5rem;
@@ -433,7 +327,7 @@
     text-align: justify;
     font-size: 1.1rem;
     padding-left: 10px;
-    font-family: 'Lucida Sans', 'Luida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-weight: 50;
     color: #212121;
   }
@@ -488,10 +382,5 @@
     font-size: 0.9rem;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-weight: 30;
-  }
-  .toggle{
-   margin-top:80px;
-   
-
   }
 </style>
