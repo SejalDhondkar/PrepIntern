@@ -2,17 +2,9 @@
   <v-app>
 
 
-
-
-
-
-
-
-
-
-      <v-spacer></v-spacer>
+  <v-spacer></v-spacer>
     <v-app-bar app color="deep-purple lighten-2
-"
+
 
 >
       <v-img src="./images/Prepintern_new_1.png"
