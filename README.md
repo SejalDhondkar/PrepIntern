@@ -21,7 +21,7 @@ https://user-images.githubusercontent.com/60104803/159467875-54efe034-d35e-4e25-
 - Vue.js (javascript framework for frontend)
 - Vuetify (Vuejs frontend design library)
 
-## Prerequires
+## Prerequisites
 
 - PHP 7 
 - Composer
